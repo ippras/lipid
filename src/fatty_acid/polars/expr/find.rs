@@ -21,6 +21,9 @@ pub trait Find {
     /// C18:1
     fn c18u1(&self, expr: Expr) -> Expr;
 
+    /// C18:1
+    fn c18u1z9(&self, expr: Expr) -> Expr;
+
     /// C18:2 (n-6) (w-6)
     fn c18u2z9z12(&self, expr: Expr) -> Expr;
 
@@ -59,16 +62,39 @@ impl Find for FattyAcidExpr {
         expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(1)))
     }
 
+    fn c18u1z9(&self, expr: Expr) -> Expr {
+        expr.filter(
+            self.carbons()
+                .eq(18)
+                .and(self.unsaturated().len().eq(2))
+                .and(
+                    self.unsaturated().contains(
+                        as_struct(vec![
+                            lit(9u8).alias("Index"),
+                            lit(1i8).alias("Isomerism"),
+                            lit(1u8).alias("Unsaturation"),
+                        ])
+                        .alias("Unsaturated"),
+                    ),
+                ),
+        )
+    }
+
     fn c18u2z9z12(&self, expr: Expr) -> Expr {
         expr.filter(
             self.carbons()
                 .eq(18)
                 .and(self.unsaturated().len().eq(2))
-                .and(self.unsaturated().contains(as_struct(vec![
-                    lit(9).alias("Index"),
-                    lit(1).alias("Isomerism"),
-                    lit(1).alias("Unsaturation"),
-                ]))),
+                .and(
+                    self.unsaturated().contains(
+                        as_struct(vec![
+                            lit(9u8).alias("Index"),
+                            lit(1i8).alias("Isomerism"),
+                            lit(1u8).alias("Unsaturation"),
+                        ])
+                        .alias("Unsaturated"),
+                    ),
+                ),
         )
     }
 
@@ -90,6 +116,11 @@ pub trait FindByName: Find {
     /// Butyric acid
     fn butyric_acid(&self, expr: Expr) -> Expr {
         self.c18u2z9z12(expr)
+    }
+
+    /// Oleic acid
+    fn oleic(&self, expr: Expr) -> Expr {
+        self.c18u1z9(expr)
     }
 
     /// Linoleic acid
