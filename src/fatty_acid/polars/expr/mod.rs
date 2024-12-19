@@ -26,6 +26,10 @@ impl FattyAcidExpr {
         UnsaturatedExpr(self.0.clone().struct_().field_by_name("Unsaturated"))
     }
 
+    /// Equal
+    pub fn equal(self, other: FattyAcidExpr) -> Expr {
+        self.0.eq(other.0)
+    }
     // /// Double bounds count
     // pub fn d(&self) -> Expr {
     //     self.0
@@ -129,9 +133,8 @@ impl UnsaturatedExpr {
     /// Unsaturated
     ///
     /// The number of unsaturated bonds.
-    pub fn len(&self) -> Expr {
+    pub fn len(self) -> Expr {
         self.0
-            .clone()
             .list()
             .eval(col("").struct_().field_by_name("Unsaturation"), true)
             .list()
@@ -139,23 +142,22 @@ impl UnsaturatedExpr {
     }
 
     /// Unsaturation (sum)
-    pub fn sum(&self) -> Expr {
+    pub fn sum(self) -> Expr {
         self.0
-            .clone()
             .list()
             .eval(col("").struct_().field_by_name("Unsaturation"), true)
             .list()
             .sum()
     }
 
-    /// Contains
-    pub fn list(&self) -> ListNameSpace {
-        self.0.clone().list()
+    /// List
+    pub fn list(self) -> ListNameSpace {
+        self.0.list()
     }
 
-    /// Contains
-    pub fn contains(&self, expr: Expr) -> Expr {
-        self.0.clone().list().contains(expr)
+    /// Equal
+    pub fn equal(self, other: UnsaturatedExpr) -> Expr {
+        self.0.eq(other)
     }
 }
 
@@ -165,6 +167,7 @@ impl From<UnsaturatedExpr> for Expr {
     }
 }
 
+pub mod r#const;
 pub mod filter;
 pub mod find;
 pub mod short;

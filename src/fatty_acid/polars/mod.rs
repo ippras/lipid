@@ -1,11 +1,7 @@
 pub use self::{
     column::ColumnExt,
     data_frame::DataFrameExt,
-    expr::{
-        ExprExt,
-        filter::Filter,
-        find::{Find, FindByName},
-    },
+    expr::{ExprExt, filter::Filter, find::FindByName},
     series::SeriesExt,
 };
 use polars::prelude::*;
@@ -43,7 +39,7 @@ impl SchemaExt for Schema {
     }
 }
 
-mod column;
-mod data_frame;
-mod expr;
-mod series;
+pub mod column;
+pub mod data_frame;
+pub mod expr;
+pub mod series;

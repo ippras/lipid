@@ -16,6 +16,7 @@ polars = { version = "0.45.1", default-features = false, features = [
     "lazy",
     "list_any_all",
     "list_eval",
+    "list_sets",
     "round_series",
     "serde-lazy",
 ] }
