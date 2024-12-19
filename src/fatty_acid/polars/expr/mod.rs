@@ -14,13 +14,7 @@ impl ExprExt for Expr {
 
 /// Fatty acid [`Expr`]
 #[derive(Clone, Debug)]
-pub struct FattyAcidExpr(Expr);
-
-impl From<FattyAcidExpr> for Expr {
-    fn from(value: FattyAcidExpr) -> Self {
-        value.0
-    }
-}
+pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
     /// Carbons
@@ -121,9 +115,15 @@ impl FattyAcidExpr {
     }
 }
 
+impl From<FattyAcidExpr> for Expr {
+    fn from(value: FattyAcidExpr) -> Self {
+        value.0
+    }
+}
+
 /// Unsaturated [`Expr`]
 #[derive(Clone, Debug)]
-pub struct UnsaturatedExpr(Expr);
+pub struct UnsaturatedExpr(pub Expr);
 
 impl UnsaturatedExpr {
     /// Unsaturated
@@ -138,7 +138,7 @@ impl UnsaturatedExpr {
             .len()
     }
 
-    /// Unsaturation
+    /// Unsaturation (sum)
     pub fn sum(&self) -> Expr {
         self.0
             .clone()
@@ -146,6 +146,17 @@ impl UnsaturatedExpr {
             .eval(col("").struct_().field_by_name("Unsaturation"), true)
             .list()
             .sum()
+    }
+
+    /// Contains
+    pub fn contains(&self, expr: Expr) -> Expr {
+        self.0.clone().list().contains(expr)
+    }
+}
+
+impl From<UnsaturatedExpr> for Expr {
+    fn from(value: UnsaturatedExpr) -> Self {
+        value.0
     }
 }
 

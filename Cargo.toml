@@ -1,7 +1,7 @@
 [package]
+edition = "2024"
 name = "lipid"
 version = "0.0.2"
-edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
@@ -12,6 +12,7 @@ polars = { version = "0.45.1", default-features = false, features = [
     "dtype-struct",
     "dtype-u8",
     "fmt_no_tty",
+    "is_in",
     "lazy",
     "list_any_all",
     "list_eval",

@@ -64,7 +64,11 @@ impl Find for FattyAcidExpr {
             self.carbons()
                 .eq(18)
                 .and(self.unsaturated().len().eq(2))
-                .and(self.unsaturated().len().eq(2)),
+                .and(self.unsaturated().contains(as_struct(vec![
+                    lit(9).alias("Index"),
+                    lit(1).alias("Isomerism"),
+                    lit(1).alias("Unsaturation"),
+                ]))),
         )
     }
 
