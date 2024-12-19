@@ -1,5 +1,13 @@
-pub use self::{column::ColumnExt, data_frame::DataFrameExt, expr::ExprExt, series::SeriesExt};
-
+pub use self::{
+    column::ColumnExt,
+    data_frame::DataFrameExt,
+    expr::{
+        ExprExt,
+        filter::Filter,
+        find::{Find, FindByName},
+    },
+    series::SeriesExt,
+};
 use polars::prelude::*;
 use std::sync::LazyLock;
 
