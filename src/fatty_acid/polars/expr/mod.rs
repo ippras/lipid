@@ -28,31 +28,10 @@ impl FattyAcidExpr {
         self.0.clone().struct_().field_by_name("Carbons")
     }
 
-    /// Unsaturated
-    ///
-    /// The number of unsaturated bonds.
-    pub fn unsaturated(&self) -> Expr {
-        self.0
-            .clone()
-            .struct_()
-            .field_by_name("Unsaturated")
-            .list()
-            .eval(col("").struct_().field_by_name("Unsaturation"), true)
-            .list()
-            .len()
+    pub fn unsaturated(&self) -> UnsaturatedExpr {
+        UnsaturatedExpr(self.0.clone().struct_().field_by_name("Unsaturated"))
     }
 
-    /// Unsaturation
-    pub fn unsaturation(&self) -> Expr {
-        self.0
-            .clone()
-            .struct_()
-            .field_by_name("Unsaturated")
-            .list()
-            .eval(col("").struct_().field_by_name("Unsaturation"), true)
-            .list()
-            .sum()
-    }
     // /// Double bounds count
     // pub fn d(&self) -> Expr {
     //     self.0
@@ -96,14 +75,14 @@ impl FattyAcidExpr {
     ///
     /// `ECN = C - 2U`
     pub fn ecn(&self) -> Expr {
-        self.carbons() - lit(2) * self.unsaturation()
+        self.carbons() - lit(2) * self.unsaturated().sum()
     }
 
     /// Hydrogens
     ///
     /// `H = 2C - 2U`
     pub fn hydrogens(&self) -> Expr {
-        lit(2) * self.carbons() - lit(2) * self.unsaturation()
+        lit(2) * self.carbons() - lit(2) * self.unsaturated().sum()
     }
 
     /// Mass
@@ -113,7 +92,7 @@ impl FattyAcidExpr {
 
     /// Saturated
     pub fn saturated(&self) -> Expr {
-        self.unsaturation().eq(0)
+        self.unsaturated().len().eq(0)
     }
 
     /// [`bounds`]
@@ -138,7 +117,35 @@ impl FattyAcidExpr {
 
     /// [`unsaturation`]
     pub fn u(&self) -> Expr {
-        self.unsaturation()
+        self.unsaturated().len()
+    }
+}
+
+/// Unsaturated [`Expr`]
+#[derive(Clone, Debug)]
+pub struct UnsaturatedExpr(Expr);
+
+impl UnsaturatedExpr {
+    /// Unsaturated
+    ///
+    /// The number of unsaturated bonds.
+    pub fn len(&self) -> Expr {
+        self.0
+            .clone()
+            .list()
+            .eval(col("").struct_().field_by_name("Unsaturation"), true)
+            .list()
+            .len()
+    }
+
+    /// Unsaturation
+    pub fn sum(&self) -> Expr {
+        self.0
+            .clone()
+            .list()
+            .eval(col("").struct_().field_by_name("Unsaturation"), true)
+            .list()
+            .sum()
     }
 }
 

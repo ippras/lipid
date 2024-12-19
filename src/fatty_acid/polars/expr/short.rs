@@ -38,6 +38,6 @@ impl FattyAcidExt for FattyAcidExpr {
     }
 
     fn u(&self) -> Expr {
-        self.unsaturation()
+        self.unsaturated().sum()
     }
 }

@@ -73,47 +73,47 @@ pub trait Filter {
 
 impl Filter for FattyAcidExpr {
     fn monoenoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(1))
+        expr.filter(self.unsaturated().len().eq(1))
     }
 
     fn dienoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(2))
+        expr.filter(self.unsaturated().len().eq(2))
     }
 
     fn trienoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(3))
+        expr.filter(self.unsaturated().len().eq(3))
     }
 
     fn tetraenoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(4))
+        expr.filter(self.unsaturated().len().eq(4))
     }
 
     fn pentaenoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(5))
+        expr.filter(self.unsaturated().len().eq(5))
     }
 
     fn hexaenoics(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(6))
+        expr.filter(self.unsaturated().len().eq(6))
     }
 
     fn sfa(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(0))
+        expr.filter(self.unsaturated().len().eq(0))
     }
 
     fn ufa(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().neq(0))
+        expr.filter(self.unsaturated().len().neq(0))
     }
 
     fn mufa(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().eq(1))
+        expr.filter(self.unsaturated().len().eq(1))
     }
 
     fn pufa(&self, expr: Expr) -> Expr {
-        expr.filter(self.unsaturated().gt(1))
+        expr.filter(self.unsaturated().len().gt(1))
     }
 
     fn pufan(&self, n: u8) -> Expr {
-        self.unsaturated().list().eval(
+        self.unsaturated().len().list().eval(
             col("")
                 .struct_()
                 .field_by_name("Index")
@@ -143,7 +143,7 @@ impl Filter for FattyAcidExpr {
     }
 
     fn ui(&self, expr: Expr) -> Expr {
-        (self.unsaturated() * expr).sum()
+        (self.unsaturated().len() * expr).sum()
     }
 
     fn flq(&self, expr: Expr) -> Expr {
@@ -151,6 +151,6 @@ impl Filter for FattyAcidExpr {
     }
 
     fn tfa(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().eq(3)))
+        expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(3)))
     }
 }

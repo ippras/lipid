@@ -3,6 +3,9 @@ use polars::prelude::*;
 
 /// Find
 pub trait Find {
+    /// C4:0
+    fn c4u0(&self, expr: Expr) -> Expr;
+
     /// C12:0
     fn c12u0(&self, expr: Expr) -> Expr;
 
@@ -32,51 +35,65 @@ pub trait Find {
 }
 
 impl Find for FattyAcidExpr {
+    fn c4u0(&self, expr: Expr) -> Expr {
+        expr.filter(self.carbons().eq(4).and(self.unsaturated().len().eq(0)))
+    }
+
     fn c12u0(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(12).and(self.unsaturated().eq(0)))
+        expr.filter(self.carbons().eq(12).and(self.unsaturated().len().eq(0)))
     }
 
     fn c14u0(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(14).and(self.unsaturated().eq(0)))
+        expr.filter(self.carbons().eq(14).and(self.unsaturated().len().eq(0)))
     }
 
     fn c16u0(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(16).and(self.unsaturated().eq(0)))
+        expr.filter(self.carbons().eq(16).and(self.unsaturated().len().eq(0)))
     }
 
     fn c18u0(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().eq(0)))
+        expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(0)))
     }
 
     fn c18u1(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().eq(1)))
+        expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(1)))
     }
 
     fn c18u2z9z12(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().eq(2)))
+        expr.filter(
+            self.carbons()
+                .eq(18)
+                .and(self.unsaturated().len().eq(2))
+                .and(self.unsaturated().len().eq(2)),
+        )
     }
 
     fn c18u3z9z12z15(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().eq(3)))
+        expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(3)))
     }
 
     fn c20u5z5z8z11z14z17(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(20).and(self.unsaturated().eq(5)))
+        expr.filter(self.carbons().eq(20).and(self.unsaturated().len().eq(5)))
     }
 
     fn c22u6z4z7z10z13z16z19(&self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(22).and(self.unsaturated().eq(6)))
+        expr.filter(self.carbons().eq(22).and(self.unsaturated().len().eq(6)))
     }
 }
 
 /// Find by name
 pub trait FindByName: Find {
-    /// Linoleic acid (LA)
+    /// Butyric acid
+    fn butyric_acid(&self, expr: Expr) -> Expr {
+        self.c18u2z9z12(expr)
+    }
+
+    /// Linoleic acid
     fn linoleic(&self, expr: Expr) -> Expr {
         self.c18u2z9z12(expr)
     }
 
-    /// α-Linolenic acid (ALA)
+    /// α-Linolenic acid
     fn alpha_linolenic(&self, expr: Expr) -> Expr {
         self.c18u3z9z12z15(expr)
     }
