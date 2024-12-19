@@ -1,0 +1,22 @@
+[package]
+name = "lipid"
+version = "0.0.1"
+edition = "2024"
+
+[dependencies]
+atom = { git = "https://github.com/ippras/atom" }
+polars = { version = "0.45.1", default-features = false, features = [
+    "abs",
+    "dtype-categorical",
+    "dtype-i8",
+    "dtype-struct",
+    "dtype-u8",
+    "fmt_no_tty",
+    "lazy",
+    "list_any_all",
+    "list_eval",
+    "round_series",
+    "serde-lazy",
+] }
+ron = "0.8.1"
+serde = { version = "1.0.216", features = ["derive", "std"] }
