@@ -43,10 +43,10 @@ fn test_debug() -> PolarsResult<()> {
         ],
 
     }?;
-    println!("data_frame: {data_frame}");
+    println!("data_frame: {}", data_frame);
+    println!("data_frame: {}", data_frame.unnest(["FattyAcid"])?);
     let mut lazy_frame = data_frame.lazy();
-    lazy_frame =
-        lazy_frame.with_columns([col("FattyAcid").fatty_acid().linoleic(col("Value")).sum()]);
+    lazy_frame = lazy_frame.with_columns([col("FattyAcid").fatty_acid().oleic(col("Value")).sum()]);
     println!("lazy_frame: {}", lazy_frame.clone().collect().unwrap());
     // assert_eq!(EXPECTED_DEBUG_F, format!("{:?}", f().unwrap_err()));
     // assert_eq!(EXPECTED_DEBUG_G, format!("{:?}", g().unwrap_err()));

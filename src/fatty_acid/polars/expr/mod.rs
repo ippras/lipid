@@ -149,6 +149,11 @@ impl UnsaturatedExpr {
     }
 
     /// Contains
+    pub fn list(&self) -> ListNameSpace {
+        self.0.clone().list()
+    }
+
+    /// Contains
     pub fn contains(&self, expr: Expr) -> Expr {
         self.0.clone().list().contains(expr)
     }
