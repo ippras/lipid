@@ -46,13 +46,6 @@ impl FattyAcidSeries {
                 unsaturated.push(unsaturated_series.get(index)?);
             }
         };
-        unsaturated.sort_by_cached_key(|unsaturated| {
-            (
-                unsaturated.index,
-                unsaturated.isomerism,
-                unsaturated.unsaturation,
-            )
-        });
         Ok(Some(FattyAcid {
             carbons,
             unsaturated,
