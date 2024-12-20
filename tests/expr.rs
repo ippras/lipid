@@ -1,9 +1,15 @@
-use lipid::fatty_acid::polars::{ExprExt, FindByName, expr::r#const::C18U0};
+use lipid::fatty_acid::polars::{
+    ExprExt, FindByName,
+    expr::r#const::{C18U0, C18U2Z9Z12, C18U3Z9E11E13},
+};
 use polars::prelude::*;
 use std::iter::empty;
 
 #[test]
 fn find() -> PolarsResult<()> {
+    println!("C18U3Z9E11E13: {:#?}", &*C18U3Z9E11E13);
+    println!("C18U2Z9Z12: {:#?}", &*C18U2Z9Z12);
+
     let data_frame = df! {
         "FattyAcid" => df! {
             "Carbons" => &[

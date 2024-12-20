@@ -2,1440 +2,211 @@ use super::FattyAcidExpr;
 use polars::prelude::*;
 use std::sync::LazyLock;
 
-/// Butyric acid
-pub static C4U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(4).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Valeric acid
-pub static C5U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(5).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Caproic acid
-pub static C6U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(6).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Enanthic acid
-pub static C7U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(7).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Caprylic acid
-pub static C8U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(8).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Pelargonic acid
-pub static C9U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(9).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Capric acid
-pub static C10U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(10).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Undecylic acid
-pub static C11U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(11).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Lauric acid
-pub static C12U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(12).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Tridecylic acid
-pub static C13U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(13).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Myristic acid
-pub static C14U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(14).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Pentadecylic acid
-pub static C15U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(15).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Palmitic acid
-pub static C16U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(16).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Palmitoleic acid (n-7)
-pub static C16U1Z9: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(16).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(9).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// Palmitelaidic acid (n-7)
-pub static C16U1E9: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(16).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(9).alias("Index"),
-            lit(-1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// Margaric acid
-pub static C17U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(17).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Stearic acid
-pub static C18U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
-
-/// Oleic acid (n-9)
-pub static C18U1Z9: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(9).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// Elaidic acid (n-9)
-pub static C18U1E9: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(9).alias("Index"),
-            lit(-1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// Linoleic acid (ω-6)
-pub static C18U2Z9Z12: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
+macro_rules! fatty_acid_expr {
+    ($(#[$outer:meta])* C $c:literal U $u:literal $($i:tt)*) => {
+        paste::paste! {
+            $(#[$outer])*
+            pub static [<C $c U $u $($i)*>]: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
+                let mut fields = vec![lit($c).alias("Carbons")];
+                if $u == 0 {
+                    fields.push(EMPTY_LIST.clone().alias("Unsaturated"));
+                }
+                fatty_acid_expr!(fields, $($i)*)
+            });
+        }
+    };
+    ($fields:ident, Z $z:literal $($i:tt)*) => {{
+        $fields.push(
+            concat_list([as_struct(vec![
+                lit($z).alias("Index"),
                 lit(1).alias("Isomerism"),
                 lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// α-Linolenic acid (ω-3)
-pub static C18U3Z9Z12Z15: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// γ-Linolenic acid (ω-6) = GLA
-pub static C18U3: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(6).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
-
-/// α-Eleostearic acid
-pub static C18U3Z9E11E13: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
+            ])])
+            .unwrap()
+            .alias("Unsaturated"),
+        );
+        fatty_acid_expr!($fields, $($i)*)
+    }};
+    ($fields:ident, E $e:literal $($i:tt)*) => {{
+        $fields.push(
+            concat_list([as_struct(vec![
+                lit($e).alias("Index"),
                 lit(-1).alias("Isomerism"),
                 lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+            ])])
+            .unwrap()
+            .alias("Unsaturated"),
+        );
+        fatty_acid_expr!($fields, $($i)*)
+    }};
+    ($fields:ident,) => {
+        FattyAcidExpr(as_struct($fields))
+    };
+}
 
-/// β-Eleostearic acid
-pub static C18U3E9E11E13: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Butyric acid"] C 4 U 0);
 
-/// Jacaric acid
-pub static C18U3Z8E10Z12: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(10).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Valeric acid"] C 5 U 0);
 
-/// Catalpic acid
-pub static C18U3E9E11Z13: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(-1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Caproic acid"] C 6 U 0);
 
-/// Stearidonic acid (ω-3)
-pub static C18U4Z6Z9Z12Z15: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(18).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(6).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Enanthic acid"] C 7 U 0);
 
-/// Nonadecylic acid
-pub static C19U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(19).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Caprylic acid"] C 8 U 0);
 
-/// Arachidic acid
-pub static C20U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Pelargonic acid"] C 9 U 0);
 
-/// Gadoleic acid (n-11)
-pub static C20U1Z9: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(9).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Capric acid"] C 10 U 0);
 
-/// Gondoic acid (n-9)
-pub static C20U1Z11: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(11).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Undecylic acid"] C 11 U 0);
 
-/// DihomoLinoleic acid (ω-6)
-pub static C20U2Z11Z14: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Lauric acid"] C 12 U 0);
 
-/// Bis-homo-a-Linolenic acid (ω-3), ETA
-pub static C20U3Z11Z14Z17: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(17).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tridecylic acid"] C 13 U 0);
 
-/// Bis-homo-g-Linolenic acid (ω-6)
-pub static C20U3Z8Z11Z14: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Myristic acid"] C 14 U 0);
 
-/// Mead Acid
-pub static C20U3Z5Z8Z11: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(5).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Pentadecylic acid"] C 15 U 0);
 
-/// Arachidonic acid (ω-6)
-pub static C20U4Z5Z8Z11Z14: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(5).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Palmitic acid"] C 16 U 0);
 
-/// Eicosatetraenoic acid (ω-3)
-pub static C20U4Z8Z11Z14Z17: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(17).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Palmitoleic acid (n-7)"] C 16 U 1 Z 9);
 
-/// EPA (ω-3)
-pub static C20U5Z5Z8Z11Z14Z17: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(20).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(5).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(8).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(11).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(14).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(17).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Palmitelaidic acid (n-7)"] C 16 U 1 E 9);
 
-/// Heneicosylic acid
-pub static C21U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(21).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Margaric acid"] C 17 U 0);
 
-/// Behenic acid
-pub static C22U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Stearic acid"] C 18 U 0);
 
-/// Erucic acid (n-9)
-pub static C22U1Z13: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(13).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Oleic acid (n-9)"] C 18 U 1 Z 9);
 
-/// Docosadienoic acid (ω-6)
-pub static C22U2Z13Z16: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(16).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Elaidic acid (n-9)"] C 18 U 1 E 9);
 
-/// Eranthic acid (ω-6)
-pub static C22U3Z5Z13Z16: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(5).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(16).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Linoleic acid (ω-6)"] C 18 U 2 Z 9 Z 12);
 
-/// Adrenic acid (ω-6)
-pub static C22U4Z7Z10Z13Z16: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(7).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(10).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(16).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "α-Linolenic acid (ω-3)"] C 18 U 3 Z 9 Z 12 Z 15);
 
-/// DPA (ω-3)
-pub static C22U5Z7Z10Z13Z16Z19: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(7).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(10).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(16).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(19).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "γ-Linolenic acid (ω-6), GLA"] C 18 U 3);
 
-/// DHA (ω-3)
-pub static C22U6Z4Z7Z10Z13Z16Z19: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(22).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(4).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(7).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(10).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(13).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(16).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(19).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "α-Eleostearic acid"] C 18 U 3 Z 9 E 11 E 13);
 
-/// Tricosylic acid
-pub static C23U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(23).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "β-Eleostearic acid"] C 18 U 3 E 9 E 11 E 13);
 
-/// Lignoceric acid
-pub static C24U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Jacaric acid"] C 18 U 3 Z 8 E 10 Z 12);
 
-/// Nervonic acid (n-9)
-pub static C24U1Z15: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(15).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Catalpic acid"] C 18 U 3 E 9 E 11 Z 13);
 
-/// Tetracosadienoic acid (ω-6)
-pub static C24U2Z15Z18: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(18).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Stearidonic acid (ω-3)"] C 18 U 4 Z 6 Z 9 Z 12 Z 15);
 
-/// Tetracosatrienylic acid
-pub static C24U3Z12Z15Z18: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(18).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Nonadecylic acid"] C 19 U 0);
 
-/// Tetracosatetraenylic acid
-pub static C24U4Z9Z12Z15Z18: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(18).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Arachidic acid"] C 20 U 0);
 
-/// Tetracosapentaenylic acid
-pub static C24U5Z6Z9Z12Z15Z18: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(6).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(18).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Gadoleic acid (n-11)"] C 20 U 1 Z 9);
 
-/// Tetracosahexaenylic acid (ω-3)
-pub static C24U6Z6Z9Z12Z15Z18Z21: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(24).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(6).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(9).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(12).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(15).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(18).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(21).alias("Index"),
-                lit(1).alias("Isomerism"),
-                lit(1).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Gondoic acid (n-9)"] C 20 U 1 Z 11);
 
-/// Hyenic acid
-pub static C25U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(25).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "DihomoLinoleic acid (ω-6)"] C 20 U 2 Z 11 Z 14);
 
-/// Cerotic acid
-pub static C26U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Bis-homo-α-Linolenic acid (ω-3), ETA"] C 20 U 3 Z 11 Z 14 Z 17);
 
-/// Ximenic acid
-pub static C26U1Z17: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(17).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Bis-homo-γ-Linolenic acid (ω-6)"] C 20 U 3 Z 8 Z 11 Z 14);
 
-/// Hexacosadienylic acid
-pub static C26U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Mead Acid"] C 20 U 3 Z 5 Z 8 Z 11);
 
-/// Hexacosatrienylic acid
-pub static C26U3: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Arachidonic acid (ω-6)"] C 20 U 4 Z 5 Z 8 Z 11 Z 14);
 
-/// Hexacosatetraenylic acid
-pub static C26U4: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Eicosatetraenoic acid (ω-3)"] C 20 U 4 Z 8 Z 11 Z 14 Z 17);
 
-/// Hexacosapentaenylic acid
-pub static C26U5: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "EPA (ω-3)"] C 20 U 5 Z 5 Z 8 Z 11 Z 14 Z 17);
 
-/// Hexacosahexaenylic acid
-pub static C26U6: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(26).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Heneicosylic acid"] C 21 U 0);
 
-/// Carboceric acid
-pub static C27U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(27).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Behenic acid"] C 22 U 0);
 
-/// Montanic acid
-pub static C28U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(28).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Erucic acid (n-9)"] C 22 U 1 Z 13);
 
-/// Octacosenylic acid
-pub static C28U1: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(28).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(0).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Docosadienoic acid (ω-6)"] C 22 U 2 Z 13 Z 16);
 
-/// --
-pub static C28U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(28).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Eranthic acid (ω-6)"] C 22 U 3 Z 5 Z 13 Z 16);
 
-/// Nonacosylic acid
-pub static C29U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(29).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Adrenic acid (ω-6)"] C 22 U 4 Z 7 Z 10 Z 13 Z 16);
 
-/// Melissic acid
-pub static C30U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(30).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "DPA (ω-3)"] C 22 U 5 Z 7 Z 10 Z 13 Z 16 Z 19);
 
-/// Lumequeic acid
-pub static C30U1Z21: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(30).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(0).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "DHA (ω-3)"] C 22 U 6 Z 4 Z 7 Z 10 Z 13 Z 16 Z 19);
 
-///
-pub static C30U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(30).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tricosylic acid"] C 23 U 0);
 
-/// Henatriacontylic acid
-pub static C31U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(31).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Lignoceric acid"] C 24 U 0);
 
-/// Lacceroic acid
-pub static C32U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(32).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Nervonic acid (n-9)"] C 24 U 1 Z 15);
 
-/// Dotriacontenylic acid
-pub static C32U1: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(32).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(0).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tetracosadienoic acid (ω-6)"] C 24 U 2 Z 15 Z 18);
 
-/// --
-pub static C32U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(32).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tetracosatrienylic acid"] C 24 U 3 Z 12 Z 15 Z 18);
 
-/// Psyllic acid
-pub static C33U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(33).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tetracosatetraenylic acid"] C 24 U 4 Z 9 Z 12 Z 15 Z 18);
 
-/// Gheddic acid
-pub static C34U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(34).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tetracosapentaenylic acid"] C 24 U 5 Z 6 Z 9 Z 12 Z 15 Z 18);
 
-/// Tetratriacontenylic acid
-pub static C34U1: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(34).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(0).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Tetracosahexaenylic acid (ω-3)"] C 24 U 6 Z 6 Z 9 Z 12 Z 15 Z 18 Z 21);
 
-/// --
-pub static C34U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(34).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Hyenic acid"] C 25 U 0);
 
-/// Ceroplastic acid
-pub static C35U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(35).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Cerotic acid"] C 26 U 0);
 
-/// Hexatriacontylic acid
-pub static C36U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(36).alias("Carbons"),
-        EMPTY_LIST.clone().alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Ximenic acid"] C 26 U 1 Z 17);
 
-/// Hexatriacontenylic acid
-pub static C36U1: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(36).alias("Carbons"),
-        concat_list([as_struct(vec![
-            lit(0).alias("Index"),
-            lit(1).alias("Isomerism"),
-            lit(1).alias("Unsaturation"),
-        ])])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Hexacosadienylic acid"] C 26 U 2);
 
-/// --
-pub static C36U2: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
-    FattyAcidExpr(as_struct(vec![
-        lit(36).alias("Carbons"),
-        concat_list([
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-            as_struct(vec![
-                lit(0).alias("Index"),
-                lit(0).alias("Isomerism"),
-                lit(0).alias("Unsaturation"),
-            ]),
-        ])
-        .unwrap()
-        .alias("Unsaturated"),
-    ]))
-});
+fatty_acid_expr!(#[doc = "Hexacosatrienylic acid"] C 26 U 3);
+
+fatty_acid_expr!(#[doc = "Hexacosatetraenylic acid"] C 26 U 4);
+
+fatty_acid_expr!(#[doc = "Hexacosapentaenylic acid"] C 26 U 5);
+
+fatty_acid_expr!(#[doc = "Hexacosahexaenylic acid"] C 26 U 6);
+
+fatty_acid_expr!(#[doc = "Carboceric acid"] C 27 U 0);
+
+fatty_acid_expr!(#[doc = "Montanic acid"] C 28 U 0);
+
+fatty_acid_expr!(#[doc = "Octacosenylic acid"] C 28 U 1);
+
+fatty_acid_expr!(#[doc = ""] C 28 U 2);
+
+fatty_acid_expr!(#[doc = "Nonacosylic acid"] C 29 U 0);
+
+fatty_acid_expr!(#[doc = "Melissic acid"] C 30 U 0);
+
+fatty_acid_expr!(#[doc = "Lumequeic acid"] C 30 U 1 Z 21);
+
+fatty_acid_expr!(#[doc = ""] C 30 U 2);
+
+fatty_acid_expr!(#[doc = "Henatriacontylic acid"] C 31 U 0);
+
+fatty_acid_expr!(#[doc = "Lacceroic acid"] C 32 U 0);
+
+fatty_acid_expr!(#[doc = "Dotriacontenylic acid"] C 32 U 1);
+
+fatty_acid_expr!(#[doc = ""] C 32 U 2);
+
+fatty_acid_expr!(#[doc = "Psyllic acid"] C 33 U 0);
+
+fatty_acid_expr!(#[doc = "Gheddic acid"] C 34 U 0);
+
+fatty_acid_expr!(#[doc = "Tetratriacontenylic acid"] C 34 U 1);
+
+fatty_acid_expr!(#[doc = ""] C 34 U 2);
+
+fatty_acid_expr!(#[doc = "Ceroplastic acid"] C 35 U 0);
+
+fatty_acid_expr!(#[doc = "Hexatriacontylic acid"] C 36 U 0);
+
+fatty_acid_expr!(#[doc = "Hexatriacontenylic acid"] C 36 U 1);
+
+fatty_acid_expr!(#[doc = ""] C 36 U 2);
 
 static EMPTY_LIST: LazyLock<Expr> = LazyLock::new(|| {
     lit(Scalar::new(

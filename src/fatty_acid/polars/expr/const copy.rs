@@ -2,6 +2,73 @@ use super::FattyAcidExpr;
 use polars::prelude::*;
 use std::sync::LazyLock;
 
+macro_rules! fatty_acid_expr {
+    ($id:ident) => {
+        pub static $id: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
+            let (c, u) = stringify!($id)
+                .trim_start_matches('C')
+                .split_once('U')
+                .unwrap();
+            let c = c.parse::<u8>().unwrap();
+            FattyAcidExpr(as_struct(vec![
+                lit(c).alias("Carbons"),
+                EMPTY_LIST.clone().alias("Unsaturated"),
+            ]))
+        });
+    };
+}
+
+fatty_acid_expr!(C3U0);
+
+// $(
+//     fn [<$name _ $test_name>]() { // <- special syntax used by paste!
+//         let $params = ($($args),*);
+//         $test_body
+//     }
+// )*
+macro_rules! fatty_acid {
+    (C $c:literal U $u:literal $(Z $z:literal)*) => {
+        paste! {
+            pub static [<C $c U $u>]: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
+                let mut fields = vec![lit($c).alias("Carbons")];
+                if $u == 0 {
+                    fields.push(EMPTY_LIST.clone().alias("Unsaturated"));
+                } else {
+                    $(
+                        fields.push(
+                            concat_list([as_struct(vec![
+                                lit($z).alias("Index"),
+                                lit(-1).alias("Isomerism"),
+                                lit(1).alias("Unsaturation"),
+                            ])])
+                            .unwrap()
+                            .alias("Unsaturated"),
+                        )
+                    )*
+                }
+                FattyAcidExpr(as_struct(fields))
+            });
+        }
+    };
+    // (C $c:literal U $u:literal $(Z $z:literal)*) => {
+
+    // };
+}
+
+// fn t() {
+//     fields.push(
+//         concat_list([as_struct(vec![
+//             lit($z).alias("Index"),
+//             lit(-1).alias("Isomerism"),
+//             lit(1).alias("Unsaturation"),
+//         ])])
+//         .unwrap()
+//         .alias("Unsaturated"),
+//     )
+// }
+
+fatty_acid!(C 2 U 0 Z 9);
+
 /// Lauric acid
 pub static C12U0: LazyLock<FattyAcidExpr> = LazyLock::new(|| {
     FattyAcidExpr(as_struct(vec![
