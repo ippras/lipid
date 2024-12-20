@@ -1,7 +1,4 @@
-use lipid::fatty_acid::polars::{
-    ExprExt, FindByName,
-    expr::r#const::{C18U0, C18U2Z9Z12, C18U3Z9E11E13},
-};
+use lipid::fatty_acid::polars::prelude::*;
 use polars::prelude::*;
 use std::iter::empty;
 
@@ -68,6 +65,10 @@ fn find() -> PolarsResult<()> {
             .filter(col("FattyAcid").fatty_acid().eicosapentaenoic())
             .sum()
             .alias("Eicosapentaenoic"),
+        col("Value")
+            .filter(col("FattyAcid").fatty_acid().equal(C18U1Z9.clone()))
+            .sum()
+            .alias("C18U3Z9Z12Z15"),
     ]);
     println!("lazy_frame: {}", lazy_frame.clone().collect().unwrap());
     // assert_eq!(EXPECTED_DEBUG_F, format!("{:?}", f().unwrap_err()));

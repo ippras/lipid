@@ -39,6 +39,15 @@ impl SchemaExt for Schema {
     }
 }
 
+pub mod prelude {
+    pub use super::{
+        column::ColumnExt,
+        data_frame::DataFrameExt,
+        expr::{ExprExt, r#const::*, filter::Filter, find::FindByName},
+        series::SeriesExt,
+    };
+}
+
 pub mod column;
 pub mod data_frame;
 pub mod expr;
