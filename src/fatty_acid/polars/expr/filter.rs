@@ -110,7 +110,7 @@ impl Filter for FattyAcidExpr {
     }
 
     fn pufan(self, n: u8) -> Expr {
-        self.unsaturated().len().list().eval(
+        self.clone().unsaturated().len().list().eval(
             col("")
                 .struct_()
                 .field_by_name("Index")
@@ -159,6 +159,11 @@ impl Filter for FattyAcidExpr {
     }
 
     fn tfa(self, expr: Expr) -> Expr {
-        expr.filter(self.carbons().eq(18).and(self.unsaturated().len().eq(3)))
+        expr.filter(
+            self.clone()
+                .carbons()
+                .eq(18)
+                .and(self.unsaturated().len().eq(3)),
+        )
     }
 }

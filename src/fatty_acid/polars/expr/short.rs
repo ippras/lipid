@@ -19,25 +19,25 @@ pub trait FattyAcidExt {
     fn u(&self) -> Expr;
 }
 
-/// Fatty acid
-impl FattyAcidExt for FattyAcidExpr {
-    fn b(&self) -> Expr {
-        self.bounds()
-    }
+// /// Fatty acid
+// impl FattyAcidExt for FattyAcidExpr {
+//     fn b(&self) -> Expr {
+//         self.bounds()
+//     }
 
-    fn c(&self) -> Expr {
-        self.carbons()
-    }
+//     fn c(&self) -> Expr {
+//         self.carbons()
+//     }
 
-    fn h(&self) -> Expr {
-        self.hydrogens()
-    }
+//     fn h(&self) -> Expr {
+//         self.hydrogens()
+//     }
 
-    fn s(&self) -> Expr {
-        self.saturated()
-    }
+//     fn s(&self) -> Expr {
+//         self.is_saturated()
+//     }
 
-    fn u(&self) -> Expr {
-        self.unsaturated().sum()
-    }
-}
+//     fn u(&self) -> Expr {
+//         self.unsaturated().sum()
+//     }
+// }

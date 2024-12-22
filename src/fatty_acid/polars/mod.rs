@@ -1,7 +1,7 @@
 pub use self::{
     column::ColumnExt,
     data_frame::DataFrameExt,
-    expr::{ExprExt, filter::Filter, find::FindByName},
+    expr::{ExprExt, chain_length::ChainLength, filter::Filter, find::FindByName},
     series::SeriesExt,
 };
 use polars::prelude::*;
@@ -43,7 +43,7 @@ pub mod prelude {
     pub use super::{
         column::ColumnExt,
         data_frame::DataFrameExt,
-        expr::{ExprExt, r#const::*, filter::Filter, find::FindByName},
+        expr::{ExprExt, chain_length::ChainLength, r#const::*, filter::Filter, find::FindByName},
         series::SeriesExt,
     };
 }
