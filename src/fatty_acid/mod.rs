@@ -131,8 +131,9 @@ pub struct Unsaturated {
 }
 
 /// Isomerism
-#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Copy, Debug, Default, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
 pub enum Isomerism {
+    #[default]
     Cis = 1,
     Trans = -1,
 }

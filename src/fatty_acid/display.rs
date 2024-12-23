@@ -1,6 +1,5 @@
-use self::{index::Notation, isomerism::Elision};
 use crate::fatty_acid::FattyAcid;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::{
     borrow::Borrow,
     fmt::{self, Formatter},
@@ -61,22 +60,6 @@ impl<T> Display<T> {
     }
 }
 
-/// Display options
-#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub struct Options {
-    pub separators: Separators,
-    pub notation: Notation,
-    pub elision: Elision,
-}
-
-/// Separators
-#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-pub struct Separators {
-    pub c: &'static str,
-    pub u: &'static str,
-    pub i: [&'static str; 2],
-}
-
 // impl<T: Borrow<FattyAcid>> fmt::Display for Display<T> {
 //     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
 //         let fatty_acid = self.fatty_acid.borrow();
@@ -133,31 +116,25 @@ impl<T: Borrow<FattyAcid>> fmt::Display for Display<T> {
         if f.alternate() {
             let mut iter = fatty_acid.unsaturated.iter();
             if let Some(unsaturated) = iter.next() {
-                if let Some(index) = unsaturated.index {
-                    f.write_str(self.options.separators.i[0])?;
-                    fmt::Display::fmt(&index, f)?;
-                }
-                // fmt::Display::fmt(
-                //     &index::Display::new(
-                //         unsaturated.index.map(|index| index + 1),
-                //         isomerism::Display::new(unsaturated.isomerism, self.options.elision),
-                //         self.options.notation,
-                //     ),
-                //     f,
-                // )?;
+                f.write_str(self.options.separators.i[0])?;
+                fmt::Display::fmt(
+                    &unsaturated::Display::new(
+                        unsaturated,
+                        self.options.notation,
+                        self.options.elision,
+                    ),
+                    f,
+                )?;
                 for unsaturated in iter {
                     f.write_str(self.options.separators.i[1])?;
-                    if let Some(index) = unsaturated.index {
-                        fmt::Display::fmt(&index, f)?;
-                    }
-                    // fmt::Display::fmt(
-                    //     &index::Display::new(
-                    //         unsaturated.index + 1,
-                    //         isomerism::Display::new(unsaturated.isomerism, self.options.elision),
-                    //         self.options.notation,
-                    //     ),
-                    //     f,
-                    // )?;
+                    fmt::Display::fmt(
+                        &unsaturated::Display::new(
+                            unsaturated,
+                            self.options.notation,
+                            self.options.elision,
+                        ),
+                        f,
+                    )?;
                 }
             }
         }
@@ -165,55 +142,145 @@ impl<T: Borrow<FattyAcid>> fmt::Display for Display<T> {
     }
 }
 
-mod index {
-    use super::isomerism;
-    use serde::{Deserialize, Serialize};
+/// Display options
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub struct Options {
+    pub separators: Separators,
+    pub notation: Notation,
+    pub elision: Elision,
+}
+
+/// Separators
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub struct Separators {
+    pub c: &'static str,
+    pub u: &'static str,
+    pub i: [&'static str; 2],
+}
+
+/// Isomerism notation
+#[derive(Clone, Copy, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub enum Notation {
+    Prefix,
+    Suffix,
+}
+
+/// Isomerism elision
+#[derive(Clone, Copy, Debug, Default, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
+pub enum Elision {
+    Explicit,
+    #[default]
+    Implicit,
+}
+
+mod unsaturated {
+    use super::{Elision, Notation, affix};
+    use crate::fatty_acid::Unsaturated;
     use std::fmt::{self, Formatter};
 
-    /// Index display
-    pub(super) struct Display {
-        index: usize,
-        isomerism: isomerism::Display,
+    /// Unsaturated display
+    pub(super) struct Display<'a> {
+        unsaturated: &'a Unsaturated,
         notation: Notation,
+        elision: Elision,
+    }
+
+    impl<'a> Display<'a> {
+        pub(super) fn new(
+            unsaturated: &'a Unsaturated,
+            notation: Notation,
+            elision: Elision,
+        ) -> Self {
+            Self {
+                unsaturated,
+                notation,
+                elision,
+            }
+        }
+    }
+
+    impl fmt::Display for Display<'_> {
+        fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+            let index = |f| {
+                if let Some(index) = self.unsaturated.index {
+                    fmt::Display::fmt(&index, f)
+                } else {
+                    f.write_str("*")
+                }
+            };
+            let isomerism = self.unsaturated.isomerism.unwrap_or_default();
+            let unsaturation = self.unsaturated.unsaturation.unwrap_or_default();
+            match self.notation {
+                Notation::Prefix => {
+                    fmt::Display::fmt(
+                        &affix::Display::new(isomerism, unsaturation, self.elision),
+                        f,
+                    )?;
+                    index(f)?;
+                }
+                Notation::Suffix => {
+                    index(f)?;
+                    fmt::Display::fmt(
+                        &affix::Display::new(isomerism, unsaturation, self.elision),
+                        f,
+                    )?;
+                }
+            }
+            Ok(())
+        }
+    }
+}
+
+mod affix {
+    use super::Elision;
+    use crate::fatty_acid::{Isomerism, Unsaturation};
+    use std::fmt::{self, Formatter, Write};
+
+    /// Display affix
+    pub(super) struct Display {
+        pub(super) isomerism: Isomerism,
+        pub(super) unsaturation: Unsaturation,
+        pub(super) elision: Elision,
     }
 
     impl Display {
-        pub(super) fn new(index: usize, isomerism: isomerism::Display, notation: Notation) -> Self {
+        pub(super) fn new(
+            isomerism: Isomerism,
+            unsaturation: Unsaturation,
+            elision: Elision,
+        ) -> Self {
             Self {
-                index,
                 isomerism,
-                notation,
+                unsaturation,
+                elision,
             }
         }
     }
 
     impl fmt::Display for Display {
         fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-            match self.notation {
-                Notation::Prefix => {
-                    fmt::Display::fmt(&self.isomerism, f)?;
-                    fmt::Display::fmt(&self.index, f)
+            match self.isomerism {
+                Isomerism::Cis => {
+                    if self.elision == Elision::Explicit || self.unsaturation == Unsaturation::Two {
+                        match self.unsaturation {
+                            Unsaturation::One => f.write_char('c')?,
+                            Unsaturation::Two => f.write_str("ct")?,
+                        }
+                    }
                 }
-                Notation::Suffix => {
-                    fmt::Display::fmt(&self.index, f)?;
-                    fmt::Display::fmt(&self.isomerism, f)
-                }
+                Isomerism::Trans => match self.unsaturation {
+                    Unsaturation::One => f.write_char('t')?,
+                    Unsaturation::Two => f.write_str("tt")?,
+                },
             }
+            Ok(())
         }
-    }
-
-    /// Isomerism notation
-    #[derive(Clone, Copy, Debug, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize)]
-    pub enum Notation {
-        Prefix,
-        Suffix,
     }
 }
 
-// C:D:TΔI,I,I
 mod isomerism {
+    use super::Elision;
     use crate::fatty_acid::Isomerism;
-    use serde::{Deserialize, Serialize};
     use std::fmt::{self, Formatter, Write};
 
     /// Display isomerism
@@ -242,15 +309,5 @@ mod isomerism {
             }
             Ok(())
         }
-    }
-
-    /// Isomerism elision
-    #[derive(
-        Clone, Copy, Debug, Default, Deserialize, Eq, Ord, PartialEq, PartialOrd, Serialize,
-    )]
-    pub enum Elision {
-        Explicit,
-        #[default]
-        Implicit,
     }
 }
