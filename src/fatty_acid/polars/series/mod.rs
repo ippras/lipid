@@ -1,3 +1,5 @@
+use std::iter::from_fn;
+
 use self::unsaturated::UnsaturatedSeries;
 use crate::fatty_acid::FattyAcid;
 use polars::prelude::*;
@@ -66,6 +68,21 @@ impl FattyAcidSeries {
             return Ok(None);
         };
         Ok(Some(UnsaturatedSeries::new(&unsaturated)?))
+    }
+}
+
+impl IntoIterator for FattyAcidSeries {
+    type Item = Option<FattyAcid>;
+
+    type IntoIter = impl Iterator<Item = Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        let mut index = 0;
+        from_fn(move || {
+            let fatty_acid = self.get(index).ok();
+            index += 1;
+            fatty_acid
+        })
     }
 }
 
