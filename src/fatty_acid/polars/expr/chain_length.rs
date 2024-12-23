@@ -3,6 +3,11 @@ use polars::prelude::*;
 
 /// Chain length methods for [`FattyAcid`]
 pub trait ChainLength {
+    /// Equivalent carbon number (ECN)
+    ///
+    /// `ECN = C - 2U`
+    fn ecn(self) -> Expr;
+
     /// Equivalent chain lengths (ECL)
     fn ecl(self, retention_time: Expr, options: Options) -> Expr;
 
@@ -11,6 +16,10 @@ pub trait ChainLength {
 }
 
 impl ChainLength for FattyAcidExpr {
+    fn ecn(self) -> Expr {
+        self.clone().carbons() - lit(2) * self.unsaturated().sum()
+    }
+
     fn ecl(self, retention_time: Expr, options: Options) -> Expr {
         self.clone()
             .saturated_or_null(self.clone().carbons())
@@ -38,7 +47,7 @@ impl ChainLength for FattyAcidExpr {
     }
 }
 
-/// FCL options
+/// Chain length options
 #[derive(Clone, Copy, Debug, Default)]
 pub struct Options {
     pub logarithmic: bool,

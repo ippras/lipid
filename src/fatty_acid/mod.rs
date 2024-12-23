@@ -182,6 +182,26 @@ impl TryFrom<u8> for Unsaturation {
     }
 }
 
+/// Fatty acid kind
+pub enum Kind {
+    /// Fatty acid
+    ///
+    /// `RCOOH`
+    Rcooh,
+    /// Fatty acid methyl ester
+    ///
+    /// `RCOOH -H +CH3 => RCOOCH3`
+    Rcooch3,
+    /// Fatty acid [RCOO]-
+    ///
+    /// `RCOOH -H => [RCOO]-`
+    Rcoo,
+    /// Fatty acid [RCO]+
+    ///
+    /// `RCOOH -OH => [RCO]+`
+    Rco,
+}
+
 pub mod r#const;
 pub mod display;
 pub mod ext;

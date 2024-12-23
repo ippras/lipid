@@ -1,4 +1,4 @@
-use super::FattyAcid;
+use super::{FattyAcid, Kind};
 use atom::isotopes::*;
 
 const C: f64 = C::Twelve.relative_atomic_mass().value;
@@ -85,24 +85,4 @@ impl<T: FattyAcidExt<Output = u8>> Mass for T {
         }
         c as f64 * C + h as f64 * H + o as f64 * O
     }
-}
-
-/// Fatty acid kind
-pub enum Kind {
-    /// Fatty acid
-    ///
-    /// `RCOOH`
-    Rcooh,
-    /// Fatty acid methyl ester
-    ///
-    /// `RCOOH -H +CH3 => RCOOCH3`
-    Rcooch3,
-    /// Fatty acid [RCOO]-
-    ///
-    /// `RCOOH -H => [RCOO]-`
-    Rcoo,
-    /// Fatty acid [RCO]+
-    ///
-    /// `RCOOH -OH => [RCO]+`
-    Rco,
 }

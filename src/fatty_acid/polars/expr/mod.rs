@@ -1,4 +1,3 @@
-use crate::r#const::relative_atomic_mass::{C, H, O};
 use polars::prelude::*;
 
 /// Extension methods for [`Expr`]
@@ -22,6 +21,7 @@ impl FattyAcidExpr {
         self.0.struct_().field_by_name("Carbons")
     }
 
+    /// Unsaturated
     pub fn unsaturated(self) -> UnsaturatedExpr {
         UnsaturatedExpr(self.0.struct_().field_by_name("Unsaturated"))
     }
@@ -32,7 +32,7 @@ impl FattyAcidExpr {
     }
 
     /// Replace unsaturated with null
-    fn saturated_or_null(self, expr: Expr) -> Expr {
+    pub fn saturated_or_null(self, expr: Expr) -> Expr {
         ternary_expr(self.is_saturated(), expr, lit(NULL))
     }
 
@@ -75,23 +75,11 @@ impl FattyAcidExpr {
         (self.carbons() - lit(1)).clip_min(lit(0))
     }
 
-    /// ECN (Equivalent carbon number)
-    ///
-    /// `ECN = C - 2U`
-    pub fn ecn(self) -> Expr {
-        self.clone().carbons() - lit(2) * self.unsaturated().sum()
-    }
-
     /// Hydrogens
     ///
     /// `H = 2C - 2U`
     pub fn hydrogens(self) -> Expr {
         lit(2) * self.clone().carbons() - lit(2) * self.unsaturated().sum()
-    }
-
-    /// Mass
-    pub fn mass(self) -> Expr {
-        self.clone().carbons() * lit(C) + self.hydrogens() * lit(H) + lit(2) * lit(O)
     }
 
     /// Is saturated
@@ -177,4 +165,5 @@ pub mod chain_length;
 pub mod r#const;
 pub mod filter;
 pub mod find;
+pub mod mass;
 pub mod short;
