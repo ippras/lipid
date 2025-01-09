@@ -3,23 +3,52 @@ use polars::prelude::*;
 
 /// Enrichment factor (EF)
 ///
-/// The enrichment factor (EF) is used to determine the degree of
-/// contamination of heavy metals in water. According to Springer, the EF is
-/// calculated by dividing the concentration of a heavy metal in water by
-/// the concentration of that metal in a reference sample.
-pub fn enrichment(tag: Expr, expr: Expr) -> Expr {
-    expr / tag
+/// ## [DOI: 10.1007/s11746-014-2553-8](https://10.1007/s11746-014-2553-8)
+///
+/// The EF is the ratio of the molar concentration of an acyl group in the sn-2
+/// position to its concentration in the total TAG.
+///
+/// ## [DOI: 10.1007/BF02632456](https://doi.org/10.1007/BF02632456)
+///
+/// The enrichment factor is the ratio of the concentration (molar) of an acid
+/// group in the 2-position to its concentration in the total triglyceride.
+///
+/// This is useful when comparing values for acids competing for the 2-position
+/// in the same fat, it is less convenient for discussing the behaviour of acids
+/// in several different fats.
+pub fn enrichment(mag2: Expr, tag: Expr) -> Expr {
+    mag2 / tag
 }
 
 /// Selectivity factor methods for [`FattyAcid`]
 pub trait Selectivity {
     /// Selectivity factor (SF)
-    fn selectivity(self, tag: Expr, expr: Expr) -> Expr;
+    ///
+    /// ## [DOI: 10.1007/s11746-014-2553-8](https://10.1007/s11746-014-2553-8)
+    ///
+    /// `EF / ([U]_2 / [U]_T)`
+    ///
+    /// The SF is an EF of a particular FA divided by the EF for all FA which
+    /// are preferentially esterified at the sn-2 position.
+    ///
+    /// ## [DOI: 10.1007/BF02632456](https://doi.org/10.1007/BF02632456)
+    ///
+    /// The selectivity factor is the enrichment factor of a particular acid
+    /// divided by the enrichment factor for all the Category II acids present
+    /// in the fat under consideration.
+    ///
+    /// This is useful for discussing the behaviour of acids in several
+    /// different fats.
+    fn selectivity(self, mag2: Expr, tag: Expr) -> Expr;
 }
 
 impl Selectivity for FattyAcidExpr {
-    fn selectivity(self, tag: Expr, expr: Expr) -> Expr {
-        expr.clone() * self.clone().filter_saturated(tag).sum() / self.filter_saturated(expr).sum()
+    fn selectivity(self, mag2: Expr, tag: Expr) -> Expr {
+        enrichment(mag2.clone(), tag.clone())
+            / enrichment(
+                mag2.filter(self.clone().is_saturated().not()).sum(),
+                tag.filter(self.is_saturated().not()).sum(),
+            )
     }
 }
 
