@@ -36,6 +36,19 @@ impl FattyAcidExpr {
         ternary_expr(self.is_saturated(), expr, lit(NULL))
     }
 
+    /// Replace saturated with null
+    pub fn unsaturated_or_null(self, expr: Expr) -> Expr {
+        ternary_expr(self.is_saturated().not(), expr, lit(NULL))
+    }
+
+    pub fn filter_saturated(self, expr: Expr) -> Expr {
+        expr.filter(self.is_saturated().not())
+    }
+
+    pub fn filter_unsaturated(self, expr: Expr) -> Expr {
+        expr.filter(self.is_saturated())
+    }
+
     // /// Double bounds count
     // pub fn d(&self) -> Expr {
     //     self.0
@@ -163,6 +176,7 @@ impl From<UnsaturatedExpr> for Expr {
 
 pub mod chain_length;
 pub mod r#const;
+pub mod factor;
 pub mod filter;
 pub mod find;
 pub mod mass;

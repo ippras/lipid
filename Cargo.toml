@@ -1,11 +1,11 @@
 [package]
 name = "lipid"
-version = "0.0.15"
+version = "0.0.16"
 edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
-paste = "1.0"
+paste = "1.0.15"
 polars = { version = "0.45.1", default-features = false, features = [
     "abs",
     "dtype-categorical",
@@ -23,4 +23,10 @@ polars = { version = "0.45.1", default-features = false, features = [
     "serde-lazy",
 ] }
 ron = "0.8.1"
-serde = { version = "1.0.216", features = ["derive", "std"] }
+serde = { version = "1.0.217", features = ["derive", "std"] }
+
+[dev-dependencies]
+anyhow = "1.0.95"
+
+[features]
+default = []
