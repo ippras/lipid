@@ -1,8 +1,12 @@
 use polars::prelude::*;
 
 /// Extension methods for [`Expr`]
-pub trait ExprExt {
+pub trait ExprExt: Sized {
     fn fatty_acid(self) -> FattyAcidExpr;
+
+    fn fa(self) -> FattyAcidExpr {
+        self.fatty_acid()
+    }
 }
 
 impl ExprExt for Expr {
@@ -92,6 +96,11 @@ impl FattyAcidExpr {
         self.unsaturated().len().eq(0)
     }
 
+    /// Is unsaturated
+    pub fn is_unsaturated(self) -> Expr {
+        self.is_saturated().not()
+    }
+
     /// [`bounds`]
     pub fn b(self) -> Expr {
         self.bounds()
@@ -129,7 +138,7 @@ impl From<FattyAcidExpr> for Expr {
 pub struct UnsaturatedExpr(pub Expr);
 
 impl UnsaturatedExpr {
-    /// Unsaturated
+    /// Unsaturation length
     ///
     /// The number of unsaturated bonds.
     pub fn len(self) -> Expr {
@@ -140,7 +149,7 @@ impl UnsaturatedExpr {
             .len()
     }
 
-    /// Unsaturation (sum)
+    /// Unsaturation sum
     pub fn sum(self) -> Expr {
         self.0
             .list()

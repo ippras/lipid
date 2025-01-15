@@ -4,10 +4,14 @@ use polars::prelude::*;
 /// Extension methods for [`DataFrame`]
 pub trait DataFrameExt {
     fn fatty_acid(&self) -> FattyAcidSeries;
+
+    fn fa(&self) -> FattyAcidSeries {
+        self.fatty_acid()
+    }
 }
 
 impl DataFrameExt for DataFrame {
     fn fatty_acid(&self) -> FattyAcidSeries {
-        self[COLUMN].fatty_acid()
+        self[COLUMN].fa()
     }
 }

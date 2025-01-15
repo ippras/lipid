@@ -20,8 +20,13 @@ pub fn enrichment(mag2: Expr, tag: Expr) -> Expr {
     mag2 / tag
 }
 
+/// See [`enrichment`]
+pub fn ef(mag2: Expr, tag: Expr) -> Expr {
+    enrichment(mag2, tag)
+}
+
 /// Selectivity factor methods for [`FattyAcid`]
-pub trait Selectivity {
+pub trait Selectivity: Sized {
     /// Selectivity factor (SF)
     ///
     /// ## [DOI: 10.1007/s11746-014-2553-8](https://10.1007/s11746-014-2553-8)
@@ -40,6 +45,11 @@ pub trait Selectivity {
     /// This is useful for discussing the behaviour of acids in several
     /// different fats.
     fn selectivity(self, mag2: Expr, tag: Expr) -> Expr;
+
+    /// See [`Self::selectivity`]
+    fn sf(self, mag2: Expr, tag: Expr) -> Expr {
+        self.selectivity(mag2, tag)
+    }
 }
 
 impl Selectivity for FattyAcidExpr {

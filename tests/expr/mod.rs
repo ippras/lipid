@@ -1,4 +1,4 @@
-use lipid::fatty_acid::polars::{expr::chain_length::Options, prelude::*};
+use lipid::prelude::*;
 use polars::prelude::*;
 use std::iter::empty;
 
@@ -58,15 +58,15 @@ fn find() -> PolarsResult<()> {
     let mut lazy_frame = data_frame.lazy();
     lazy_frame = lazy_frame.with_columns([
         col("Value")
-            .filter(col("FattyAcid").fatty_acid().equal(C18U0.clone()))
+            .filter(col("FattyAcid").fa().equal(C18U0.clone()))
             .sum()
             .alias("C18U0"),
         col("Value")
-            .filter(col("FattyAcid").fatty_acid().eicosapentaenoic())
+            .filter(col("FattyAcid").fa().eicosapentaenoic())
             .sum()
             .alias("Eicosapentaenoic"),
         col("Value")
-            .filter(col("FattyAcid").fatty_acid().equal(C18U1Z9.clone()))
+            .filter(col("FattyAcid").fa().equal(C18U1Z9.clone()))
             .sum()
             .alias("C18U3Z9Z12Z15"),
     ]);
@@ -144,32 +144,38 @@ fn filter_unsaturated() -> PolarsResult<()> {
     let mut lazy_frame = data_frame.lazy();
     lazy_frame = lazy_frame.with_columns([
         col("FattyAcid")
-            .fatty_acid()
+            .fa()
             .fcl(col("RetentionTime"), Default::default())
             .alias("FCL0"),
         col("FattyAcid")
-            .fatty_acid()
-            .fcl(col("RetentionTime"), Options::new().logarithmic(true))
+            .fa()
+            .fcl(
+                col("RetentionTime"),
+                ChainLengthOptions::new().logarithmic(true),
+            )
             .alias("FCL1"),
         col("FattyAcid")
-            .fatty_acid()
-            .ecl(col("RetentionTime"), Options::default())
+            .fa()
+            .ecl(col("RetentionTime"), ChainLengthOptions::default())
             .alias("ECL"),
         col("FattyAcid")
-            .fatty_acid()
-            .ecl(col("RetentionTime"), Options::new().logarithmic(true))
+            .fa()
+            .ecl(
+                col("RetentionTime"),
+                ChainLengthOptions::new().logarithmic(true),
+            )
             .alias("ECL1"),
     ]);
     // .map_saturated_or(lit(0), |saturated| {
     //     (col("TimeMean")
     //         - col("TimeMean")
-    //             .filter(col("FattyAcid").fatty_acid())
+    //             .filter(col("FattyAcid").fa())
     //             .forward_fill(None))
     //         / (col("TimeMean")
-    //             .filter(col("FattyAcid").fatty_acid())
+    //             .filter(col("FattyAcid").fa())
     //             .backward_fill(None)
     //             - col("TimeMean")
-    //                 .filter(col("FattyAcid").fatty_acid())
+    //                 .filter(col("FattyAcid").fa())
     //                 .forward_fill(None))
     // })
     // .alias("Saturated")]);

@@ -1,33 +1,26 @@
 use super::FattyAcidExpr;
+use crate::chain_length::{
+    EquivalentCarbonNumber, EquivalentChainLengths, FractionalChainLength, Options,
+};
 use polars::prelude::*;
 
-/// Chain length methods for [`FattyAcid`]
-pub trait ChainLength {
-    /// Equivalent carbon number (ECN)
-    ///
-    /// `ECN = C - 2U`
-    fn ecn(self) -> Expr;
-
-    /// Equivalent chain lengths (ECL)
-    fn ecl(self, retention_time: Expr, options: Options) -> Expr;
-
-    /// Fractional chain length (FCL)
-    fn fcl(self, retention_time: Expr, options: Options) -> Expr;
-}
-
-impl ChainLength for FattyAcidExpr {
-    fn ecn(self) -> Expr {
+impl EquivalentCarbonNumber for FattyAcidExpr {
+    fn equivalent_carbon_number(self) -> Expr {
         self.clone().carbons() - lit(2) * self.unsaturated().sum()
     }
+}
 
-    fn ecl(self, retention_time: Expr, options: Options) -> Expr {
+impl EquivalentChainLengths for FattyAcidExpr {
+    fn equivalent_chain_lengths(self, retention_time: Expr, options: Options) -> Expr {
         self.clone()
             .saturated_or_null(self.clone().carbons())
             .forward_fill(None)
             + self.fcl(retention_time.clone(), options)
     }
+}
 
-    fn fcl(self, retention_time: Expr, options: Options) -> Expr {
+impl FractionalChainLength for FattyAcidExpr {
+    fn fractional_chain_length(self, retention_time: Expr, options: Options) -> Expr {
         let options = |mut expr: Expr| {
             if options.logarithmic {
                 expr = expr.log(10.0)
@@ -44,21 +37,5 @@ impl ChainLength for FattyAcidExpr {
                 * (unsaturated_time() - saturated_time().forward_fill(None))
                 / (saturated_time().backward_fill(None) - saturated_time().forward_fill(None)),
         )
-    }
-}
-
-/// Chain length options
-#[derive(Clone, Copy, Debug, Default)]
-pub struct Options {
-    pub logarithmic: bool,
-}
-
-impl Options {
-    pub const fn new() -> Self {
-        Self { logarithmic: false }
-    }
-
-    pub fn logarithmic(self, logarithmic: bool) -> Self {
-        Self { logarithmic }
     }
 }

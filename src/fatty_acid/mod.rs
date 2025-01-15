@@ -131,7 +131,9 @@ pub struct Unsaturated {
 }
 
 /// Isomerism
-#[derive(Clone, Copy, Debug, Default, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(
+    Clone, Copy, Debug, Default, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize,
+)]
 pub enum Isomerism {
     #[default]
     Cis = 1,
@@ -184,10 +186,12 @@ impl TryFrom<u8> for Unsaturation {
 }
 
 /// Fatty acid kind
+#[derive(Clone, Copy, Debug, Default)]
 pub enum Kind {
     /// Fatty acid
     ///
     /// `RCOOH`
+    #[default]
     Rcooh,
     /// Fatty acid methyl ester
     ///
@@ -206,4 +210,5 @@ pub enum Kind {
 pub mod r#const;
 pub mod display;
 pub mod ext;
+pub mod mass;
 pub mod polars;

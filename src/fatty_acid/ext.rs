@@ -1,9 +1,4 @@
-use super::{FattyAcid, Kind};
-use atom::isotopes::*;
-
-const C: f64 = C::Twelve.relative_atomic_mass().value;
-const H: f64 = H::One.relative_atomic_mass().value;
-const O: f64 = O::Sixteen.relative_atomic_mass().value;
+use super::FattyAcid;
 
 /// Extension methods for [`FattyAcid`]
 pub trait FattyAcidExt {
@@ -31,6 +26,14 @@ pub trait FattyAcidExt {
     ///
     /// The number of unsaturated bonds.
     fn unsaturated(&self) -> Self::Output;
+
+    /// Is saturated
+    fn is_saturated(&self) -> bool;
+
+    /// Is unsaturated
+    fn is_unsaturated(&self) -> bool {
+        !self.is_saturated()
+    }
 }
 
 impl FattyAcidExt for FattyAcid {
@@ -58,31 +61,8 @@ impl FattyAcidExt for FattyAcid {
             .filter(|unsaturated| unsaturated.unsaturation.is_some())
             .count() as _
     }
-}
 
-/// Mass
-pub trait Mass: FattyAcidExt {
-    /// Mass
-    fn mass(&self, kind: Kind) -> f64;
-}
-
-impl<T: FattyAcidExt<Output = u8>> Mass for T {
-    fn mass(&self, kind: Kind) -> f64 {
-        let mut c = self.carbons();
-        let mut h = self.hydrogens();
-        let mut o = 2;
-        match kind {
-            Kind::Rcooh => {}
-            Kind::Rcooch3 => {
-                c += 1;
-                h += 2;
-            }
-            Kind::Rcoo => h -= 1,
-            Kind::Rco => {
-                h -= 1;
-                o -= 1;
-            }
-        }
-        c as f64 * C + h as f64 * H + o as f64 * O
+    fn is_saturated(&self) -> bool {
+        self.unsaturated() == 0
     }
 }

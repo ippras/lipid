@@ -1,4 +1,4 @@
-use lipid::fatty_acid::polars::prelude::*;
+use lipid::prelude::*;
 use polars::prelude::*;
 use std::iter::empty;
 
@@ -53,7 +53,7 @@ fn find() -> PolarsResult<()> {
     println!("data_frame: {}", data_frame);
     println!("data_frame: {}", data_frame.unnest(["FattyAcid"])?);
     let mut lazy_frame = data_frame.lazy();
-    lazy_frame = lazy_frame.with_columns([col("FattyAcid").fatty_acid().ecn().alias("ECN")]);
+    lazy_frame = lazy_frame.with_columns([col("FattyAcid").fa().ecn().alias("ECN")]);
     println!("lazy_frame: {}", lazy_frame.clone().collect()?);
     Ok(())
 }
