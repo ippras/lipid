@@ -58,12 +58,21 @@ impl FattyAcidSeries {
         }))
     }
 
-    pub fn saturated(&self) -> PolarsResult<BooleanChunked> {
+    pub fn saturated_filter(&self) -> PolarsResult<BooleanChunked> {
         Ok(self
             .unsaturated
             .list()?
             .iter()
             .map(|list| Some(list?.len() == 0))
+            .collect())
+    }
+
+    pub fn unsaturated_filter(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self
+            .unsaturated
+            .list()?
+            .iter()
+            .map(|list| Some(list?.len() != 0))
             .collect())
     }
 
