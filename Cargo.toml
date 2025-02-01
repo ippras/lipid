@@ -1,12 +1,12 @@
 [package]
 name = "lipid"
-version = "0.0.19"
+version = "0.1.0"
 edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
 paste = "1.0.15"
-polars = { version = "0.45.1", default-features = false, features = [
+polars = { version = "0.46.0", default-features = false, features = [
     "abs",
     "dtype-categorical",
     "dtype-i8",

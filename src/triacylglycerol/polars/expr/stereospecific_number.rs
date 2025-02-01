@@ -2,7 +2,7 @@ use crate::fatty_acid::polars::{ExprExt as _, expr::FattyAcidExpr};
 use polars::prelude::*;
 
 // Stereospecific number [`Expr`]
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Hash)]
 pub struct StereospecificNumberExpr(pub Expr);
 
 impl StereospecificNumberExpr {

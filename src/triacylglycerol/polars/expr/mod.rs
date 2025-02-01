@@ -20,7 +20,7 @@ impl ExprExt for Expr {
 }
 
 /// Triacylglycerol [`Expr`]
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Hash)]
 pub struct TriacylglycerolExpr(Expr);
 
 impl TriacylglycerolExpr {
@@ -72,6 +72,26 @@ impl TriacylglycerolExpr {
         self.clone().sn1().fa().unsaturated().sum()
             + self.clone().sn2().fa().unsaturated().sum()
             + self.sn3().fa().unsaturated().sum()
+    }
+
+    pub fn test_map_apply<F>(self, f: &'static F) -> Expr
+    where
+        F: Fn(&Series) -> PolarsResult<Series> + Send + Sync,
+    {
+        as_struct(vec![
+            self.clone()
+                .sn1()
+                .map(column(f), GetOutput::same_type())
+                .alias("StereospecificNumber1"),
+            self.clone()
+                .sn2()
+                .map(column(f), GetOutput::same_type())
+                .alias("StereospecificNumber2"),
+            self.clone()
+                .sn3()
+                .map(column(f), GetOutput::same_type())
+                .alias("StereospecificNumber3"),
+        ])
     }
 
     pub fn test_positional(self, f: impl Fn(Expr) -> Expr) -> Expr {
@@ -527,6 +547,17 @@ impl TriacylglycerolExpr {
 impl From<TriacylglycerolExpr> for Expr {
     fn from(value: TriacylglycerolExpr) -> Self {
         value.0
+    }
+}
+
+pub fn column(
+    function: impl Fn(&Series) -> PolarsResult<Series>,
+) -> impl Fn(Column) -> PolarsResult<Option<Column>> {
+    move |column| {
+        let Some(series) = column.as_series() else {
+            return Ok(None);
+        };
+        Ok(Some(function(series)?.into_column()))
     }
 }
 
