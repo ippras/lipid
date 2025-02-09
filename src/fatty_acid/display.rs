@@ -38,6 +38,12 @@ impl DisplayWithOptions for FattyAcid {
     }
 }
 
+impl<'a> DisplayWithOptions for &'a mut FattyAcid {
+    fn display(self, options: Options) -> Display<&'a mut FattyAcid> {
+        Display::new(self, options)
+    }
+}
+
 impl<'a> DisplayWithOptions for &'a FattyAcid {
     fn display(self, options: Options) -> Display<&'a FattyAcid> {
         Display::new(self, options)
