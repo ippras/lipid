@@ -21,7 +21,7 @@ impl ExprExt for Expr {
 
 /// Triacylglycerol [`Expr`]
 #[derive(Clone, Debug, Hash)]
-pub struct TriacylglycerolExpr(Expr);
+pub struct TriacylglycerolExpr(pub Expr);
 
 impl TriacylglycerolExpr {
     pub fn stereospecific_numbers(self) -> Expr {
