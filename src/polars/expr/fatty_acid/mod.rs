@@ -1,19 +1,6 @@
+pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
+use crate::fatty_acid::{FattyAcid, Unsaturated};
 use polars::prelude::*;
-
-/// Extension methods for [`Expr`]
-pub trait ExprExt: Sized {
-    fn fatty_acid(self) -> FattyAcidExpr;
-
-    fn fa(self) -> FattyAcidExpr {
-        self.fatty_acid()
-    }
-}
-
-impl ExprExt for Expr {
-    fn fatty_acid(self) -> FattyAcidExpr {
-        FattyAcidExpr(self)
-    }
-}
 
 /// Fatty acid [`Expr`]
 #[derive(Clone, Debug)]
@@ -133,6 +120,63 @@ impl From<FattyAcidExpr> for Expr {
     }
 }
 
+impl From<&FattyAcid> for FattyAcidExpr {
+    fn from(value: &FattyAcid) -> Self {
+        let unsaturated = if value.unsaturated.is_empty() {
+            lit(Scalar::new(
+                DataType::List(Box::new(DataType::Null)),
+                AnyValue::List(Series::new_empty(PlSmallStr::EMPTY, &DataType::Null)),
+            ))
+        } else {
+            concat_list(
+                value
+                    .unsaturated
+                    .iter()
+                    .map(
+                        |Unsaturated {
+                             index,
+                             isomerism,
+                             unsaturation,
+                         }| {
+                            as_struct(vec![
+                                index.map_or(lit(NULL), lit).alias("Index"),
+                                isomerism
+                                    .map_or(lit(NULL), |isomerism| lit(isomerism as i8))
+                                    .alias("Isomerism"),
+                                unsaturation
+                                    .map_or(lit(NULL), |unsaturation| lit(unsaturation as u8))
+                                    .alias("Unsaturation"),
+                            ])
+                        },
+                    )
+                    .collect::<Vec<_>>(),
+            )
+            .unwrap()
+        };
+        FattyAcidExpr(as_struct(vec![
+            lit(value.carbons).alias("Carbons"),
+            unsaturated.alias("Unsaturated"),
+        ]))
+        // let carbons = lit(value.carbons);
+        // let unsaturated = lit(Scalar::new(
+        //     DataType::List(Box::new(DataType::Struct(vec![
+        //         Field::new("Index".into(), DataType::List(Box::new(DataType::UInt8))),
+        //         Field::new("Isomerism".into(), DataType::List(Box::new(DataType::Int8))),
+        //         Field::new(
+        //             "Unsaturation".into(),
+        //             DataType::List(Box::new(DataType::UInt8)),
+        //         ),
+        //     ]))),
+        //     AnyValue::List(Series::from_iter(&value.carbons)),
+        // ));
+        // todo!()
+    }
+    // let bounds = Scalar::new(
+    //     DataType::List(Box::new(DataType::Int8)),
+    //     AnyValue::List(Series::from_iter(&fatty_acid.bounds)),
+    // );
+}
+
 /// Unsaturated [`Expr`]
 #[derive(Clone, Debug)]
 pub struct UnsaturatedExpr(pub Expr);
@@ -175,10 +219,12 @@ impl From<UnsaturatedExpr> for Expr {
     }
 }
 
-pub mod chain_length;
 pub mod r#const;
 pub mod factor;
 pub mod filter;
 pub mod find;
-pub mod mass;
+pub mod kind;
 pub mod short;
+
+mod chain_length;
+mod mass;

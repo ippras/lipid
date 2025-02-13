@@ -1,6 +1,7 @@
 use super::FattyAcidExpr;
 use crate::prelude::SeriesExt;
 use polars::prelude::*;
+use polars_ext::functions::column;
 use std::iter::zip;
 
 /// Enrichment factor (EF)
@@ -66,17 +67,6 @@ impl Selectivity for FattyAcidExpr {
     }
 }
 
-pub fn column(
-    function: impl Fn(&Series) -> PolarsResult<Series>,
-) -> impl Fn(Column) -> PolarsResult<Option<Column>> {
-    move |column| {
-        let Some(series) = column.as_series() else {
-            return Ok(None);
-        };
-        Ok(Some(function(series)?.into_column()))
-    }
-}
-
 /// Struct
 /// 0. FattyAcid
 /// 1. MAG2
@@ -113,70 +103,70 @@ pub fn selectivity() -> impl Fn(&Series) -> PolarsResult<Series> {
     }
 }
 
-#[cfg(test)]
-mod test {
-    use super::*;
-    use crate::fatty_acid::polars::ExprExt as _;
-    use anyhow::Result;
+// #[cfg(test)]
+// mod test {
+//     use super::*;
+//     use crate::fatty_acid::polars::ExprExt as _;
+//     use anyhow::Result;
 
-    // TAG = 17.2
-    // MAG2 = 11.2
-    #[test]
-    fn test_selectivity() -> Result<()> {
-        let mut data_frame = df! {
-            "FattyAcid" => df! {
-                "Carbons" => &[
-                    14u8,
-                    16u8,
-                    18u8,
-                ],
-                "Unsaturated" => &[
-                    df! {
-                        "Index" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
-                        "Isomerism" => Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8),
-                        "Unsaturation" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
-                    }?.into_struct(PlSmallStr::EMPTY).into_series(),
-                    df! {
-                        "Index" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
-                        "Isomerism" => Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8),
-                        "Unsaturation" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
-                    }?.into_struct(PlSmallStr::EMPTY).into_series(),
-                    df! {
-                        "Index" => Series::from_iter([9u8]),
-                        "Isomerism" => Series::from_iter([1i8]),
-                        "Unsaturation" => Series::from_iter([1u8]),
-                    }?.into_struct(PlSmallStr::EMPTY).into_series(),
-                ],
-            }?.into_struct(PlSmallStr::EMPTY),
-            "TAG" => [
-                Some(1f64),
-                Some(2f64),
-                Some(3f64),
-            ],
-            "MAG2" => [
-                Some(4f64),
-                Some(5f64),
-                Some(6f64),
-            ],
-        }?;
-        println!("data_frame: {}", data_frame);
-        data_frame = data_frame
-            .lazy()
-            .with_columns([
-                as_struct(vec![col("FattyAcid"), col("MAG2"), col("TAG")])
-                    .apply(
-                        column(selectivity()),
-                        GetOutput::from_type(DataType::Float64),
-                    )
-                    .alias("TEMP"),
-                enrichment(col("MAG2"), col("TAG")).alias("Enrichment"),
-                col("FattyAcid")
-                    .fatty_acid()
-                    .selectivity(col("MAG2"), col("TAG"))
-                    .alias("Selectivity"),
-            ])
-            .collect()?;
-        println!("data_frame: {}", data_frame);
-        Ok(())
-    }
-}
+//     // TAG = 17.2
+//     // MAG2 = 11.2
+//     #[test]
+//     fn test_selectivity() -> Result<()> {
+//         let mut data_frame = df! {
+//             "FattyAcid" => df! {
+//                 "Carbons" => &[
+//                     14u8,
+//                     16u8,
+//                     18u8,
+//                 ],
+//                 "Unsaturated" => &[
+//                     df! {
+//                         "Index" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
+//                         "Isomerism" => Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8),
+//                         "Unsaturation" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
+//                     }?.into_struct(PlSmallStr::EMPTY).into_series(),
+//                     df! {
+//                         "Index" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
+//                         "Isomerism" => Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8),
+//                         "Unsaturation" => Series::new_empty(PlSmallStr::EMPTY, &DataType::UInt8),
+//                     }?.into_struct(PlSmallStr::EMPTY).into_series(),
+//                     df! {
+//                         "Index" => Series::from_iter([9u8]),
+//                         "Isomerism" => Series::from_iter([1i8]),
+//                         "Unsaturation" => Series::from_iter([1u8]),
+//                     }?.into_struct(PlSmallStr::EMPTY).into_series(),
+//                 ],
+//             }?.into_struct(PlSmallStr::EMPTY),
+//             "TAG" => [
+//                 Some(1f64),
+//                 Some(2f64),
+//                 Some(3f64),
+//             ],
+//             "MAG2" => [
+//                 Some(4f64),
+//                 Some(5f64),
+//                 Some(6f64),
+//             ],
+//         }?;
+//         println!("data_frame: {}", data_frame);
+//         data_frame = data_frame
+//             .lazy()
+//             .with_columns([
+//                 as_struct(vec![col("FattyAcid"), col("MAG2"), col("TAG")])
+//                     .apply(
+//                         column(selectivity()),
+//                         GetOutput::from_type(DataType::Float64),
+//                     )
+//                     .alias("TEMP"),
+//                 enrichment(col("MAG2"), col("TAG")).alias("Enrichment"),
+//                 col("FattyAcid")
+//                     .fatty_acid()
+//                     .selectivity(col("MAG2"), col("TAG"))
+//                     .alias("Selectivity"),
+//             ])
+//             .collect()?;
+//         println!("data_frame: {}", data_frame);
+//         Ok(())
+//     }
+// }

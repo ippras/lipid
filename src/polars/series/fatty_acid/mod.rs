@@ -1,23 +1,7 @@
-use std::iter::from_fn;
-
 use self::unsaturated::UnsaturatedSeries;
 use crate::fatty_acid::FattyAcid;
 use polars::prelude::*;
-
-/// Extension methods for [`Series`]
-pub trait SeriesExt {
-    fn fatty_acid(&self) -> FattyAcidSeries;
-
-    fn fa(&self) -> FattyAcidSeries {
-        self.fatty_acid()
-    }
-}
-
-impl SeriesExt for Series {
-    fn fatty_acid(&self) -> FattyAcidSeries {
-        FattyAcidSeries::new(self).expect(r#"Expected "FattyAcid" series"#)
-    }
-}
+use std::iter::from_fn;
 
 /// Fatty acid series
 #[derive(Clone, Debug)]
@@ -99,4 +83,4 @@ impl IntoIterator for FattyAcidSeries {
     }
 }
 
-pub mod unsaturated;
+mod unsaturated;

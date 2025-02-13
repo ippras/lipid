@@ -1,7 +1,5 @@
 pub use self::ext::FattyAcidExt;
 
-use ::polars::prelude::*;
-use polars::expr::FattyAcidExpr;
 use serde::{Deserialize, Serialize};
 
 pub macro fatty_acid($c:expr $(; $($i:expr),*)*) {{
@@ -64,63 +62,6 @@ impl FattyAcid {
 //         ),
 //     ]),
 // ),
-
-impl From<&FattyAcid> for FattyAcidExpr {
-    fn from(value: &FattyAcid) -> Self {
-        let unsaturated = if value.unsaturated.is_empty() {
-            lit(Scalar::new(
-                DataType::List(Box::new(DataType::Null)),
-                AnyValue::List(Series::new_empty(PlSmallStr::EMPTY, &DataType::Null)),
-            ))
-        } else {
-            concat_list(
-                value
-                    .unsaturated
-                    .iter()
-                    .map(
-                        |Unsaturated {
-                             index,
-                             isomerism,
-                             unsaturation,
-                         }| {
-                            as_struct(vec![
-                                index.map_or(lit(NULL), lit).alias("Index"),
-                                isomerism
-                                    .map_or(lit(NULL), |isomerism| lit(isomerism as i8))
-                                    .alias("Isomerism"),
-                                unsaturation
-                                    .map_or(lit(NULL), |unsaturation| lit(unsaturation as u8))
-                                    .alias("Unsaturation"),
-                            ])
-                        },
-                    )
-                    .collect::<Vec<_>>(),
-            )
-            .unwrap()
-        };
-        FattyAcidExpr(as_struct(vec![
-            lit(value.carbons).alias("Carbons"),
-            unsaturated.alias("Unsaturated"),
-        ]))
-        // let carbons = lit(value.carbons);
-        // let unsaturated = lit(Scalar::new(
-        //     DataType::List(Box::new(DataType::Struct(vec![
-        //         Field::new("Index".into(), DataType::List(Box::new(DataType::UInt8))),
-        //         Field::new("Isomerism".into(), DataType::List(Box::new(DataType::Int8))),
-        //         Field::new(
-        //             "Unsaturation".into(),
-        //             DataType::List(Box::new(DataType::UInt8)),
-        //         ),
-        //     ]))),
-        //     AnyValue::List(Series::from_iter(&value.carbons)),
-        // ));
-        // todo!()
-    }
-    // let bounds = Scalar::new(
-    //     DataType::List(Box::new(DataType::Int8)),
-    //     AnyValue::List(Series::from_iter(&fatty_acid.bounds)),
-    // );
-}
 
 /// Unsaturated
 #[derive(Clone, Debug, Default, Deserialize, Eq, Hash, PartialEq, Serialize)]
@@ -211,4 +152,3 @@ pub mod r#const;
 pub mod display;
 pub mod ext;
 pub mod mass;
-pub mod polars;

@@ -1,23 +1,6 @@
-use crate::fatty_acid::polars::{ExprExt as _, expr::FattyAcidExpr};
-use polars::{
-    lazy::dsl::{max_horizontal, min_horizontal},
-    prelude::*,
-};
-
-/// Extension methods for [`Expr`]
-pub trait ExprExt: Sized {
-    fn triacylglycerol(self) -> TriacylglycerolExpr;
-
-    fn tag(self) -> TriacylglycerolExpr {
-        self.triacylglycerol()
-    }
-}
-
-impl ExprExt for Expr {
-    fn triacylglycerol(self) -> TriacylglycerolExpr {
-        TriacylglycerolExpr(self)
-    }
-}
+use crate::polars::ExprExt as _;
+use polars::prelude::*;
+use polars_ext::functions::column;
 
 /// Triacylglycerol [`Expr`]
 #[derive(Clone, Debug, Hash)]
@@ -28,28 +11,28 @@ impl TriacylglycerolExpr {
         self.0.struct_().field_by_name("*")
     }
 
-    pub fn stereospecific_number1(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber1")
-    }
-
-    pub fn stereospecific_number2(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber2")
-    }
-
-    pub fn stereospecific_number3(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber3")
-    }
-
     pub fn sn(self) -> Expr {
         self.stereospecific_numbers()
+    }
+
+    pub fn stereospecific_number1(self) -> Expr {
+        self.0.struct_().field_by_name("StereospecificNumber1")
     }
 
     pub fn sn1(self) -> Expr {
         self.stereospecific_number1()
     }
 
+    pub fn stereospecific_number2(self) -> Expr {
+        self.0.struct_().field_by_name("StereospecificNumber2")
+    }
+
     pub fn sn2(self) -> Expr {
         self.stereospecific_number2()
+    }
+
+    pub fn stereospecific_number3(self) -> Expr {
+        self.0.struct_().field_by_name("StereospecificNumber3")
     }
 
     pub fn sn3(self) -> Expr {
@@ -550,18 +533,7 @@ impl From<TriacylglycerolExpr> for Expr {
     }
 }
 
-pub fn column(
-    function: impl Fn(&Series) -> PolarsResult<Series>,
-) -> impl Fn(Column) -> PolarsResult<Option<Column>> {
-    move |column| {
-        let Some(series) = column.as_series() else {
-            return Ok(None);
-        };
-        Ok(Some(function(series)?.into_column()))
-    }
-}
-
-pub mod chain_length;
-pub mod mass;
 pub mod permutation;
-pub mod stereospecific_number;
+
+mod chain_length;
+mod mass;

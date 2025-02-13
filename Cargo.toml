@@ -1,6 +1,6 @@
 [package]
 name = "lipid"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 [dependencies]
@@ -22,12 +22,14 @@ polars = { version = "0.46.0", default-features = false, features = [
     "log",
     "round_series",
     "serde-lazy",
-] }
-ron = "0.8.1"
+], optional = true }
+polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
 serde = { version = "1.0.217", features = ["derive", "std"] }
 
 [dev-dependencies]
 anyhow = "1.0.95"
+lipid = { path = ".", features = ["polars"] }
 
 [features]
 default = []
+polars = ["dep:polars", "dep:polars_ext"]

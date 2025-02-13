@@ -7,5 +7,4 @@ pub enum Stereospecificity {
     Stereo,
 }
 
-pub mod polars;
 pub mod thermodynamic;

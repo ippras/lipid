@@ -1,5 +1,5 @@
 use super::FattyAcidExpr;
-use crate::chain_length::{
+use crate::polars::expr::chain_length::{
     EquivalentCarbonNumber, EquivalentChainLengths, FractionalChainLength, Options,
 };
 use polars::prelude::*;

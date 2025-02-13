@@ -1,5 +1,5 @@
 use super::TriacylglycerolExpr;
-use crate::{chain_length::EquivalentCarbonNumber, fatty_acid::polars::ExprExt as _};
+use crate::polars::{ExprExt as _, expr::chain_length::EquivalentCarbonNumber};
 use polars::prelude::*;
 
 impl EquivalentCarbonNumber for TriacylglycerolExpr {

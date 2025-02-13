@@ -1,17 +1,8 @@
-pub use self::{
-    column::ColumnExt,
-    data_frame::DataFrameExt,
-    expr::{ExprExt, filter::Filter, find::FindByName},
-    series::SeriesExt,
-};
 use polars::prelude::*;
 use std::sync::LazyLock;
 
-/// Fatty acid column name
-pub const COLUMN: &str = "FattyAcid";
-
 /// Fatty acid schema
-pub static SCHEMA: LazyLock<Schema> = LazyLock::new(|| {
+pub static FATTY_ACID_SCHEMA: LazyLock<Schema> = LazyLock::new(|| {
     Schema::from_iter([
         Field::new("Carbons".into(), DataType::UInt8),
         Field::new(
@@ -38,17 +29,3 @@ impl SchemaExt for Schema {
         self.iter_names_cloned().map(col).collect()
     }
 }
-
-pub mod prelude {
-    pub use super::{
-        column::ColumnExt,
-        data_frame::DataFrameExt,
-        expr::{ExprExt, r#const::*, filter::Filter, find::FindByName},
-        series::SeriesExt,
-    };
-}
-
-pub mod column;
-pub mod data_frame;
-pub mod expr;
-pub mod series;

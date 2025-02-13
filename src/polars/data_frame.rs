@@ -1,4 +1,4 @@
-use super::{COLUMN, column::ColumnExt as _, series::FattyAcidSeries};
+use super::{FATTY_ACID_COLUMN, column::ColumnExt as _, series::FattyAcidSeries};
 use polars::prelude::*;
 
 /// Extension methods for [`DataFrame`]
@@ -12,6 +12,6 @@ pub trait DataFrameExt {
 
 impl DataFrameExt for DataFrame {
     fn fatty_acid(&self) -> FattyAcidSeries {
-        self[COLUMN].fa()
+        self[FATTY_ACID_COLUMN].fa()
     }
 }
