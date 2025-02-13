@@ -7,6 +7,7 @@ pub mod polars;
 pub mod triacylglycerol;
 
 pub mod prelude {
+    pub use crate::fatty_acid::FattyAcid;
     #[cfg(feature = "polars")]
     pub use crate::polars::{
         column::ColumnExt,
@@ -17,7 +18,12 @@ pub mod prelude {
                 EquivalentCarbonNumber, EquivalentChainLengths, FractionalChainLength,
                 Options as ChainLengthOptions,
             },
-            fatty_acid::{r#const::*, filter::Filter, find::FindByName},
+            fatty_acid::{
+                r#const::*,
+                factor::{Selectivity, ef},
+                filter::Filter,
+                find::FindByName,
+            },
             mass::Mass as _,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
