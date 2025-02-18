@@ -76,9 +76,12 @@ impl IntoIterator for FattyAcidSeries {
     fn into_iter(self) -> Self::IntoIter {
         let mut index = 0;
         from_fn(move || {
-            let fatty_acid = self.get(index).ok();
+            if index >= self.len() {
+                return None;
+            }
+            let fatty_acid = self.get(index).expect("get next fatty acid");
             index += 1;
-            fatty_acid
+            Some(fatty_acid)
         })
     }
 }
