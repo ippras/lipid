@@ -11,6 +11,7 @@ pub const FATTY_ACID_COLUMN: &str = "FattyAcid";
 
 pub mod prelude {
     pub use super::{
+        bound::DATA_TYPE as BOUND_DATA_TYPE,
         column::ColumnExt,
         data_frame::DataFrameExt,
         // expr::{ExprExt, r#const::*, filter::Filter, find::FindByName},
@@ -18,6 +19,7 @@ pub mod prelude {
     };
 }
 
+pub mod bound;
 pub mod column;
 pub mod data_frame;
 pub mod expr;
