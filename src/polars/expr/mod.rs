@@ -6,15 +6,7 @@ use polars::prelude::*;
 pub trait ExprExt: Sized {
     fn fatty_acid(self) -> FattyAcidExpr;
 
-    fn fa(self) -> FattyAcidExpr {
-        self.fatty_acid()
-    }
-
     fn triacylglycerol(self) -> TriacylglycerolExpr;
-
-    fn tag(self) -> TriacylglycerolExpr {
-        self.triacylglycerol()
-    }
 }
 
 impl ExprExt for Expr {

@@ -31,7 +31,7 @@ fn bounds() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fa().bounds().alias("Bounds")])
+        .select([col("FattyAcid").fatty_acid().bounds().alias("Bounds")])
         .collect()?;
     assert_eq!(data_frame, target);
     Ok(())
@@ -45,7 +45,7 @@ fn carbons() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fa().carbons().alias("Carbons")])
+        .select([col("FattyAcid").fatty_acid().carbons().alias("Carbons")])
         .collect()?;
     assert_eq!(data_frame, target);
     Ok(())
@@ -59,7 +59,10 @@ fn is_saturated() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fa().is_saturated().alias("IsSaturated")])
+        .select([col("FattyAcid")
+            .fatty_acid()
+            .is_saturated()
+            .alias("IsSaturated")])
         .collect()?;
     assert_eq!(data_frame, target);
     Ok(())
@@ -74,7 +77,7 @@ fn is_unsaturated() -> PolarsResult<()> {
         .clone()?
         .lazy()
         .select([col("FattyAcid")
-            .fa()
+            .fatty_acid()
             .is_unsaturated()
             .alias("IsUnsaturated")])
         .collect()?;
@@ -91,7 +94,7 @@ fn saturated_or_null() -> PolarsResult<()> {
         .clone()?
         .lazy()
         .select([col("FattyAcid")
-            .fa()
+            .fatty_acid()
             .saturated_or_null(col("Index"))
             .alias("SaturatedOrNull")])
         .collect()?;
@@ -109,7 +112,7 @@ fn r#type() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fa().r#type().alias("Type")])
+        .select([col("FattyAcid").fatty_acid().r#type().alias("Type")])
         .collect()?;
     println!("data_frame: {data_frame}");
     assert_eq!(data_frame, target);
@@ -125,7 +128,7 @@ fn unsaturated_or_null() -> PolarsResult<()> {
         .clone()?
         .lazy()
         .select([col("FattyAcid")
-            .fa()
+            .fatty_acid()
             .unsaturated_or_null(col("Index"))
             .alias("UnsaturatedOrNull")])
         .collect()?;
@@ -158,7 +161,10 @@ fn unsaturated() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fa().unsaturated().alias("Unsaturated")])
+        .select([col("FattyAcid")
+            .fatty_acid()
+            .unsaturated()
+            .alias("Unsaturated")])
         .collect()?;
     assert_eq!(data_frame, target);
     Ok(())
@@ -201,14 +207,20 @@ fn methods() -> PolarsResult<()> {
     println!("data_frame: {}", source);
     let mut lazy_frame = source.lazy();
     lazy_frame = lazy_frame.select([
-        col("FattyAcid").fa().bounds().alias("Bounds"),
-        col("FattyAcid").fa().is_saturated().alias("IsSaturated"),
+        col("FattyAcid").fatty_acid().bounds().alias("Bounds"),
         col("FattyAcid")
-            .fa()
+            .fatty_acid()
+            .is_saturated()
+            .alias("IsSaturated"),
+        col("FattyAcid")
+            .fatty_acid()
             .is_unsaturated()
             .alias("IsUnsaturated"),
-        col("FattyAcid").fa().unsaturated().alias("Unsaturated"),
-        col("FattyAcid").fa().carbons().alias("Carbons"),
+        col("FattyAcid")
+            .fatty_acid()
+            .unsaturated()
+            .alias("Unsaturated"),
+        col("FattyAcid").fatty_acid().carbons().alias("Carbons"),
     ]);
     println!("lazy_frame: {}", lazy_frame.clone().collect()?);
     assert_eq!(lazy_frame.collect()?, target);

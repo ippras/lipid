@@ -52,9 +52,9 @@ impl TriacylglycerolExpr {
     }
 
     pub fn unsaturation(self) -> Expr {
-        self.clone().sn1().fa().unsaturated().sum()
-            + self.clone().sn2().fa().unsaturated().sum()
-            + self.sn3().fa().unsaturated().sum()
+        self.clone().sn1().fatty_acid().unsaturated().sum()
+            + self.clone().sn2().fatty_acid().unsaturated().sum()
+            + self.sn3().fatty_acid().unsaturated().sum()
     }
 
     pub fn test_map_apply<F>(self, f: &'static F) -> Expr

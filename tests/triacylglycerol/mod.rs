@@ -834,7 +834,7 @@ mod species {
             .clone()
             .lazy()
             .select([col("Triacylglycerol")
-                .tag()
+                .triacylglycerol()
                 .positional(identity, Default::default())])
             .collect()
     }
@@ -844,7 +844,7 @@ mod species {
             .clone()
             .lazy()
             .select([col("Triacylglycerol")
-                .tag()
+                .triacylglycerol()
                 .non_stereospecific(identity, Default::default())?])
             .collect()
     }
@@ -880,9 +880,10 @@ mod r#type {
         data_frame
             .clone()
             .lazy()
-            .select([col("Triacylglycerol")
-                .tag()
-                .positional(|expr| expr.fa().is_saturated().not(), Default::default())])
+            .select([col("Triacylglycerol").triacylglycerol().positional(
+                |expr| expr.fatty_acid().is_saturated().not(),
+                Default::default(),
+            )])
             .collect()
     }
 
@@ -890,10 +891,12 @@ mod r#type {
         data_frame
             .clone()
             .lazy()
-            .select([col("Triacylglycerol").tag().non_stereospecific(
-                |expr| expr.fa().is_saturated().not(),
-                PermutationOptions::default().map(true),
-            )?])
+            .select([col("Triacylglycerol")
+                .triacylglycerol()
+                .non_stereospecific(
+                    |expr| expr.fatty_acid().is_saturated().not(),
+                    PermutationOptions::default().map(true),
+                )?])
             .collect()
     }
 

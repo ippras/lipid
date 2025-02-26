@@ -11,9 +11,9 @@ impl Mass for TriacylglycerolExpr {
     fn mass(self, adduct: Option<Expr>) -> Expr {
         lit(3) * lit(C)
             + lit(5) * lit(H)
-            + self.clone().sn1().fa().rcoo().mass(None)
-            + self.clone().sn2().fa().rcoo().mass(None)
-            + self.sn3().fa().rcoo().mass(None)
+            + self.clone().sn1().fatty_acid().rcoo().mass(None)
+            + self.clone().sn2().fatty_acid().rcoo().mass(None)
+            + self.sn3().fatty_acid().rcoo().mass(None)
             + adduct.unwrap_or(lit(0))
     }
 }

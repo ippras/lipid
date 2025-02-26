@@ -17,12 +17,6 @@ impl FattyAcidExpr {
         self.0.list().len().cast(DataType::UInt8)
     }
 
-    /// [`Self::bounds`]
-    #[inline]
-    pub fn b(self) -> Expr {
-        self.bounds()
-    }
-
     /// Saturated
     #[inline]
     pub fn saturated(self) -> Expr {
@@ -38,12 +32,6 @@ impl FattyAcidExpr {
         )
     }
 
-    /// [`Self::saturated`]
-    #[inline]
-    pub fn s(self) -> Expr {
-        self.saturated()
-    }
-
     /// Unsaturated
     #[inline]
     pub fn unsaturated(self) -> Expr {
@@ -57,12 +45,6 @@ impl FattyAcidExpr {
             ]),
             true,
         )
-    }
-
-    /// [`Self::unsaturated`]
-    #[inline]
-    pub fn u(self) -> Expr {
-        self.unsaturated()
     }
 
     /// Is saturated
@@ -130,24 +112,12 @@ impl FattyAcidExpr {
         self.bounds() + lit(1)
     }
 
-    /// [`Self::carbons`]
-    #[inline]
-    pub fn c(self) -> Expr {
-        self.carbons()
-    }
-
     /// Hydrogens
     ///
     /// `H = 2C - 2U`
     #[inline]
     pub fn hydrogens(self) -> Expr {
         lit(2) * self.clone().carbons() - lit(2) * self.unsaturated().sum()
-    }
-
-    /// [`Self::hydrogens`]
-    #[inline]
-    pub fn h(self) -> Expr {
-        self.hydrogens()
     }
 }
 
