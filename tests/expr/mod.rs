@@ -187,4 +187,4 @@ fn filter_unsaturated() -> PolarsResult<()> {
 #[cfg(test)]
 mod ecn;
 #[cfg(test)]
-mod new;
+mod fatty_acid;

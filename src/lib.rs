@@ -2,14 +2,16 @@
 #![feature(impl_trait_in_assoc_type)]
 
 pub mod fatty_acid;
+pub mod triacylglycerol;
+
 #[cfg(feature = "polars")]
 pub mod polars;
-pub mod triacylglycerol;
 
 pub mod prelude {
     pub use crate::fatty_acid::FattyAcid;
     #[cfg(feature = "polars")]
     pub use crate::polars::{
+        bound::{Bound, Isomerism},
         column::ColumnExt,
         data_frame::DataFrameExt,
         expr::{
@@ -28,5 +30,6 @@ pub mod prelude {
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
         series::SeriesExt,
+        r#type::Type,
     };
 }

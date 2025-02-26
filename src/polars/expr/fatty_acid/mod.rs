@@ -1,5 +1,9 @@
 pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
-use crate::fatty_acid::{FattyAcid, Unsaturated};
+use crate::{
+    fatty_acid::{FattyAcid, Unsaturated},
+    polars::bound::identifiers::S,
+    prelude::*,
+};
 use polars::prelude::*;
 
 /// Fatty acid [`Expr`]
@@ -7,29 +11,94 @@ use polars::prelude::*;
 pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
-    /// Carbons
-    pub fn carbons(self) -> Expr {
-        self.0.struct_().field_by_name("Carbons")
+    /// Bounds
+    #[inline]
+    pub fn bounds(self) -> Expr {
+        self.0.list().len().cast(DataType::UInt8)
+    }
+
+    /// [`Self::bounds`]
+    #[inline]
+    pub fn b(self) -> Expr {
+        self.bounds()
+    }
+
+    /// Saturated
+    #[inline]
+    pub fn saturated(self) -> Expr {
+        self.0.list().eval(
+            as_struct(vec![
+                col("")
+                    .cum_count(false)
+                    .filter(col("").eq(lit(S)))
+                    .alias("Index"),
+                col("").filter(col("").eq(lit(S))),
+            ]),
+            true,
+        )
+    }
+
+    /// [`Self::saturated`]
+    #[inline]
+    pub fn s(self) -> Expr {
+        self.saturated()
     }
 
     /// Unsaturated
-    pub fn unsaturated(self) -> UnsaturatedExpr {
-        UnsaturatedExpr(self.0.struct_().field_by_name("Unsaturated"))
+    #[inline]
+    pub fn unsaturated(self) -> Expr {
+        self.0.list().eval(
+            as_struct(vec![
+                col("")
+                    .cum_count(false)
+                    .filter(col("").neq(lit(S)))
+                    .alias("Index"),
+                col("").filter(col("").neq(lit(S))),
+            ]),
+            true,
+        )
+    }
+
+    /// [`Self::unsaturated`]
+    #[inline]
+    pub fn u(self) -> Expr {
+        self.unsaturated()
+    }
+
+    /// Is saturated
+    #[inline]
+    pub fn is_saturated(self) -> Expr {
+        self.unsaturated().list().len().eq(0)
+    }
+
+    /// Is unsaturated
+    #[inline]
+    pub fn is_unsaturated(self) -> Expr {
+        self.is_saturated().not()
     }
 
     /// Equal
+    #[inline]
     pub fn equal(self, other: impl Into<FattyAcidExpr>) -> Expr {
         self.0.eq(other.into().0)
     }
 
     /// Replace unsaturated with null
+    #[inline]
     pub fn saturated_or_null(self, expr: Expr) -> Expr {
         ternary_expr(self.is_saturated(), expr, lit(NULL))
     }
 
     /// Replace saturated with null
+    #[inline]
     pub fn unsaturated_or_null(self, expr: Expr) -> Expr {
-        ternary_expr(self.is_saturated().not(), expr, lit(NULL))
+        ternary_expr(self.is_unsaturated(), expr, lit(NULL))
+    }
+
+    /// Fatty acid type (saturated or unsaturated)
+    #[inline]
+    pub fn r#type(self) -> Expr {
+        ternary_expr(self.is_saturated(), lit(Type::S), lit(Type::U)).cast(Type::DATA_TYPE.clone())
     }
 
     // /// Double bounds count
@@ -51,66 +120,34 @@ impl FattyAcidExpr {
     //         .list()
     //         .len()
     // }
-
-    // pub fn r#type(self) -> Expr {
-    //     ternary_expr(self.saturated(), lit("S"), lit("U"))
-    // }
-
-    // pub fn unsaturated(self) -> Expr {
-    //     self.saturated().not()
-    // }
-
-    // pub fn unsaturation(self) -> Expr {
-    //     self.d() + lit(2) * self.t()
-    // }
 }
 
+/// Atomic methods
 impl FattyAcidExpr {
-    /// Bounds
-    pub fn bounds(self) -> Expr {
-        (self.carbons() - lit(1)).clip_min(lit(0))
+    /// Carbons
+    #[inline]
+    pub fn carbons(self) -> Expr {
+        self.bounds() + lit(1)
+    }
+
+    /// [`Self::carbons`]
+    #[inline]
+    pub fn c(self) -> Expr {
+        self.carbons()
     }
 
     /// Hydrogens
     ///
     /// `H = 2C - 2U`
+    #[inline]
     pub fn hydrogens(self) -> Expr {
         lit(2) * self.clone().carbons() - lit(2) * self.unsaturated().sum()
     }
 
-    /// Is saturated
-    pub fn is_saturated(self) -> Expr {
-        self.unsaturated().len().eq(0)
-    }
-
-    /// Is unsaturated
-    pub fn is_unsaturated(self) -> Expr {
-        self.is_saturated().not()
-    }
-
-    /// [`bounds`]
-    pub fn b(self) -> Expr {
-        self.bounds()
-    }
-
-    /// [`carbons`]
-    pub fn c(self) -> Expr {
-        self.carbons()
-    }
-
-    /// [`hydrogens`]
+    /// [`Self::hydrogens`]
+    #[inline]
     pub fn h(self) -> Expr {
         self.hydrogens()
-    }
-
-    /// [`saturated`]
-    pub fn s(self) -> Expr {
-        self.is_saturated()
-    }
-
-    /// [`unsaturation`]
-    pub fn u(self) -> Expr {
-        self.unsaturated().len()
     }
 }
 
@@ -185,6 +222,7 @@ impl UnsaturatedExpr {
     /// Unsaturation length
     ///
     /// The number of unsaturated bonds.
+    #[inline]
     pub fn len(self) -> Expr {
         self.0
             .list()
@@ -194,6 +232,7 @@ impl UnsaturatedExpr {
     }
 
     /// Unsaturation sum
+    #[inline]
     pub fn sum(self) -> Expr {
         self.0
             .list()
@@ -203,11 +242,13 @@ impl UnsaturatedExpr {
     }
 
     /// List
+    #[inline]
     pub fn list(self) -> ListNameSpace {
         self.0.list()
     }
 
     /// Equal
+    #[inline]
     pub fn equal(self, other: UnsaturatedExpr) -> Expr {
         self.0.eq(other)
     }
