@@ -59,7 +59,7 @@ impl Bound {
     /// # Returns
     ///
     /// * [`true`] if the bound is unsaturated, otherwise [`false`].
-    pub fn unsaturated(&self) -> bool {
+    pub fn is_unsaturated(&self) -> bool {
         match self {
             Self::Single => false,
             _ => true,
@@ -121,6 +121,18 @@ pub enum Isomerism {
     Trans = -1,
 }
 
+/// Filters null and saturated
+#[inline]
+pub fn is_unsaturated(id: Option<&str>) -> bool {
+    id.is_some() && id != Some(S)
+}
+
+/// Filters saturated
+#[inline]
+pub fn is_not_saturated(id: Option<&str>) -> bool {
+    id != Some(S)
+}
+
 pub mod identifiers {
     pub const S: &str = "S";
     pub const D: &str = "D";
@@ -138,49 +150,49 @@ mod tests {
     #[test]
     fn test_single_bound() {
         let single_bound = Bound::new("S");
-        assert_eq!(single_bound.unsaturated(), false);
+        assert_eq!(single_bound.is_unsaturated(), false);
         assert_eq!(single_bound.unsaturation(), 0);
     }
 
     #[test]
     fn test_double_bound() {
         let double_bound = Bound::new("D");
-        assert_eq!(double_bound.unsaturated(), true);
+        assert_eq!(double_bound.is_unsaturated(), true);
         assert_eq!(double_bound.unsaturation(), 1);
     }
 
     #[test]
     fn test_double_bound_cis() {
         let double_bound_cis = Bound::new("DC");
-        assert_eq!(double_bound_cis.unsaturated(), true);
+        assert_eq!(double_bound_cis.is_unsaturated(), true);
         assert_eq!(double_bound_cis.unsaturation(), 1);
     }
 
     #[test]
     fn test_double_bound_trans() {
         let double_bound_trans = Bound::new("DT");
-        assert_eq!(double_bound_trans.unsaturated(), true);
+        assert_eq!(double_bound_trans.is_unsaturated(), true);
         assert_eq!(double_bound_trans.unsaturation(), 1);
     }
 
     #[test]
     fn test_triple_bound() {
         let triple_bound = Bound::new("T");
-        assert_eq!(triple_bound.unsaturated(), true);
+        assert_eq!(triple_bound.is_unsaturated(), true);
         assert_eq!(triple_bound.unsaturation(), 2);
     }
 
     #[test]
     fn test_triple_bound_cis() {
         let triple_bound_cis = Bound::new("TC");
-        assert_eq!(triple_bound_cis.unsaturated(), true);
+        assert_eq!(triple_bound_cis.is_unsaturated(), true);
         assert_eq!(triple_bound_cis.unsaturation(), 2);
     }
 
     #[test]
     fn test_triple_bound_trans() {
         let triple_bound_trans = Bound::new("TT");
-        assert_eq!(triple_bound_trans.unsaturated(), true);
+        assert_eq!(triple_bound_trans.is_unsaturated(), true);
         assert_eq!(triple_bound_trans.unsaturation(), 2);
     }
 

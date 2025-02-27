@@ -1,9 +1,12 @@
 pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
 use crate::{
     fatty_acid::{FattyAcid, Unsaturated},
-    polars::bound::{
-        IDENTIFIERS,
-        identifiers::{D, DC, DT, S, T, TC, TT},
+    polars::{
+        bound,
+        bound::{
+            IDENTIFIERS,
+            identifiers::{D, DC, DT, S, T, TC, TT},
+        },
     },
     prelude::*,
 };
@@ -76,23 +79,9 @@ pub fn filter(
 //     id.is_some() && id != Some(S)
 // }
 
-/// Filters null and saturated
-#[inline]
-pub fn is_unsaturated(id: Option<&str>) -> bool {
-    id.is_some() && id != Some(S)
-}
-
-/// Filters saturated
-#[inline]
-pub fn is_not_saturated(id: Option<&str>) -> bool {
-    id != Some(S)
-}
-
-pub fn is_unsaturated_g(bounds: &Series) -> bool {
-    bounds
-        .categorical()
-        .map_or(false, |bounds| bounds.iter_str().any(is_unsaturated))
-
+/// [bound::is_unsaturated]
+pub fn is_unsaturated(bounds: &Series) -> PolarsResult<bool> {
+    Ok(bounds.categorical()?.iter_str().any(bound::is_unsaturated))
 }
 
 pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<ListChunked> {
@@ -109,7 +98,7 @@ pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<ListChunked> {
                 .iter_str()
                 .enumerate()
                 .filter_map(|(index, id)| {
-                    if is_unsaturated(id) {
+                    if bound::is_unsaturated(id) {
                         indices.append_value(index as _);
                         id
                     } else {
@@ -154,7 +143,7 @@ impl FattyAcidExpr {
     #[inline]
     pub fn is_unsaturated(self) -> Expr {
         self.0.map(
-            column(|fatty_acids| Ok(filter(fatty_acids, is_unsaturated)?.into_series())),
+            column(|fatty_acids| Ok(filter(fatty_acids, bound::is_unsaturated)?.into_series())),
             GetOutput::from_type(DataType::Boolean),
         )
     }
