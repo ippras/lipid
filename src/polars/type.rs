@@ -5,7 +5,11 @@ use std::sync::LazyLock;
 
 pub const IDENTIFIERS: [&str; 2] = [S, U];
 
-/// Type
+/// Represents different types of fatty acids.
+///
+/// The `Type` enum has two variants:
+/// - `Saturated`: Represents saturated fatty acids.
+/// - `Unsaturated`: Represents unsaturated fatty acids.
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub enum Type {
     Saturated,
@@ -43,15 +47,11 @@ impl<'a> TryFrom<&'a str> for Type {
     }
 }
 
-/// Isomerism
-#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub enum Isomerism {
-    #[default]
-    Cis = 1,
-    Trans = -1,
-}
-
+/// This module contains constants used as identifiers.
 pub mod identifiers {
+    /// Identifier for saturated fatty acid type.
     pub const S: &str = "S";
+
+    /// Identifier for unsaturated fatty acid type.
     pub const U: &str = "U";
 }

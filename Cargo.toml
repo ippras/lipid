@@ -31,7 +31,12 @@ serde = { version = "1.0.218", features = ["derive", "std"] }
 
 [dev-dependencies]
 anyhow = "1.0.96"
+criterion = { version = "0.5.1", features = ["html_reports"] }
 lipid = { path = ".", features = ["polars"] }
+
+[[bench]]
+harness = false
+name = "expr"
 
 [features]
 default = []

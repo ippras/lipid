@@ -171,6 +171,49 @@ fn unsaturated() -> PolarsResult<()> {
 }
 
 #[test]
+fn unsaturated_function() -> PolarsResult<()> {
+    // let target = df! {
+    //     "Unsaturated" => &[
+    //         df! {
+    //             "Index" => Series::new_empty(PlSmallStr::EMPTY, &IDX_DTYPE),
+    //             "" => Series::new_empty(PlSmallStr::EMPTY, &Bound::DATA_TYPE),
+    //         }?.into_struct(PlSmallStr::EMPTY).into_series(),
+    //         df! {
+    //             "Index" => Series::new_empty(PlSmallStr::EMPTY, &IDX_DTYPE),
+    //             "" => Series::new_empty(PlSmallStr::EMPTY, &Bound::DATA_TYPE),
+    //         }?.into_struct(PlSmallStr::EMPTY).into_series(),
+    //         df! {
+    //             "Index" => Series::from_iter([9, 12]).cast(&IDX_DTYPE)?,
+    //             "" => Series::from_iter([DC, DC]).cast(&Bound::DATA_TYPE)?,
+    //         }?.into_struct(PlSmallStr::EMPTY).into_series(),
+    //         df! {
+    //             "Index" => Series::from_iter([2, 3, 4, 5, 6, 7]).cast(&IDX_DTYPE)?,
+    //             "" => Series::from_iter([D, DC, DT, T, TC, TT]).cast(&Bound::DATA_TYPE)?,
+    //         }?.into_struct(PlSmallStr::EMPTY).into_series(),
+    //     ],
+    // }?;
+    let data_frame = SOURCE
+        .clone()?
+        .lazy()
+        .select([col("FattyAcid")
+            .fatty_acid()
+            .unsaturated()
+            .alias("Unsaturated")])
+        .collect()?;
+    println!(
+        "data_frame: {}",
+        data_frame
+            .explode(["Unsaturated"])
+            .unwrap()
+            .unnest(["Unsaturated"])
+            .unwrap()
+    );
+    println!("data_frame: {data_frame}");
+    // assert_eq!(data_frame, target);
+    Ok(())
+}
+
+#[test]
 fn methods() -> PolarsResult<()> {
     let source = df! {
         "FattyAcid" => [
