@@ -121,6 +121,18 @@ pub enum Isomerism {
     Trans = -1,
 }
 
+/// Filters null and unsaturated
+#[inline]
+pub fn is_saturated(id: Option<&str>) -> bool {
+    id == Some(S)
+}
+
+/// Filters unsaturated
+#[inline]
+pub fn is_not_unsaturated(id: Option<&str>) -> bool {
+    id.is_none() || id == Some(S)
+}
+
 /// Filters null and saturated
 #[inline]
 pub fn is_unsaturated(id: Option<&str>) -> bool {

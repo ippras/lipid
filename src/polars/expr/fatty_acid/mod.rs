@@ -59,7 +59,7 @@ pub fn hydrogens(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
 /// Filter
 pub fn filter(
     fatty_acids: &Series,
-    predicate: impl Fn(Option<&str>) -> bool,
+    predicate: impl Fn(&Series) -> PolarsResult<bool>,
 ) -> PolarsResult<BooleanChunked> {
     fatty_acids
         .list()?
@@ -68,20 +68,47 @@ pub fn filter(
             let Some(bounds) = bounds else {
                 return Ok(None);
             };
-            Ok(Some(bounds.categorical()?.iter_str().any(&predicate)))
+            Ok(Some(predicate(&bounds)?))
         })
         .collect()
 }
 
-// /// Filters null and unsaturated
-// #[inline]
-// pub fn is_saturated(id: Option<&str>) -> bool {
-//     id.is_some() && id != Some(S)
-// }
+/// Contains only saturated bounds
+///
+/// [bound::is_saturated]
+#[inline]
+pub fn is_saturated(bounds: &Series) -> PolarsResult<bool> {
+    Ok(bounds.categorical()?.iter_str().all(bound::is_saturated))
+}
 
+/// Contains only saturated bounds or [`None`]
+///
+/// [bound::is_not_unsaturated]
+#[inline]
+pub fn is_not_unsaturated(bounds: &Series) -> PolarsResult<bool> {
+    Ok(bounds
+        .categorical()?
+        .iter_str()
+        .all(bound::is_not_unsaturated))
+}
+
+/// Contains only unsaturated bounds
+///
 /// [bound::is_unsaturated]
+#[inline]
 pub fn is_unsaturated(bounds: &Series) -> PolarsResult<bool> {
     Ok(bounds.categorical()?.iter_str().any(bound::is_unsaturated))
+}
+
+/// Contains only unsaturated bounds or [`None`]
+///
+/// [bound::is_not_saturated]
+#[inline]
+pub fn is_not_saturated(bounds: &Series) -> PolarsResult<bool> {
+    Ok(bounds
+        .categorical()?
+        .iter_str()
+        .any(bound::is_not_saturated))
 }
 
 pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<ListChunked> {
@@ -143,7 +170,7 @@ impl FattyAcidExpr {
     #[inline]
     pub fn is_unsaturated(self) -> Expr {
         self.0.map(
-            column(|fatty_acids| Ok(filter(fatty_acids, bound::is_unsaturated)?.into_series())),
+            column(|fatty_acids| Ok(filter(fatty_acids, is_unsaturated)?.into_series())),
             GetOutput::from_type(DataType::Boolean),
         )
     }
