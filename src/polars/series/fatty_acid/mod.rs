@@ -1,5 +1,5 @@
 use self::unsaturated::UnsaturatedSeries;
-use crate::{fatty_acid::FattyAcid, prelude::Bound};
+use crate::{fatty_acid::FattyAcid, polars::bound::identifiers::S, prelude::Bound};
 use polars::prelude::*;
 use std::{
     fmt::{self, Display, Formatter},
@@ -43,23 +43,10 @@ impl FattyAcidSeries<'_> {
     //     }))
     // }
 
-    // pub fn saturated_filter(&self) -> PolarsResult<BooleanChunked> {
-    //     Ok(self
-    //         .unsaturated
-    //         .list()?
-    //         .iter()
-    //         .map(|list| Some(list?.len() == 0))
-    //         .collect())
-    // }
-
-    // pub fn unsaturated_filter(&self) -> PolarsResult<BooleanChunked> {
-    //     Ok(self
-    //         .unsaturated
-    //         .list()?
-    //         .iter()
-    //         .map(|list| Some(list?.len() != 0))
-    //         .collect())
-    // }
+    /// Return bool chunked array with is unsaturated values
+    pub fn is_unsaturated(&self) -> PolarsResult<BooleanChunked> {
+        is_unsaturated(self.fatty_acids)
+    }
 
     // pub fn unsaturated(&self, index: usize) -> PolarsResult<Option<UnsaturatedSeries>> {
     //     let Some(unsaturated) = self.unsaturated.list()?.get_as_series(index) else {
@@ -81,6 +68,20 @@ impl IntoIterator for FattyAcidSeries<'_> {
             .into_iter()
             .map(|bounds| Some(BoundSeries { bounds: bounds? }))
     }
+}
+
+pub fn is_unsaturated(series: &Series) -> PolarsResult<BooleanChunked> {
+    let mut builder = BooleanChunkedBuilder::new(PlSmallStr::EMPTY, series.len());
+    for bounds in series.list()? {
+        match bounds {
+            Some(bounds) => {
+                let is_unsaturated = bounds.categorical()?.iter_str().any(|id| id != Some(S));
+                builder.append_value(is_unsaturated)
+            }
+            None => builder.append_null(),
+        }
+    }
+    Ok(builder.finish())
 }
 
 /// Bound series

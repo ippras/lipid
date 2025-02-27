@@ -4,7 +4,90 @@ use crate::{
     polars::bound::identifiers::S,
     prelude::*,
 };
-use polars::prelude::*;
+use polars::{chunked_array::from_iterator_par::ChunkedCollectParIterExt, prelude::*};
+use polars_ext::column;
+use rayon::iter::ParallelIterator;
+
+pub fn bounds(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
+    Ok(fatty_acids
+        .list()?
+        .par_iter()
+        .map(|bounds| Some(bounds?.len() as _))
+        .collect())
+}
+
+pub fn is_unsaturated(fatty_acids: &Series) -> PolarsResult<BooleanChunked> {
+    fatty_acids
+        .list()?
+        .par_iter()
+        .map(|bounds| {
+            let Some(bounds) = bounds else {
+                return Ok(None);
+            };
+            let is_unsaturated = bounds
+                .categorical()?
+                .iter_str()
+                .any(|id| id.is_some() && id != Some(S));
+            Ok(Some(is_unsaturated))
+        })
+        .collect()
+}
+
+// pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<Series> {
+//     let name = fatty_acids.name().clone();
+//     let mut indices = PrimitiveChunkedBuilder::<UInt32Type>::new("Index".into(), fatty_acids.len());
+//     let fatty_acids = fatty_acids
+//         .list()?
+//         .clone()
+//         .par_iter_indexed()
+//         .filter_map(|bounds| {
+//             (|| {
+//                 let Some(bounds) = bounds else {
+//                     return Ok(None);
+//                 };
+//                 let is_unsaturated = bounds
+//                     .categorical()?
+//                     .iter_str()
+//                     .any(|id| id.is_some() && id != Some(S));
+//                 if is_unsaturated {
+//                     indices.append_value(index as _);
+//                     Ok(Some(bounds))
+//                 } else {
+//                     Ok(None)
+//                 }
+//             })()
+//             .transpose()
+//         })
+//         .collect::<PolarsResult<ListChunked>>()?;
+//     Ok(StructChunked::from_series(
+//         name,
+//         fatty_acids.len(),
+//         [indices.finish().into_series(), fatty_acids.into_series()].iter(),
+//     )?
+//     .into_series())
+// }
+pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<Series> {
+    let name = fatty_acids.name().clone();
+    let fatty_acids: PolarsResult<ListChunked> = fatty_acids
+        .list()?
+        .clone()
+        .par_iter_indexed()
+        .filter_map(|bounds| {
+            (|| {
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                let is_unsaturated = bounds
+                    .categorical()?
+                    .iter_str()
+                    .any(|id| id.is_some() && id != Some(S));
+                Ok(is_unsaturated.then_some(bounds))
+            })()
+            .transpose()
+        })
+        .collect_ca_with_dtype(PlSmallStr::EMPTY, *fatty_acids.dtype());
+    Ok(fatty_acids?.into_series())
+}
 
 /// Fatty acid [`Expr`]
 #[derive(Clone, Debug)]
@@ -17,18 +100,12 @@ impl FattyAcidExpr {
         self.0.list().len().cast(DataType::UInt8)
     }
 
-    /// Saturated
+    /// Bounds
     #[inline]
-    pub fn saturated(self) -> Expr {
-        self.0.list().eval(
-            as_struct(vec![
-                col("")
-                    .cum_count(false)
-                    .filter(col("").eq(lit(S)))
-                    .alias("Index"),
-                col("").filter(col("").eq(lit(S))),
-            ]),
-            true,
+    pub fn bounds_function(self) -> Expr {
+        self.0.map(
+            column(|series| Ok(bounds(series)?.into_series())),
+            GetOutput::from_type(DataType::UInt8),
         )
     }
 
@@ -47,6 +124,21 @@ impl FattyAcidExpr {
         )
     }
 
+    /// Unsaturated
+    #[inline]
+    pub fn unsaturated_function(self) -> Expr {
+        self.0.map(
+            column(|fatty_acids| Ok(unsaturated(fatty_acids)?.into_series())),
+            GetOutput::from_type(DataType::Struct(vec![
+                Field::new("Index".into(), IDX_DTYPE),
+                Field::new(
+                    PlSmallStr::EMPTY,
+                    DataType::List(Box::new(Bound::DATA_TYPE.clone())),
+                ),
+            ])),
+        )
+    }
+
     /// Is saturated
     #[inline]
     pub fn is_saturated(self) -> Expr {
@@ -57,6 +149,15 @@ impl FattyAcidExpr {
     #[inline]
     pub fn is_unsaturated(self) -> Expr {
         self.is_saturated().not()
+    }
+
+    /// Is unsaturated
+    #[inline]
+    pub fn is_unsaturated_function(self) -> Expr {
+        self.0.map(
+            column(|fatty_acids| Ok(is_unsaturated(fatty_acids)?.into_series())),
+            GetOutput::from_type(DataType::Boolean),
+        )
     }
 
     /// Equal

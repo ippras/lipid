@@ -78,8 +78,8 @@ pub fn selectivity() -> impl Fn(&Series) -> PolarsResult<Series> {
         let fatty_acid = fields[0].fatty_acid();
         let mag2 = fields[1].f64()?;
         let tag = fields[2].f64()?;
-        let mag2_unsaturated_sum = mag2.filter(&fatty_acid.unsaturated_filter()?)?.sum();
-        let tag_unsaturated_sum = tag.filter(&fatty_acid.unsaturated_filter()?)?.sum();
+        let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated()?)?.sum();
+        let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
         Ok(zip(tag, mag2)
             .map(|(tag, mag2)| {
                 let Some(tag) = tag else {
