@@ -97,6 +97,7 @@ impl BoundSeries {
             .0
             .cast(&Bound::DATA_TYPE)?
             .categorical()?
+            .to_local()
             .iter_str()
             .enumerate()
             .filter_map(|(index, id)| match id {
