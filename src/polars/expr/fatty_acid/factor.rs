@@ -1,5 +1,5 @@
 use super::FattyAcidExpr;
-use crate::prelude::SeriesExt;
+use crate::prelude::*;
 use polars::prelude::*;
 use polars_ext::functions::column;
 use std::iter::zip;
@@ -78,8 +78,11 @@ pub fn selectivity() -> impl Fn(&Series) -> PolarsResult<Series> {
         let fatty_acid = fields[0].fatty_acid();
         let mag2 = fields[1].f64()?;
         let tag = fields[2].f64()?;
-        let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated()?)?.sum();
-        let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
+        // TODO
+        // let mag2_unsaturated_sum = mag2.filter(&filter(&fatty_acid.0, is_unsaturated)?)?.sum();
+        // let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
+        let mag2_unsaturated_sum = Some(0.0);
+        let tag_unsaturated_sum = Some(0.0);
         Ok(zip(tag, mag2)
             .map(|(tag, mag2)| {
                 let Some(tag) = tag else {

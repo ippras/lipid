@@ -10,11 +10,10 @@ pub use self::{
 pub const FATTY_ACID_COLUMN: &str = "FattyAcid";
 
 pub mod bound;
+pub mod chunked_array;
 pub mod column;
 pub mod data_frame;
 pub mod expr;
 pub mod fatty_acid;
-pub mod function;
 pub mod schema;
 pub mod series;
-pub mod r#type;

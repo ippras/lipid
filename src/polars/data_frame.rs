@@ -1,13 +1,15 @@
-use super::{FATTY_ACID_COLUMN, column::ColumnExt as _, series::FattyAcidSeries};
+use super::{
+    FATTY_ACID_COLUMN, chunked_array::fatty_acid::FattyAcidChunked, column::ColumnExt as _,
+};
 use polars::prelude::*;
 
 /// Extension methods for [`DataFrame`]
 pub trait DataFrameExt {
-    fn fatty_acid(&self) -> FattyAcidSeries;
+    fn fatty_acid(&self) -> PolarsResult<FattyAcidChunked>;
 }
 
 impl DataFrameExt for DataFrame {
-    fn fatty_acid(&self) -> FattyAcidSeries {
+    fn fatty_acid(&self) -> PolarsResult<FattyAcidChunked> {
         self[FATTY_ACID_COLUMN].fatty_acid()
     }
 }

@@ -1,5 +1,5 @@
 use lipid::{
-    polars::bound::identifiers::{D, DC, DT, S, T, TC, TT},
+    polars::bound::identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
     prelude::*,
 };
 use polars::prelude::*;
@@ -9,7 +9,7 @@ const C14U0: [&str; 13] = [S, S, S, S, S, S, S, S, S, S, S, S, S];
 const C18U0: [&str; 17] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 const C18U2C9T12: [&str; 17] = [S, S, S, S, S, S, S, S, DC, S, S, DC, S, S, S, S, S];
 
-const C: [&str; 7] = [S, D, DC, DT, T, TC, TT];
+const C: [&str; 10] = [S, D, DC, DT, T, TC, TT, U, UC, UT];
 
 pub const SOURCE: LazyLock<PolarsResult<DataFrame>> = LazyLock::new(|| {
     df! {
@@ -104,8 +104,6 @@ fn saturated_or_null() -> PolarsResult<()> {
 
 #[test]
 fn r#type() -> PolarsResult<()> {
-    use lipid::polars::r#type::identifiers::{S, U};
-
     let target = df! {
         "Type" => &[S, S, U, U],
     }?;
@@ -223,5 +221,58 @@ fn methods() -> PolarsResult<()> {
     ]);
     println!("lazy_frame: {}", lazy_frame.clone().collect()?);
     assert_eq!(lazy_frame.collect()?, target);
+    Ok(())
+}
+
+#[test]
+fn display() -> PolarsResult<()> {
+    println!("SOURCE: {}", SOURCE.clone().unwrap());
+    let column = &SOURCE.clone()?["FattyAcid"];
+    for index in 0..column.len() {
+        let t = column
+            .as_materialized_series()
+            .fatty_acid()?
+            .get(index)
+            .unwrap()
+            .display(Options::default())?;
+        // .display(Options {
+        //     kind: Kind::System,
+        //     ..Default::default()
+        // })?;
+        println!("{index} FA: {t} / {t:#}");
+    }
+    println!();
+    // for index in 0..column.len() {
+    //     let t = column.as_materialized_series().fatty_acid().display(
+    //         index,
+    //         Options {
+    //             bounds: Elision::Explicit,
+    //             ..Default::default()
+    //         },
+    //     )?;
+    //     println!("{index} FA: {t} / {t:#}");
+    // }
+    // println!();
+    // for index in 0..column.len() {
+    //     let t = column.as_materialized_series().fatty_acid().display(
+    //         index,
+    //         Options {
+    //             isomerism: Elision::Explicit,
+    //             ..Default::default()
+    //         },
+    //     )?;
+    //     println!("{index} FA: {t} / {t:#}");
+    // }
+    // println!();
+    // for index in 0..column.len() {
+    //     let t = column.as_materialized_series().fatty_acid().display(
+    //         index,
+    //         Options {
+    //             bounds: Elision::Explicit,
+    //             isomerism: Elision::Explicit,
+    //         },
+    //     )?;
+    //     println!("{index} FA: {t} / {t:#}");
+    // }
     Ok(())
 }

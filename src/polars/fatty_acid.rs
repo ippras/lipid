@@ -1,16 +1,41 @@
-use crate::prelude::*;
-use serde::{Deserialize, Serialize};
+/// Fatty acid kind
+#[derive(Clone, Copy, Debug, Default)]
+pub enum Kind {
+    /// Fatty acid
+    ///
+    /// `RCOOH`
+    #[default]
+    Rcooh,
+    /// Fatty acid methyl ester
+    ///
+    /// `RCOOH -H +CH3 => RCOOCH3`
+    Rcooch3,
+    /// Fatty acid [RCOO]-
+    ///
+    /// `RCOOH -H => [RCOO]-`
+    Rcoo,
+    /// Fatty acid [RCO]+
+    ///
+    /// `RCOOH -OH => [RCO]+`
+    Rco,
+}
+
+/// Fatty acid [RCO]+
+///
+/// `RCOOH -OH => [RCO]+`
+pub struct Rco<T>(pub T);
+
+/// Fatty acid [RCOO]-
+///
+/// `RCOOH -H => [RCOO]-`
+pub struct Rcoo<T>(pub T);
 
 /// Fatty acid
-#[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
-pub struct FattyAcid {
-    pub bounds: Vec<Option<Bound>>,
-}
+///
+/// `RCOOH`
+pub struct Rcooh<T>(pub T);
 
-impl FattyAcid {
-    pub fn new(carbons: u8) -> Self {
-        Self {
-            bounds: vec![None; carbons as usize - 1],
-        }
-    }
-}
+/// Fatty acid methyl ester
+///
+/// `RCOOH -H +CH3 => RCOOCH3`
+pub struct Rcooch3<T>(pub T);

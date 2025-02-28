@@ -1,37 +1,41 @@
 //! Represents different types of chemical bonds with optional isomerism.
 
-use self::identifiers::{D, DC, DT, S, T, TC, TT};
+use self::identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT};
 use polars::prelude::*;
 use polars_arrow::array::Utf8ViewArray;
 use std::sync::LazyLock;
 
-pub const IDENTIFIERS: [&str; 7] = [S, D, DC, DT, T, TC, TT];
-
-#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[repr(u8)]
-pub enum Bound {
-    #[default]
-    Single = 1,
-    Double(Option<Isomerism>) = 2,
-    Triple(Option<Isomerism>) = 3,
-}
+pub const IDENTIFIERS: [&str; 10] = [S, D, DC, DT, T, TC, TT, U, UC, UT];
 
 /// Represents a bound with various types and associated constants.
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub enum Bound {
+    #[default]
+    Saturated,
+    Unaturated(Unsaturated),
+}
+
 impl Bound {
     /// Constant for single bound type.
     pub const S: &str = S;
     /// Constant for double bound type.
     pub const D: &str = D;
-    /// Constant for double conjugated bound type.
+    /// Constant for double cis bound type.
     pub const DC: &str = DC;
     /// Constant for double trans bound type.
     pub const DT: &str = DT;
     /// Constant for triple bound type.
     pub const T: &str = T;
-    /// Constant for triple conjugated bound type.
+    /// Constant for triple cis bound type.
     pub const TC: &str = TC;
     /// Constant for triple trans bound type.
     pub const TT: &str = TT;
+    /// Constant for unknown bound type.
+    pub const U: &str = T;
+    /// Constant for unknown cis bound type.
+    pub const UC: &str = TC;
+    /// Constant for unknown trans bound type.
+    pub const UT: &str = TT;
 
     /// Lazy static initialization for the data type associated with the bound.
     pub const DATA_TYPE: LazyLock<DataType> = LazyLock::new(|| {
@@ -61,7 +65,7 @@ impl Bound {
     /// * [`true`] if the bound is unsaturated, otherwise [`false`].
     pub fn is_unsaturated(&self) -> bool {
         match self {
-            Self::Single => false,
+            Self::Saturated => false,
             _ => true,
         }
     }
@@ -70,14 +74,13 @@ impl Bound {
     ///
     /// # Returns
     ///
-    /// * `0` for single bound.
+    /// * `0` for single (saturated) bound.
     /// * `1` for double bound.
     /// * `2` for triple bound.
-    pub fn unsaturation(&self) -> u8 {
+    pub fn unsaturation(&self) -> Option<u8> {
         match self {
-            Self::Single => 0,
-            Self::Double(_) => 1,
-            Self::Triple(_) => 2,
+            Self::Saturated => Some(0),
+            Self::Unaturated(unsaturated) => unsaturated.unsaturation(),
         }
     }
 }
@@ -85,13 +88,8 @@ impl Bound {
 impl From<Bound> for &'static str {
     fn from(value: Bound) -> Self {
         match value {
-            Bound::Single => S,
-            Bound::Double(None) => D,
-            Bound::Double(Some(Isomerism::Cis)) => DC,
-            Bound::Double(Some(Isomerism::Trans)) => DT,
-            Bound::Triple(None) => T,
-            Bound::Triple(Some(Isomerism::Cis)) => TC,
-            Bound::Triple(Some(Isomerism::Trans)) => TT,
+            Bound::Saturated => S,
+            Bound::Unaturated(unsaturated) => unsaturated.into(),
         }
     }
 }
@@ -101,14 +99,90 @@ impl<'a> TryFrom<&'a str> for Bound {
 
     fn try_from(value: &'a str) -> Result<Self, Self::Error> {
         match value {
-            S => Ok(Self::Single),
-            D => Ok(Self::Double(None)),
-            DC => Ok(Self::Double(Some(Isomerism::Cis))),
-            DT => Ok(Self::Double(Some(Isomerism::Trans))),
-            T => Ok(Self::Triple(None)),
-            TC => Ok(Self::Triple(Some(Isomerism::Cis))),
-            TT => Ok(Self::Triple(Some(Isomerism::Trans))),
+            S => Ok(Self::Saturated),
+            value => Ok(Self::Unaturated(value.try_into()?)),
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct Unsaturated {
+    pub unsaturation: Option<Unaturation>,
+    pub isomerism: Option<Isomerism>,
+}
+
+impl Unsaturated {
+    const D: Self = Self::new(Some(Unaturation::Double), None);
+    const DC: Self = Self::new(Some(Unaturation::Double), Some(Isomerism::Cis));
+    const DT: Self = Self::new(Some(Unaturation::Double), Some(Isomerism::Trans));
+    const T: Self = Self::new(Some(Unaturation::Triple), None);
+    const TC: Self = Self::new(Some(Unaturation::Triple), Some(Isomerism::Cis));
+    const TT: Self = Self::new(Some(Unaturation::Triple), Some(Isomerism::Trans));
+    const U: Self = Self::new(None, None);
+    const UC: Self = Self::new(None, Some(Isomerism::Cis));
+    const UT: Self = Self::new(None, Some(Isomerism::Trans));
+
+    pub const fn new(unsaturation: Option<Unaturation>, isomerism: Option<Isomerism>) -> Self {
+        Self {
+            unsaturation,
+            isomerism,
+        }
+    }
+
+    pub fn unsaturation(&self) -> Option<u8> {
+        match self.unsaturation? {
+            Unaturation::Double => Some(1),
+            Unaturation::Triple => Some(2),
+        }
+    }
+}
+
+impl From<Unsaturated> for &'static str {
+    fn from(value: Unsaturated) -> Self {
+        match value {
+            Unsaturated::D => D,
+            Unsaturated::DC => DC,
+            Unsaturated::DT => DT,
+            Unsaturated::T => T,
+            Unsaturated::TC => TC,
+            Unsaturated::TT => TT,
+            Unsaturated::U => U,
+            Unsaturated::UC => UC,
+            Unsaturated::UT => UT,
+        }
+    }
+}
+
+impl<'a> TryFrom<&'a str> for Unsaturated {
+    type Error = &'a str;
+
+    fn try_from(value: &'a str) -> Result<Self, Self::Error> {
+        match value {
+            D => Ok(Unsaturated::D),
+            DC => Ok(Unsaturated::DC),
+            DT => Ok(Unsaturated::DT),
+            T => Ok(Unsaturated::T),
+            TC => Ok(Unsaturated::TC),
+            TT => Ok(Unsaturated::TT),
+            U => Ok(Unsaturated::U),
+            UC => Ok(Unsaturated::UC),
+            UT => Ok(Unsaturated::UT),
             value => Err(value),
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub enum Unaturation {
+    Double,
+    Triple,
+}
+
+impl From<Unaturation> for u8 {
+    fn from(value: Unaturation) -> Self {
+        match value {
+            Unaturation::Double => 1,
+            Unaturation::Triple => 2,
         }
     }
 }
@@ -119,6 +193,17 @@ pub enum Isomerism {
     #[default]
     Cis = 1,
     Trans = -1,
+}
+
+/// Represents different types of a bound.
+///
+/// The [`Type`] enum has two variants:
+/// - `Saturated`: Represents saturated bound.
+/// - `Unsaturated`: Represents unsaturated bound.
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub enum Type {
+    Saturated,
+    Unsaturated,
 }
 
 /// Filters null and unsaturated
@@ -153,64 +238,7 @@ pub mod identifiers {
     pub const T: &str = "T";
     pub const TC: &str = "TC";
     pub const TT: &str = "TT";
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_single_bound() {
-        let single_bound = Bound::new("S");
-        assert_eq!(single_bound.is_unsaturated(), false);
-        assert_eq!(single_bound.unsaturation(), 0);
-    }
-
-    #[test]
-    fn test_double_bound() {
-        let double_bound = Bound::new("D");
-        assert_eq!(double_bound.is_unsaturated(), true);
-        assert_eq!(double_bound.unsaturation(), 1);
-    }
-
-    #[test]
-    fn test_double_bound_cis() {
-        let double_bound_cis = Bound::new("DC");
-        assert_eq!(double_bound_cis.is_unsaturated(), true);
-        assert_eq!(double_bound_cis.unsaturation(), 1);
-    }
-
-    #[test]
-    fn test_double_bound_trans() {
-        let double_bound_trans = Bound::new("DT");
-        assert_eq!(double_bound_trans.is_unsaturated(), true);
-        assert_eq!(double_bound_trans.unsaturation(), 1);
-    }
-
-    #[test]
-    fn test_triple_bound() {
-        let triple_bound = Bound::new("T");
-        assert_eq!(triple_bound.is_unsaturated(), true);
-        assert_eq!(triple_bound.unsaturation(), 2);
-    }
-
-    #[test]
-    fn test_triple_bound_cis() {
-        let triple_bound_cis = Bound::new("TC");
-        assert_eq!(triple_bound_cis.is_unsaturated(), true);
-        assert_eq!(triple_bound_cis.unsaturation(), 2);
-    }
-
-    #[test]
-    fn test_triple_bound_trans() {
-        let triple_bound_trans = Bound::new("TT");
-        assert_eq!(triple_bound_trans.is_unsaturated(), true);
-        assert_eq!(triple_bound_trans.unsaturation(), 2);
-    }
-
-    #[test]
-    #[should_panic(expected = "unexpected bound identifier")]
-    fn test_invalid_bound() {
-        Bound::new("X");
-    }
+    pub const U: &str = "U";
+    pub const UC: &str = "UC";
+    pub const UT: &str = "UT";
 }

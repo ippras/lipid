@@ -1,6 +1,7 @@
 pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
 use crate::{
     fatty_acid::{FattyAcid, Unsaturated},
+    polars::bound::identifiers::{S, U},
     prelude::*,
 };
 use polars::prelude::*;
@@ -71,7 +72,7 @@ impl FattyAcidExpr {
     /// Fatty acid type (saturated or unsaturated)
     #[inline]
     pub fn r#type(self) -> Expr {
-        ternary_expr(self.is_saturated(), lit(Type::S), lit(Type::U)).cast(Type::DATA_TYPE.clone())
+        ternary_expr(self.is_saturated(), lit(S), lit(U)).cast(Bound::DATA_TYPE.clone())
     }
 
     // /// Double bounds count

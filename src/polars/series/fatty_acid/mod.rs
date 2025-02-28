@@ -1,216 +1,146 @@
-use self::unsaturated::UnsaturatedSeries;
-use crate::prelude::*;
+use crate::{polars::bound, prelude::*};
 use polars::prelude::*;
-use std::fmt::{self, Formatter};
 
-/// Fatty acid series
-#[derive(Clone, Debug)]
-pub struct FattyAcidSeries<'a>(&'a Series);
-
-impl<'a> FattyAcidSeries<'a> {
-    pub fn new(series: &'a Series) -> PolarsResult<Self> {
-        let fatty_acids = series.list()?.get_as_series(0);
-        assert_eq!(*fatty_acids.inner_dtype(), *Bound::DATA_TYPE);
-        Ok(Self(series))
-    }
+/// Returns the bounds of each fatty acid in the given series.
+///
+/// # Arguments
+///
+/// * `fatty_acids` - A reference to a [`Series`] containing fatty acids.
+///
+/// # Returns
+///
+/// A [`PolarsResult`] containing a `UInt8Chunked` series with the bounds of
+/// each fatty acid.
+pub fn bounds(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
+    Ok(fatty_acids
+        .list()?
+        .into_iter()
+        .map(|bounds| Some(bounds?.len() as _))
+        .collect())
 }
 
-impl FattyAcidSeries<'_> {
-    pub fn len(&self) -> usize {
-        self.0.len()
-    }
-
-    pub fn display(&self, index: usize, options: Options) -> PolarsResult<Display> {
-        // for unsaturated in &unsaturated_indexed(&bound_series.0)? {
-        //     if let Some(unsaturated) = unsaturated {
-        //         let index = unsaturated.struct_()?.field_by_name("Index")?.f64()?;
-        //         let bound = unsaturated.struct_()?.field_by_name("")?.f64()?;
-        //     }
-        // }
-        match self.0.list()?.get_as_series(index) {
-            Some(bounds) => BoundSeries(bounds).display(),
-            None => todo!(),
-        }
-    }
-
-    // pub fn get(&self, index: usize) -> PolarsResult<Option<BoundSeries>> {
-    //     let Some(carbons) = self.0.u8()?.get(index) else {
-    //         return Ok(None);
-    //     };
-    //     let mut unsaturated = Vec::new();
-    //     if let Some(series) = self.unsaturated.list()?.get_as_series(index) {
-    //         let unsaturated_series = UnsaturatedSeries::new(&series)?;
-    //         for index in 0..unsaturated_series.len() {
-    //             unsaturated.push(unsaturated_series.get(index)?);
-    //         }
-    //     };
-    //     Ok(Some(FattyAcid {
-    //         carbons,
-    //         unsaturated,
-    //     }))
-    // }
-
-    /// Return bool chunked array with is unsaturated values
-    pub fn is_unsaturated(&self) -> PolarsResult<BooleanChunked> {
-        filter(self.0, is_unsaturated)
-    }
-
-    pub fn unsaturated(&self) -> PolarsResult<ListChunked> {
-        unsaturated_indexed(self.0)
-    }
-
-    // pub fn unsaturated(&self, index: usize) -> PolarsResult<Option<UnsaturatedSeries>> {
-    //     let Some(unsaturated) = self.unsaturated.list()?.get_as_series(index) else {
-    //         return Ok(None);
-    //     };
-    //     Ok(Some(UnsaturatedSeries::new(&unsaturated)?))
-    // }
+/// Returns the number of carbons for each fatty acid in the given series.
+///
+/// # Arguments
+///
+/// * `fatty_acids` - A reference to a [`Series`] containing fatty acids.
+///
+/// # Returns
+///
+/// A [`PolarsResult`] containing a `UInt8Chunked` series with the number of
+/// carbons for each fatty acid.
+pub fn carbons(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
+    Ok(bounds(fatty_acids)?.apply(|bounds| Some(bounds? + 1)))
 }
 
-// pub fn is_unsaturated(series: &Series) -> PolarsResult<BooleanChunked> {
-//     let mut builder = BooleanChunkedBuilder::new(PlSmallStr::EMPTY, series.len());
-//     for bounds in series.list()? {
-//         match bounds {
-//             Some(bounds) => {
-//                 let is_unsaturated = bounds.categorical()?.iter_str().any(|id| id != Some(S));
-//                 builder.append_value(is_unsaturated)
-//             }
-//             None => builder.append_null(),
-//         }
-//     }
-//     Ok(builder.finish())
-// }
+// pub fn hydrogens(self) -> Expr { lit(2) * self.clone().carbons() - lit(2) *
+//     self.unsaturated().sum() }
 
-impl IntoIterator for FattyAcidSeries<'_> {
-    type Item = Option<BoundSeries>;
-
-    type IntoIter = impl Iterator<Item = Self::Item>;
-
-    fn into_iter(self) -> Self::IntoIter {
-        self.0
-            .list()
-            .unwrap()
-            .into_iter()
-            .map(|bounds| Some(BoundSeries(bounds?)))
-    }
+/// Returns the number of hydrogens for each fatty acid in the given series.
+///
+/// # Arguments
+///
+/// * `fatty_acids` - A reference to a [`Series`] containing fatty acids.
+///
+/// # Returns
+///
+/// A [`PolarsResult`] containing a `UInt8Chunked` series with the number of
+/// hydrogens for each fatty acid.
+pub fn hydrogens(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
+    let t = fatty_acids
+        .list()?
+        .into_iter()
+        .map(|bounds| {
+            let Some(bounds) = bounds else {
+                return Ok(None);
+            };
+            Ok(Some(
+                bounds
+                    .categorical()?
+                    .iter_str()
+                    .filter_map(|id| {
+                        let bound = Bound::new(id?);
+                        Some(Into::<&str>::into(bound))
+                    })
+                    .collect::<Series>(),
+            ))
+        })
+        .collect::<PolarsResult<ListChunked>>()?;
+    // let unsaturated = unsaturated(fatty_acids)?
+    //     .apply_to_inner(&|unsaturated|
+    //     unsaturated.struct_()?.field_by_name(""))?;
+    Ok(carbons(fatty_acids)?.apply(|carbons| Some(2 * carbons? - 2)))
 }
 
-// pub fn is_unsaturated(series: &Series) -> PolarsResult<BooleanChunked> {
-//     let mut builder = BooleanChunkedBuilder::new(PlSmallStr::EMPTY, series.len());
-//     for bounds in series.list()? {
-//         match bounds {
-//             Some(bounds) => {
-//                 let is_unsaturated = bounds.categorical()?.iter_str().any(|id| id != Some(S));
-//                 builder.append_value(is_unsaturated)
-//             }
-//             None => builder.append_null(),
-//         }
-//     }
-//     Ok(builder.finish())
-// }
-
-/// Bound series
-#[derive(Clone, Debug)]
-pub struct BoundSeries(Series);
-
-impl BoundSeries {
-    pub fn new(series: Series) -> Self {
-        Self(series)
-    }
-
-    pub fn carbons(&self) -> u8 {
-        assert!(self.0.len() < u8::MAX);
-        self.0.len() as u8 + 1
-    }
-
-    pub fn display(&self) -> PolarsResult<Display> {
-        let carbons = self.carbons();
-        let index = self.0.struct_()?.field_by_name("Index")?.u32()?;
-        let bound = self
-            .0
-            .struct_()?
-            .field_by_name("")?
-            .categorical()?
-            .iter_str();
-        for (index, bound) in std::iter::zip(index, bound) {}
-        Ok(Display::Common(Delta {
-            carbons,
-            unsaturated,
-            options: Default::default(),
-        }))
-    }
+/// Filters the fatty acids in the given series based on a predicate function.
+///
+/// # Arguments
+///
+/// * `fatty_acids` - A reference to a [`Series`] containing fatty acids.
+/// * `predicate` - A function that takes a reference to a [`Series`] and
+///   returns a [`PolarsResult<bool>`].
+///
+/// # Returns
+///
+/// A [`PolarsResult`] containing a `BooleanChunked` series indicating which
+/// fatty acids satisfy the predicate.
+pub fn filter(
+    fatty_acids: &Series,
+    predicate: impl Fn(&Series) -> PolarsResult<bool>,
+) -> PolarsResult<BooleanChunked> {
+    fatty_acids
+        .list()?
+        .into_iter()
+        .map(|bounds| {
+            let Some(bounds) = bounds else {
+                return Ok(None);
+            };
+            Ok(Some(predicate(&bounds)?))
+        })
+        .collect()
 }
 
-/// Display
-#[derive(Clone, Debug)]
-pub enum Display {
-    Common(Delta),
-    System(Delta),
+/// Adds an index to each unsaturated bound in the given series of fatty acids.
+///
+/// # Arguments
+///
+/// * `fatty_acids` - A reference to a [`Series`] containing fatty acids.
+///
+/// # Returns
+///
+/// A [`PolarsResult`] containing a `ListChunked` series with indexed
+/// unsaturated bounds.
+pub fn unsaturated_indexed(fatty_acids: &Series) -> PolarsResult<ListChunked> {
+    fatty_acids
+        .list()?
+        .into_iter()
+        .map(|bounds| {
+            let Some(bounds) = bounds else {
+                return Ok(None);
+            };
+            let mut indices = PrimitiveChunkedBuilder::<IdxType>::new("Index".into(), bounds.len());
+            let values = bounds
+                .categorical()?
+                .iter_str()
+                .enumerate()
+                .filter_map(|(index, id)| {
+                    if bound::is_unsaturated(id) {
+                        indices.append_value(index as _);
+                        id
+                    } else {
+                        None
+                    }
+                })
+                .collect::<Series>()
+                .cast(&Bound::DATA_TYPE)?;
+            Ok(Some(
+                StructChunked::from_series(
+                    PlSmallStr::EMPTY,
+                    values.len(),
+                    [indices.finish().into_series(), values.into_series()].iter(),
+                )?
+                .into_series(),
+            ))
+        })
+        .collect::<PolarsResult<ListChunked>>()
 }
-
-/// Delta display
-#[derive(Clone, Debug)]
-pub struct Delta {
-    pub carbons: u8,
-    pub unsaturated: ListChunked,
-    pub options: Options,
-}
-
-impl Delta {}
-
-// c18u3dc9dc12dc15
-
-// 18:2Δ9,≡12t
-// 18:2Δ9c,≡12t
-// 18:2Δ=9c,≡12t
-// 18:2Δ=9c,≡12t
-impl fmt::Display for Delta {
-    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        f.write_str("C")?;
-        fmt::Display::fmt(&self.carbons, f)?;
-        f.write_str(":")?;
-        fmt::Display::fmt(&self.unsaturated.len(), f)?;
-        if f.alternate() {
-            if let Some(unsaturated) = self.unsaturated.next() {
-                f.write_str("Δ")?;
-                fmt::Display::fmt(
-                    &unsaturated::Display::new(
-                        unsaturated,
-                        self.options.notation,
-                        self.options.elision,
-                    ),
-                    f,
-                )?;
-                for unsaturated in iter {
-                    f.write_str(self.options.separators.i[1])?;
-                    fmt::Display::fmt(
-                        &unsaturated::Display::new(
-                            unsaturated,
-                            self.options.notation,
-                            self.options.elision,
-                        ),
-                        f,
-                    )?;
-                }
-            }
-        }
-        Ok(())
-    }
-}
-
-/// Display options
-#[derive(Clone, Copy, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
-pub struct Options {
-    pub bounds: Elision,
-    pub isomerism: Elision,
-}
-
-/// Elision
-#[derive(Clone, Copy, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
-pub enum Elision {
-    Explicit,
-    #[default]
-    Implicit,
-}
-
-mod unsaturated;
