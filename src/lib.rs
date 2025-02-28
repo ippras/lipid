@@ -29,6 +29,9 @@ pub mod prelude {
             mass::Mass as _,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
+        function::fatty_acid::{
+            bounds, carbons, filter, is_saturated, is_unsaturated, unsaturated_indexed,
+        },
         series::SeriesExt,
         r#type::Type,
     };

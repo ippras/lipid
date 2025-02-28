@@ -1,150 +1,10 @@
 pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
 use crate::{
     fatty_acid::{FattyAcid, Unsaturated},
-    polars::{
-        bound,
-        bound::{
-            IDENTIFIERS,
-            identifiers::{D, DC, DT, S, T, TC, TT},
-        },
-    },
     prelude::*,
 };
-use polars::{chunked_array::builder::AnonymousOwnedListBuilder, prelude::*};
+use polars::prelude::*;
 use polars_ext::column;
-
-/// Bounds
-pub fn bounds(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
-    Ok(fatty_acids
-        .list()?
-        .into_iter()
-        .map(|bounds| Some(bounds?.len() as _))
-        .collect())
-}
-
-/// Carbons
-pub fn carbons(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
-    Ok(bounds(fatty_acids)?.apply(|bounds| Some(bounds? + 1)))
-}
-
-// pub fn hydrogens(self) -> Expr {
-//     lit(2) * self.clone().carbons() - lit(2) * self.unsaturated().sum()
-// }
-/// Hydrogens
-pub fn hydrogens(fatty_acids: &Series) -> PolarsResult<UInt8Chunked> {
-    let t = fatty_acids
-        .list()?
-        .into_iter()
-        .map(|bounds| {
-            let Some(bounds) = bounds else {
-                return Ok(None);
-            };
-            Ok(Some(
-                bounds
-                    .categorical()?
-                    .iter_str()
-                    .filter_map(|id| {
-                        let bound = Bound::new(id?);
-                        Some(Into::<&str>::into(bound))
-                    })
-                    .collect::<Series>(),
-            ))
-        })
-        .collect::<PolarsResult<ListChunked>>()?;
-    // let unsaturated = unsaturated(fatty_acids)?
-    //     .apply_to_inner(&|unsaturated| unsaturated.struct_()?.field_by_name(""))?;
-    Ok(carbons(fatty_acids)?.apply(|carbons| Some(2 * carbons? - 2)))
-}
-
-/// Filter
-pub fn filter(
-    fatty_acids: &Series,
-    predicate: impl Fn(&Series) -> PolarsResult<bool>,
-) -> PolarsResult<BooleanChunked> {
-    fatty_acids
-        .list()?
-        .into_iter()
-        .map(|bounds| {
-            let Some(bounds) = bounds else {
-                return Ok(None);
-            };
-            Ok(Some(predicate(&bounds)?))
-        })
-        .collect()
-}
-
-/// Contains only saturated bounds
-///
-/// [bound::is_saturated]
-#[inline]
-pub fn is_saturated(bounds: &Series) -> PolarsResult<bool> {
-    Ok(bounds.categorical()?.iter_str().all(bound::is_saturated))
-}
-
-/// Contains only saturated bounds or [`None`]
-///
-/// [bound::is_not_unsaturated]
-#[inline]
-pub fn is_not_unsaturated(bounds: &Series) -> PolarsResult<bool> {
-    Ok(bounds
-        .categorical()?
-        .iter_str()
-        .all(bound::is_not_unsaturated))
-}
-
-/// Contains only unsaturated bounds
-///
-/// [bound::is_unsaturated]
-#[inline]
-pub fn is_unsaturated(bounds: &Series) -> PolarsResult<bool> {
-    Ok(bounds.categorical()?.iter_str().any(bound::is_unsaturated))
-}
-
-/// Contains only unsaturated bounds or [`None`]
-///
-/// [bound::is_not_saturated]
-#[inline]
-pub fn is_not_saturated(bounds: &Series) -> PolarsResult<bool> {
-    Ok(bounds
-        .categorical()?
-        .iter_str()
-        .any(bound::is_not_saturated))
-}
-
-pub fn unsaturated(fatty_acids: &Series) -> PolarsResult<ListChunked> {
-    fatty_acids
-        .list()?
-        .into_iter()
-        .map(|bounds| {
-            let Some(bounds) = bounds else {
-                return Ok(None);
-            };
-            let mut indices = PrimitiveChunkedBuilder::<IdxType>::new("Index".into(), bounds.len());
-            let values = bounds
-                .categorical()?
-                .iter_str()
-                .enumerate()
-                .filter_map(|(index, id)| {
-                    if bound::is_unsaturated(id) {
-                        indices.append_value(index as _);
-                        id
-                    } else {
-                        None
-                    }
-                })
-                .collect::<Series>()
-                .cast(&Bound::DATA_TYPE)?;
-            Ok(Some(
-                StructChunked::from_series(
-                    PlSmallStr::EMPTY,
-                    values.len(),
-                    [indices.finish().into_series(), values.into_series()].iter(),
-                )?
-                .into_series(),
-            ))
-        })
-        .collect::<PolarsResult<ListChunked>>()
-}
 
 /// Fatty acid [`Expr`]
 #[derive(Clone, Debug)]
@@ -163,7 +23,10 @@ impl FattyAcidExpr {
     /// Is saturated
     #[inline]
     pub fn is_saturated(self) -> Expr {
-        self.unsaturated().list().len().eq(0)
+        self.0.map(
+            column(|fatty_acids| Ok(filter(fatty_acids, is_saturated)?.into_series())),
+            GetOutput::from_type(DataType::Boolean),
+        )
     }
 
     /// Is unsaturated
@@ -179,7 +42,7 @@ impl FattyAcidExpr {
     #[inline]
     pub fn unsaturated(self) -> Expr {
         self.0.map(
-            column(|fatty_acids| Ok(unsaturated(fatty_acids)?.into_series())),
+            column(|fatty_acids| Ok(unsaturated_indexed(fatty_acids)?.into_series())),
             GetOutput::from_type(DataType::List(Box::new(DataType::Struct(vec![
                 Field::new("Index".into(), IDX_DTYPE),
                 Field::new(PlSmallStr::EMPTY, Bound::DATA_TYPE.clone()),
