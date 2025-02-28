@@ -119,6 +119,7 @@ impl BoundSeries {
     }
 
     pub fn carbons(&self) -> u8 {
+        assert!(self.0.len() < u8::MAX);
         self.0.len() as u8 + 1
     }
 
