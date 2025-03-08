@@ -101,7 +101,7 @@ impl FattyAcidExpr {
     ///
     /// (cis-C18:1 + ΣPUFA)/(C12:0 + C14:0 + C16:0)
     pub fn hypercholesterolemic_ratio(self, expr: Expr) -> Expr {
-        let c18u1 = expr.clone().filter(self.clone().equal(C18U1Z9.clone()));
+        let c18u1 = expr.clone().filter(self.clone().equal(C18U1DC9.clone()));
         let polyunsaturated = expr.clone().filter(self.clone().is_polyunsaturated());
         let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone()));
         let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone()));

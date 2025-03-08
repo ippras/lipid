@@ -1,6 +1,85 @@
-use lipid::prelude::*;
+use lipid::{fatty_acid::r#const::*, prelude::*};
 use polars::prelude::*;
-use std::iter::empty;
+use std::sync::LazyLock;
+
+pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
+    df! {
+        "FattyAcid" => [
+            Some(Series::from_iter(C4U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C5U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C6U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C7U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C8U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C9U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C10U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C11U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C12U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C13U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C15U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C16U1DC9).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C16U1DT9).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C17U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U1DT9).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DC6DC9DC12).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DC8DT10DC12).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DC9DC12DC15).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DC9DT11DT13).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DT9DT11DC13).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U3DT9DT11DT13).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C18U4DC6DC9DC12DC15).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C19U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U1DC9).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U1DC11).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U2DC11DC14).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U3DC5DC8DC11).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U3DC8DC11DC14).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U3DC11DC14DC17).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U4DC5DC8DC11DC14).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U4DC8DC11DC14DC17).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C20U5DC5DC8DC11DC14DC17).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C21U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U1DC13).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U2DC13DC16).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U3DC5DC13DC16).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U4DC7DC10DC13DC16).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U5DC7DC10DC13DC16DC19).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C22U6DC4DC7DC10DC13DC16DC19).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C23U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U1DC15).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U2DC15DC18).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U3DC12DC15DC18).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U4DC9DC12DC15DC18).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U5DC6DC9DC12DC15DC18).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C24U6DC6DC9DC12DC15DC18DC21).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C25U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C26U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C26U1DC17).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C27U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C28U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C29U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C30U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C30U1DC21).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C31U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C32U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C33U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C34U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C35U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            Some(Series::from_iter(C36U0).cast(&BOUND_DATA_TYPE).unwrap()),
+            None,
+        ],
+    }
+    .unwrap()
+    .with_row_index("Index".into(), None)
+    .unwrap()
+});
 
 // #[test]
 // fn find() -> PolarsResult<()> {
@@ -184,7 +263,7 @@ use std::iter::empty;
 //     Ok(())
 // }
 
-#[cfg(test)]
 mod ecn;
-#[cfg(test)]
+mod equal;
 mod fatty_acid;
+mod mask;

@@ -74,24 +74,25 @@ mod saturated {
 mod unsaturated {
     use super::*;
 
+    // [[byrdwell.com]](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
     fatty_acid!(C16U1DC9);
     fatty_acid!(C16U1DT9);
     fatty_acid!(C18U1DC9);
     fatty_acid!(C18U1DT9);
     fatty_acid!(C18U2DC9DC12);
+    fatty_acid!(C18U3DC9DC12DC15);
     fatty_acid!(C18U3DC6DC9DC12);
     fatty_acid!(C18U3DC8DT10DC12);
-    fatty_acid!(C18U3DC9DC12DC15);
     fatty_acid!(C18U3DC9DT11DT13);
-    fatty_acid!(C18U3DT9DT11DC13);
     fatty_acid!(C18U3DT9DT11DT13);
+    fatty_acid!(C18U3DT9DT11DC13);
     fatty_acid!(C18U4DC6DC9DC12DC15);
     fatty_acid!(C20U1DC9);
     fatty_acid!(C20U1DC11);
     fatty_acid!(C20U2DC11DC14);
-    fatty_acid!(C20U3DC5DC8DC11);
-    fatty_acid!(C20U3DC8DC11DC14);
     fatty_acid!(C20U3DC11DC14DC17);
+    fatty_acid!(C20U3DC8DC11DC14);
+    fatty_acid!(C20U3DC5DC8DC11);
     fatty_acid!(C20U4DC5DC8DC11DC14);
     fatty_acid!(C20U4DC8DC11DC14DC17);
     fatty_acid!(C20U5DC5DC8DC11DC14DC17);
@@ -108,7 +109,21 @@ mod unsaturated {
     fatty_acid!(C24U5DC6DC9DC12DC15DC18);
     fatty_acid!(C24U6DC6DC9DC12DC15DC18DC21);
     fatty_acid!(C26U1DC17);
+    // fatty_acid!(C26U2);
+    // fatty_acid!(C26U3);
+    // fatty_acid!(C26U4);
+    // fatty_acid!(C26U5);
+    // fatty_acid!(C26U6);
+    // fatty_acid!(C28U1);
+    // fatty_acid!(C28U2);
     fatty_acid!(C30U1DC21);
+    // fatty_acid!(C30U2);
+    // fatty_acid!(C32U1);
+    // fatty_acid!(C32U2);
+    // fatty_acid!(C34U1);
+    // fatty_acid!(C34U2);
+    // fatty_acid!(C36U1);
+    // fatty_acid!(C36U2);
 }
 
 mod wildcard {
@@ -125,10 +140,4 @@ mod wildcard {
     // fatty_acid!(C34U2X);
     // fatty_acid!(C36U1X);
     // fatty_acid!(C36U2X);
-}
-
-#[test]
-fn test() {
-    println!("C2U0: {C1U0:?}");
-    println!("C18U2: {C18U2DC9DC12:?}");
 }

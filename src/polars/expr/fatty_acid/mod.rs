@@ -18,64 +18,7 @@ impl FattyAcidExpr {
         )
     }
 
-    // /// Unsaturated
-    // #[inline]
-    // pub fn unsaturated(self) -> Expr {
-    //     self.0.map(
-    //         column(|fatty_acids| Ok(unsaturated_indexed(fatty_acids)?.into_series())),
-    //         GetOutput::from_type(DataType::List(Box::new(DataType::Struct(vec![
-    //             Field::new("Index".into(), IDX_DTYPE),
-    //             Field::new(PlSmallStr::EMPTY, BOUND_DATA_TYPE.clone()),
-    //         ])))),
-    //     )
-    // }
-
-    /// Equal
-    #[inline]
-    pub fn equal(self, other: impl Into<FattyAcidExpr>) -> Expr {
-        self.0.eq(other.into().0)
-    }
-
-    // /// Replace unsaturated with null
-    // #[inline]
-    // pub fn saturated(self, filter: bool) -> Expr {
-    //     self.0.map(
-    //         move |column| Ok(Some(column.fatty_acid()?.saturated(filter)?.into_column())),
-    //         GetOutput::same_type(),
-    //     )
-    // }
-
-    // /// Replace saturated with null
-    // #[inline]
-    // pub fn unsaturated(self, filter: bool) -> Expr {
-    //     self.0.map(
-    //         move |column| {
-    //             Ok(Some(
-    //                 column.fatty_acid()?.unsaturated(filter)?.into_column(),
-    //             ))
-    //         },
-    //         GetOutput::same_type(),
-    //     )
-    // }
-
-    // /// Unsaturated
-    // #[inline]
-    // pub fn unsaturated(self) -> Expr {
-    //     self.0.map(
-    //         column(|fatty_acids| Ok(unsaturated_indexed(fatty_acids)?.into_series())),
-    //         GetOutput::from_type(DataType::List(Box::new(DataType::Struct(vec![
-    //             Field::new("Index".into(), IDX_DTYPE),
-    //             Field::new(PlSmallStr::EMPTY, BOUND_DATA_TYPE.clone()),
-    //         ])))),
-    //     )
-    // }
-
-    // /// Replace saturated with null
-    // #[inline]
-    // pub fn unsaturated_or_null(self, expr: Expr) -> Expr {
-    //     ternary_expr(self.is_unsaturated(), expr, lit(NULL))
-    // }
-
+    /// Unsaturation
     #[inline]
     pub fn unsaturation(self) -> Expr {
         self.0.map(
@@ -119,7 +62,7 @@ impl TryFrom<&[&str]> for FattyAcidExpr {
 
 pub mod r#const;
 pub mod factor;
-pub mod find;
+pub mod equal;
 
 mod atomic;
 mod chain_length;

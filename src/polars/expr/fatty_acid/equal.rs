@@ -3,33 +3,39 @@ use polars::prelude::*;
 
 /// Find by name
 impl FattyAcidExpr {
+    /// Equal
+    #[inline]
+    pub fn equal(self, other: impl Into<FattyAcidExpr>) -> Expr {
+        self.0.eq(other.into().0)
+    }
+
     /// Butyric acid
     pub fn butyric(self) -> Expr {
-        self.equal(C18U2Z9Z12.clone())
+        self.equal(C18U2DC9DC12.clone())
     }
 
     /// Oleic acid
     pub fn oleic(self) -> Expr {
-        self.equal(C18U1Z9.clone())
+        self.equal(C18U1DC9.clone())
     }
 
     /// Linoleic acid
     pub fn linoleic(self) -> Expr {
-        self.equal(C18U2Z9Z12.clone())
+        self.equal(C18U2DC9DC12.clone())
     }
 
     /// α-Linolenic acid
     pub fn alpha_linolenic(self) -> Expr {
-        self.equal(C18U3Z9Z12Z15.clone())
+        self.equal(C18U3DC9DC12DC15.clone())
     }
 
     /// Eicosapentaenoic acid (EPA)
     pub fn eicosapentaenoic(self) -> Expr {
-        self.equal(C20U5Z5Z8Z11Z14Z17.clone())
+        self.equal(C20U5DC5DC8DC11DC14DC17.clone())
     }
 
     /// Docosahexaenoic acid (DHA)
     pub fn docosahexaenoic(self) -> Expr {
-        self.equal(C22U6Z4Z7Z10Z13Z16Z19.clone())
+        self.equal(C22U6DC4DC7DC10DC13DC16DC19.clone())
     }
 }
