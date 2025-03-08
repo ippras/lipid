@@ -1,6 +1,6 @@
 use crate::polars::ExprExt as _;
 use polars::prelude::*;
-use polars_ext::functions::column;
+use polars_ext::series::column;
 
 /// Triacylglycerol [`Expr`]
 #[derive(Clone, Debug, Hash)]
@@ -11,50 +11,55 @@ impl TriacylglycerolExpr {
         self.0.struct_().field_by_name("*")
     }
 
-    pub fn sn(self) -> Expr {
-        self.stereospecific_numbers()
-    }
-
     pub fn stereospecific_number1(self) -> Expr {
         self.0.struct_().field_by_name("StereospecificNumber1")
-    }
-
-    pub fn sn1(self) -> Expr {
-        self.stereospecific_number1()
     }
 
     pub fn stereospecific_number2(self) -> Expr {
         self.0.struct_().field_by_name("StereospecificNumber2")
     }
 
-    pub fn sn2(self) -> Expr {
-        self.stereospecific_number2()
-    }
-
     pub fn stereospecific_number3(self) -> Expr {
         self.0.struct_().field_by_name("StereospecificNumber3")
     }
 
-    pub fn sn3(self) -> Expr {
-        self.stereospecific_number3()
-    }
-
     pub fn map(self, f: impl Fn(Expr) -> Expr) -> Expr {
         as_struct(vec![
-            f(self.clone().sn1()).alias("StereospecificNumber1"),
-            f(self.clone().sn2()).alias("StereospecificNumber2"),
-            f(self.sn3()).alias("StereospecificNumber3"),
+            f(self.clone().stereospecific_number1()).alias("StereospecificNumber1"),
+            f(self.clone().stereospecific_number2()).alias("StereospecificNumber2"),
+            f(self.stereospecific_number3()).alias("StereospecificNumber3"),
         ])
     }
 
     pub fn sum(self) -> Expr {
-        self.clone().sn1() + self.clone().sn2() + self.sn3()
+        self.clone().stereospecific_number1()
+            + self.clone().stereospecific_number2()
+            + self.stereospecific_number3()
     }
 
     pub fn unsaturation(self) -> Expr {
-        self.clone().sn1().fa().unsaturated().sum()
-            + self.clone().sn2().fa().unsaturated().sum()
-            + self.sn3().fa().unsaturated().sum()
+        self.clone()
+            .stereospecific_number1()
+            .fatty_acid()
+            .unsaturated(true)
+            .fatty_acid()
+            .unsaturation()
+            .sum()
+            + self
+                .clone()
+                .stereospecific_number2()
+                .fatty_acid()
+                .unsaturated(true)
+                .fatty_acid()
+                .unsaturation()
+                .sum()
+            + self
+                .stereospecific_number3()
+                .fatty_acid()
+                .unsaturated(true)
+                .fatty_acid()
+                .unsaturation()
+                .sum()
     }
 
     pub fn test_map_apply<F>(self, f: &'static F) -> Expr
@@ -63,15 +68,15 @@ impl TriacylglycerolExpr {
     {
         as_struct(vec![
             self.clone()
-                .sn1()
+                .stereospecific_number1()
                 .map(column(f), GetOutput::same_type())
                 .alias("StereospecificNumber1"),
             self.clone()
-                .sn2()
+                .stereospecific_number2()
                 .map(column(f), GetOutput::same_type())
                 .alias("StereospecificNumber2"),
             self.clone()
-                .sn3()
+                .stereospecific_number3()
                 .map(column(f), GetOutput::same_type())
                 .alias("StereospecificNumber3"),
         ])
@@ -79,31 +84,38 @@ impl TriacylglycerolExpr {
 
     pub fn test_positional(self, f: impl Fn(Expr) -> Expr) -> Expr {
         ternary_expr(
-            f(self.clone().sn1()).lt_eq(f(self.clone().sn3())),
+            f(self.clone().stereospecific_number1())
+                .lt_eq(f(self.clone().stereospecific_number3())),
             as_struct(vec![
-                self.clone().sn1(),
-                self.clone().sn2(),
-                self.clone().sn3(),
+                self.clone().stereospecific_number1(),
+                self.clone().stereospecific_number2(),
+                self.clone().stereospecific_number3(),
             ]),
-            as_struct(vec![self.clone().sn3(), self.clone().sn2(), self.sn1()]),
+            as_struct(vec![
+                self.clone().stereospecific_number3(),
+                self.clone().stereospecific_number2(),
+                self.stereospecific_number1(),
+            ]),
         )
     }
 
     pub fn test_non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> PolarsResult<Expr> {
-        Ok(
-            concat_list([self.clone().sn1(), self.clone().sn2(), self.sn3()])?
-                .list()
-                .eval(col("").sort_by([f(col(""))], Default::default()), true)
-                .list()
-                .to_struct(ListToStructArgs::FixedWidth(
-                    [
-                        "StereospecificNumber1".into(),
-                        "StereospecificNumber2".into(),
-                        "StereospecificNumber3".into(),
-                    ]
-                    .into(),
-                )),
-        )
+        Ok(concat_list([
+            self.clone().stereospecific_number1(),
+            self.clone().stereospecific_number2(),
+            self.stereospecific_number3(),
+        ])?
+        .list()
+        .eval(col("").sort_by([f(col(""))], Default::default()), true)
+        .list()
+        .to_struct(ListToStructArgs::FixedWidth(
+            [
+                "StereospecificNumber1".into(),
+                "StereospecificNumber2".into(),
+                "StereospecificNumber3".into(),
+            ]
+            .into(),
+        )))
     }
 
     // pub fn non_stereospecific_a(self, f: impl Fn(Expr) -> Expr) -> Expr {

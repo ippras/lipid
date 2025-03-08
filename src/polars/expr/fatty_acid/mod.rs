@@ -1,5 +1,7 @@
-pub use self::kind::{Rco, Rcoo, Rcooch3, Rcooh};
-use crate::fatty_acid::{FattyAcid, Unsaturated};
+use crate::{
+    polars::bound::identifiers::{S, U},
+    prelude::*,
+};
 use polars::prelude::*;
 
 /// Fatty acid [`Expr`]
@@ -7,110 +9,89 @@ use polars::prelude::*;
 pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
-    /// Carbons
-    pub fn carbons(self) -> Expr {
-        self.0.struct_().field_by_name("Carbons")
+    /// Bounds
+    #[inline]
+    pub fn bounds(self) -> Expr {
+        self.0.map(
+            |column| Ok(Some(column.fatty_acid()?.bounds()?.into_column())),
+            GetOutput::from_type(DataType::UInt8),
+        )
     }
 
-    /// Unsaturated
-    pub fn unsaturated(self) -> UnsaturatedExpr {
-        UnsaturatedExpr(self.0.struct_().field_by_name("Unsaturated"))
-    }
+    // /// Unsaturated
+    // #[inline]
+    // pub fn unsaturated(self) -> Expr {
+    //     self.0.map(
+    //         column(|fatty_acids| Ok(unsaturated_indexed(fatty_acids)?.into_series())),
+    //         GetOutput::from_type(DataType::List(Box::new(DataType::Struct(vec![
+    //             Field::new("Index".into(), IDX_DTYPE),
+    //             Field::new(PlSmallStr::EMPTY, BOUND_DATA_TYPE.clone()),
+    //         ])))),
+    //     )
+    // }
 
     /// Equal
+    #[inline]
     pub fn equal(self, other: impl Into<FattyAcidExpr>) -> Expr {
         self.0.eq(other.into().0)
     }
 
-    /// Replace unsaturated with null
-    pub fn saturated_or_null(self, expr: Expr) -> Expr {
-        ternary_expr(self.is_saturated(), expr, lit(NULL))
-    }
-
-    /// Replace saturated with null
-    pub fn unsaturated_or_null(self, expr: Expr) -> Expr {
-        ternary_expr(self.is_saturated().not(), expr, lit(NULL))
-    }
-
-    // /// Double bounds count
-    // pub fn d(&self) -> Expr {
-    //     self.0
-    //         .clone()
-    //         .struct_()
-    //         .field_by_name("Doubles")
-    //         .list()
-    //         .len()
+    // /// Replace unsaturated with null
+    // #[inline]
+    // pub fn saturated(self, filter: bool) -> Expr {
+    //     self.0.map(
+    //         move |column| Ok(Some(column.fatty_acid()?.saturated(filter)?.into_column())),
+    //         GetOutput::same_type(),
+    //     )
     // }
 
-    // /// Triple bounds count
-    // pub fn t(&self) -> Expr {
-    //     self.0
-    //         .clone()
-    //         .struct_()
-    //         .field_by_name("Triples")
-    //         .list()
-    //         .len()
+    // /// Replace saturated with null
+    // #[inline]
+    // pub fn unsaturated(self, filter: bool) -> Expr {
+    //     self.0.map(
+    //         move |column| {
+    //             Ok(Some(
+    //                 column.fatty_acid()?.unsaturated(filter)?.into_column(),
+    //             ))
+    //         },
+    //         GetOutput::same_type(),
+    //     )
     // }
 
-    // pub fn r#type(self) -> Expr {
-    //     ternary_expr(self.saturated(), lit("S"), lit("U"))
-    // }
-
+    // /// Unsaturated
+    // #[inline]
     // pub fn unsaturated(self) -> Expr {
-    //     self.saturated().not()
+    //     self.0.map(
+    //         column(|fatty_acids| Ok(unsaturated_indexed(fatty_acids)?.into_series())),
+    //         GetOutput::from_type(DataType::List(Box::new(DataType::Struct(vec![
+    //             Field::new("Index".into(), IDX_DTYPE),
+    //             Field::new(PlSmallStr::EMPTY, BOUND_DATA_TYPE.clone()),
+    //         ])))),
+    //     )
     // }
 
-    // pub fn unsaturation(self) -> Expr {
-    //     self.d() + lit(2) * self.t()
+    // /// Replace saturated with null
+    // #[inline]
+    // pub fn unsaturated_or_null(self, expr: Expr) -> Expr {
+    //     ternary_expr(self.is_unsaturated(), expr, lit(NULL))
     // }
-}
 
-impl FattyAcidExpr {
-    /// Bounds
-    pub fn bounds(self) -> Expr {
-        (self.carbons() - lit(1)).clip_min(lit(0))
+    #[inline]
+    pub fn unsaturation(self) -> Expr {
+        self.0.map(
+            |column| Ok(Some(column.fatty_acid()?.unsaturation()?.into_column())),
+            GetOutput::from_type(DataType::UInt8),
+        )
     }
 
-    /// Hydrogens
-    ///
-    /// `H = 2C - 2U`
-    pub fn hydrogens(self) -> Expr {
-        lit(2) * self.clone().carbons() - lit(2) * self.unsaturated().sum()
-    }
-
-    /// Is saturated
-    pub fn is_saturated(self) -> Expr {
-        self.unsaturated().len().eq(0)
-    }
-
-    /// Is unsaturated
-    pub fn is_unsaturated(self) -> Expr {
-        self.is_saturated().not()
-    }
-
-    /// [`bounds`]
-    pub fn b(self) -> Expr {
-        self.bounds()
-    }
-
-    /// [`carbons`]
-    pub fn c(self) -> Expr {
-        self.carbons()
-    }
-
-    /// [`hydrogens`]
-    pub fn h(self) -> Expr {
-        self.hydrogens()
-    }
-
-    /// [`saturated`]
-    pub fn s(self) -> Expr {
-        self.is_saturated()
-    }
-
-    /// [`unsaturation`]
-    pub fn u(self) -> Expr {
-        self.unsaturated().len()
+    /// Fatty acid type (saturated or unsaturated)
+    #[inline]
+    pub fn r#type(self) -> Expr {
+        self.0.map(
+            |column| Ok(Some(column.fatty_acid()?.is_saturated()?.into_column())),
+            GetOutput::from_type(DataType::UInt8),
+        )
+        // ternary_expr(self.is_saturated(), lit(S), lit(U)).cast(BOUND_DATA_TYPE.clone())
     }
 }
 
@@ -120,111 +101,30 @@ impl From<FattyAcidExpr> for Expr {
     }
 }
 
-impl From<&FattyAcid> for FattyAcidExpr {
-    fn from(value: &FattyAcid) -> Self {
-        let unsaturated = if value.unsaturated.is_empty() {
-            lit(Scalar::new(
-                DataType::List(Box::new(DataType::Null)),
-                AnyValue::List(Series::new_empty(PlSmallStr::EMPTY, &DataType::Null)),
-            ))
+impl TryFrom<&[&str]> for FattyAcidExpr {
+    type Error = PolarsError;
+
+    fn try_from(value: &[&str]) -> PolarsResult<Self> {
+        let series = if value.is_empty() {
+            Series::new_empty(PlSmallStr::EMPTY, &BOUND_DATA_TYPE)
         } else {
-            concat_list(
-                value
-                    .unsaturated
-                    .iter()
-                    .map(
-                        |Unsaturated {
-                             index,
-                             isomerism,
-                             unsaturation,
-                         }| {
-                            as_struct(vec![
-                                index.map_or(lit(NULL), lit).alias("Index"),
-                                isomerism
-                                    .map_or(lit(NULL), |isomerism| lit(isomerism as i8))
-                                    .alias("Isomerism"),
-                                unsaturation
-                                    .map_or(lit(NULL), |unsaturation| lit(unsaturation as u8))
-                                    .alias("Unsaturation"),
-                            ])
-                        },
-                    )
-                    .collect::<Vec<_>>(),
-            )
-            .unwrap()
+            Series::from_iter(value.iter().copied()).cast(&BOUND_DATA_TYPE)?
         };
-        FattyAcidExpr(as_struct(vec![
-            lit(value.carbons).alias("Carbons"),
-            unsaturated.alias("Unsaturated"),
-        ]))
-        // let carbons = lit(value.carbons);
-        // let unsaturated = lit(Scalar::new(
-        //     DataType::List(Box::new(DataType::Struct(vec![
-        //         Field::new("Index".into(), DataType::List(Box::new(DataType::UInt8))),
-        //         Field::new("Isomerism".into(), DataType::List(Box::new(DataType::Int8))),
-        //         Field::new(
-        //             "Unsaturation".into(),
-        //             DataType::List(Box::new(DataType::UInt8)),
-        //         ),
-        //     ]))),
-        //     AnyValue::List(Series::from_iter(&value.carbons)),
-        // ));
-        // todo!()
-    }
-    // let bounds = Scalar::new(
-    //     DataType::List(Box::new(DataType::Int8)),
-    //     AnyValue::List(Series::from_iter(&fatty_acid.bounds)),
-    // );
-}
-
-/// Unsaturated [`Expr`]
-#[derive(Clone, Debug)]
-pub struct UnsaturatedExpr(pub Expr);
-
-impl UnsaturatedExpr {
-    /// Unsaturation length
-    ///
-    /// The number of unsaturated bonds.
-    pub fn len(self) -> Expr {
-        self.0
-            .list()
-            .eval(col("").struct_().field_by_name("Unsaturation"), true)
-            .list()
-            .len()
-    }
-
-    /// Unsaturation sum
-    pub fn sum(self) -> Expr {
-        self.0
-            .list()
-            .eval(col("").struct_().field_by_name("Unsaturation"), true)
-            .list()
-            .sum()
-    }
-
-    /// List
-    pub fn list(self) -> ListNameSpace {
-        self.0.list()
-    }
-
-    /// Equal
-    pub fn equal(self, other: UnsaturatedExpr) -> Expr {
-        self.0.eq(other)
-    }
-}
-
-impl From<UnsaturatedExpr> for Expr {
-    fn from(value: UnsaturatedExpr) -> Self {
-        value.0
+        Ok(FattyAcidExpr(lit(Scalar::new(
+            DataType::List(Box::new(BOUND_DATA_TYPE.clone())),
+            AnyValue::List(series),
+        ))))
     }
 }
 
 pub mod r#const;
 pub mod factor;
-pub mod filter;
 pub mod find;
-pub mod kind;
-pub mod short;
 
+mod atomic;
 mod chain_length;
+mod indices;
+mod kind;
+mod mask;
 mod mass;
+mod select;

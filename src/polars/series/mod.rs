@@ -1,20 +1,22 @@
-pub use self::fatty_acid::FattyAcidSeries;
-
+use crate::polars::chunked_array::{BoundChunked, FattyAcidChunked};
 use polars::prelude::*;
 
 /// Extension methods for [`Series`]
 pub trait SeriesExt {
-    fn fatty_acid(&self) -> FattyAcidSeries;
+    fn bound(&self) -> PolarsResult<&BoundChunked>;
 
-    fn fa(&self) -> FattyAcidSeries {
-        self.fatty_acid()
-    }
+    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
 }
 
 impl SeriesExt for Series {
-    fn fatty_acid(&self) -> FattyAcidSeries {
-        FattyAcidSeries::new(self).expect(r#"Expected "FattyAcid" series"#)
+    fn bound(&self) -> PolarsResult<&BoundChunked> {
+        BoundChunked::new(self)
+    }
+
+    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
+        FattyAcidChunked::new(self)
     }
 }
 
 pub mod fatty_acid;
+pub mod triacylglycerol;

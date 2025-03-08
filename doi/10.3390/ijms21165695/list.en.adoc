@@ -1,0 +1,262 @@
+= Nutritional Indices for Assessing Fatty Acids: A Summary
+
+== 1. PUFA/SFA
+
+* Name: Polyunsaturated Fatty Acid/Saturated Fatty Acid Ratio
+* Abbreviation: PUFA/SFA
+* Description: Assesses the impact of diet on cardiovascular health (CVH).
+* First Use: Not specified in provided text.
+* Subsequent Use: Seaweeds, crops, plant oils, shellfish, fish, meat, and dairy products.
+* Citation List:
+**  27:: https://doi.org/10.1007/s10811-010-9578-7
+**  28:: https://doi.org/10.1016/j.foodchem.2016.10.066
+**  29:: https://doi.org/10.3390/md14040068
+**  30:: https://doi.org/10.1002/jsfa.7049
+**  31:: https://doi.org/10.1111/jpn.12687
+**  32:: https://doi.org/10.1002/fsn3.1231
+**  33:: https://doi.org/10.1002/ejlt.200900231
+**  34:: https://doi.org/10.3390/foods9020233
+**  35:: https://doi.org/10.3390/ani10050778
+**  36:: https://doi.org/10.1016/j.foodchem.2014.03.055
+**  37:: https://doi.org/10.1016/j.foodchem.2013.10.012
+**  38:: https://doi.org/10.1080/10498850.2018.1559905
+**  39:: https://doi.org/10.5539/jfr.v3n3p105
+**  40:: https://doi.org/10.1016/j.aquaculture.2016.03.009
+**  41:: https://doi.org/10.1111/asj.13266
+**  42:: https://doi.org/10.1017/S1751731115002554
+**  43:: https://doi.org/10.1017/S1751731115001731
+**  44:: https://doi.org/10.1016/j.meatsci.2013.03.007
+**  45:: https://doi.org/10.1017/S1751731111000048
+**  46:: https://doi.org/10.1016/j.meatsci.2012.02.033
+**  47:: https://doi.org/10.1016/j.foodchem.2006.01.006
+**  48:: https://doi.org/10.1071/AN19305
+**  49:: https://doi.org/10.1017/S1751731114000093
+**  50:: https://doi.org/10.1002/ejlt.201700470
+**  51:: https://doi.org/10.1080/09064702.2011.560179
+**  52:: https://doi.org/10.1017/S175173111300236X
+**  53:: https://doi.org/10.1002/jsfa.10070
+**  54:: https://doi.org/10.1007/s13594-015-0234-5
+**  55:: https://doi.org/10.4314/sajas.v48i3.11
+**  56:: https://doi.org/10.1016/j.foodchem.2013.09.009
+**  57:: https://doi.org/10.1017/S1751731116001130
+
+== 2. IA
+
+* Name: Index of Atherogenicity
+* Abbreviation: IA
+* Description: Characterizes the atherogenic potential of fatty acids.
+* First Use: Ulbricht and Southgate in 1991.
+* Subsequent Use: Seaweeds, crops, meat, fish, and dairy products.
+* Citation List:
+**  27:: https://doi.org/10.1007/s10811-010-9578-7
+**  28:: https://doi.org/10.1016/j.foodchem.2016.10.066
+**  29:: https://doi.org/10.3390/md14040068
+**  58:: https://doi.org/10.1016/j.jpba.2018.09.057
+**  59:: https://doi.org/10.1016/j.algal.2019.101726
+**  30:: https://doi.org/10.1002/jsfa.7049
+**  31:: https://doi.org/10.1111/jpn.12687
+**  60:: https://doi.org/10.1007/s11696-017-0308-3
+**  61:: https://doi.org/10.1371/journal.pone.0144469
+**  62:: https://doi.org/10.3390/app8122606
+**  63:: https://doi.org/10.1002/ejlt.201800493
+**  36:: https://doi.org/10.1016/j.foodchem.2014.03.055
+**  65:: https://doi.org/10.3390/ijerph16193780
+**  66:: https://doi.org/10.3390/ijerph14101120
+**  67:: https://doi.org/10.1016/j.aquaculture.2015.12.021
+**  68:: https://doi.org/10.1016/j.aquaculture.2017.12.043
+**  69:: https://doi.org/10.1071/AN19160
+**  70:: https://doi.org/10.1016/j.aquaculture.2005.11.043
+**  71:: https://doi.org/10.1111/ijfs.12955
+**  72:: []
+**  73:: https://doi.org/10.1016/j.foodchem.2006.01.036
+**  41:: https://doi.org/10.1111/asj.13266
+**  42:: https://doi.org/10.1017/S1751731115002554
+**  43:: https://doi.org/10.1017/S1751731115001731
+**  48:: https://doi.org/10.1071/AN19305
+**  49:: https://doi.org/10.1017/S1751731114000093
+**  50:: https://doi.org/10.1002/ejlt.201700470
+**  52:: https://doi.org/10.1017/S175173111300236X
+**  53:: https://doi.org/10.1002/jsfa.10070
+**  74:: https://doi.org/10.1016/j.anifeedsci.2016.08.006
+**  75:: https://doi.org/10.1017/S175173111000234X
+**  76:: https://doi.org/10.1016/j.meatsci.2003.09.004
+**  77:: https://doi.org/10.1016/j.meatsci.2018.10.010
+**  78:: []
+**  79:: https://doi.org/10.1021/jf101760u
+**  80:: https://doi.org/10.1017/S0022029914000387
+**  81:: https://doi.org/10.1021/acs.jafc.6b02625
+**  82:: https://doi.org/10.1017/S1751731117002336
+**  83:: https://doi.org/10.1017/S0022029915000060
+**  84:: https://doi.org/10.3168/jds.2013-7292
+**  85:: https://doi.org/10.1016/j.foodchem.2018.02.041
+**  86:: https://doi.org/10.1002/fsn3.1302
+**  87:: https://doi.org/10.3390/nu11020481
+**  88:: https://doi.org/10.1016/j.anifeedsci.2015.04.013
+**  89:: https://doi.org/10.4081/ijfs.2013.e33
+
+== 3. IT
+
+* Name: Index of Thrombogenicity
+* Abbreviation: IT
+* Description: Characterizes the thrombogenic potential of fatty acids.
+* First Use: Ulbricht and Southgate in 1991.
+* Subsequent Use: Seaweeds, crops, fish, meat, and dairy products.
+* Citation List:
+**  27:: https://doi.org/10.1007/s10811-010-9578-7
+**  28:: https://doi.org/10.1016/j.foodchem.2016.10.066
+**  29:: https://doi.org/10.3390/md14040068
+**  58:: https://doi.org/10.1016/j.jpba.2018.09.057
+**  59:: https://doi.org/10.1016/j.algal.2019.101726
+**  30:: https://doi.org/10.1002/jsfa.7049
+**  31:: https://doi.org/10.1111/jpn.12687
+**  60:: https://doi.org/10.1007/s11696-017-0308-3
+**  61:: https://doi.org/10.1371/journal.pone.0144469
+**  62:: https://doi.org/10.3390/app8122606
+**  63:: https://doi.org/10.1002/ejlt.201800493
+**  36:: https://doi.org/10.1016/j.foodchem.2014.03.055
+**  65:: https://doi.org/10.3390/ijerph16193780
+**  66:: https://doi.org/10.3390/ijerph14101120
+**  67:: https://doi.org/10.1016/j.aquaculture.2015.12.021
+**  68:: https://doi.org/10.1016/j.aquaculture.2017.12.043
+**  70:: https://doi.org/10.1016/j.aquaculture.2005.11.043
+**  71:: https://doi.org/10.1111/ijfs.12955
+**  72:: []
+**  73:: https://doi.org/10.1016/j.foodchem.2006.01.036
+**  43:: https://doi.org/10.1017/S1751731115001731
+**  48:: https://doi.org/10.1071/AN19305
+**  50:: https://doi.org/10.1002/ejlt.201700470
+**  52:: https://doi.org/10.1017/S175173111300236X
+**  53:: https://doi.org/10.1002/jsfa.10070
+**  75:: https://doi.org/10.1017/S175173111000234X
+**  77:: https://doi.org/10.1016/j.meatsci.2018.10.010
+**  54:: https://doi.org/10.1007/s13594-015-0234-5
+**  55:: https://doi.org/10.4314/sajas.v48i3.11
+**  78:: []
+**  80:: https://doi.org/10.1017/S0022029914000387
+**  86:: https://doi.org/10.1002/fsn3.1302
+**  87:: https://doi.org/10.3390/nu11020481
+**  88:: https://doi.org/10.1016/j.anifeedsci.2015.04.013
+**  89:: https://doi.org/10.4081/ijfs.2013.e33
+
+== 4. HH
+
+* Name: Hypocholesterolemic/Hypercholesterolemic Ratio
+* Abbreviation: HH
+* Description: Characterizes the relationship between hypocholesterolemic and hypercholesterolemic fatty acids.
+* First Use: Santos-Silva et al. in 2002, initially for assessing fatty acid composition in lamb meat.
+* Subsequent Use: Dairy products, marine products (shellfish, fish), and other research areas (e.g., plant oils).
+* Citation List:
+** 90:: https://doi.org/10.1016/j.foodres.2016.08.007
+** 62:: https://doi.org/10.3390/app8122606
+** 34:: https://doi.org/10.3390/foods9020233
+** 36:: https://doi.org/10.1016/j.foodchem.2014.03.055
+** 37:: https://doi.org/10.1016/j.foodchem.2013.10.012
+** 38:: https://doi.org/10.1080/10498850.2018.1559905
+** 39:: https://doi.org/10.5539/jfr.v3n3p105
+** 72:: []
+** 46:: https://doi.org/10.1016/j.meatsci.2012.02.033
+** 47:: https://doi.org/10.1016/j.foodchem.2006.01.006
+** 48:: https://doi.org/10.1071/AN19305
+** 52:: https://doi.org/10.1017/S175173111300236X
+** 77:: https://doi.org/10.1016/j.meatsci.2018.10.010
+** 91:: https://doi.org/10.1016/S0301-6226(02)00059-3
+** 54:: https://doi.org/10.1007/s13594-015-0234-5
+** 55:: https://doi.org/10.4314/sajas.v48i3.11
+** 78:: []
+** 86:: https://doi.org/10.1002/fsn3.1302
+** 87:: https://doi.org/10.3390/nu11020481
+
+== 5. HPI
+
+* Name: Health-Promoting Index
+* Abbreviation: HPI
+* Description: Assesses the nutritional value of dietary fat, focusing on the effect of fatty acid composition on cardiovascular disease.
+* First Use: Chen et al. in 2004.
+* Subsequent Use: Mainly research on dairy products such as milk and cheese.
+* Citation List:
+** 92:: https://doi.org/10.1071/AN14019
+** 93:: https://doi.org/10.3168/jds.2006-875
+** 94:: https://doi.org/10.1021/jf035193z
+** 57:: https://doi.org/10.1017/S1751731116001130
+** 95:: https://doi.org/10.3168/jds.2018-15857
+
+== 6. UI
+
+* Name: Unsaturation Index
+* Abbreviation: UI
+* Description: Indicates the degree of unsaturation in lipids.
+* First Use: Not specified in provided text.
+* Subsequent Use: Determining the composition of macroalgal fatty acids.
+* Citation List:
+** 27:: https://doi.org/10.1007/s10811-010-9578-7
+** 28:: https://doi.org/10.1016/j.foodchem.2016.10.066
+** 29:: https://doi.org/10.3390/md14040068
+** 59:: https://doi.org/10.1016/j.algal.2019.101726
+** 61:: https://doi.org/10.1371/journal.pone.0144469
+** 96:: https://doi.org/10.1007/s11130-006-0015-7
+** 97:: https://doi.org/10.1007/s00248-003-0144-6
+** 98:: https://doi.org/10.1016/j.foodchem.2009.11.006
+** 99:: https://doi.org/10.1134/S1021443718020115
+** 100:: https://doi.org/10.1016/j.jplph.2005.06.020
+** 101:: https://doi.org/10.1016/j.meatsci.2015.01.008
+** 102:: https://doi.org/10.1017/S1751731117003706
+
+== 7. EPA + DHA
+
+* Name: Sum of Eicosapentaenoic Acid and Docosahexaenoic Acid
+* Abbreviation: EPA + DHA
+* Description: Represents the sum of EPA and DHA content, which are essential omega-3 fatty acids.
+* First Use: Not specified in provided text.
+* Subsequent Use: Primarily used to evaluate the nutritional value of seafood, particularly fish.
+* Citation List:
+** 34:: https://doi.org/10.3390/foods9020233
+** 36:: https://doi.org/10.1016/j.foodchem.2014.03.055
+** 37:: https://doi.org/10.1016/j.foodchem.2013.10.012
+** 40:: https://doi.org/10.1016/j.aquaculture.2016.03.009
+** 68:: https://doi.org/10.1016/j.aquaculture.2017.12.043
+** 103:: https://doi.org/10.1111/j.1365-2109.2007.01811.x
+** 104:: https://doi.org/10.1016/j.aquaculture.2014.01.034
+** 105:: https://doi.org/10.1016/j.aquaculture.2015.06.007
+** 106:: https://doi.org/10.1016/j.aquaculture.2017.07.018
+
+== 8. FLQ
+
+* Name: Fish Lipid Quality/Flesh Lipid Quality
+* Abbreviation: FLQ
+* Description: Calculates the sum of EPA and DHA as a percentage of total fatty acids.
+* First Use: Originally for assessing the lipid quality in fish (or fish flesh).
+* Subsequent Use: Assessing the lipid quality in fish.
+* Citation List:
+** 65:: https://doi.org/10.3390/ijerph16193780
+** 66:: https://doi.org/10.3390/ijerph14101120
+** 73:: https://doi.org/10.1016/j.foodchem.2006.01.036
+** 107:: https://doi.org/10.1016/0300-9629(92)90161-J
+** 108:: https://doi.org/10.1016/0300-9629(94)90200-3
+
+== 9. LA/ALA
+
+* Name: Linoleic Acid/α-Linolenic Acid Ratio
+* Abbreviation: LA/ALA
+* Description: Used for guiding infant formula development.
+* First Use: Not applicable.
+* Subsequent Use: Studies on ruminants and dairy products.
+* Citation List:
+** 43:: https://doi.org/10.1017/S1751731115001731
+** 55:: https://doi.org/10.4314/sajas.v48i3.11
+** 109:: https://doi.org/10.1007/s13197-018-3360-2
+
+== 10. TFA
+
+* Name: Trans Fatty Acid
+* Abbreviation: TFA
+* Description: Assesses the amount of trans fatty acids.
+* First Use: Not mentioned in provided text.
+* Subsequent Use: Seaweeds, lamb meat, milk, fish, and plant oils.
+* Citation List:
+** 90:: https://doi.org/10.1016/j.foodres.2016.08.007
+** 32:: https://doi.org/10.1002/fsn3.1231
+** 33:: https://doi.org/10.1002/ejlt.200900231
+** 35:: https://doi.org/10.3390/ani10050778
+** 45:: https://doi.org/10.1017/S1751731111000048
+** 78:: []
+** 110:: https://doi.org/10.1007/s13197-011-0602-y

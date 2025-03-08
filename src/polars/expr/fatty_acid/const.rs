@@ -1,6 +1,23 @@
 use super::FattyAcidExpr;
+use crate::{fatty_acid::r#const::C18U2DC9DC12, prelude::*};
 use polars::prelude::*;
 use std::sync::LazyLock;
+
+fn temp<'a>(iter: impl IntoIterator<Item = &'a str>) -> PolarsResult<Expr> {
+    Ok(lit(Scalar::new(
+        DataType::List(Box::new(BOUND_DATA_TYPE.clone())),
+        AnyValue::List(Series::from_iter(iter).cast(&BOUND_DATA_TYPE)?),
+    )))
+}
+
+macro_rules! fatty_acid_expr {
+    ($id:ident) => {
+        Ok(lit(Scalar::new(
+            DataType::List(Box::new(BOUND_DATA_TYPE.clone())),
+            AnyValue::List(Series::from_iter(iter).cast(&BOUND_DATA_TYPE)?),
+        )))
+    };
+}
 
 macro_rules! fatty_acid_expr {
     ($(#[$outer:meta])* C $c:literal U $u:literal $($i:tt)*) => {

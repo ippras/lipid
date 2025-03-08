@@ -1,4 +1,4 @@
-//! https://lipidlibrary.shinyapps.io/Triglyceride_Property_Calculator
+//! <https://lipidlibrary.shinyapps.io/Triglyceride_Property_Calculator>
 
 // use crate::{
 //     acylglycerol::Tag,

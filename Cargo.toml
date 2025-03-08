@@ -5,9 +5,11 @@ edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
+fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 paste = "1.0.15"
 polars = { version = "0.46.0", default-features = false, features = [
     "abs",
+    "cum_agg",
     "dtype-categorical",
     "dtype-i8",
     "dtype-struct",
@@ -23,12 +25,20 @@ polars = { version = "0.46.0", default-features = false, features = [
     "round_series",
     "serde-lazy",
 ], optional = true }
+polars-arrow = "0.46.0"
 polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
-serde = { version = "1.0.217", features = ["derive", "std"] }
+rayon = "1.10.0"
+serde = { version = "1.0.218", features = ["derive", "std"] }
 
 [dev-dependencies]
-anyhow = "1.0.95"
+anyhow = "1.0.96"
+criterion = { version = "0.5.1", features = ["html_reports"] }
 lipid = { path = ".", features = ["polars"] }
+
+[[bench]]
+harness = false
+name = "compare"
+# name = "expr"
 
 [features]
 default = []

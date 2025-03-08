@@ -13,7 +13,7 @@ pub trait Permutation {
 impl Permutation for TriacylglycerolExpr {
     fn non_stereospecific(self, f: impl Fn(Expr) -> Expr, options: Options) -> PolarsResult<Expr> {
         Ok(if options.map {
-            concat_list([f(self.clone().sn1()), f(self.clone().sn2()), f(self.sn3())])?
+            concat_list([f(self.clone().stereospecific_number1()), f(self.clone().stereospecific_number2()), f(self.stereospecific_number3())])?
                 .list()
                 .sort(Default::default())
                 .list()
@@ -26,7 +26,7 @@ impl Permutation for TriacylglycerolExpr {
                     .into(),
                 ))
         } else {
-            concat_list([self.clone().sn1(), self.clone().sn2(), self.sn3()])?
+            concat_list([self.clone().stereospecific_number1(), self.clone().stereospecific_number2(), self.stereospecific_number3()])?
                 .list()
                 .eval(col("").sort_by([f(col(""))], Default::default()), true)
                 .list()
@@ -43,9 +43,9 @@ impl Permutation for TriacylglycerolExpr {
 
     fn positional(self, f: impl Fn(Expr) -> Expr, options: Options) -> Expr {
         if options.map {
-            let sn1 = f(self.clone().sn1());
-            let sn2 = f(self.clone().sn2());
-            let sn3 = f(self.clone().sn3());
+            let sn1 = f(self.clone().stereospecific_number1());
+            let sn2 = f(self.clone().stereospecific_number2());
+            let sn3 = f(self.clone().stereospecific_number3());
             let predicate = sn1.clone().lt_eq(sn3.clone());
             let (sn1, sn3) = (
                 ternary_expr(predicate.clone(), sn1.clone(), sn3.clone()),
@@ -57,10 +57,10 @@ impl Permutation for TriacylglycerolExpr {
                 sn3.alias("StereospecificNumber3"),
             ])
         } else {
-            let sn1 = self.clone().sn1();
-            let sn2 = self.clone().sn2();
-            let sn3 = self.clone().sn3();
-            let predicate = f(self.clone().sn1()).lt_eq(f(self.clone().sn3()));
+            let sn1 = self.clone().stereospecific_number1();
+            let sn2 = self.clone().stereospecific_number2();
+            let sn3 = self.clone().stereospecific_number3();
+            let predicate = f(self.clone().stereospecific_number1()).lt_eq(f(self.clone().stereospecific_number3()));
             let (sn1, sn3) = (
                 ternary_expr(predicate.clone(), sn1.clone(), sn3.clone()),
                 ternary_expr(predicate, sn3, sn1),

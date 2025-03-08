@@ -1,50 +1,41 @@
 use super::FattyAcidExpr;
+use crate::prelude::*;
 
-/// Fatty acid [RCO]+
-///
-/// `RCOOH -OH => [RCO]+`
-pub struct Rco(pub FattyAcidExpr);
-
-/// Fatty acid [RCOO]-
-///
-/// `RCOOH -H => [RCOO]-`
-pub struct Rcoo(pub FattyAcidExpr);
-
-/// Fatty acid
-///
-/// `RCOOH`
-pub struct Rcooh(pub FattyAcidExpr);
-
-/// Fatty acid methyl ester
-///
-/// `RCOOH -H +CH3 => RCOOCH3`
-pub struct Rcooch3(pub FattyAcidExpr);
-
-/// Extension methods for [`FattyAcidExpr`]
-pub trait FattyAcidExprExt {
-    fn rco(self) -> Rco;
-
-    fn rcoo(self) -> Rcoo;
-
-    fn rcooh(self) -> Rcooh;
-
-    fn rcooch3(self) -> Rcooch3;
-}
-
-impl FattyAcidExprExt for FattyAcidExpr {
-    fn rco(self) -> Rco {
+impl FattyAcidExpr {
+    /// Converts the fatty acid expression to a fatty acid cation \[RCO\]+.
+    ///
+    /// # Returns
+    ///
+    /// An instance of [`Rco`] containing the fatty acid expression.
+    pub fn rco(self) -> Rco<Self> {
         Rco(self)
     }
 
-    fn rcoo(self) -> Rcoo {
+    /// Converts the fatty acid expression to a fatty acid anion \[RCOO\]-.
+    ///
+    /// # Returns
+    ///
+    /// An instance of [`Rcoo`] containing the fatty acid expression.
+    pub fn rcoo(self) -> Rcoo<Self> {
         Rcoo(self)
     }
 
-    fn rcooh(self) -> Rcooh {
+    /// Converts the fatty acid expression to a fatty acid \[RCOOH\].
+    ///
+    /// # Returns
+    ///
+    /// An instance of [`Rcooh`] containing the fatty acid expression.
+    pub fn rcooh(self) -> Rcooh<Self> {
         Rcooh(self)
     }
 
-    fn rcooch3(self) -> Rcooch3 {
+    /// Converts the fatty acid expression to a fatty acid methyl ester
+    /// \[RCOOCH3\].
+    ///
+    /// # Returns
+    ///
+    /// An instance of [`Rcooch3`] containing the fatty acid expression.
+    pub fn rcooch3(self) -> Rcooch3<Self> {
         Rcooch3(self)
     }
 }

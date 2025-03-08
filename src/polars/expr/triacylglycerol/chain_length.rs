@@ -1,9 +1,21 @@
 use super::TriacylglycerolExpr;
-use crate::polars::{ExprExt as _, expr::chain_length::EquivalentCarbonNumber};
+use crate::polars::ExprExt as _;
 use polars::prelude::*;
 
-impl EquivalentCarbonNumber for TriacylglycerolExpr {
-    fn equivalent_carbon_number(self) -> Expr {
-        self.clone().sn1().fa().ecn() + self.clone().sn2().fa().ecn() + self.sn3().fa().ecn()
+impl TriacylglycerolExpr {
+    pub fn equivalent_carbon_number(self) -> Expr {
+        self.clone()
+            .stereospecific_number1()
+            .fatty_acid()
+            .equivalent_carbon_number()
+            + self
+                .clone()
+                .stereospecific_number2()
+                .fatty_acid()
+                .equivalent_carbon_number()
+            + self
+                .stereospecific_number3()
+                .fatty_acid()
+                .equivalent_carbon_number()
     }
 }
