@@ -1,4 +1,4 @@
-use super::FattyAcidChunked;
+use crate::prelude::*;
 use polars::prelude::*;
 
 impl FattyAcidChunked {

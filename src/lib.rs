@@ -1,5 +1,7 @@
 #![feature(impl_trait_in_assoc_type)]
 
+pub use self::fatty_acid::FattyAcid;
+
 pub mod fatty_acid;
 pub mod triacylglycerol;
 
@@ -18,7 +20,7 @@ pub mod prelude {
         column::ColumnExt,
         data_frame::DataFrameExt,
         expr::{
-            ExprExt as _,
+            ExprExt as _, FattyAcidExpr,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
         series::{
@@ -32,7 +34,6 @@ pub mod prelude {
             Kind::{Delta, System},
             Options,
         },
-        fatty_acid::{Kind, Rco, Rcoo, Rcooch3, Rcooh},
+        fatty_acid::{FattyAcid, Kind, Rco, Rcoo, Rcooch3, Rcooh, r#const::*},
     };
-    pub use fatty_acid_macro::fatty_acid;
 }

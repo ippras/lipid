@@ -1,4 +1,4 @@
-use lipid::{fatty_acid::r#const::*, prelude::*};
+use lipid::prelude::*;
 use polars::prelude::*;
 use std::sync::LazyLock;
 
@@ -39,66 +39,6 @@ fn bounds() {
     assert_eq!(
         bounds,
         [Some(13), Some(17), Some(17), Some(10), Some(2), None],
-    );
-}
-
-#[test]
-fn is_saturated() {
-    let data_frame = SOURCE
-        .clone()
-        .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .is_saturated()
-            .alias("IsSaturated")])
-        .collect()
-        .unwrap();
-    let is_saturated = data_frame["IsSaturated"]
-        .as_materialized_series()
-        .bool()
-        .unwrap()
-        .into_iter()
-        .collect::<Vec<_>>();
-    assert_eq!(
-        is_saturated,
-        [
-            Some(true),
-            Some(true),
-            Some(false),
-            Some(false),
-            Some(false),
-            None
-        ],
-    );
-}
-
-#[test]
-fn is_unsaturated() {
-    let data_frame = SOURCE
-        .clone()
-        .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .is_unsaturated()
-            .alias("IsUnsaturated")])
-        .collect()
-        .unwrap();
-    let is_unsaturated = data_frame["IsUnsaturated"]
-        .as_materialized_series()
-        .bool()
-        .unwrap()
-        .into_iter()
-        .collect::<Vec<_>>();
-    assert_eq!(
-        is_unsaturated,
-        [
-            Some(false),
-            Some(false),
-            Some(true),
-            Some(true),
-            Some(false),
-            None
-        ],
     );
 }
 

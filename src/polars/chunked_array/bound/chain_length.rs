@@ -1,4 +1,4 @@
-use super::BoundChunked;
+use crate::prelude::*;
 
 impl BoundChunked {
     #[inline]

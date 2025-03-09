@@ -1,7 +1,8 @@
-use lipid::{fatty_acid::r#const::*, prelude::*};
+use lipid::prelude::*;
 use polars::prelude::*;
 use std::sync::LazyLock;
 
+/// [byrdwell.com](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
 pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     df! {
         "FattyAcid" => [
@@ -80,6 +81,31 @@ pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     .with_row_index("Index".into(), None)
     .unwrap()
 });
+
+#[test]
+fn temp() -> PolarsResult<()> {
+    let data_frame = SOURCE
+        .clone()
+        .lazy()
+        .select([col("FattyAcid")
+            .fatty_acid()
+            .nullify(col("FattyAcid").fatty_acid().is_monounsaturated())
+            .alias("IsMonounsaturated")])
+        .collect()?;
+    let is_monounsaturated = data_frame["IsMonounsaturated"]
+        .as_materialized_series()
+        .fatty_acid()?
+        .map(|bonds| bonds.display(Default::default()))
+        .into_iter();
+    for is_monounsaturated in is_monounsaturated {
+        if let Some(is_monounsaturated) = is_monounsaturated?.transpose()? {
+            println!("is_monounsaturated: {is_monounsaturated:#}");
+        } else {
+            println!("None");
+        }
+    }
+    Ok(())
+}
 
 // #[test]
 // fn find() -> PolarsResult<()> {

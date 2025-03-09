@@ -25,7 +25,7 @@ impl FattyAcidExpr {
             .fatty_acid()
             .carbons()
             .forward_fill(None)
-            + self.fractional_chain_length(retention_time.clone(), options)
+            + self.fractional_chain_length(retention_time, options)
     }
 
     #[inline]

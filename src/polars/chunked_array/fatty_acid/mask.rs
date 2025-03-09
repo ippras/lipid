@@ -47,4 +47,14 @@ impl FattyAcidChunked {
     pub fn is_polyunsaturated(&self) -> PolarsResult<BooleanChunked> {
         self.mask(|bounds| bounds.is_polyunsaturated())
     }
+
+    #[inline]
+    pub fn is_cis(&self) -> PolarsResult<BooleanChunked> {
+        self.mask(|bounds| bounds.is_cis())
+    }
+
+    #[inline]
+    pub fn is_trans(&self) -> PolarsResult<BooleanChunked> {
+        self.mask(|bounds| bounds.is_trans())
+    }
 }

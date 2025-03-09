@@ -7,6 +7,7 @@ impl FattyAcidExpr {
         self.0.filter(mask)
     }
 
+    // ternary_expr(mask, self.0, lit(NULL))
     pub fn nullify(self, mask: Expr) -> Expr {
         as_struct(vec![self.0, mask]).map(
             move |column| {
@@ -25,7 +26,6 @@ impl FattyAcidExpr {
     /// Saturated fatty acids (SFA).
     ///
     /// All saturated fatty acids
-    #[inline]
     pub fn saturated(self, filter: bool) -> Expr {
         self.0.map(
             move |column| Ok(Some(column.fatty_acid()?.saturated(filter)?.into_column())),
@@ -36,7 +36,6 @@ impl FattyAcidExpr {
     /// Unsaturated fatty acids (UFA).
     ///
     /// All unsaturated fatty acids
-    #[inline]
     pub fn unsaturated(self, filter: bool) -> Expr {
         self.0.map(
             move |column| {
@@ -51,7 +50,6 @@ impl FattyAcidExpr {
     /// Monounsaturated fatty acids (MUFA).
     ///
     /// All unsaturated fatty acids having only one unsaturated bond.
-    #[inline]
     pub fn monounsaturated(self, filter: bool) -> Expr {
         self.0.map(
             move |column| {
@@ -69,7 +67,6 @@ impl FattyAcidExpr {
     /// Polyunsaturated fatty acids (PUFA).
     ///
     /// All unsaturated fatty acids having more than one unsaturated bond.
-    #[inline]
     pub fn polyunsaturated(self, filter: bool) -> Expr {
         self.0.map(
             move |column| {

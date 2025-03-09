@@ -1,8 +1,5 @@
 use atom::isotopes::*;
-use lipid::{
-    fatty_acid::r#const::{C18U0, C18U3DC9DC12DC15},
-    prelude::{S, U, *},
-};
+use lipid::prelude::{S, U, *};
 use polars::prelude::*;
 
 const C: f64 = C::Twelve.relative_atomic_mass().value;

@@ -1,5 +1,4 @@
 use lipid::{
-    fatty_acid::r#const::*,
     polars::bound::identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
     prelude::*,
 };

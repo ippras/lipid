@@ -40,9 +40,9 @@ impl Bound {
     /// Constant for unknown bound type.
     pub const U: Self = Self::Unsaturated(Unsaturated::T);
     /// Constant for unknown cis bound type.
-    pub const UC: Self = Self::Unsaturated(Unsaturated::TC);
+    pub const UC: Self = Self::Unsaturated(Unsaturated::UC);
     /// Constant for unknown trans bound type.
-    pub const UT: Self = Self::Unsaturated(Unsaturated::TT);
+    pub const UT: Self = Self::Unsaturated(Unsaturated::UT);
 
     /// Lazy static initialization for the data type associated with the bound.
     pub const DATA_TYPE: LazyLock<DataType> = BOUND_DATA_TYPE;
@@ -78,6 +78,18 @@ impl Bound {
         }
     }
 
+    /// Checks if the bound is saturated.
+    ///
+    /// # Returns
+    ///
+    /// * [`true`] if the bound is saturated, otherwise [`false`].
+    pub fn is_saturated(self) -> bool {
+        match self {
+            Self::Saturated => true,
+            _ => false,
+        }
+    }
+
     /// Checks if the bound is double.
     ///
     /// # Returns
@@ -102,18 +114,6 @@ impl Bound {
         }
     }
 
-    /// Checks if the bound is saturated.
-    ///
-    /// # Returns
-    ///
-    /// * [`true`] if the bound is saturated, otherwise [`false`].
-    pub fn is_saturated(self) -> bool {
-        match self {
-            Self::Saturated => true,
-            _ => false,
-        }
-    }
-
     /// Checks if the bound is unsaturated.
     ///
     /// # Returns
@@ -122,6 +122,20 @@ impl Bound {
     pub fn is_unsaturated(self) -> bool {
         match self {
             Self::Unsaturated(_) => true,
+            _ => false,
+        }
+    }
+
+    pub fn is_cis(self) -> bool {
+        match self {
+            Self::DC | Self::TC | Self::UC => true,
+            _ => false,
+        }
+    }
+
+    pub fn is_trans(self) -> bool {
+        match self {
+            Self::DT | Self::TT | Self::UT => true,
             _ => false,
         }
     }

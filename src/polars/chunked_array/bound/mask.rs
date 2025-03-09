@@ -20,4 +20,14 @@ impl BoundChunked {
     pub fn is_polyunsaturated(&self) -> bool {
         self.unsaturated().count() > 1
     }
+
+    pub fn is_cis(&self) -> bool {
+        self.into_iter()
+            .all(|bound| bound.is_some_and(Bound::is_cis))
+    }
+
+    pub fn is_trans(&self) -> bool {
+        self.into_iter()
+            .any(|bound| bound.is_some_and(Bound::is_trans))
+    }
 }

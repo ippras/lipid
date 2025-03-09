@@ -1,4 +1,3 @@
-use super::{FattyAcidExpr, r#const::*};
 use crate::prelude::*;
 use polars::prelude::*;
 
@@ -79,9 +78,9 @@ impl FattyAcidExpr {
     ///
     /// (C12:0 + 4 * C14:0 + C16:0) / ΣUFA
     pub fn index_of_atherogenicity(self, expr: Expr) -> Expr {
-        let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone())).sum();
-        let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone())).sum();
-        let c16u0 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
+        let c12u0 = expr.clone().filter(self.clone().equal(C12U0)).sum();
+        let c14u0 = expr.clone().filter(self.clone().equal(C14U0)).sum();
+        let c16u0 = expr.clone().filter(self.clone().equal(C16U0)).sum();
         let unsaturated = expr.filter(self.is_unsaturated()).sum();
         (c12u0 + lit(4) * c14u0 + c16u0) / unsaturated
     }
@@ -90,9 +89,9 @@ impl FattyAcidExpr {
     ///
     /// (C14:0 + C16:0 + C18:0)/(0.5 * ΣMUFA + 0.5 * ΣPUFAN6 + 3 * ΣPUFAN3 + (n-3/n-6)]
     pub fn index_of_thrombogenicity(self, expr: Expr) -> Expr {
-        let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone())).sum();
-        let c16u0 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
-        let c18u0 = expr.clone().filter(self.clone().equal(C18U0.clone())).sum();
+        let c14u0 = expr.clone().filter(self.clone().equal(C14U0)).sum();
+        let c16u0 = expr.clone().filter(self.clone().equal(C16U0)).sum();
+        let c18u0 = expr.clone().filter(self.clone().equal(C18U0)).sum();
         let monounsaturated = expr.filter(self.is_monounsaturated()).sum();
         (c14u0 + c16u0 + c18u0) / (lit(0.5) * monounsaturated + lit(0.5))
     }
@@ -101,11 +100,11 @@ impl FattyAcidExpr {
     ///
     /// (cis-C18:1 + ΣPUFA)/(C12:0 + C14:0 + C16:0)
     pub fn hypercholesterolemic_ratio(self, expr: Expr) -> Expr {
-        let c18u1 = expr.clone().filter(self.clone().equal(C18U1DC9.clone()));
+        let c18u1 = expr.clone().filter(self.clone().equal(C18U1DC9));
         let polyunsaturated = expr.clone().filter(self.clone().is_polyunsaturated());
-        let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone()));
-        let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone()));
-        let c16u0 = expr.filter(self.equal(C16U0.clone()));
+        let c12u0 = expr.clone().filter(self.clone().equal(C12U0));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14U0));
+        let c16u0 = expr.filter(self.equal(C16U0));
         (c18u1 + polyunsaturated) / (c12u0 + c14u0 + c16u0)
     }
 
@@ -119,9 +118,9 @@ impl FattyAcidExpr {
     /// ΣUFA / (C12:0 + 4 * C14:0 + C16:0)
     pub fn health_promoting_index(self, expr: Expr) -> Expr {
         let unsaturated = expr.clone().filter(self.clone().is_unsaturated());
-        let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone()));
-        let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone()));
-        let c16u0 = expr.filter(self.equal(C16U0.clone()));
+        let c12u0 = expr.clone().filter(self.clone().equal(C12U0));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14U0));
+        let c16u0 = expr.filter(self.equal(C16U0));
         unsaturated / (c12u0 + lit(4) * c14u0 + c16u0)
     }
 
@@ -130,16 +129,16 @@ impl FattyAcidExpr {
     /// UI = 1 * (% monoenoics) + 2 * (% dienoics) + 3 * (% trienoics) + 4 * (%
     /// tetraenoics) +5 * (% pentaenoics) + 6 * (% hexaenoics)
     pub fn unsaturation_index(self, expr: Expr) -> Expr {
-        (self.unsaturated(true).len() * expr).sum()
+        (self.unsaturation() * expr).sum()
     }
 
     /// Fish lipid quality/flesh lipid quality (FLQ)
     ///
     /// (EPA + DHA) / ΣFA
     pub fn fish_lipid_quality(self, expr: Expr) -> Expr {
-        (expr.clone().filter(self.clone().eicosapentaenoic())
-            + expr.clone().filter(self.docosahexaenoic()))
-            / expr.sum()
+        let eicosapentaenoic = expr.clone().filter(self.clone().eicosapentaenoic());
+        let docosahexaenoic = expr.clone().filter(self.docosahexaenoic());
+        (eicosapentaenoic + docosahexaenoic) / expr.sum()
     }
 
     /// [`Self::fish_lipid_quality`]
@@ -148,12 +147,7 @@ impl FattyAcidExpr {
     }
 
     /// Trans fatty acids (TFA)
-    pub fn tfa(self, expr: Expr) -> Expr {
-        expr.filter(
-            self.clone()
-                .carbons()
-                .eq(18)
-                .and(self.unsaturated(true).len().eq(3)),
-        )
+    pub fn trans(self, expr: Expr) -> Expr {
+        expr.filter(self.is_trans()).sum()
     }
 }

@@ -1,4 +1,4 @@
-use super::BoundChunked;
+use crate::prelude::*;
 
 impl BoundChunked {
     /// Returns the number of carbon atoms in the bound chunked array.

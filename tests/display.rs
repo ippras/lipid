@@ -1,4 +1,4 @@
-use lipid::{display::FattyAcid, fatty_acid::r#const::*, prelude::*};
+use lipid::{display::FattyAcid, prelude::*};
 use polars::prelude::*;
 
 fn fatty_acid(

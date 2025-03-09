@@ -1,15 +1,11 @@
-//! [[byrdwell.com]](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-
-use super::SOURCE;
-use lipid::{polars::expr::fatty_acid::r#const::*, prelude::*};
-use polars::prelude::*;
+use super::*;
 
 #[test]
 fn c4u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C4U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C4U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -99,7 +95,7 @@ fn c5u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C5U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C5U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -189,7 +185,7 @@ fn c6u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C6U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C6U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -279,7 +275,7 @@ fn c7u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C7U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C7U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -369,7 +365,7 @@ fn c8u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C8U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C8U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -459,7 +455,7 @@ fn c9u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C9U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C9U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -549,7 +545,7 @@ fn c10u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C10U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C10U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -639,7 +635,7 @@ fn c11u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C11U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C11U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -729,7 +725,7 @@ fn c12u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C12U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C12U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -819,7 +815,7 @@ fn c13u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C13U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C13U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -909,7 +905,7 @@ fn c14u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C14U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C14U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -999,7 +995,7 @@ fn c15u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C15U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C15U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1089,7 +1085,7 @@ fn c16u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C16U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C16U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1179,10 +1175,7 @@ fn c16u1dc9() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C16U1DC9.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C16U1DC9).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1272,10 +1265,7 @@ fn c16u1dt9() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C16U1DT9.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C16U1DT9).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1365,7 +1355,7 @@ fn c17u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C17U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C17U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1455,7 +1445,7 @@ fn c18u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C18U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C18U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1545,10 +1535,7 @@ fn c18u1dc9() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C18U1DC9.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C18U1DC9).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1638,10 +1625,7 @@ fn c18u1dt9() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C18U1DT9.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C18U1DT9).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1731,10 +1715,7 @@ fn c18u2dc9dc12() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C18U2DC9DC12.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C18U2DC9DC12).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -1826,7 +1807,7 @@ fn c18u3dc6dc9dc12() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DC6DC9DC12.clone())
+            .equal(C18U3DC6DC9DC12)
             .alias("")])
         .collect()
         .unwrap();
@@ -1919,7 +1900,7 @@ fn c18u3dc8dt10dc12() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DC8DT10DC12.clone())
+            .equal(C18U3DC8DT10DC12)
             .alias("")])
         .collect()
         .unwrap();
@@ -2011,7 +1992,7 @@ fn c18u3dc9dc12dc15() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DC9DC12DC15.clone())
+            .equal(C18U3DC9DC12DC15)
             .alias("")])
         .collect()
         .unwrap();
@@ -2104,7 +2085,7 @@ fn c18u3dc9dt11dt13() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DC9DT11DT13.clone())
+            .equal(C18U3DC9DT11DT13)
             .alias("")])
         .collect()
         .unwrap();
@@ -2197,7 +2178,7 @@ fn c18u3dt9dt11dc13() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DT9DT11DC13.clone())
+            .equal(C18U3DT9DT11DC13)
             .alias("")])
         .collect()
         .unwrap();
@@ -2290,7 +2271,7 @@ fn c18u3dt9dt11dt13() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U3DT9DT11DT13.clone())
+            .equal(C18U3DT9DT11DT13)
             .alias("")])
         .collect()
         .unwrap();
@@ -2383,7 +2364,7 @@ fn c18u4dc6dc9dc12dc15() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C18U4DC6DC9DC12DC15.clone())
+            .equal(C18U4DC6DC9DC12DC15)
             .alias("")])
         .collect()
         .unwrap();
@@ -2474,7 +2455,7 @@ fn c19u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C19U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C19U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -2564,7 +2545,7 @@ fn c20u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C20U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C20U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -2654,10 +2635,7 @@ fn c20u1dc9() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C20U1DC9.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C20U1DC9).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -2747,10 +2725,7 @@ fn c20u1dc11() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C20U1DC11.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C20U1DC11).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -2840,10 +2815,7 @@ fn c20u2dc11dc14() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C20U2DC11DC14.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C20U2DC11DC14).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -2935,7 +2907,7 @@ fn c20u3dc5dc8dc11() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U3DC5DC8DC11.clone())
+            .equal(C20U3DC5DC8DC11)
             .alias("")])
         .collect()
         .unwrap();
@@ -3028,7 +3000,7 @@ fn c20u3dc8dc11dc14() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U3DC8DC11DC14.clone())
+            .equal(C20U3DC8DC11DC14)
             .alias("")])
         .collect()
         .unwrap();
@@ -3121,7 +3093,7 @@ fn c20u3dc11dc14dc17() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U3DC11DC14DC17.clone())
+            .equal(C20U3DC11DC14DC17)
             .alias("")])
         .collect()
         .unwrap();
@@ -3214,7 +3186,7 @@ fn c20u4dc5dc8dc11dc14() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U4DC5DC8DC11DC14.clone())
+            .equal(C20U4DC5DC8DC11DC14)
             .alias("")])
         .collect()
         .unwrap();
@@ -3307,7 +3279,7 @@ fn c20u4dc8dc11dc14dc17() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U4DC8DC11DC14DC17.clone())
+            .equal(C20U4DC8DC11DC14DC17)
             .alias("")])
         .collect()
         .unwrap();
@@ -3400,7 +3372,7 @@ fn c20u5dc5dc8dc11dc14dc17() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C20U5DC5DC8DC11DC14DC17.clone())
+            .equal(C20U5DC5DC8DC11DC14DC17)
             .alias("")])
         .collect()
         .unwrap();
@@ -3491,7 +3463,7 @@ fn c21u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C21U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C21U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -3581,7 +3553,7 @@ fn c22u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C22U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C22U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -3671,10 +3643,7 @@ fn c22u1dc13() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C22U1DC13.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C22U1DC13).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -3764,10 +3733,7 @@ fn c22u2dc13dc16() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C22U2DC13DC16.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C22U2DC13DC16).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -3859,7 +3825,7 @@ fn c22u3dc5dc13dc16() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C22U3DC5DC13DC16.clone())
+            .equal(C22U3DC5DC13DC16)
             .alias("")])
         .collect()
         .unwrap();
@@ -3952,7 +3918,7 @@ fn c22u4dc7dc10dc13dc16() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C22U4DC7DC10DC13DC16.clone())
+            .equal(C22U4DC7DC10DC13DC16)
             .alias("")])
         .collect()
         .unwrap();
@@ -4045,7 +4011,7 @@ fn c22u5dc7dc10dc13dc16dc19() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C22U5DC7DC10DC13DC16DC19.clone())
+            .equal(C22U5DC7DC10DC13DC16DC19)
             .alias("")])
         .collect()
         .unwrap();
@@ -4138,7 +4104,7 @@ fn c22u6dc4dc7dc10dc13dc16dc19() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C22U6DC4DC7DC10DC13DC16DC19.clone())
+            .equal(C22U6DC4DC7DC10DC13DC16DC19)
             .alias("")])
         .collect()
         .unwrap();
@@ -4229,7 +4195,7 @@ fn c23u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C23U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C23U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -4319,7 +4285,7 @@ fn c24u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C24U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C24U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -4409,10 +4375,7 @@ fn c24u1dc15() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C24U1DC15.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C24U1DC15).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -4502,10 +4465,7 @@ fn c24u2dc15dc18() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C24U2DC15DC18.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C24U2DC15DC18).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -4597,7 +4557,7 @@ fn c24u3dc12dc15dc18() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C24U3DC12DC15DC18.clone())
+            .equal(C24U3DC12DC15DC18)
             .alias("")])
         .collect()
         .unwrap();
@@ -4690,7 +4650,7 @@ fn c24u4dc9dc12dc15dc18() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C24U4DC9DC12DC15DC18.clone())
+            .equal(C24U4DC9DC12DC15DC18)
             .alias("")])
         .collect()
         .unwrap();
@@ -4783,7 +4743,7 @@ fn c24u5dc6dc9dc12dc15dc18() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C24U5DC6DC9DC12DC15DC18.clone())
+            .equal(C24U5DC6DC9DC12DC15DC18)
             .alias("")])
         .collect()
         .unwrap();
@@ -4876,7 +4836,7 @@ fn c24u6dc6dc9dc12dc15dc18dc21() {
         .lazy()
         .select([col("FattyAcid")
             .fatty_acid()
-            .equal(C24U6DC6DC9DC12DC15DC18DC21.clone())
+            .equal(C24U6DC6DC9DC12DC15DC18DC21)
             .alias("")])
         .collect()
         .unwrap();
@@ -4967,7 +4927,7 @@ fn c25u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C25U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C25U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5057,7 +5017,7 @@ fn c26u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C26U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C26U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5147,10 +5107,7 @@ fn c26u1dc17() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C26U1DC17.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C26U1DC17).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5240,7 +5197,7 @@ fn c27u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C27U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C27U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5330,7 +5287,7 @@ fn c28u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C28U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C28U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5420,7 +5377,7 @@ fn c29u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C29U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C29U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5510,7 +5467,7 @@ fn c30u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C30U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C30U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5600,10 +5557,7 @@ fn c30u1dc21() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid")
-            .fatty_acid()
-            .equal(C30U1DC21.clone())
-            .alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C30U1DC21).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5693,7 +5647,7 @@ fn c31u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C31U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C31U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5783,7 +5737,7 @@ fn c32u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C32U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C32U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5873,7 +5827,7 @@ fn c33u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C33U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C33U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -5963,7 +5917,7 @@ fn c34u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C34U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C34U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -6053,7 +6007,7 @@ fn c35u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C35U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C35U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]
@@ -6143,7 +6097,7 @@ fn c36u0() {
     let data_frame = SOURCE
         .clone()
         .lazy()
-        .select([col("FattyAcid").fatty_acid().equal(C36U0.clone()).alias("")])
+        .select([col("FattyAcid").fatty_acid().equal(C36U0).alias("")])
         .collect()
         .unwrap();
     let target = data_frame[""]

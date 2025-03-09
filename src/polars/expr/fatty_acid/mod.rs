@@ -1,7 +1,4 @@
-use crate::{
-    polars::bound::identifiers::{S, U},
-    prelude::*,
-};
+use crate::prelude::*;
 use polars::prelude::*;
 
 /// Fatty acid [`Expr`]
@@ -44,28 +41,36 @@ impl From<FattyAcidExpr> for Expr {
     }
 }
 
-impl TryFrom<&[&str]> for FattyAcidExpr {
+// let series = if value.is_empty() {
+//     Series::new_empty(PlSmallStr::EMPTY, &BOUND_DATA_TYPE)
+// } else {
+//     Series::from_iter(value).cast(&BOUND_DATA_TYPE)?
+// };
+impl<const N: usize> From<FattyAcid<'_, N>> for FattyAcidExpr {
+    fn from(value: FattyAcid<N>) -> Self {
+        Self(lit(Scalar::new(
+            DataType::List(Box::new(BOUND_DATA_TYPE.clone())),
+            AnyValue::List(Series::from_iter(value).cast(&BOUND_DATA_TYPE).unwrap()),
+        )))
+    }
+}
+
+impl<const N: usize> TryFrom<[&str; N]> for FattyAcidExpr {
     type Error = PolarsError;
 
-    fn try_from(value: &[&str]) -> PolarsResult<Self> {
-        let series = if value.is_empty() {
-            Series::new_empty(PlSmallStr::EMPTY, &BOUND_DATA_TYPE)
-        } else {
-            Series::from_iter(value.iter().copied()).cast(&BOUND_DATA_TYPE)?
-        };
-        Ok(FattyAcidExpr(lit(Scalar::new(
+    fn try_from(value: [&str; N]) -> PolarsResult<Self> {
+        Ok(Self(lit(Scalar::new(
             DataType::List(Box::new(BOUND_DATA_TYPE.clone())),
-            AnyValue::List(series),
+            AnyValue::List(Series::from_iter(value).cast(&BOUND_DATA_TYPE)?),
         ))))
     }
 }
 
-pub mod r#const;
 pub mod factor;
-pub mod equal;
 
 mod atomic;
 mod chain_length;
+mod equal;
 mod indices;
 mod kind;
 mod mask;

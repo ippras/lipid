@@ -118,29 +118,27 @@ pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     .unwrap()
 });
 
-fn unsaturated1() -> () {
+fn saturated1() -> () {
     let _ = SOURCE
-        .fatty_acid()
-        .unwrap()
-        .unsaturated1(true)
-        .unwrap()
-        .into_iter()
-        .collect::<Vec<_>>();
+        .clone()
+        .lazy()
+        .select([col("FattyAcid").fatty_acid().saturated1(false)])
+        .collect()
+        .unwrap();
 }
 
-fn unsaturated2() -> () {
+fn saturated2() -> () {
     let _ = SOURCE
-        .fatty_acid()
-        .unwrap()
-        .unsaturated2(true)
-        .unwrap()
-        .into_iter()
-        .collect::<Vec<_>>();
+        .clone()
+        .lazy()
+        .select([col("FattyAcid").fatty_acid().saturated2(false)])
+        .collect()
+        .unwrap();
 }
 
 fn criterion_benchmark(criterion: &mut Criterion) {
-    criterion.bench_function("unsaturated1", |bencher| bencher.iter(|| unsaturated1()));
-    criterion.bench_function("unsaturated2", |bencher| bencher.iter(|| unsaturated2()));
+    criterion.bench_function("unsaturated1", |bencher| bencher.iter(|| saturated1()));
+    criterion.bench_function("unsaturated2", |bencher| bencher.iter(|| saturated2()));
 }
 
 criterion_group!(benches, criterion_benchmark);
