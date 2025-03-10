@@ -62,50 +62,6 @@ impl FattyAcidChunked {
     pub fn get(&self, index: usize) -> Option<Series> {
         Some(self.0.get_as_series(index)?.cast(&BOUND_DATA_TYPE).unwrap())
     }
-
-    /// Applies a function to each fatty acid in the chunked array and returns
-    /// an iterator over the results.
-    ///
-    /// # Arguments
-    ///
-    /// * `f` - A function to apply to each fatty acid.
-    ///
-    /// # Returns
-    ///
-    /// An iterator over the results of applying the function to each fatty
-    /// acid.
-    #[inline]
-    pub fn map<T>(
-        &self,
-        f: impl Fn(&BoundChunked) -> T,
-    ) -> impl Iterator<Item = PolarsResult<Option<T>>> {
-        self.0.into_iter().map(move |bounds| {
-            let Some(bounds) = bounds else {
-                return Ok(None);
-            };
-            Ok(Some(f(bounds.bound()?)))
-        })
-    }
-
-    /// Returns the number of bounds for each fatty acid in the chunked array.
-    ///
-    /// # Returns
-    ///
-    /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the number of
-    /// bounds for each fatty acid.
-    pub fn bounds(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|bounds| bounds.len()).collect()
-    }
-
-    /// Returns the unsaturation levels of each fatty acid in the chunked array.
-    ///
-    /// # Returns
-    ///
-    /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the unsaturation
-    /// levels.
-    pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|bounds| bounds.unsaturation()).collect()
-    }
 }
 
 impl FromIterator<Option<Series>> for FattyAcidChunked {
@@ -140,5 +96,6 @@ unsafe impl IntoSeries for FattyAcidChunked {
 
 mod atomic;
 mod chain_length;
+mod map;
 mod mask;
 mod select;
