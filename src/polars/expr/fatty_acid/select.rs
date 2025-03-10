@@ -7,20 +7,20 @@ impl FattyAcidExpr {
         self.0.filter(mask)
     }
 
-    // ternary_expr(mask, self.0, lit(NULL))
     pub fn nullify(self, mask: Expr) -> Expr {
-        as_struct(vec![self.0, mask]).map(
-            move |column| {
-                let fields = column.struct_()?.fields_as_series();
-                Ok(Some(
-                    fields[0]
-                        .fatty_acid()?
-                        .nullify(fields[1].bool()?)?
-                        .into_column(),
-                ))
-            },
-            GetOutput::first(),
-        )
+        ternary_expr(mask, self.0, lit(NULL))
+        // as_struct(vec![self.0, mask.name().prefix("_")]).map(
+        //     move |column| {
+        //         let fields = column.struct_()?.fields_as_series();
+        //         Ok(Some(
+        //             fields[0]
+        //                 .fatty_acid()?
+        //                 .nullify(fields[1].bool()?)?
+        //                 .into_column(),
+        //         ))
+        //     },
+        //     GetOutput::first(),
+        // )
     }
 
     /// Saturated fatty acids (SFA).
