@@ -1,5 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
+use std::num::NonZeroI8;
 
 impl FattyAcidChunked {
     /// Applies a mask function to the chunked array.
@@ -17,11 +18,11 @@ impl FattyAcidChunked {
     pub fn mask(&self, f: impl Fn(&BoundChunked) -> bool) -> PolarsResult<BooleanChunked> {
         self.0
             .into_iter()
-            .map(move |bounds| {
-                let Some(bounds) = bounds else {
+            .map(move |item| {
+                let Some(series) = item else {
                     return Ok(None);
                 };
-                Ok(Some(f(bounds.bound()?)))
+                Ok(Some(f(series.bound()?)))
             })
             .collect()
     }
@@ -46,8 +47,8 @@ impl FattyAcidChunked {
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// unsaturated fatty acids and [`false`] otherwise.
     #[inline]
-    pub fn is_unsaturated(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|bounds| bounds.is_unsaturated())
+    pub fn is_unsaturated(&self, n: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
+        self.mask(|bounds| bounds.is_unsaturated(n))
     }
 
     /// Returns a boolean chunked array indicating which fatty acids are

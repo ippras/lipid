@@ -1,6 +1,7 @@
 use super::FattyAcidExpr;
 use crate::polars::{ColumnExt as _, ExprExt};
 use polars::prelude::*;
+use polars_ext::ExprExt as _;
 
 impl FattyAcidExpr {
     #[inline]
@@ -19,32 +20,32 @@ impl FattyAcidExpr {
     }
 
     #[inline]
-    pub fn equivalent_chain_lengths(self, retention_time: Expr, options: Options) -> Expr {
+    pub fn equivalent_chain_length(self, retention_time: Expr, logarithmic: bool) -> Expr {
         self.clone()
-            .saturated(true)
+            .nullify(self.clone().is_saturated())
             .fatty_acid()
             .carbons()
             .forward_fill(None)
-            + self.fractional_chain_length(retention_time, options)
+            + self.fractional_chain_length(retention_time, logarithmic)
     }
 
     #[inline]
-    pub fn fractional_chain_length(self, retention_time: Expr, options: Options) -> Expr {
-        let options = |mut expr: Expr| {
-            if options.logarithmic {
+    pub fn fractional_chain_length(self, retention_time: Expr, logarithmic: bool) -> Expr {
+        let maybe_logarithmic = |mut expr: Expr| {
+            if logarithmic {
                 expr = expr.log(10.0)
             }
             expr
         };
-        let unsaturated_time = || options(retention_time.clone());
-        let saturated_time = || {
-            options(ternary_expr(
-                self.clone().is_saturated(),
-                retention_time.clone(),
-                lit(NULL),
-            ))
+        let unsaturated_time = || maybe_logarithmic(retention_time.clone());
+        let saturated_time =
+            || maybe_logarithmic(retention_time.clone().nullify(self.clone().is_saturated()));
+        let saturated_carbons = || {
+            self.clone()
+                .nullify(self.clone().is_saturated())
+                .fatty_acid()
+                .carbons()
         };
-        let saturated_carbons = || self.clone().saturated(false).fatty_acid().carbons();
         ternary_expr(
             self.clone().is_saturated(),
             lit(0),
@@ -75,20 +76,4 @@ impl FattyAcidExpr {
     //             / (saturated_time().backward_fill(None) - saturated_time().forward_fill(None)),
     //     )
     // }
-}
-
-/// Chain length options
-#[derive(Clone, Copy, Debug, Default)]
-pub struct Options {
-    pub logarithmic: bool,
-}
-
-impl Options {
-    pub const fn new() -> Self {
-        Self { logarithmic: false }
-    }
-
-    pub fn logarithmic(self, logarithmic: bool) -> Self {
-        Self { logarithmic }
-    }
 }

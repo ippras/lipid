@@ -18,11 +18,11 @@ impl FattyAcidChunked {
         &self,
         f: impl Fn(&BoundChunked) -> T,
     ) -> impl Iterator<Item = PolarsResult<Option<T>>> {
-        self.0.into_iter().map(move |bounds| {
-            let Some(bounds) = bounds else {
+        self.0.into_iter().map(move |item| {
+            let Some(series) = item else {
                 return Ok(None);
             };
-            Ok(Some(f(bounds.bound()?)))
+            Ok(Some(f(series.bound()?)))
         })
     }
 

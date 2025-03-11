@@ -15,7 +15,7 @@ fn fatty_acid() -> PolarsResult<()> {
         .collect::<Vec<_>>();
     assert_eq!(
         mass,
-        vec![
+        [
             Some(88.0524),  // C4U0
             Some(102.0681), // C5U0
             Some(116.0837), // C6U0
@@ -105,7 +105,7 @@ fn rco() -> PolarsResult<()> {
         .collect::<Vec<_>>();
     assert_eq!(
         mass,
-        vec![
+        [
             Some(71.0497),  // C4U0 (byrdwell.com error: 71.0491)
             Some(85.0653),  // C5U0
             Some(99.0810),  // C6U0
@@ -199,7 +199,7 @@ fn rcoo() -> PolarsResult<()> {
         .collect::<Vec<_>>();
     assert_eq!(
         mass,
-        vec![
+        [
             Some(87.0446),  // C4U0 (byrdwell.com error: 87.0452)
             Some(101.0603), // C5U0
             Some(115.0759), // C6U0
@@ -293,7 +293,7 @@ fn rcooh() -> PolarsResult<()> {
         .collect::<Vec<_>>();
     assert_eq!(
         mass,
-        vec![
+        [
             Some(88.0524),  // C4U0
             Some(102.0681), // C5U0
             Some(116.0837), // C6U0
@@ -387,7 +387,7 @@ fn rcooch3() -> PolarsResult<()> {
         .collect::<Vec<_>>();
     assert_eq!(
         mass,
-        vec![
+        [
             Some(102.0681), // C4U0
             Some(116.0837), // C5U0
             Some(130.0994), // C6U0

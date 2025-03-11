@@ -71,8 +71,6 @@ pub struct Rcooh<T>(pub T);
 /// `RCOOH -H +CH3 => RCOOCH3`
 pub struct Rcooch3<T>(pub T);
 
-pub mod r#const;
-
 // #[test]
 // fn empty() {
 //     assert_eq!(&*FattyAcid([]), &[]);

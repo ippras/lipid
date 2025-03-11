@@ -1,22 +1,20 @@
 use super::*;
 
 #[test]
-fn c4u0() {
+fn c4u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C4U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(true),  // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -88,25 +86,24 @@ fn c4u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c5u0() {
+fn c5u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C5U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(true),  // C5U0
             Some(false), // C6U0
@@ -178,25 +175,24 @@ fn c5u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c6u0() {
+fn c6u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C6U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(true),  // C6U0
@@ -268,25 +264,24 @@ fn c6u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c7u0() {
+fn c7u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C7U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -358,25 +353,24 @@ fn c7u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c8u0() {
+fn c8u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C8U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -448,25 +442,24 @@ fn c8u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c9u0() {
+fn c9u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C9U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -538,25 +531,24 @@ fn c9u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c10u0() {
+fn c10u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C10U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -628,25 +620,24 @@ fn c10u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c11u0() {
+fn c11u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C11U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -718,25 +709,24 @@ fn c11u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c12u0() {
+fn c12u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C12U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -808,25 +798,24 @@ fn c12u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c13u0() {
+fn c13u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C13U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -898,25 +887,24 @@ fn c13u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c14u0() {
+fn c14u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C14U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -988,25 +976,24 @@ fn c14u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c15u0() {
+fn c15u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C15U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1078,25 +1065,24 @@ fn c15u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c16u0() {
+fn c16u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1168,25 +1154,24 @@ fn c16u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c16u1dc9() {
+fn c16u1dc9() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U1DC9).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1258,25 +1243,24 @@ fn c16u1dc9() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c16u1dt9() {
+fn c16u1dt9() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U1DT9).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1348,25 +1332,24 @@ fn c16u1dt9() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c17u0() {
+fn c17u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C17U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1438,25 +1421,24 @@ fn c17u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u0() {
+fn c18u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1528,25 +1510,24 @@ fn c18u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u1dc9() {
+fn c18u1dc9() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U1DC9).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1618,25 +1599,24 @@ fn c18u1dc9() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u1dt9() {
+fn c18u1dt9() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U1DT9).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1708,25 +1688,24 @@ fn c18u1dt9() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u2dc9dc12() {
+fn c18u2dc9dc12() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U2DC9DC12).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1798,10 +1777,11 @@ fn c18u2dc9dc12() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u3dc6dc9dc12() {
+fn c18u3dc6dc9dc12() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -1809,17 +1789,15 @@ fn c18u3dc6dc9dc12() {
             .fatty_acid()
             .equal(C18U3DC6DC9DC12)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1891,10 +1869,11 @@ fn c18u3dc6dc9dc12() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u3dc8dt10dc12() {
+fn c18u3dc8dt10dc12() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -1902,17 +1881,15 @@ fn c18u3dc8dt10dc12() {
             .fatty_acid()
             .equal(C18U3DC8DT10DC12)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -1984,9 +1961,10 @@ fn c18u3dc8dt10dc12() {
             None,        //
         ],
     );
+    Ok(())
 }
 #[test]
-fn c18u3dc9dc12dc15() {
+fn c18u3dc9dc12dc15() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -1994,17 +1972,15 @@ fn c18u3dc9dc12dc15() {
             .fatty_acid()
             .equal(C18U3DC9DC12DC15)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2076,10 +2052,11 @@ fn c18u3dc9dc12dc15() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u3dc9dt11dt13() {
+fn c18u3dc9dt11dt13() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -2087,17 +2064,15 @@ fn c18u3dc9dt11dt13() {
             .fatty_acid()
             .equal(C18U3DC9DT11DT13)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2169,10 +2144,11 @@ fn c18u3dc9dt11dt13() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u3dt9dt11dc13() {
+fn c18u3dt9dt11dc13() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -2180,17 +2156,15 @@ fn c18u3dt9dt11dc13() {
             .fatty_acid()
             .equal(C18U3DT9DT11DC13)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2262,10 +2236,11 @@ fn c18u3dt9dt11dc13() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u3dt9dt11dt13() {
+fn c18u3dt9dt11dt13() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -2273,17 +2248,15 @@ fn c18u3dt9dt11dt13() {
             .fatty_acid()
             .equal(C18U3DT9DT11DT13)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2355,10 +2328,11 @@ fn c18u3dt9dt11dt13() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c18u4dc6dc9dc12dc15() {
+fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -2366,17 +2340,15 @@ fn c18u4dc6dc9dc12dc15() {
             .fatty_acid()
             .equal(C18U4DC6DC9DC12DC15)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2448,25 +2420,24 @@ fn c18u4dc6dc9dc12dc15() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c19u0() {
+fn c19u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C19U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2538,25 +2509,24 @@ fn c19u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u0() {
+fn c20u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2628,25 +2598,24 @@ fn c20u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u1dc9() {
+fn c20u1dc9() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U1DC9).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2718,25 +2687,24 @@ fn c20u1dc9() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u1dc11() {
+fn c20u1dc11() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U1DC11).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2808,25 +2776,24 @@ fn c20u1dc11() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u2dc11dc14() {
+fn c20u2dc11dc14() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U2DC11DC14).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2898,10 +2865,11 @@ fn c20u2dc11dc14() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u3dc5dc8dc11() {
+fn c20u3dc5dc8dc11() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -2909,17 +2877,15 @@ fn c20u3dc5dc8dc11() {
             .fatty_acid()
             .equal(C20U3DC5DC8DC11)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -2991,10 +2957,11 @@ fn c20u3dc5dc8dc11() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u3dc8dc11dc14() {
+fn c20u3dc8dc11dc14() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3002,17 +2969,15 @@ fn c20u3dc8dc11dc14() {
             .fatty_acid()
             .equal(C20U3DC8DC11DC14)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3084,10 +3049,11 @@ fn c20u3dc8dc11dc14() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u3dc11dc14dc17() {
+fn c20u3dc11dc14dc17() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3095,17 +3061,15 @@ fn c20u3dc11dc14dc17() {
             .fatty_acid()
             .equal(C20U3DC11DC14DC17)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3177,10 +3141,11 @@ fn c20u3dc11dc14dc17() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u4dc5dc8dc11dc14() {
+fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3188,17 +3153,15 @@ fn c20u4dc5dc8dc11dc14() {
             .fatty_acid()
             .equal(C20U4DC5DC8DC11DC14)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3270,10 +3233,11 @@ fn c20u4dc5dc8dc11dc14() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u4dc8dc11dc14dc17() {
+fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3281,17 +3245,15 @@ fn c20u4dc8dc11dc14dc17() {
             .fatty_acid()
             .equal(C20U4DC8DC11DC14DC17)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3363,10 +3325,11 @@ fn c20u4dc8dc11dc14dc17() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c20u5dc5dc8dc11dc14dc17() {
+fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3374,17 +3337,15 @@ fn c20u5dc5dc8dc11dc14dc17() {
             .fatty_acid()
             .equal(C20U5DC5DC8DC11DC14DC17)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3456,25 +3417,24 @@ fn c20u5dc5dc8dc11dc14dc17() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c21u0() {
+fn c21u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C21U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3546,25 +3506,24 @@ fn c21u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u0() {
+fn c22u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3636,25 +3595,24 @@ fn c22u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u1dc13() {
+fn c22u1dc13() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U1DC13).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3726,25 +3684,24 @@ fn c22u1dc13() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u2dc13dc16() {
+fn c22u2dc13dc16() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U2DC13DC16).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3816,10 +3773,11 @@ fn c22u2dc13dc16() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u3dc5dc13dc16() {
+fn c22u3dc5dc13dc16() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3827,17 +3785,15 @@ fn c22u3dc5dc13dc16() {
             .fatty_acid()
             .equal(C22U3DC5DC13DC16)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -3909,10 +3865,11 @@ fn c22u3dc5dc13dc16() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u4dc7dc10dc13dc16() {
+fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -3920,17 +3877,15 @@ fn c22u4dc7dc10dc13dc16() {
             .fatty_acid()
             .equal(C22U4DC7DC10DC13DC16)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4002,10 +3957,11 @@ fn c22u4dc7dc10dc13dc16() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u5dc7dc10dc13dc16dc19() {
+fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4013,17 +3969,15 @@ fn c22u5dc7dc10dc13dc16dc19() {
             .fatty_acid()
             .equal(C22U5DC7DC10DC13DC16DC19)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4095,10 +4049,11 @@ fn c22u5dc7dc10dc13dc16dc19() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c22u6dc4dc7dc10dc13dc16dc19() {
+fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4106,17 +4061,15 @@ fn c22u6dc4dc7dc10dc13dc16dc19() {
             .fatty_acid()
             .equal(C22U6DC4DC7DC10DC13DC16DC19)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4188,25 +4141,24 @@ fn c22u6dc4dc7dc10dc13dc16dc19() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c23u0() {
+fn c23u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C23U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4278,25 +4230,24 @@ fn c23u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u0() {
+fn c24u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4368,25 +4319,24 @@ fn c24u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u1dc15() {
+fn c24u1dc15() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U1DC15).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4458,25 +4408,24 @@ fn c24u1dc15() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u2dc15dc18() {
+fn c24u2dc15dc18() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U2DC15DC18).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4548,10 +4497,11 @@ fn c24u2dc15dc18() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u3dc12dc15dc18() {
+fn c24u3dc12dc15dc18() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4559,17 +4509,15 @@ fn c24u3dc12dc15dc18() {
             .fatty_acid()
             .equal(C24U3DC12DC15DC18)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4641,10 +4589,11 @@ fn c24u3dc12dc15dc18() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u4dc9dc12dc15dc18() {
+fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4652,17 +4601,15 @@ fn c24u4dc9dc12dc15dc18() {
             .fatty_acid()
             .equal(C24U4DC9DC12DC15DC18)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4734,10 +4681,11 @@ fn c24u4dc9dc12dc15dc18() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u5dc6dc9dc12dc15dc18() {
+fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4745,17 +4693,15 @@ fn c24u5dc6dc9dc12dc15dc18() {
             .fatty_acid()
             .equal(C24U5DC6DC9DC12DC15DC18)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4827,10 +4773,11 @@ fn c24u5dc6dc9dc12dc15dc18() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c24u6dc6dc9dc12dc15dc18dc21() {
+fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
@@ -4838,17 +4785,15 @@ fn c24u6dc6dc9dc12dc15dc18dc21() {
             .fatty_acid()
             .equal(C24U6DC6DC9DC12DC15DC18DC21)
             .alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -4920,25 +4865,24 @@ fn c24u6dc6dc9dc12dc15dc18dc21() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c25u0() {
+fn c25u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C25U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5010,25 +4954,24 @@ fn c25u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c26u0() {
+fn c26u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C26U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5100,25 +5043,24 @@ fn c26u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c26u1dc17() {
+fn c26u1dc17() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C26U1DC17).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5190,25 +5132,24 @@ fn c26u1dc17() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c27u0() {
+fn c27u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C27U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5280,25 +5221,24 @@ fn c27u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c28u0() {
+fn c28u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C28U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5370,25 +5310,24 @@ fn c28u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c29u0() {
+fn c29u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C29U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5460,25 +5399,24 @@ fn c29u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c30u0() {
+fn c30u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C30U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5550,25 +5488,24 @@ fn c30u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c30u1dc21() {
+fn c30u1dc21() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C30U1DC21).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5640,25 +5577,24 @@ fn c30u1dc21() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c31u0() {
+fn c31u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C31U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5730,25 +5666,24 @@ fn c31u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c32u0() {
+fn c32u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C32U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5820,25 +5755,24 @@ fn c32u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c33u0() {
+fn c33u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C33U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -5910,25 +5844,24 @@ fn c33u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c34u0() {
+fn c34u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C34U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -6000,25 +5933,24 @@ fn c34u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c35u0() {
+fn c35u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C35U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -6090,25 +6022,24 @@ fn c35u0() {
             None,        //
         ],
     );
+    Ok(())
 }
 
 #[test]
-fn c36u0() {
+fn c36u0() -> PolarsResult<()> {
     let data_frame = SOURCE
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C36U0).alias("")])
-        .collect()
-        .unwrap();
+        .collect()?;
     let target = data_frame[""]
         .as_materialized_series()
-        .bool()
-        .unwrap()
+        .bool()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
         target,
-        vec![
+        [
             Some(false), // C4U0
             Some(false), // C5U0
             Some(false), // C6U0
@@ -6180,4 +6111,5 @@ fn c36u0() {
             None,        //
         ],
     );
+    Ok(())
 }

@@ -61,7 +61,7 @@ fn is_saturated() {
 fn is_unsaturated() {
     let series = SOURCE["FattyAcid"].as_materialized_series();
     let fatty_acid_chunked = FattyAcidChunked::new(series).unwrap();
-    let is_unsaturated = fatty_acid_chunked.is_unsaturated().unwrap();
+    let is_unsaturated = fatty_acid_chunked.is_unsaturated(None).unwrap();
     assert_eq!(
         is_unsaturated.into_iter().collect::<Vec<_>>(),
         [
@@ -76,22 +76,10 @@ fn is_unsaturated() {
 }
 
 #[test]
-fn saturated() {
+fn filter_unsaturated() -> PolarsResult<()> {
     let series = SOURCE["FattyAcid"].as_materialized_series();
     let fatty_acid_chunked = FattyAcidChunked::new(series).unwrap();
-    let saturated = fatty_acid_chunked.saturated(false).unwrap();
-    assert_eq!(
-        saturated.into_iter().collect::<Vec<_>>(),
-        [
-            Some(Series::from_iter(C14U0)),
-            Some(Series::from_iter(C18U0)),
-            None,
-            None,
-            None,
-            None,
-        ]
-    );
-    let saturated = fatty_acid_chunked.saturated(true).unwrap();
+    let saturated = fatty_acid_chunked.filter(&fatty_acid_chunked.is_saturated()?)?;
     assert_eq!(
         saturated.into_iter().collect::<Vec<_>>(),
         [
@@ -99,13 +87,48 @@ fn saturated() {
             Some(Series::from_iter(C18U0)),
         ]
     );
+    Ok(())
 }
 
 #[test]
-fn unsaturated() {
+fn nullify_unsaturated() -> PolarsResult<()> {
     let series = SOURCE["FattyAcid"].as_materialized_series();
     let fatty_acid_chunked = FattyAcidChunked::new(series).unwrap();
-    let unsaturated = fatty_acid_chunked.unsaturated(false).unwrap();
+    let saturated = fatty_acid_chunked.nullify(&fatty_acid_chunked.is_saturated()?)?;
+    assert_eq!(
+        saturated.into_iter().collect::<Vec<_>>(),
+        [
+            Some(Series::from_iter(C14U0)),
+            Some(Series::from_iter(C18U0)),
+            None,
+            None,
+            None,
+            None,
+        ]
+    );
+    Ok(())
+}
+
+#[test]
+fn filter_saturated() -> PolarsResult<()> {
+    let series = SOURCE["FattyAcid"].as_materialized_series();
+    let fatty_acid_chunked = FattyAcidChunked::new(series).unwrap();
+    let unsaturated = fatty_acid_chunked.filter(&fatty_acid_chunked.is_unsaturated(None)?)?;
+    assert_eq!(
+        unsaturated.into_iter().collect::<Vec<_>>(),
+        [
+            Some(Series::from_iter(C18U2DC9DC12)),
+            Some(Series::from_iter(ALL)),
+        ]
+    );
+    Ok(())
+}
+
+#[test]
+fn nullify_saturated() -> PolarsResult<()> {
+    let series = SOURCE["FattyAcid"].as_materialized_series();
+    let fatty_acid_chunked = FattyAcidChunked::new(series).unwrap();
+    let unsaturated = fatty_acid_chunked.nullify(&fatty_acid_chunked.is_unsaturated(None)?)?;
     assert_eq!(
         unsaturated.into_iter().collect::<Vec<_>>(),
         [
@@ -117,14 +140,7 @@ fn unsaturated() {
             None,
         ]
     );
-    let unsaturated = fatty_acid_chunked.unsaturated(true).unwrap();
-    assert_eq!(
-        unsaturated.into_iter().collect::<Vec<_>>(),
-        [
-            Some(Series::from_iter(C18U2DC9DC12)),
-            Some(Series::from_iter(ALL)),
-        ]
-    );
+    Ok(())
 }
 
 #[test]

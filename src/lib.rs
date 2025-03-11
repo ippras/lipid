@@ -24,15 +24,18 @@ pub mod prelude {
             ExprExt as _, FattyAcidExpr,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
-        series::{SeriesExt, fatty_acid::selectivity_factor},
+        series::SeriesExt,
     };
     pub use crate::{
         bound::{Bound, Isomerism, Type, Unsaturated, Unsaturation},
+        r#const::*,
         display::{
             Elision,
             Kind::{Delta, System},
             Options,
         },
-        fatty_acid::{FattyAcid, Kind, Rco, Rcoo, Rcooch3, Rcooh, r#const::*},
+        fatty_acid::{FattyAcid, Kind, Rco, Rcoo, Rcooch3, Rcooh},
     };
 }
+
+pub mod r#const;

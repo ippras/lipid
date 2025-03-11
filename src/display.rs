@@ -50,7 +50,10 @@ mod common {
 
     /// Display common
     pub enum Common {
+        /// Carbons are counted from the carboxylic acid end.
         Delta(Delta),
+        // /// Carbons are counted from the methyl end.
+        // Omega (Omega ),
     }
 
     /// Display delta

@@ -1,4 +1,4 @@
-#[cfg(test)]
 mod bound;
-#[cfg(test)]
 mod fatty_acid;
+#[cfg(feature = "mass")]
+mod mass;

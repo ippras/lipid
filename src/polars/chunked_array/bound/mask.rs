@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use std::convert::identity;
+use std::{convert::identity, num::NonZeroI8};
 
 impl BoundChunked {
     /// Checks if the bounds chunked array contains only saturated bonds.
@@ -17,9 +17,20 @@ impl BoundChunked {
     /// # Returns
     ///
     /// [`true`] if any bound is unsaturated, [`false`] otherwise.
-    pub fn is_unsaturated(&self) -> bool {
-        self.into_iter()
-            .any(|bound| bound.is_some_and(Bound::is_unsaturated))
+    pub fn is_unsaturated(&self, n: Option<NonZeroI8>) -> bool {
+        match n {
+            Some(n) => {
+                let abs = n.unsigned_abs().into();
+                if n.is_positive() {
+                    self.unsaturated().next() == Some(abs - 1)
+                } else {
+                    self.unsaturated().last() == Some(self.len().saturating_sub(abs))
+                }
+            }
+            None => self
+                .into_iter()
+                .any(|bound| bound.is_some_and(Bound::is_unsaturated)),
+        }
     }
 
     /// Checks if the bound chunked array contains exactly one unsaturated bond.

@@ -41,25 +41,13 @@ impl TriacylglycerolExpr {
         self.clone()
             .stereospecific_number1()
             .fatty_acid()
-            .unsaturated(true)
-            .fatty_acid()
             .unsaturation()
-            .sum()
             + self
                 .clone()
                 .stereospecific_number2()
                 .fatty_acid()
-                .unsaturated(true)
-                .fatty_acid()
                 .unsaturation()
-                .sum()
-            + self
-                .stereospecific_number3()
-                .fatty_acid()
-                .unsaturated(true)
-                .fatty_acid()
-                .unsaturation()
-                .sum()
+            + self.stereospecific_number3().fatty_acid().unsaturation()
     }
 
     pub fn test_map_apply<F>(self, f: &'static F) -> Expr

@@ -15,7 +15,7 @@ fn check_mass(bound_chunked: &BoundChunked, mass: f64) {
 }
 
 #[test]
-fn test_saturated_series() {
+fn saturated_series() {
     const MASS: f64 = 284.27153039942;
 
     let series = Series::new("Saturated".into(), C18U0)
@@ -25,7 +25,7 @@ fn test_saturated_series() {
     let bound_chunked = BoundChunked::new(&series).unwrap();
     assert_eq!(bound_chunked.len(), 17);
     assert!(bound_chunked.is_saturated());
-    assert!(!bound_chunked.is_unsaturated());
+    assert!(!bound_chunked.is_unsaturated(None));
     let doubles: Vec<_> = bound_chunked.doubles().collect();
     assert!(doubles.is_empty());
     let triples: Vec<_> = bound_chunked.triples().collect();
@@ -41,7 +41,7 @@ fn test_saturated_series() {
 }
 
 #[test]
-fn test_unsaturated_series() {
+fn unsaturated_series() {
     const MASS: f64 = 278.22458020604;
 
     let series = Series::new("Unsaturated".into(), C18U3DC9DC12DC15)
@@ -51,7 +51,7 @@ fn test_unsaturated_series() {
     let bound_chunked = BoundChunked::new(&series).unwrap();
     assert_eq!(bound_chunked.len(), 17);
     assert!(!bound_chunked.is_saturated());
-    assert!(bound_chunked.is_unsaturated());
+    assert!(bound_chunked.is_unsaturated(None));
     let doubles: Vec<_> = bound_chunked.doubles().collect();
     assert_eq!(doubles, vec![8, 11, 14]);
     let triples: Vec<_> = bound_chunked.triples().collect();
@@ -67,7 +67,7 @@ fn test_unsaturated_series() {
 }
 
 #[test]
-fn test_all_series() {
+fn all_series() {
     const ALL: [&str; 10] = [S, D, DC, DT, T, TC, TT, U, UC, UT];
 
     let series = Series::new("Bounds".into(), ALL)
@@ -81,7 +81,7 @@ fn test_all_series() {
     let triples: Vec<_> = bound_chunked.triples().collect();
     assert_eq!(triples, vec![4, 5, 6]);
     assert!(!bound_chunked.is_saturated());
-    assert!(bound_chunked.is_unsaturated());
+    assert!(bound_chunked.is_unsaturated(None));
     let unsaturated: Vec<_> = bound_chunked.unsaturated().collect();
     assert_eq!(unsaturated, vec![1, 2, 3, 4, 5, 6, 7, 8, 9]);
     assert_eq!(bound_chunked.unsaturation(), 9);

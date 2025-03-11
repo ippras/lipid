@@ -107,36 +107,36 @@ use std::iter::zip;
 //         .collect::<PolarsResult<ListChunked>>()
 // }
 
-/// Struct
-/// 0. FattyAcid
-/// 1. MAG2: [`f64`]
-/// 2. TAG: [`f64`]
-pub fn selectivity_factor(series: &Series) -> PolarsResult<Series> {
-    let r#struct = series.struct_()?;
-    let fields = r#struct.fields_as_series();
-    let fatty_acid = fields[0].fatty_acid()?;
-    let mag2 = fields[1].f64()?;
-    let tag = fields[2].f64()?;
-    let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated()?)?.sum();
-    let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
-    Ok(zip(tag, mag2)
-        .map(|(tag, mag2)| {
-            let Some(tag) = tag else {
-                return Ok(None);
-            };
-            let Some(mag2) = mag2 else {
-                return Ok(None);
-            };
-            let Some(mag2_unsaturated_sum) = mag2_unsaturated_sum else {
-                return Ok(None);
-            };
-            let Some(tag_unsaturated_sum) = tag_unsaturated_sum else {
-                return Ok(None);
-            };
-            Ok(Some(
-                (mag2 / tag) / (mag2_unsaturated_sum / tag_unsaturated_sum),
-            ))
-        })
-        .collect::<PolarsResult<Float64Chunked>>()?
-        .into_series())
-}
+// /// Struct
+// /// 0. FattyAcid
+// /// 1. MAG2: [`f64`]
+// /// 2. TAG: [`f64`]
+// pub fn selectivity_factor(series: &Series) -> PolarsResult<Series> {
+//     let r#struct = series.struct_()?;
+//     let fields = r#struct.fields_as_series();
+//     let fatty_acid = fields[0].fatty_acid()?;
+//     let mag2 = fields[1].f64()?;
+//     let tag = fields[2].f64()?;
+//     let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated()?)?.sum();
+//     let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
+//     Ok(zip(tag, mag2)
+//         .map(|(tag, mag2)| {
+//             let Some(tag) = tag else {
+//                 return Ok(None);
+//             };
+//             let Some(mag2) = mag2 else {
+//                 return Ok(None);
+//             };
+//             let Some(mag2_unsaturated_sum) = mag2_unsaturated_sum else {
+//                 return Ok(None);
+//             };
+//             let Some(tag_unsaturated_sum) = tag_unsaturated_sum else {
+//                 return Ok(None);
+//             };
+//             Ok(Some(
+//                 (mag2 / tag) / (mag2_unsaturated_sum / tag_unsaturated_sum),
+//             ))
+//         })
+//         .collect::<PolarsResult<Float64Chunked>>()?
+//         .into_series())
+// }
