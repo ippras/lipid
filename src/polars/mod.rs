@@ -1,10 +1,4 @@
-pub use self::{
-    column::ColumnExt,
-    data_frame::DataFrameExt,
-    // expr::{ExprExt, filter::Filter, find::FindByName},
-    expr::ExprExt,
-    series::SeriesExt,
-};
+pub use self::{column::ColumnExt, data_frame::DataFrameExt, expr::ExprExt, series::SeriesExt};
 
 /// Fatty acid column name
 pub const FATTY_ACID_COLUMN: &str = "FattyAcid";

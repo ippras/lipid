@@ -2,6 +2,7 @@
 
 pub use self::fatty_acid::FattyAcid;
 
+pub mod bound;
 pub mod fatty_acid;
 pub mod triacylglycerol;
 
@@ -13,7 +14,7 @@ pub mod prelude {
     #[cfg(feature = "polars")]
     pub use crate::polars::{
         bound::{
-            BOUND_DATA_TYPE, Bound, Isomerism, Type, Unsaturated, Unsaturation,
+            BOUND_DATA_TYPE,
             identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
         },
         chunked_array::{BoundChunked, FattyAcidChunked},
@@ -23,12 +24,10 @@ pub mod prelude {
             ExprExt as _, FattyAcidExpr,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
-        series::{
-            SeriesExt,
-            fatty_acid::{mask, selectivity_factor, unsaturated_indexed},
-        },
+        series::{SeriesExt, fatty_acid::selectivity_factor},
     };
     pub use crate::{
+        bound::{Bound, Isomerism, Type, Unsaturated, Unsaturation},
         display::{
             Elision,
             Kind::{Delta, System},

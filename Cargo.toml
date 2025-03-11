@@ -6,7 +6,6 @@ edition = "2024"
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
 fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
-paste = "1.0.15"
 polars = { version = "0.46.0", default-features = false, features = [
     "abs",
     "cum_agg",
@@ -41,5 +40,11 @@ name = "compare"
 # name = "expr"
 
 [features]
-default = []
+default = ["atomic", "map", "mask", "mass", "select"]
+
+atomic = []
+map = []
+mask = []
+mass = []
 polars = ["dep:polars", "dep:polars_ext"]
+select = []

@@ -289,7 +289,11 @@ fn temp() -> PolarsResult<()> {
 //     Ok(())
 // }
 
+mod chain_length;
 mod ecn;
 mod equal;
 mod fatty_acid;
+#[cfg(feature = "mask")]
 mod mask;
+#[cfg(feature = "mass")]
+mod mass;

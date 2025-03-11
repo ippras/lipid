@@ -68,11 +68,15 @@ impl<const N: usize> TryFrom<[&str; N]> for FattyAcidExpr {
 
 pub mod factor;
 
+#[cfg(feature = "atomic")]
 mod atomic;
 mod chain_length;
 mod equal;
 mod indices;
 mod kind;
+#[cfg(feature = "mask")]
 mod mask;
+#[cfg(feature = "mass")]
 mod mass;
+#[cfg(feature = "select")]
 mod select;

@@ -109,8 +109,11 @@ impl<'a> TryFrom<&'a Series> for &'a BoundChunked {
     }
 }
 
+#[cfg(feature = "atomic")]
 mod atomic;
 mod chain_length;
 mod kind;
+#[cfg(feature = "mask")]
 mod mask;
+#[cfg(feature = "mass")]
 mod mass;

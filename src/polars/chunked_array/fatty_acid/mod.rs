@@ -94,8 +94,12 @@ unsafe impl IntoSeries for FattyAcidChunked {
     }
 }
 
+#[cfg(feature = "atomic")]
 mod atomic;
 mod chain_length;
+#[cfg(feature = "map")]
 mod map;
+#[cfg(feature = "mask")]
 mod mask;
+#[cfg(feature = "select")]
 mod select;
