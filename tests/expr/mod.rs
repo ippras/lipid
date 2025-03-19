@@ -153,10 +153,13 @@ pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     .unwrap()
 });
 
+fn epsilon(received: f64, expected: f64) -> bool {
+    (received - expected).abs() < f64::EPSILON
+}
+
 mod chain_length;
 mod equal;
 mod factors;
-mod fatty_acid;
 #[cfg(feature = "indices")]
 mod indices;
 #[cfg(feature = "map")]

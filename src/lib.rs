@@ -13,18 +13,16 @@ pub mod polars;
 pub mod prelude {
     #[cfg(feature = "polars")]
     pub use crate::polars::{
+        ColumnExt, DataFrameExt, SeriesExt,
         bound::{
             BOUND_DATA_TYPE,
             identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
         },
         chunked_array::{BoundChunked, FattyAcidChunked},
-        column::ColumnExt,
-        data_frame::DataFrameExt,
         expr::{
             ExprExt as _, FattyAcidExpr,
             triacylglycerol::permutation::{Options as PermutationOptions, Permutation as _},
         },
-        series::SeriesExt,
     };
     pub use crate::{
         bound::{Bound, Isomerism, Type, Unsaturated, Unsaturation},

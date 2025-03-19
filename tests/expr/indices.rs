@@ -1,10 +1,6 @@
 use super::*;
 use std::num::NonZeroI8;
 
-fn epsilon(received: f64, expected: f64) -> bool {
-    (received - expected).abs() < f64::EPSILON
-}
-
 #[test]
 fn unsaturated() -> PolarsResult<()> {
     let data_frame = SOURCE

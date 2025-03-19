@@ -1,7 +1,6 @@
-use std::num::NonZeroI8;
-
 use crate::prelude::*;
 use polars::prelude::*;
+use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
     pub fn enoics(self, n: u8) -> Expr {
@@ -51,16 +50,6 @@ impl FattyAcidExpr {
 // col("FA").fa().ufa(col("Value"))
 /// Fatty acid indices
 /// ∑SFA, ∑MUFA, ∑PUFA, ∑n-6 PUFA, ∑n-3 PUFA, and n-6 PUFA/n-3 PUFA. The present review may help researchers to evaluate the
-
-impl FattyAcidExpr {
-    pub fn delta(self, expr: Expr) -> Expr {
-        expr.filter(self.is_saturated()).sum()
-    }
-
-    pub fn omega(self, expr: Expr) -> Expr {
-        expr.filter(self.is_saturated()).sum()
-    }
-}
 
 /// Simple fatty acid indices.
 impl FattyAcidExpr {

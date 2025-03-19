@@ -82,200 +82,42 @@ static SPM: LazyLock<DataFrame> = LazyLock::new(|| {
     .unwrap()
 });
 
-static C14: LazyLock<Series> = LazyLock::new(|| {
-    || -> PolarsResult<_> {
-        Ok(df! {
-           "Carbons" => &[
-                14u8,
-            ],
-            "Unsaturated" => &[
-                df! {
-                    "Index" => Series::from_iter(empty::<u8>()),
-                    "Isomerism" => Series::from_iter(empty::<i8>()),
-                    "Unsaturation" => Series::from_iter(empty::<u8>()),
-                }?.into_struct(PlSmallStr::EMPTY).into_series(),
-            ],
-        }?
-        .into_struct(PlSmallStr::EMPTY)
-        .into_series())
-    }()
-    .unwrap()
-});
-
-static C16: LazyLock<Series> = LazyLock::new(|| {
-    || -> PolarsResult<_> {
-        Ok(df! {
-           "Carbons" => &[
-                16u8,
-            ],
-            "Unsaturated" => &[
-                df! {
-                    "Index" => Series::from_iter(empty::<u8>()),
-                    "Isomerism" => Series::from_iter(empty::<i8>()),
-                    "Unsaturation" => Series::from_iter(empty::<u8>()),
-                }?.into_struct(PlSmallStr::EMPTY).into_series(),
-            ],
-        }?
-        .into_struct(PlSmallStr::EMPTY)
-        .into_series())
-    }()
-    .unwrap()
-});
-
-static C18: LazyLock<Series> = LazyLock::new(|| {
-    || -> PolarsResult<_> {
-        Ok(df! {
-           "Carbons" => &[
-                18u8,
-            ],
-            "Unsaturated" => &[
-                df! {
-                    "Index" => Series::from_iter(empty::<u8>()),
-                    "Isomerism" => Series::from_iter(empty::<i8>()),
-                    "Unsaturation" => Series::from_iter(empty::<u8>()),
-                }?.into_struct(PlSmallStr::EMPTY).into_series(),
-            ],
-        }?
-        .into_struct(PlSmallStr::EMPTY)
-        .into_series())
-    }()
-    .unwrap()
-});
-
-static C16U1: LazyLock<Series> = LazyLock::new(|| {
-    || -> PolarsResult<_> {
-        Ok(df! {
-           "Carbons" => &[
-                16u8,
-            ],
-            "Unsaturated" => &[
-                df! {
-                   "Index" => Series::from_iter([9u8]),
-                    "Isomerism" => Series::from_iter([1i8]),
-                    "Unsaturation" => Series::from_iter([1u8]),
-                }?.into_struct(PlSmallStr::EMPTY).into_series(),
-            ],
-        }?
-        .into_struct(PlSmallStr::EMPTY)
-        .into_series())
-    }()
-    .unwrap()
-});
-
-static C14C16U1C18: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C14.clone(),
-                "StereospecificNumber2" => C16U1.clone(),
-                "StereospecificNumber3" => C18.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-static C14C18C16U1: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C14.clone(),
-                "StereospecificNumber2" => C18.clone(),
-                "StereospecificNumber3" => C16U1.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-static C16U1C14C18: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C16U1.clone(),
-                "StereospecificNumber2" => C14.clone(),
-                "StereospecificNumber3" => C18.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-static C16U1C18C14: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C16U1.clone(),
-                "StereospecificNumber2" => C18.clone(),
-                "StereospecificNumber3" => C14.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-static C18C14C16U1: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C18.clone(),
-                "StereospecificNumber2" => C14.clone(),
-                "StereospecificNumber3" => C16U1.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-static C18C16U1C14: LazyLock<DataFrame> = LazyLock::new(|| {
-    || -> PolarsResult<DataFrame> {
-        Ok(df! {
-           "Triacylglycerol" => df! {
-                "StereospecificNumber1" => C18.clone(),
-                "StereospecificNumber2" => C16U1.clone(),
-                "StereospecificNumber3" => C14.clone(),
-            }?.into_struct(PlSmallStr::EMPTY),
-        }?)
-    }()
-    .unwrap()
-});
-
-//     fn c14c18c16() -> PolarsResult<DataFrame> {
-//         Ok(df! {
-//            "TAG" => df! {
-//                 "SN1" => df! {
-//                     "FA" => df! {
-//                         "Label" => &["M"],
-//                         "Carbons" => &[14u8],
-//                         "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                         "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                     }?
-//                     .into_struct(PlSmallStr::EMPTY),
-//                 }?
-//                 .into_struct(PlSmallStr::EMPTY),
-//                 "SN2" => df! {
-//                     "FA" => df! {
-//                         "Label" => &["S"],
-//                         "Carbons" => &[18u8],
-//                         "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                         "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                     }?
-//                     .into_struct(PlSmallStr::EMPTY),
-//                 }?
-//                 .into_struct(PlSmallStr::EMPTY),
-//                 "SN3" => df! {
-//                     "FA" => df! {
-//                         "Label" => &["P"],
-//                         "Carbons" => &[16u8],
-//                         "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                         "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
-//                     }?
-//                     .into_struct(PlSmallStr::EMPTY),
-//                 }?
-//                 .into_struct(PlSmallStr::EMPTY),
-//             }?.into_struct(PlSmallStr::EMPTY),
-//         }?)
-//     }
+fn c14c18c16() -> PolarsResult<DataFrame> {
+    Ok(df! {
+       "TAG" => df! {
+            "SN1" => df! {
+                "FA" => df! {
+                    "Label" => &["M"],
+                    "Carbons" => &[14u8],
+                    "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                    "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                }?
+                .into_struct(PlSmallStr::EMPTY),
+            }?
+            .into_struct(PlSmallStr::EMPTY),
+            "SN2" => df! {
+                "FA" => df! {
+                    "Label" => &["S"],
+                    "Carbons" => &[18u8],
+                    "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                    "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                }?
+                .into_struct(PlSmallStr::EMPTY),
+            }?
+            .into_struct(PlSmallStr::EMPTY),
+            "SN3" => df! {
+                "FA" => df! {
+                    "Label" => &["P"],
+                    "Carbons" => &[16u8],
+                    "Doubles" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                    "Triples" => &[Series::new_empty(PlSmallStr::EMPTY, &DataType::Int8)],
+                }?
+                .into_struct(PlSmallStr::EMPTY),
+            }?
+            .into_struct(PlSmallStr::EMPTY),
+        }?.into_struct(PlSmallStr::EMPTY),
+    }?)
+}
 
 //     fn c16c14c18() -> PolarsResult<DataFrame> {
 //         Ok(df! {
