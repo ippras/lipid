@@ -3,7 +3,7 @@ use std::num::NonZeroI8;
 
 #[test]
 fn is_saturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_saturated().alias("")])
@@ -92,7 +92,7 @@ fn is_saturated() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_unsaturated(None).alias("")])
@@ -181,7 +181,7 @@ fn is_unsaturated() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated_9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -273,7 +273,7 @@ fn is_unsaturated_9() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated_11() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -365,7 +365,7 @@ fn is_unsaturated_11() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated_minus_3() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -457,7 +457,7 @@ fn is_unsaturated_minus_3() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated_minus_6() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -549,7 +549,7 @@ fn is_unsaturated_minus_6() -> PolarsResult<()> {
 
 #[test]
 fn is_unsaturated_minus_9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -641,7 +641,7 @@ fn is_unsaturated_minus_9() -> PolarsResult<()> {
 
 #[test]
 fn is_monounsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_monounsaturated().alias("")])
@@ -730,7 +730,7 @@ fn is_monounsaturated() -> PolarsResult<()> {
 
 #[test]
 fn is_polyunsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_polyunsaturated().alias("")])
@@ -819,7 +819,7 @@ fn is_polyunsaturated() -> PolarsResult<()> {
 
 #[test]
 fn is_cis() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_cis().alias("")])
@@ -908,7 +908,7 @@ fn is_cis() -> PolarsResult<()> {
 
 #[test]
 fn is_trans() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().is_trans().alias("")])

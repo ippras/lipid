@@ -1,10 +1,10 @@
-use super::SOURCE;
+use super::FATTY_ACIDS;
 use lipid::prelude::*;
 use polars::prelude::*;
 
 #[test]
 fn bounds() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().bounds().alias("")])
@@ -93,7 +93,7 @@ fn bounds() -> PolarsResult<()> {
 
 #[test]
 fn carbons() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().carbons().alias("")])
@@ -182,7 +182,7 @@ fn carbons() -> PolarsResult<()> {
 
 #[test]
 fn hydrogens() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().hydrogens().alias("")])
@@ -271,7 +271,7 @@ fn hydrogens() -> PolarsResult<()> {
 
 #[test]
 fn unsaturation() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().unsaturation().alias("")])

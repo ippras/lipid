@@ -11,17 +11,17 @@ impl<T> Triacylglycerol<T> {
     }
 
     /// The first stereospecific number
-    pub fn sn1(&self) -> Option<&T> {
+    pub fn stereospecific_number1(&self) -> Option<&T> {
         self.0[0].as_ref()
     }
 
     /// The second stereospecific number
-    pub fn sn2(&self) -> Option<&T> {
+    pub fn stereospecific_number2(&self) -> Option<&T> {
         self.0[1].as_ref()
     }
 
     /// The third stereospecific number
-    pub fn sn3(&self) -> Option<&T> {
+    pub fn stereospecific_number3(&self) -> Option<&T> {
         self.0[2].as_ref()
     }
 }

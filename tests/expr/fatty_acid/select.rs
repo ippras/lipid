@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn saturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -95,7 +95,7 @@ fn saturated() -> PolarsResult<()> {
 
 #[test]
 fn unsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -187,7 +187,7 @@ fn unsaturated() -> PolarsResult<()> {
 
 #[test]
 fn monounsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -279,7 +279,7 @@ fn monounsaturated() -> PolarsResult<()> {
 
 #[test]
 fn polyunsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")

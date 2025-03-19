@@ -1,10 +1,10 @@
-use super::SOURCE;
+use super::FATTY_ACIDS;
 use lipid::prelude::*;
 use polars::prelude::*;
 
 #[test]
 fn equivalent_carbon_number() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -96,7 +96,7 @@ fn equivalent_carbon_number() -> PolarsResult<()> {
 
 #[test]
 fn equivalent_chain_length() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -188,7 +188,7 @@ fn equivalent_chain_length() -> PolarsResult<()> {
 
 #[test]
 fn fractional_chain_length() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([

@@ -1,91 +1,60 @@
 use super::TriacylglycerolExpr;
 use polars::prelude::*;
+// use polars::lazy::dsl::{max_horizontal, min_horizontal},
 
 /// Permutation
 pub trait Permutation {
     /// Non-stereospecific permutation
-    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr, options: Options) -> PolarsResult<Expr>;
+    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> PolarsResult<Expr>;
 
     /// Positional permutation
-    fn positional(self, f: impl Fn(Expr) -> Expr, options: Options) -> Expr;
+    fn positional(self, f: impl Fn(Expr) -> Expr) -> Expr;
 }
 
 impl Permutation for TriacylglycerolExpr {
-    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr, options: Options) -> PolarsResult<Expr> {
-        Ok(if options.map {
-            concat_list([f(self.clone().stereospecific_number1()), f(self.clone().stereospecific_number2()), f(self.stereospecific_number3())])?
-                .list()
-                .sort(Default::default())
-                .list()
-                .to_struct(ListToStructArgs::FixedWidth(
-                    [
-                        "StereospecificNumber1".into(),
-                        "StereospecificNumber2".into(),
-                        "StereospecificNumber3".into(),
-                    ]
-                    .into(),
-                ))
-        } else {
-            concat_list([self.clone().stereospecific_number1(), self.clone().stereospecific_number2(), self.stereospecific_number3()])?
-                .list()
-                .eval(col("").sort_by([f(col(""))], Default::default()), true)
-                .list()
-                .to_struct(ListToStructArgs::FixedWidth(
-                    [
-                        "StereospecificNumber1".into(),
-                        "StereospecificNumber2".into(),
-                        "StereospecificNumber3".into(),
-                    ]
-                    .into(),
-                ))
-        })
+    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> PolarsResult<Expr> {
+        let sn1 = self.clone().stereospecific_number1();
+        let sn2 = self.clone().stereospecific_number2();
+        let sn3 = self.clone().stereospecific_number3();
+        // Sort sn1, sn2
+        let predicate = f(sn1.clone()).gt(f(sn2.clone()));
+        let (sn1, sn2) = (
+            ternary_expr(predicate.clone(), sn2.clone(), sn1.clone()),
+            ternary_expr(predicate, sn1.clone(), sn2.clone()),
+        );
+        // Sort sn1, sn3
+        let predicate = f(sn1.clone()).gt(f(sn3.clone()));
+        let (sn1, sn3) = (
+            ternary_expr(predicate.clone(), sn3.clone(), sn1.clone()),
+            ternary_expr(predicate, sn1.clone(), sn3.clone()),
+        );
+        // Sort sn2, sn3
+        let predicate = f(sn2.clone()).gt(f(sn3.clone()));
+        let (sn2, sn3) = (
+            ternary_expr(predicate.clone(), sn3.clone(), sn2.clone()),
+            ternary_expr(predicate, sn2.clone(), sn3.clone()),
+        );
+        Ok(as_struct(vec![
+            sn1.alias("StereospecificNumber1"),
+            sn2.alias("StereospecificNumber2"),
+            sn3.alias("StereospecificNumber3"),
+        ]))
     }
 
-    fn positional(self, f: impl Fn(Expr) -> Expr, options: Options) -> Expr {
-        if options.map {
-            let sn1 = f(self.clone().stereospecific_number1());
-            let sn2 = f(self.clone().stereospecific_number2());
-            let sn3 = f(self.clone().stereospecific_number3());
-            let predicate = sn1.clone().lt_eq(sn3.clone());
-            let (sn1, sn3) = (
-                ternary_expr(predicate.clone(), sn1.clone(), sn3.clone()),
-                ternary_expr(predicate, sn3, sn1),
-            );
-            as_struct(vec![
-                sn1.alias("StereospecificNumber1"),
-                sn2.alias("StereospecificNumber2"),
-                sn3.alias("StereospecificNumber3"),
-            ])
-        } else {
-            let sn1 = self.clone().stereospecific_number1();
-            let sn2 = self.clone().stereospecific_number2();
-            let sn3 = self.clone().stereospecific_number3();
-            let predicate = f(self.clone().stereospecific_number1()).lt_eq(f(self.clone().stereospecific_number3()));
-            let (sn1, sn3) = (
-                ternary_expr(predicate.clone(), sn1.clone(), sn3.clone()),
-                ternary_expr(predicate, sn3, sn1),
-            );
-            as_struct(vec![
-                sn1.alias("StereospecificNumber1"),
-                sn2.alias("StereospecificNumber2"),
-                sn3.alias("StereospecificNumber3"),
-            ])
-        }
-    }
-}
-
-/// Permutation options
-#[derive(Clone, Copy, Debug, Default)]
-pub struct Options {
-    pub map: bool,
-}
-
-impl Options {
-    pub const fn new() -> Self {
-        Self { map: false }
-    }
-
-    pub fn map(self, map: bool) -> Self {
-        Self { map }
+    fn positional(self, f: impl Fn(Expr) -> Expr) -> Expr {
+        let sn1 = self.clone().stereospecific_number1();
+        let sn2 = self.clone().stereospecific_number2();
+        let sn3 = self.clone().stereospecific_number3();
+        // Sort sn1, sn3
+        let predicate = f(sn1.clone()).lt_eq(f(sn3.clone()));
+        let (sn1, sn3) = (
+            ternary_expr(predicate.clone(), sn1.clone(), sn3.clone()),
+            ternary_expr(predicate, sn3, sn1),
+        );
+        as_struct(vec![
+            sn1.alias("StereospecificNumber1"),
+            sn2.alias("StereospecificNumber2"),
+            sn3.alias("StereospecificNumber3"),
+        ])
     }
 }

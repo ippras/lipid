@@ -3,7 +3,7 @@ use std::num::NonZeroI8;
 
 #[test]
 fn unsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -60,7 +60,7 @@ fn unsaturated() -> PolarsResult<()> {
 
 #[test]
 pub fn unsaturated_minus_3() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("Index")
@@ -88,7 +88,7 @@ pub fn unsaturated_minus_3() -> PolarsResult<()> {
 
 #[test]
 pub fn unsaturated_minus_6() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("Index")
@@ -116,7 +116,7 @@ pub fn unsaturated_minus_6() -> PolarsResult<()> {
 
 #[test]
 fn monounsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -139,7 +139,7 @@ fn monounsaturated() -> PolarsResult<()> {
 
 #[test]
 fn polyunsaturated() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -186,7 +186,7 @@ fn polyunsaturated() -> PolarsResult<()> {
 
 #[test]
 pub fn polyunsaturated_minus_3() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("Index")
@@ -216,7 +216,7 @@ pub fn polyunsaturated_minus_3() -> PolarsResult<()> {
 
 #[test]
 pub fn polyunsaturated_minus_6() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("Index")
@@ -244,7 +244,7 @@ pub fn polyunsaturated_minus_6() -> PolarsResult<()> {
 
 #[test]
 pub fn index_of_atherogenicity() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -266,7 +266,7 @@ pub fn index_of_atherogenicity() -> PolarsResult<()> {
 
 #[test]
 pub fn index_of_thrombogenicity() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -289,7 +289,7 @@ pub fn index_of_thrombogenicity() -> PolarsResult<()> {
 
 #[test]
 pub fn hypercholesterolemic_ratio() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -311,7 +311,7 @@ pub fn hypercholesterolemic_ratio() -> PolarsResult<()> {
 
 #[test]
 pub fn health_promoting_index() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -333,7 +333,7 @@ pub fn health_promoting_index() -> PolarsResult<()> {
 
 #[test]
 fn unsaturation_index() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -389,7 +389,7 @@ fn unsaturation_index() -> PolarsResult<()> {
 
 #[test]
 fn eicosapentaenoic_and_docosahexaenoic_sum() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -411,7 +411,7 @@ fn eicosapentaenoic_and_docosahexaenoic_sum() -> PolarsResult<()> {
 
 #[test]
 fn fish_lipid_quality() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -433,7 +433,7 @@ fn fish_lipid_quality() -> PolarsResult<()> {
 
 #[test]
 fn linoleic_to_alpha_linolenic() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -455,7 +455,7 @@ fn linoleic_to_alpha_linolenic() -> PolarsResult<()> {
 
 #[test]
 fn trans() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")

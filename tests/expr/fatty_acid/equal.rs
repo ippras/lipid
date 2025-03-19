@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn c4u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C4U0).alias("")])
@@ -91,7 +91,7 @@ fn c4u0() -> PolarsResult<()> {
 
 #[test]
 fn c5u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C5U0).alias("")])
@@ -180,7 +180,7 @@ fn c5u0() -> PolarsResult<()> {
 
 #[test]
 fn c6u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C6U0).alias("")])
@@ -269,7 +269,7 @@ fn c6u0() -> PolarsResult<()> {
 
 #[test]
 fn c7u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C7U0).alias("")])
@@ -358,7 +358,7 @@ fn c7u0() -> PolarsResult<()> {
 
 #[test]
 fn c8u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C8U0).alias("")])
@@ -447,7 +447,7 @@ fn c8u0() -> PolarsResult<()> {
 
 #[test]
 fn c9u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C9U0).alias("")])
@@ -536,7 +536,7 @@ fn c9u0() -> PolarsResult<()> {
 
 #[test]
 fn c10u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C10U0).alias("")])
@@ -625,7 +625,7 @@ fn c10u0() -> PolarsResult<()> {
 
 #[test]
 fn c11u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C11U0).alias("")])
@@ -714,7 +714,7 @@ fn c11u0() -> PolarsResult<()> {
 
 #[test]
 fn c12u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C12U0).alias("")])
@@ -803,7 +803,7 @@ fn c12u0() -> PolarsResult<()> {
 
 #[test]
 fn c13u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C13U0).alias("")])
@@ -892,7 +892,7 @@ fn c13u0() -> PolarsResult<()> {
 
 #[test]
 fn c14u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C14U0).alias("")])
@@ -981,7 +981,7 @@ fn c14u0() -> PolarsResult<()> {
 
 #[test]
 fn c15u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C15U0).alias("")])
@@ -1070,7 +1070,7 @@ fn c15u0() -> PolarsResult<()> {
 
 #[test]
 fn c16u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U0).alias("")])
@@ -1159,7 +1159,7 @@ fn c16u0() -> PolarsResult<()> {
 
 #[test]
 fn c16u1dc9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U1DC9).alias("")])
@@ -1248,7 +1248,7 @@ fn c16u1dc9() -> PolarsResult<()> {
 
 #[test]
 fn c16u1dt9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C16U1DT9).alias("")])
@@ -1337,7 +1337,7 @@ fn c16u1dt9() -> PolarsResult<()> {
 
 #[test]
 fn c17u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C17U0).alias("")])
@@ -1426,7 +1426,7 @@ fn c17u0() -> PolarsResult<()> {
 
 #[test]
 fn c18u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U0).alias("")])
@@ -1515,7 +1515,7 @@ fn c18u0() -> PolarsResult<()> {
 
 #[test]
 fn c18u1dc9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U1DC9).alias("")])
@@ -1604,7 +1604,7 @@ fn c18u1dc9() -> PolarsResult<()> {
 
 #[test]
 fn c18u1dt9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U1DT9).alias("")])
@@ -1693,7 +1693,7 @@ fn c18u1dt9() -> PolarsResult<()> {
 
 #[test]
 fn c18u2dc9dc12() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C18U2DC9DC12).alias("")])
@@ -1782,7 +1782,7 @@ fn c18u2dc9dc12() -> PolarsResult<()> {
 
 #[test]
 fn c18u3dc6dc9dc12() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -1874,7 +1874,7 @@ fn c18u3dc6dc9dc12() -> PolarsResult<()> {
 
 #[test]
 fn c18u3dc8dt10dc12() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -1965,7 +1965,7 @@ fn c18u3dc8dt10dc12() -> PolarsResult<()> {
 }
 #[test]
 fn c18u3dc9dc12dc15() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2057,7 +2057,7 @@ fn c18u3dc9dc12dc15() -> PolarsResult<()> {
 
 #[test]
 fn c18u3dc9dt11dt13() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2149,7 +2149,7 @@ fn c18u3dc9dt11dt13() -> PolarsResult<()> {
 
 #[test]
 fn c18u3dt9dt11dc13() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2241,7 +2241,7 @@ fn c18u3dt9dt11dc13() -> PolarsResult<()> {
 
 #[test]
 fn c18u3dt9dt11dt13() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2333,7 +2333,7 @@ fn c18u3dt9dt11dt13() -> PolarsResult<()> {
 
 #[test]
 fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2425,7 +2425,7 @@ fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
 
 #[test]
 fn c19u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C19U0).alias("")])
@@ -2514,7 +2514,7 @@ fn c19u0() -> PolarsResult<()> {
 
 #[test]
 fn c20u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U0).alias("")])
@@ -2603,7 +2603,7 @@ fn c20u0() -> PolarsResult<()> {
 
 #[test]
 fn c20u1dc9() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U1DC9).alias("")])
@@ -2692,7 +2692,7 @@ fn c20u1dc9() -> PolarsResult<()> {
 
 #[test]
 fn c20u1dc11() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U1DC11).alias("")])
@@ -2781,7 +2781,7 @@ fn c20u1dc11() -> PolarsResult<()> {
 
 #[test]
 fn c20u2dc11dc14() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C20U2DC11DC14).alias("")])
@@ -2870,7 +2870,7 @@ fn c20u2dc11dc14() -> PolarsResult<()> {
 
 #[test]
 fn c20u3dc5dc8dc11() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -2962,7 +2962,7 @@ fn c20u3dc5dc8dc11() -> PolarsResult<()> {
 
 #[test]
 fn c20u3dc8dc11dc14() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3054,7 +3054,7 @@ fn c20u3dc8dc11dc14() -> PolarsResult<()> {
 
 #[test]
 fn c20u3dc11dc14dc17() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3146,7 +3146,7 @@ fn c20u3dc11dc14dc17() -> PolarsResult<()> {
 
 #[test]
 fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3238,7 +3238,7 @@ fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
 
 #[test]
 fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3330,7 +3330,7 @@ fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
 
 #[test]
 fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3422,7 +3422,7 @@ fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
 
 #[test]
 fn c21u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C21U0).alias("")])
@@ -3511,7 +3511,7 @@ fn c21u0() -> PolarsResult<()> {
 
 #[test]
 fn c22u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U0).alias("")])
@@ -3600,7 +3600,7 @@ fn c22u0() -> PolarsResult<()> {
 
 #[test]
 fn c22u1dc13() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U1DC13).alias("")])
@@ -3689,7 +3689,7 @@ fn c22u1dc13() -> PolarsResult<()> {
 
 #[test]
 fn c22u2dc13dc16() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C22U2DC13DC16).alias("")])
@@ -3778,7 +3778,7 @@ fn c22u2dc13dc16() -> PolarsResult<()> {
 
 #[test]
 fn c22u3dc5dc13dc16() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3870,7 +3870,7 @@ fn c22u3dc5dc13dc16() -> PolarsResult<()> {
 
 #[test]
 fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -3962,7 +3962,7 @@ fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
 
 #[test]
 fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4054,7 +4054,7 @@ fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 
 #[test]
 fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4146,7 +4146,7 @@ fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 
 #[test]
 fn c23u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C23U0).alias("")])
@@ -4235,7 +4235,7 @@ fn c23u0() -> PolarsResult<()> {
 
 #[test]
 fn c24u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U0).alias("")])
@@ -4324,7 +4324,7 @@ fn c24u0() -> PolarsResult<()> {
 
 #[test]
 fn c24u1dc15() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U1DC15).alias("")])
@@ -4413,7 +4413,7 @@ fn c24u1dc15() -> PolarsResult<()> {
 
 #[test]
 fn c24u2dc15dc18() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C24U2DC15DC18).alias("")])
@@ -4502,7 +4502,7 @@ fn c24u2dc15dc18() -> PolarsResult<()> {
 
 #[test]
 fn c24u3dc12dc15dc18() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4594,7 +4594,7 @@ fn c24u3dc12dc15dc18() -> PolarsResult<()> {
 
 #[test]
 fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4686,7 +4686,7 @@ fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
 
 #[test]
 fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4778,7 +4778,7 @@ fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
 
 #[test]
 fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -4870,7 +4870,7 @@ fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
 
 #[test]
 fn c25u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C25U0).alias("")])
@@ -4959,7 +4959,7 @@ fn c25u0() -> PolarsResult<()> {
 
 #[test]
 fn c26u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C26U0).alias("")])
@@ -5048,7 +5048,7 @@ fn c26u0() -> PolarsResult<()> {
 
 #[test]
 fn c26u1dc17() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C26U1DC17).alias("")])
@@ -5137,7 +5137,7 @@ fn c26u1dc17() -> PolarsResult<()> {
 
 #[test]
 fn c27u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C27U0).alias("")])
@@ -5226,7 +5226,7 @@ fn c27u0() -> PolarsResult<()> {
 
 #[test]
 fn c28u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C28U0).alias("")])
@@ -5315,7 +5315,7 @@ fn c28u0() -> PolarsResult<()> {
 
 #[test]
 fn c29u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C29U0).alias("")])
@@ -5404,7 +5404,7 @@ fn c29u0() -> PolarsResult<()> {
 
 #[test]
 fn c30u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C30U0).alias("")])
@@ -5493,7 +5493,7 @@ fn c30u0() -> PolarsResult<()> {
 
 #[test]
 fn c30u1dc21() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C30U1DC21).alias("")])
@@ -5582,7 +5582,7 @@ fn c30u1dc21() -> PolarsResult<()> {
 
 #[test]
 fn c31u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C31U0).alias("")])
@@ -5671,7 +5671,7 @@ fn c31u0() -> PolarsResult<()> {
 
 #[test]
 fn c32u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C32U0).alias("")])
@@ -5760,7 +5760,7 @@ fn c32u0() -> PolarsResult<()> {
 
 #[test]
 fn c33u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C33U0).alias("")])
@@ -5849,7 +5849,7 @@ fn c33u0() -> PolarsResult<()> {
 
 #[test]
 fn c34u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C34U0).alias("")])
@@ -5938,7 +5938,7 @@ fn c34u0() -> PolarsResult<()> {
 
 #[test]
 fn c35u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C35U0).alias("")])
@@ -6027,7 +6027,7 @@ fn c35u0() -> PolarsResult<()> {
 
 #[test]
 fn c36u0() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().equal(C36U0).alias("")])

@@ -9,7 +9,7 @@ const H: f64 = H::One.relative_atomic_mass().value;
 impl TriacylglycerolExpr {
     /// C3H5 + \[RCOO\]-_{SN1} + \[RCOO\]-_{SN2} + \[RCOO\]-_{SN3} + ADDUCT
     pub fn mass(self, adduct: Option<Expr>) -> Expr {
-        lit(3) * lit(C)
+        (lit(3) * lit(C)
             + lit(5) * lit(H)
             + self
                 .clone()
@@ -24,6 +24,7 @@ impl TriacylglycerolExpr {
                 .rcoo()
                 .mass(None)
             + self.stereospecific_number3().fatty_acid().rcoo().mass(None)
-            + adduct.unwrap_or(lit(0))
+            + adduct.unwrap_or(lit(0)))
+        .alias("Mass")
     }
 }

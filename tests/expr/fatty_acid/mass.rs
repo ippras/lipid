@@ -2,7 +2,7 @@ use super::*;
 
 #[test]
 fn fatty_acid() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().mass(None).alias("Mass")])
@@ -92,7 +92,7 @@ fn fatty_acid() -> PolarsResult<()> {
 
 #[test]
 fn rco() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid").fatty_acid().rco().mass(None).alias("Mass")])
@@ -182,7 +182,7 @@ fn rco() -> PolarsResult<()> {
 
 #[test]
 fn rcoo() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -276,7 +276,7 @@ fn rcoo() -> PolarsResult<()> {
 
 #[test]
 fn rcooh() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
@@ -370,7 +370,7 @@ fn rcooh() -> PolarsResult<()> {
 
 #[test]
 fn rcooch3() -> PolarsResult<()> {
-    let data_frame = SOURCE
+    let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
         .select([col("FattyAcid")
