@@ -10,7 +10,6 @@ fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 polars = { version = "0.46.0", default-features = false, features = [
     "abs",
     "cum_agg",
-    "dtype-array",
     "dtype-categorical",
     "dtype-i8",
     "dtype-struct",
@@ -22,7 +21,6 @@ polars = { version = "0.46.0", default-features = false, features = [
     "list_arithmetic",
     "list_eval",
     "list_sets",
-    "list_to_struct",
     "log",
     "round_series",
     "serde-lazy",

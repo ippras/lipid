@@ -1,270 +1,33 @@
-use lipid::prelude::*;
+use super::*;
 use polars::prelude::*;
 
-fn c14u0c16u0c18u0() -> PolarsResult<DataFrame> {
+fn tag<const SN1: usize, const SN2: usize, const SN3: usize>(
+    sn1: (&str, FattyAcid<SN1>),
+    sn2: (&str, FattyAcid<SN2>),
+    sn3: (&str, FattyAcid<SN3>),
+) -> PolarsResult<DataFrame> {
     Ok(df! {
        "Triacylglycerol" => df! {
             "StereospecificNumber1" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
+                "Label" => &[sn1.0],
+                "FattyAcid" => &[Series::from_iter(sn1.1).cast(&BOUND_DATA_TYPE)?],
             }?
             .into_struct(PlSmallStr::EMPTY),
             "StereospecificNumber2" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
+                "Label" => &[sn2.0],
+                "FattyAcid" => &[Series::from_iter(sn2.1).cast(&BOUND_DATA_TYPE)?],
             }?
             .into_struct(PlSmallStr::EMPTY),
             "StereospecificNumber3" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
+                "Label" => &[sn3.0],
+                "FattyAcid" => &[Series::from_iter(sn3.1).cast(&BOUND_DATA_TYPE)?],
             }?
             .into_struct(PlSmallStr::EMPTY),
         }?.into_struct(PlSmallStr::EMPTY),
     }?)
 }
 
-fn c14u0c18u0c16u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c16u0c14u0c18u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c16u0c18u0c14u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u0c14u0c16u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-           "StereospecificNumber1" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-           }?
-           .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u0c16u0c14u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["P"],
-                "FattyAcid" => &[Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["M"],
-                "FattyAcid" => &[Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u0c18u1dc9c18u2dc9dc12() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u0c18u2dc9dc12c18u1dc9() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u1dc9c18u0c18u2dc9dc12() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u1dc9c18u2dc9dc12c18u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u2dc9dc12c18u0c18u1dc9() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
-fn c18u2dc9dc12c18u1dc9c18u0() -> PolarsResult<DataFrame> {
-    Ok(df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &["L"],
-                "FattyAcid" => &[Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &["O"],
-                "FattyAcid" => &[Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &["S"],
-                "FattyAcid" => &[Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }?)
-}
-
+mod chain_length;
 #[cfg(feature = "mass")]
 mod mass;
 mod permutation;

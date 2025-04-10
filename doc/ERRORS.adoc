@@ -1,0 +1,8 @@
+== byrdwell.com
+
+. link:https://byrdwell.com/Triacylglycerols/FattyAcids.htm[Fatty Acids and Related Masses]
+* `71.0491` -> `71.0497`
+* `87.0452` -> `87.0446`
+
+. link:https://byrdwell.com/Triacylglycerols/TAGbyName2.htm[Most Common ABC Triacylglycerols by Name (C12 to C20)]
+* `PoLA`: DUPLICATED

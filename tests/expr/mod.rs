@@ -1,2 +1,37 @@
+use lipid::prelude::*;
+
+const BU: (&str, FattyAcid<3>) = ("Bu", C4U0);
+const V: (&str, FattyAcid<4>) = ("V", C5U0);
+const CO: (&str, FattyAcid<5>) = ("Co", C6U0);
+const EN: (&str, FattyAcid<6>) = ("En", C7U0);
+const CY: (&str, FattyAcid<7>) = ("Cy", C8U0);
+const CA: (&str, FattyAcid<9>) = ("Ca", C10U0);
+const LA: (&str, FattyAcid<11>) = ("La", C12U0);
+const M: (&str, FattyAcid<13>) = ("M", C14U0);
+const P: (&str, FattyAcid<15>) = ("P", C16U0);
+const PO: (&str, FattyAcid<15>) = ("Po", C16U1DC9);
+const PE: (&str, FattyAcid<15>) = ("Pe", C16U1DT9);
+const S: (&str, FattyAcid<17>) = ("S", C18U0);
+const O: (&str, FattyAcid<17>) = ("O", C18U1DC9);
+const EL: (&str, FattyAcid<17>) = ("El", C18U1DT9);
+const L: (&str, FattyAcid<17>) = ("L", C18U2DC9DC12);
+const LN: (&str, FattyAcid<17>) = ("Ln", C18U3DC6DC9DC12);
+const GLN: (&str, FattyAcid<17>) = ("Gln", C18U3DC6DC9DC12);
+const EO: (&str, FattyAcid<17>) = ("Eo", C18U3DC9DT11DT13);
+const JA: (&str, FattyAcid<17>) = ("Ja", C18U3DT9DT11DT13);
+const CT: (&str, FattyAcid<17>) = ("Ct", C18U3DT9DT11DC13);
+const ST: (&str, FattyAcid<17>) = ("St", C18U4DC6DC9DC12DC15);
+const A: (&str, FattyAcid<19>) = ("A", C20U0);
+const G: (&str, FattyAcid<19>) = ("G", C20U1DC9);
+const GO: (&str, FattyAcid<19>) = ("Go", C20U1DC11);
+const AO: (&str, FattyAcid<19>) = ("Ao", C20U4DC5DC8DC11DC14);
+const EP: (&str, FattyAcid<19>) = ("Ep", C20U5DC5DC8DC11DC14DC17);
+const B: (&str, FattyAcid<21>) = ("B", C22U0);
+const E: (&str, FattyAcid<21>) = ("E", C22U1DC13);
+const DP: (&str, FattyAcid<21>) = ("Dp", C22U5DC7DC10DC13DC16DC19);
+const DH: (&str, FattyAcid<21>) = ("Dh", C22U6DC4DC7DC10DC13DC16DC19);
+const LG: (&str, FattyAcid<23>) = ("Lg", C24U0);
+const N: (&str, FattyAcid<23>) = ("N", C24U1DC15);
+
 mod fatty_acid;
 mod triacylglycerol;

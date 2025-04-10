@@ -106,7 +106,7 @@ fn rco() -> PolarsResult<()> {
     assert_eq!(
         mass,
         [
-            Some(71.0497),  // C4U0 (byrdwell.com error: 71.0491)
+            Some(71.0497),  // C4U0
             Some(85.0653),  // C5U0
             Some(99.0810),  // C6U0
             Some(113.0966), // C7U0
@@ -200,7 +200,7 @@ fn rcoo() -> PolarsResult<()> {
     assert_eq!(
         mass,
         [
-            Some(87.0446),  // C4U0 (byrdwell.com error: 87.0452)
+            Some(87.0446),  // C4U0
             Some(101.0603), // C5U0
             Some(115.0759), // C6U0
             Some(129.0916), // C7U0

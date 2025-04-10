@@ -4,7 +4,8 @@ use polars::prelude::*;
 
 impl TriacylglycerolExpr {
     pub fn equivalent_carbon_number(self) -> Expr {
-        self.clone()
+        (self
+            .clone()
             .stereospecific_number1()
             .fatty_acid()
             .equivalent_carbon_number()
@@ -16,6 +17,7 @@ impl TriacylglycerolExpr {
             + self
                 .stereospecific_number3()
                 .fatty_acid()
-                .equivalent_carbon_number()
+                .equivalent_carbon_number())
+        .alias("EquivalentCarbonNumber")
     }
 }
