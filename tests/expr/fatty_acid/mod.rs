@@ -10,6 +10,14 @@ pub static FATTY_ACIDS: LazyLock<DataFrame> = LazyLock::new(|| {
         .unwrap()
 });
 
+fn fa<const N: usize>(fatty_acid: FattyAcid<N>) -> PolarsResult<DataFrame> {
+    df! {
+        "FattyAcid" => [
+            Some(Series::from_iter(fatty_acid).cast(&BOUND_DATA_TYPE)?),
+        ],
+    }
+}
+
 fn fatty_acids() -> PolarsResult<DataFrame> {
     df! {
         "FattyAcid" => [

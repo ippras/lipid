@@ -17,10 +17,11 @@ impl FattyAcidExpr {
     ///
     /// An expression representing the calculated mass.
     pub fn mass(self, adduct: Option<Expr>) -> Expr {
-        self.clone().carbons() * lit(C)
+        (self.clone().carbons() * lit(C)
             + self.hydrogens() * lit(H)
             + lit(2) * lit(O)
-            + adduct.unwrap_or(lit(0))
+            + adduct.unwrap_or(lit(0)))
+        .alias("Mass")
     }
 }
 

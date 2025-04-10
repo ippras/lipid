@@ -6,7 +6,7 @@ fn tag<const SN1: usize, const SN2: usize, const SN3: usize>(
     sn2: (&str, FattyAcid<SN2>),
     sn3: (&str, FattyAcid<SN3>),
 ) -> PolarsResult<DataFrame> {
-    Ok(df! {
+    df! {
        "Triacylglycerol" => df! {
             "StereospecificNumber1" => df! {
                 "Label" => &[sn1.0],
@@ -24,7 +24,7 @@ fn tag<const SN1: usize, const SN2: usize, const SN3: usize>(
             }?
             .into_struct(PlSmallStr::EMPTY),
         }?.into_struct(PlSmallStr::EMPTY),
-    }?)
+    }
 }
 
 mod chain_length;
