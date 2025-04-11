@@ -1,0 +1,34 @@
+= Test coverage
+
+.Generate .profraw files (source-based coverage)
+[source,rust]
+rustup component add llvm-tools-preview
+export RUSTFLAGS="-Cinstrument-coverage"
+cargo build
+export LLVM_PROFILE_FILE="./target/coverage/lipid-%p-%m.profraw"
+cargo test
+
+.Generate .gcda files
+[source,rust]
+export CARGO_INCREMENTAL=0
+export RUSTFLAGS="-Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
+export RUSTDOCFLAGS="-Cpanic=abort"
+cargo build
+cargo test
+
+.Generate a coverage report
+[source,rust]
+grcov ./target/coverage/*.profraw -s . --binary-path ./target/debug/ -t html --branch --ignore-not-existing -o ./target/debug/coverage/
+
+grcov . -s . --binary-path ./target/debug/ -t html --branch --ignore-not-existing -o ./target/debug/coverage/
+
+
+== Links
+
+* link:https://github.com/mozilla/grcov?tab=readme-ov-file#example-how-to-generate-source-based-coverage-for-a-rust-project[grcov]
+
+grcov target/coverage/*.profraw --binary-path target/debug/deps/ -t html -o target/coverage/html
+
+grcov target/coverage/*.profraw -s /path/to/rust-nightly/compiler -b /path/to/rustinstall --llvm-path /path/to/rust-nightly/build/x86_64-unknown-linux-gnu/ci-llvm/bin -t lcov -o cov.info
+
+grcov target/coverage/*.profraw --binary-path ./target/debug/deps/ -s . -t html --branch --ignore-not-existing --ignore '../*' --ignore "/*" -o target/coverage/html
