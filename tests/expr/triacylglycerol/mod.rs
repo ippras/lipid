@@ -1,5 +1,4 @@
 use super::*;
-use polars::prelude::*;
 
 fn tag<const SN1: usize, const SN2: usize, const SN3: usize>(
     sn1: (&str, FattyAcid<SN1>),

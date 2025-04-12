@@ -2,7 +2,7 @@ use crate::polars::ExprExt as _;
 use polars::prelude::*;
 
 /// Triacylglycerol [`Expr`]
-#[derive(Clone, Debug, Hash)]
+#[derive(Clone, Debug, Hash, PartialEq)]
 pub struct TriacylglycerolExpr(pub Expr);
 
 impl TriacylglycerolExpr {

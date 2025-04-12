@@ -19,7 +19,10 @@ pub mod prelude {
             identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
         },
         chunked_array::{BoundChunked, FattyAcidChunked},
-        expr::{ExprExt as _, FattyAcidExpr, triacylglycerol::permutation::Permutation as _},
+        expr::{
+            ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
+            triacylglycerol::permutation::Permutation as _,
+        },
     };
     pub use crate::{
         bound::{Bound, Isomerism, Type, Unsaturated, Unsaturation},

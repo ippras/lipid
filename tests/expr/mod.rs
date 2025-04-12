@@ -1,4 +1,5 @@
 use lipid::prelude::*;
+use polars::prelude::*;
 
 const BU: (&str, FattyAcid<3>) = ("Bu", C4U0);
 const V: (&str, FattyAcid<4>) = ("V", C5U0);

@@ -2,7 +2,7 @@ use crate::prelude::*;
 use polars::prelude::*;
 
 /// Fatty acid [`Expr`]
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
