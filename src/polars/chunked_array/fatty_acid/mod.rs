@@ -6,7 +6,7 @@ use polars::prelude::*;
 /// This struct represents a chunked array of fatty acids, which is a wrapper
 /// around a [`ListChunked`]. It provides methods to interact with and
 /// manipulate the fatty acid data.
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 #[repr(transparent)]
 pub struct FattyAcidChunked(ListChunked);
 

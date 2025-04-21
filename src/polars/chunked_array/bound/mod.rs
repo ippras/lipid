@@ -2,7 +2,7 @@ use crate::{display::FattyAcid, prelude::*};
 use polars::prelude::*;
 
 /// Bound chunked array
-#[derive(Clone)]
+#[derive(Clone, Default)]
 #[repr(transparent)]
 pub struct BoundChunked(CategoricalChunked);
 
