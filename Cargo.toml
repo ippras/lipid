@@ -32,7 +32,7 @@ rayon = "1.10.0"
 serde = { version = "1.0.218", features = ["derive", "std"] }
 
 [dev-dependencies]
-anyhow = "1.0.96"
+anyhow = "1.0.98"
 criterion = { version = "0.5.1", features = ["html_reports"] }
 lipid = { path = ".", features = ["polars"] }
 polars = { version = "0.46.0", default-features = false, features = [
