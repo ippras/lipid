@@ -1,7 +1,7 @@
 use crate::prelude::*;
 use polars::prelude::*;
 
-impl FattyAcidChunked {
+impl FattyAcidListChunked {
     #[inline]
     pub fn filter(&self, mask: &BooleanChunked) -> PolarsResult<Self> {
         Ok(Self(self.0.filter(mask)?))

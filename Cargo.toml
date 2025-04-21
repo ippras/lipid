@@ -1,12 +1,11 @@
 [package]
 name = "lipid"
 version = "0.2.0"
-authors = ["Kazakov Giorgi Vladimirovich", "Sidorov Roman Alexandrovich"]
+authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
-fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 polars = { version = "0.46.0", default-features = false, features = [
     "abs",
     "cum_agg",
@@ -27,12 +26,14 @@ polars = { version = "0.46.0", default-features = false, features = [
 ], optional = true }
 polars-arrow = "0.46.0"
 polars-plan = "0.46.0"
-polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
+polars_ext = { git = "https://github.com/kgv/polars_ext", rev = "c86e4e53e63d79f6619e95242324522a252b9643", optional = true }
 rayon = "1.10.0"
 serde = { version = "1.0.218", features = ["derive", "std"] }
 
+# fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
+
 [dev-dependencies]
-anyhow = "1.0.96"
+anyhow = "1.0.98"
 criterion = { version = "0.5.1", features = ["html_reports"] }
 lipid = { path = ".", features = ["polars"] }
 polars = { version = "0.46.0", default-features = false, features = [
@@ -61,9 +62,11 @@ name = "compare"
 # name = "expr"
 
 [features]
-default = ["atomic", "indices", "map", "mask", "mass", "select"]
+default = ["atomic", "ecl", "ecn", "indices", "map", "mask", "mass", "select"]
 
 atomic = []
+ecl = []
+ecn = []
 indices = []
 map = []
 mask = []

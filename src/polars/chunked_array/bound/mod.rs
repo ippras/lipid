@@ -1,97 +1,151 @@
-use crate::{display::FattyAcid, prelude::*};
-use polars::prelude::*;
+use crate::prelude::*;
+use polars::prelude::{enum_::EnumChunkedBuilder, *};
+use std::{
+    fmt::{self, Display, Formatter, from_fn},
+    ops::Deref,
+    sync::LazyLock,
+};
 
-/// Bound chunked array
-#[derive(Clone)]
+/// The bound data type.
+pub const BOUND_DATA_TYPE: LazyLock<DataType> =
+    LazyLock::new(|| DataType::Enum(Some(MAP.clone()), Default::default()));
+
+/// The bound chunked array.
+#[derive(Clone, Default)]
 #[repr(transparent)]
-pub struct BoundChunked(CategoricalChunked);
+pub struct BoundChunked(pub(crate) CategoricalChunked);
 
 impl BoundChunked {
+    pub fn new(categorical: CategoricalChunked) -> Self {
+        Self::try_new(categorical).unwrap()
+    }
+
     /// Creates a new bound chunked array from a [`Series`].
     ///
     /// # Errors
     ///
     /// Returns an error if the series datatype is not the [`BOUND_DATA_TYPE`].
-    pub fn new(series: &Series) -> PolarsResult<&Self> {
-        let bounds = series.categorical()?;
+    pub fn try_new(categorical: CategoricalChunked) -> PolarsResult<Self> {
         polars_ensure!(
-            *bounds.dtype() == *BOUND_DATA_TYPE,
-            SchemaMismatch: "invalid bound series datatype: expected `Bound`, got = `{}`",
-            bounds.dtype(),
+            *categorical.dtype() == *BOUND_DATA_TYPE,
+            SchemaMismatch: "invalid bound series datatype: expected `{}`, got = `{}`",
+            *BOUND_DATA_TYPE,
+            categorical.dtype(),
         );
-        // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
-        Ok(unsafe { &*(bounds as *const CategoricalChunked as *const Self) })
+        Ok(Self(categorical))
     }
+
+    pub fn iter(&self) -> impl Iterator<Item = Option<Bound>> {
+        self.0
+            .iter_str()
+            .map(|identifier| Some(Bound::new(identifier?)))
+    }
+
+    pub fn try_iter(&self) -> impl Iterator<Item = PolarsResult<Option<Bound>>> {
+        self.0.iter_str().map(|identifier| {
+            let Some(identifier) = identifier else {
+                return Ok(None);
+            };
+            match Bound::try_from(identifier) {
+                Err(identifier) => Err(polars_err!(
+                    not_in_enum,
+                    value = identifier,
+                    categories = self.0.get_rev_map().get_categories()
+                )),
+                Ok(bound) => Ok(Some(bound)),
+            }
+        })
+    }
+
+    pub fn filter(&self, filter: &BooleanChunked) -> PolarsResult<Self> {
+        let physical = self.0.physical().filter(filter)?;
+        // SAFETY: we only filter the indexes so we are still in bounds.
+        Ok(Self(unsafe {
+            CategoricalChunked::from_cats_and_rev_map_unchecked(
+                physical,
+                self.0.get_rev_map().clone(),
+                self.0.is_enum(),
+                CategoricalOrdering::Lexical, // TODO
+            )
+        }))
+    } 
 }
 
 impl BoundChunked {
-    /// Returns the number of bounds in the bound chunked array.
-    pub fn len(&self) -> u8 {
-        self.0.len() as _
+    /// Returns the number of sized bounds in the fatty acid.
+    pub fn bounds(&self) -> u8 {
+        (self.0.len() - self.0.null_count()) as _
+    }
+
+    /// Returns the number of saturated bounds in the fatty acid.
+    pub fn saturated(&self) -> u8 {
+        self.0
+            .equal(S)
+            .expect("S is valid bound identifier")
+            .num_trues() as _
+    }
+
+    /// Returns the number of unsaturated bounds in the fatty acid.
+    pub fn unsaturated(&self) -> u8 {
+        self.0
+            .not_equal(S)
+            .expect("S is valid bound identifier")
+            .num_trues() as _
     }
 
     /// Returns the total number of unsaturations in the bound chunked array.
     pub fn unsaturation(&self) -> u8 {
-        self.into_iter()
+        self.iter()
             .filter_map(|bound| bound?.as_unsaturated()?.unsaturation())
             .sum()
     }
 }
 
-impl BoundChunked {
-    /// Filters the bound chunked array based on a predicate function.
-    pub fn filter(&self, predicate: impl Fn(Option<Bound>) -> bool) -> impl Iterator<Item = u8> {
-        self.into_iter()
-            .enumerate()
-            .filter_map(move |(index, bound)| predicate(bound).then_some(index as _))
-    }
-
-    /// Returns an iterator over the indices of double bonds in the bound
-    /// chunked array.
-    pub fn doubles(&self) -> impl Iterator<Item = u8> {
-        self.filter(|bound| bound.is_some_and(Bound::is_double))
-    }
-
-    /// Returns an iterator over the indices of triple bonds in the bound
-    /// chunked array.
-    pub fn triples(&self) -> impl Iterator<Item = u8> {
-        self.filter(|bound| bound.is_some_and(Bound::is_triple))
-    }
-
-    /// Returns an iterator over the indices of unsaturated bonds in the bound
-    /// chunked array.
-    pub fn unsaturated(&self) -> impl Iterator<Item = u8> {
-        self.filter(|bound| bound.is_some_and(Bound::is_unsaturated))
+unsafe impl IntoSeries for BoundChunked {
+    fn into_series(self) -> Series {
+        self.0.into_series()
     }
 }
 
-impl BoundChunked {
-    /// Displays the bound chunked array as a [`FattyAcid`] based on the
-    /// provided options.
-    pub fn display(&self, options: Options) -> PolarsResult<FattyAcid> {
-        use crate::display::{Common, Delta, Kind, System};
+impl Deref for BoundChunked {
+    type Target = CategoricalChunked;
 
-        let carbons = self.carbons();
-        let unsaturated = self
-            .into_iter()
-            .enumerate()
-            .filter_map(|(index, bound)| match bound {
-                Some(Bound::Saturated) => None,
-                Some(Bound::Unsaturated(unsaturated)) => Some((index + 1, Some(unsaturated))),
-                None => Some((index + 1, None)),
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+impl Display for BoundChunked {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        let item = |bound: Option<Bound>| {
+            from_fn(move |f| {
+                match bound {
+                    None => f.write_str("b")?,
+                    Some(Bound::Saturated) => f.write_str("s")?,
+                    Some(Bound::Unsaturated(unsaturated)) => {
+                        match unsaturated.unsaturation {
+                            None => f.write_str("u")?,
+                            Some(Unsaturation::Double) => f.write_str("d")?,
+                            Some(Unsaturation::Triple) => f.write_str("t")?,
+                        }
+                        match unsaturated.isomerism {
+                            None => {}
+                            Some(Isomerism::Cis) => f.write_str("c")?,
+                            Some(Isomerism::Trans) => f.write_str("t")?,
+                        }
+                    }
+                }
+                Ok(())
             })
-            .collect();
-        Ok(match options.kind {
-            Kind::Delta => FattyAcid::Common(Common::Delta(Delta {
-                carbons,
-                unsaturated,
-                options,
-            })),
-            Kind::System => FattyAcid::System(System {
-                carbons,
-                unsaturated,
-            }),
-        })
+        };
+        let mut iter = self.iter();
+        if let Some(bound) = iter.next() {
+            Display::fmt(&item(bound), f)?;
+            for bound in iter {
+                Display::fmt(&item(bound), f)?;
+            }
+        }
+        Ok(())
     }
 }
 
@@ -101,7 +155,22 @@ impl IntoIterator for &BoundChunked {
     type IntoIter = impl Iterator<Item = Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.0.iter_str().map(|id| Some(Bound::new(id?)))
+        self.iter()
+    }
+}
+
+impl<'a> TryFrom<&'a CategoricalChunked> for &'a BoundChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &'a CategoricalChunked) -> Result<Self, Self::Error> {
+        polars_ensure!(
+            *value.dtype() == *BOUND_DATA_TYPE,
+            SchemaMismatch: "invalid bound series datatype: expected `{}`, got = `{}`",
+            *BOUND_DATA_TYPE,
+            value.dtype(),
+        );
+        // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
+        Ok(unsafe { &*(value as *const CategoricalChunked as *const Self) })
     }
 }
 
@@ -109,15 +178,92 @@ impl<'a> TryFrom<&'a Series> for &'a BoundChunked {
     type Error = PolarsError;
 
     fn try_from(value: &'a Series) -> Result<Self, Self::Error> {
-        BoundChunked::new(value)
+        value.categorical()?.try_into()
+    }
+}
+
+impl<const N: usize> TryFrom<&[Option<&str>; N]> for BoundChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &[Option<&str>; N]) -> Result<Self, Self::Error> {
+        let mut identifiers = EnumChunkedBuilder::new(
+            PlSmallStr::from_static(IDENTIFIER),
+            value.len(),
+            MAP.clone(),
+            Default::default(),
+            true,
+        );
+        for identifier in value {
+            match identifier {
+                Some(identifier) => identifiers.append_str(identifier)?,
+                None => identifiers.append_null(),
+            };
+        }
+        Ok(Self::new(identifiers.finish()))
+    }
+}
+
+impl<const N: usize> TryFrom<&[&str; N]> for BoundChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &[&str; N]) -> Result<Self, Self::Error> {
+        let mut identifiers = EnumChunkedBuilder::new(
+            PlSmallStr::from_static(IDENTIFIER),
+            value.len(),
+            MAP.clone(),
+            Default::default(),
+            true,
+        );
+        for identifier in value {
+            identifiers.append_str(identifier)?;
+        }
+        Ok(Self::new(identifiers.finish()))
+    }
+}
+
+impl BoundChunked {
+    pub fn rco(&self) -> Rco<&Self> {
+        Rco(self)
+    }
+
+    pub fn rcoo(&self) -> Rcoo<&Self> {
+        Rcoo(self)
+    }
+
+    pub fn rcooh(&self) -> Rcooh<&Self> {
+        Rcooh(self)
+    }
+
+    pub fn rcooch3(&self) -> Rcooch3<&Self> {
+        Rcooch3(self)
     }
 }
 
 #[cfg(feature = "atomic")]
-mod atomic;
-mod chain_length;
-mod kind;
-#[cfg(feature = "mask")]
+impl Atomic for &BoundChunked {
+    type Output = u8;
+
+    #[inline]
+    fn carbons(self) -> u8 {
+        self.bounds() + 1
+    }
+
+    #[inline]
+    fn hydrogens(self) -> u8 {
+        2 * self.carbons() - 2 * self.unsaturation()
+    }
+}
+
+#[cfg(feature = "ecn")]
+impl EquivalentCarbonNumber for &BoundChunked {
+    type Output = u8;
+
+    #[inline]
+    fn equivalent_carbon_number(self) -> u8 {
+        self.carbons() - 2 * self.unsaturation()
+    }
+}
+
 mod mask;
 #[cfg(feature = "mass")]
 mod mass;

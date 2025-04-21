@@ -6,12 +6,12 @@ use std::sync::LazyLock;
 static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     df! {
         "FattyAcid" => [
-            Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE).unwrap(),
-            Series::from_iter(C16U1DC9).cast(&BOUND_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U3DC9DC12DC15).cast(&BOUND_DATA_TYPE).unwrap(),
+            Series::from_iter(C16U0).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U0).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C16U1DC9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U1DC9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U2DC9DC12).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U3DC9DC12DC15).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
         ],
         "E. bungeanus" => df! {
             "sn-1,2,3" => [28.1, 1.5, 10.2, 17.2, 41.7, 1.3],
@@ -80,7 +80,7 @@ static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
         }.unwrap().into_struct(PlSmallStr::EMPTY).into_series(),
     }
     .unwrap()
-    .with_row_index("Index".into(), None)
+    .with_row_index(PlSmallStr::from_static("Index"), None)
     .unwrap()
 });
 

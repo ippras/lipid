@@ -1,7 +1,7 @@
 use crate::prelude::*;
 use polars::prelude::*;
 
-impl FattyAcidChunked {
+impl FattyAcidListChunked {
     /// Applies a function to each fatty acid in the chunked array and returns
     /// an iterator over the results.
     ///
@@ -16,13 +16,13 @@ impl FattyAcidChunked {
     #[inline]
     pub fn map<T>(
         &self,
-        f: impl Fn(&BoundChunked) -> T,
+        f: impl Fn(FattyAcidChunked) -> T,
     ) -> impl Iterator<Item = PolarsResult<Option<T>>> {
         self.0.into_iter().map(move |item| {
             let Some(series) = item else {
                 return Ok(None);
             };
-            Ok(Some(f(series.bound()?)))
+            Ok(Some(f(series.try_fatty_acid()?)))
         })
     }
 
@@ -32,8 +32,8 @@ impl FattyAcidChunked {
     ///
     /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the number of
     /// bounds for each fatty acid.
-    pub fn bounds(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|bounds| bounds.len()).collect()
+    pub fn sized(&self) -> PolarsResult<UInt8Chunked> {
+        self.map(|fatty_acid| fatty_acid.sized_count()).collect()
     }
 
     /// Returns the unsaturation levels of each fatty acid in the chunked array.
@@ -43,6 +43,7 @@ impl FattyAcidChunked {
     /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the unsaturation
     /// levels.
     pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|bounds| bounds.unsaturation()).collect()
+        self.map(|fatty_acid| fatty_acid.unsaturation_count())
+            .collect()
     }
 }

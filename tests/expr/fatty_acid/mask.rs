@@ -197,27 +197,27 @@ fn is_unsaturated_9() -> PolarsResult<()> {
     assert_eq!(
         is_unsaturated_9,
         [
-            Some(false), // C4U0
-            Some(false), // C5U0
-            Some(false), // C6U0
-            Some(false), // C7U0
-            Some(false), // C8U0
-            Some(false), // C9U0
-            Some(false), // C10U0
-            Some(false), // C11U0
-            Some(false), // C12U0
-            Some(false), // C13U0
-            Some(false), // C14U0
-            Some(false), // C15U0
-            Some(false), // C16U0
-            Some(true),  // C16U1DC9
-            Some(true),  // C16U1DT9
-            Some(false), // C17U0
-            Some(false), // C18U0
-            Some(true),  // C18U1DC9
-            Some(true),  // C18U1DT9
-            Some(true),  // C18U2DC9DC12
-            Some(false), // C18U3DC6DC9DC12
+            Some(false), // C4U0 0 Some(false),
+            Some(false), // C5U0 0 Some(false),
+            Some(false), // C6U0 0 Some(false),
+            Some(false), // C7U0 0 Some(false),
+            Some(false), // C8U0 0 Some(false),
+            Some(false), // C9U0 0 Some(false),
+            Some(false), // C10U0 0 Some(false),
+            Some(false), // C11U0 0 Some(false),
+            Some(false), // C12U0 0 Some(false),
+            Some(false), // C13U0 0 Some(false),
+            Some(false), // C14U0 0 Some(false),
+            Some(false), // C15U0 0 Some(false),
+            Some(false), // C16U0 0 Some(false),
+            Some(true),  // C16U1DC9 0 Some(true),
+            Some(true),  // C16U1DT9 0 Some(true),
+            Some(false), // C17U0 0 Some(false),
+            Some(false), // C18U0 0 Some(false),
+            Some(true),  // C18U1DC9 0 Some(true),
+            Some(true),  // C18U1DT9 0 Some(true),
+            Some(true),  // C18U2DC9DC12 0 Some(true),
+            Some(false), // C18U3DC6DC9DC12 0 Some(true),
             Some(false), // C18U3DC8DT10DC12
             Some(true),  // C18U3DC9DC12DC15
             Some(true),  // C18U3DC9DT11DT13
@@ -900,7 +900,7 @@ fn is_cis() -> PolarsResult<()> {
             Some(false), // C34U0
             Some(false), // C35U0
             Some(false), // C36U0
-            None,        //
+            None,        // None
         ],
     );
     Ok(())

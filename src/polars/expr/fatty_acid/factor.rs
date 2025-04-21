@@ -1,4 +1,5 @@
 use super::FattyAcidExpr;
+use crate::prelude::*;
 use polars::prelude::*;
 
 /// Selectivity and enrichment factor methods for [`FattyAcidExpr`]
@@ -40,8 +41,8 @@ impl FattyAcidExpr {
     /// This is useful for discussing the behaviour of acids in several
     /// different fats.
     pub fn selectivity_factor(self, mag2: Expr, tag: Expr) -> Expr {
-        let mag2_unsaturated = mag2.clone().filter(self.clone().is_unsaturated(None)).sum();
-        let tag_unsaturated = tag.clone().filter(self.is_unsaturated(None)).sum();
+        let mag2_unsaturated = mag2.clone().filter(self.clone().is_unsaturated()).sum();
+        let tag_unsaturated = tag.clone().filter(self.is_unsaturated()).sum();
         (mag2 / tag) / (mag2_unsaturated / tag_unsaturated)
         // as_struct(vec![self.0, mag2, tag]).apply(
         //     |column| {
@@ -50,8 +51,8 @@ impl FattyAcidExpr {
         //         let fatty_acid = fields[0].fatty_acid()?;
         //         let mag2 = fields[1].f64()?;
         //         let tag = fields[2].f64()?;
-        //         let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated(None)?)?.sum();
-        //         let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated(None)?)?.sum();
+        //         let mag2_unsaturated_sum = mag2.filter(&fatty_acid.is_unsaturated()?)?.sum();
+        //         let tag_unsaturated_sum = tag.filter(&fatty_acid.is_unsaturated()?)?.sum();
         //         Ok(Some(
         //             zip(tag, mag2)
         //                 .map(|(tag, mag2)| {
