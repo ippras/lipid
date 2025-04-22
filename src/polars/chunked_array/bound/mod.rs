@@ -1,5 +1,6 @@
 use crate::{display::FattyAcid, prelude::*};
 use polars::prelude::*;
+use std::ops::Deref;
 
 /// Bound chunked array
 #[derive(Clone, Default)]
@@ -92,6 +93,14 @@ impl BoundChunked {
                 unsaturated,
             }),
         })
+    }
+}
+
+impl Deref for BoundChunked {
+    type Target = CategoricalChunked;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 

@@ -1,5 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
+use std::ops::Deref;
 
 /// Fatty acid chunked array
 ///
@@ -61,6 +62,14 @@ impl FattyAcidChunked {
     /// [`None`] if the series does not contain the specified index
     pub fn get(&self, index: usize) -> Option<Series> {
         Some(self.0.get_as_series(index)?.cast(&BOUND_DATA_TYPE).unwrap())
+    }
+}
+
+impl Deref for FattyAcidChunked {
+    type Target = ListChunked;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
 
