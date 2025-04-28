@@ -1,6 +1,6 @@
 use crate::polars::ExprExt as _;
 use polars::prelude::*;
-use polars_ext::functions::column;
+use polars_ext::series::column;
 
 /// Triacylglycerol [`Expr`]
 #[derive(Clone, Debug, Hash)]

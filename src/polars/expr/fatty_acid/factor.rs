@@ -1,7 +1,7 @@
 use super::FattyAcidExpr;
 use crate::prelude::SeriesExt;
 use polars::prelude::*;
-use polars_ext::functions::column;
+use polars_ext::series::column;
 use std::iter::zip;
 
 /// Enrichment factor (EF)
