@@ -1,14 +1,16 @@
 use super::TriacylglycerolExpr;
-use crate::polars::expr::ExprExt as _;
+use crate::prelude::*;
 use atom::isotopes::*;
 use polars::prelude::*;
 
 const C: f64 = C::Twelve.relative_atomic_mass().value;
 const H: f64 = H::One.relative_atomic_mass().value;
 
-impl TriacylglycerolExpr {
+impl Mass for TriacylglycerolExpr {
+    type Output = Expr;
+
     /// C3H5 + \[RCOO\]-_{SN1} + \[RCOO\]-_{SN2} + \[RCOO\]-_{SN3} + ADDUCT
-    pub fn mass(self, adduct: Option<Expr>) -> Expr {
+    fn mass(self, adduct: Option<Expr>) -> Expr {
         (lit(3) * lit(C)
             + lit(5) * lit(H)
             + self

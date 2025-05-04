@@ -6,19 +6,20 @@ use polars::prelude::*;
 use polars_arrow::array::Utf8ViewArray;
 use std::sync::LazyLock;
 
+/// Index field name.
+pub const INDEX: &str = "Index";
+/// Identifier field name.
+pub const IDENTIFIER: &str = "Identifier";
 /// Array of bond identifiers.
 pub const IDENTIFIERS: [&str; 10] = [S, D, DC, DT, T, TC, TT, U, UC, UT];
 
-/// The bond data type.
-pub const BOUND_DATA_TYPE: LazyLock<DataType> = LazyLock::new(|| {
-    let categories = Utf8ViewArray::from_slice_values(IDENTIFIERS);
-    create_enum_dtype(categories)
+pub const MAP: LazyLock<Arc<RevMapping>> = LazyLock::new(|| {
+    Arc::new(RevMapping::build_local(Utf8ViewArray::from_slice_values(
+        IDENTIFIERS,
+    )))
 });
 
 impl Bound {
-    /// Lazy static initialization for the data type associated with the bound.
-    pub const DATA_TYPE: LazyLock<DataType> = BOUND_DATA_TYPE;
-
     /// Creates a new [`Bound`] instance from the given identifier string.
     ///
     /// # Arguments
@@ -33,10 +34,6 @@ impl Bound {
             "unexpected bound identifier: {id}; expected: {IDENTIFIERS:?}",
         ))
     }
-
-    // pub fn data_type() -> DataType {
-    //     BOUND_DATA_TYPE
-    // }
 }
 
 impl From<Bound> for &'static str {
@@ -56,6 +53,14 @@ impl<'a> TryFrom<&'a str> for Bound {
             S => Ok(Self::Saturated),
             value => Ok(Self::Unsaturated(value.try_into()?)),
         }
+    }
+}
+
+impl Unsaturated {
+    pub fn new_unchecked(id: &str) -> Self {
+        id.try_into().expect(&format!(
+            "unexpected unsaturated identifier: {id}; expected: {IDENTIFIERS:?}",
+        ))
     }
 }
 

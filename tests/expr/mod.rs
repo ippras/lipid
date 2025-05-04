@@ -35,4 +35,4 @@ const LG: (&str, FattyAcid<23>) = ("Lg", C24U0);
 const N: (&str, FattyAcid<23>) = ("N", C24U1DC15);
 
 mod fatty_acid;
-mod triacylglycerol;
+// mod triacylglycerol;

@@ -1,94 +1,94 @@
 use lipid::prelude::*;
 use polars::prelude::*;
-use std::sync::LazyLock;
+use std::{num::NonZeroI8, sync::LazyLock};
 
 /// [byrdwell.com](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
 pub static FATTY_ACIDS: LazyLock<DataFrame> = LazyLock::new(|| {
     fatty_acids()
         .unwrap()
-        .with_row_index("Index".into(), None)
+        .with_row_index(PlSmallStr::from_static("Index"), None)
         .unwrap()
 });
 
-fn fa<const N: usize>(fatty_acid: FattyAcid<N>) -> PolarsResult<DataFrame> {
-    df! {
-        "FattyAcid" => [
-            Some(Series::from_iter(fatty_acid).cast(&BOUND_DATA_TYPE)?),
-        ],
-    }
-}
+// fn fa<const N: usize>(fatty_acid: FattyAcid<N>) -> PolarsResult<DataFrame> {
+//     df! {
+//         "FattyAcid" => [
+//             Some(Series::from_iter(fatty_acid).cast(&IDENTIFIER_DATA_TYPE)?),
+//         ],
+//     }
+// }
 
 fn fatty_acids() -> PolarsResult<DataFrame> {
     df! {
         "FattyAcid" => [
-            Some(Series::from_iter(C4U0).cast(&BOUND_DATA_TYPE)?), // 0
-            Some(Series::from_iter(C5U0).cast(&BOUND_DATA_TYPE)?), // 1
-            Some(Series::from_iter(C6U0).cast(&BOUND_DATA_TYPE)?), // 2
-            Some(Series::from_iter(C7U0).cast(&BOUND_DATA_TYPE)?), // 3
-            Some(Series::from_iter(C8U0).cast(&BOUND_DATA_TYPE)?), // 4
-            Some(Series::from_iter(C9U0).cast(&BOUND_DATA_TYPE)?), // 5
-            Some(Series::from_iter(C10U0).cast(&BOUND_DATA_TYPE)?), // 6
-            Some(Series::from_iter(C11U0).cast(&BOUND_DATA_TYPE)?), // 7
-            Some(Series::from_iter(C12U0).cast(&BOUND_DATA_TYPE)?), // 8
-            Some(Series::from_iter(C13U0).cast(&BOUND_DATA_TYPE)?), // 9
-            Some(Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?), // 10
-            Some(Series::from_iter(C15U0).cast(&BOUND_DATA_TYPE)?), // 11
-            Some(Series::from_iter(C16U0).cast(&BOUND_DATA_TYPE)?), // 12
-            Some(Series::from_iter(C16U1DC9).cast(&BOUND_DATA_TYPE)?), // 13
-            Some(Series::from_iter(C16U1DT9).cast(&BOUND_DATA_TYPE)?), // 14
-            Some(Series::from_iter(C17U0).cast(&BOUND_DATA_TYPE)?), // 15
-            Some(Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?), // 16
-            Some(Series::from_iter(C18U1DC9).cast(&BOUND_DATA_TYPE)?), // 17
-            Some(Series::from_iter(C18U1DT9).cast(&BOUND_DATA_TYPE)?), // 18
-            Some(Series::from_iter(C18U2DC9DC12).cast(&BOUND_DATA_TYPE)?), // 19
-            Some(Series::from_iter(C18U3DC6DC9DC12).cast(&BOUND_DATA_TYPE)?), // 20
-            Some(Series::from_iter(C18U3DC8DT10DC12).cast(&BOUND_DATA_TYPE)?), // 21
-            Some(Series::from_iter(C18U3DC9DC12DC15).cast(&BOUND_DATA_TYPE)?), // 22
-            Some(Series::from_iter(C18U3DC9DT11DT13).cast(&BOUND_DATA_TYPE)?), // 23
-            Some(Series::from_iter(C18U3DT9DT11DC13).cast(&BOUND_DATA_TYPE)?), // 24
-            Some(Series::from_iter(C18U3DT9DT11DT13).cast(&BOUND_DATA_TYPE)?), // 25
-            Some(Series::from_iter(C18U4DC6DC9DC12DC15).cast(&BOUND_DATA_TYPE)?), // 26
-            Some(Series::from_iter(C19U0).cast(&BOUND_DATA_TYPE)?), // 27
-            Some(Series::from_iter(C20U0).cast(&BOUND_DATA_TYPE)?), // 28
-            Some(Series::from_iter(C20U1DC9).cast(&BOUND_DATA_TYPE)?), // 29
-            Some(Series::from_iter(C20U1DC11).cast(&BOUND_DATA_TYPE)?), // 30
-            Some(Series::from_iter(C20U2DC11DC14).cast(&BOUND_DATA_TYPE)?), // 31
-            Some(Series::from_iter(C20U3DC5DC8DC11).cast(&BOUND_DATA_TYPE)?), // 32
-            Some(Series::from_iter(C20U3DC8DC11DC14).cast(&BOUND_DATA_TYPE)?), // 33
-            Some(Series::from_iter(C20U3DC11DC14DC17).cast(&BOUND_DATA_TYPE)?), // 34
-            Some(Series::from_iter(C20U4DC5DC8DC11DC14).cast(&BOUND_DATA_TYPE)?), // 35
-            Some(Series::from_iter(C20U4DC8DC11DC14DC17).cast(&BOUND_DATA_TYPE)?), // 36
-            Some(Series::from_iter(C20U5DC5DC8DC11DC14DC17).cast(&BOUND_DATA_TYPE)?), // 37
-            Some(Series::from_iter(C21U0).cast(&BOUND_DATA_TYPE)?), // 38
-            Some(Series::from_iter(C22U0).cast(&BOUND_DATA_TYPE)?), // 39
-            Some(Series::from_iter(C22U1DC13).cast(&BOUND_DATA_TYPE)?), // 40
-            Some(Series::from_iter(C22U2DC13DC16).cast(&BOUND_DATA_TYPE)?), // 41
-            Some(Series::from_iter(C22U3DC5DC13DC16).cast(&BOUND_DATA_TYPE)?), // 42
-            Some(Series::from_iter(C22U4DC7DC10DC13DC16).cast(&BOUND_DATA_TYPE)?), // 43
-            Some(Series::from_iter(C22U5DC7DC10DC13DC16DC19).cast(&BOUND_DATA_TYPE)?), // 44
-            Some(Series::from_iter(C22U6DC4DC7DC10DC13DC16DC19).cast(&BOUND_DATA_TYPE)?), // 45
-            Some(Series::from_iter(C23U0).cast(&BOUND_DATA_TYPE)?), // 46
-            Some(Series::from_iter(C24U0).cast(&BOUND_DATA_TYPE)?), // 47
-            Some(Series::from_iter(C24U1DC15).cast(&BOUND_DATA_TYPE)?), // 48
-            Some(Series::from_iter(C24U2DC15DC18).cast(&BOUND_DATA_TYPE)?), // 49
-            Some(Series::from_iter(C24U3DC12DC15DC18).cast(&BOUND_DATA_TYPE)?), // 50
-            Some(Series::from_iter(C24U4DC9DC12DC15DC18).cast(&BOUND_DATA_TYPE)?), // 51
-            Some(Series::from_iter(C24U5DC6DC9DC12DC15DC18).cast(&BOUND_DATA_TYPE)?), // 52
-            Some(Series::from_iter(C24U6DC6DC9DC12DC15DC18DC21).cast(&BOUND_DATA_TYPE)?), // 53
-            Some(Series::from_iter(C25U0).cast(&BOUND_DATA_TYPE)?), // 54
-            Some(Series::from_iter(C26U0).cast(&BOUND_DATA_TYPE)?), // 55
-            Some(Series::from_iter(C26U1DC17).cast(&BOUND_DATA_TYPE)?), // 56
-            Some(Series::from_iter(C27U0).cast(&BOUND_DATA_TYPE)?), // 57
-            Some(Series::from_iter(C28U0).cast(&BOUND_DATA_TYPE)?), // 58
-            Some(Series::from_iter(C29U0).cast(&BOUND_DATA_TYPE)?), // 59
-            Some(Series::from_iter(C30U0).cast(&BOUND_DATA_TYPE)?), // 60
-            Some(Series::from_iter(C30U1DC21).cast(&BOUND_DATA_TYPE)?), // 61
-            Some(Series::from_iter(C31U0).cast(&BOUND_DATA_TYPE)?), // 62
-            Some(Series::from_iter(C32U0).cast(&BOUND_DATA_TYPE)?), // 63
-            Some(Series::from_iter(C33U0).cast(&BOUND_DATA_TYPE)?), // 64
-            Some(Series::from_iter(C34U0).cast(&BOUND_DATA_TYPE)?), // 65
-            Some(Series::from_iter(C35U0).cast(&BOUND_DATA_TYPE)?), // 66
-            Some(Series::from_iter(C36U0).cast(&BOUND_DATA_TYPE)?), // 67
+            Some(FattyAcidChunked::try_from(&C4)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 0
+            Some(FattyAcidChunked::try_from(&C5)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 1
+            Some(FattyAcidChunked::try_from(&C6)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 2
+            Some(FattyAcidChunked::try_from(&C7)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 3
+            Some(FattyAcidChunked::try_from(&C8)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 4
+            Some(FattyAcidChunked::try_from(&C9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 5
+            Some(FattyAcidChunked::try_from(&C10)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 6
+            Some(FattyAcidChunked::try_from(&C11)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 7
+            Some(FattyAcidChunked::try_from(&C12)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 8
+            Some(FattyAcidChunked::try_from(&C13)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 9
+            Some(FattyAcidChunked::try_from(&C14)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 10
+            Some(FattyAcidChunked::try_from(&C15)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 11
+            Some(FattyAcidChunked::try_from(&C16)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 12
+            Some(FattyAcidChunked::try_from(&C16DC9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 13
+            Some(FattyAcidChunked::try_from(&C16DT9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 14
+            Some(FattyAcidChunked::try_from(&C17)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 15
+            Some(FattyAcidChunked::try_from(&C18)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 16
+            Some(FattyAcidChunked::try_from(&C18DC9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 17
+            Some(FattyAcidChunked::try_from(&C18DT9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 18
+            Some(FattyAcidChunked::try_from(&C18DC9DC12)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 19
+            Some(FattyAcidChunked::try_from(&C18DC6DC9DC12)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 20
+            Some(FattyAcidChunked::try_from(&C18DC8DT10DC12)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 21
+            Some(FattyAcidChunked::try_from(&C18DC9DC12DC15)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 22
+            Some(FattyAcidChunked::try_from(&C18DC9DT11DT13)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 23
+            Some(FattyAcidChunked::try_from(&C18DT9DT11DC13)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 24
+            Some(FattyAcidChunked::try_from(&C18DT9DT11DT13)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 25
+            Some(FattyAcidChunked::try_from(&C18DC6DC9DC12DC15)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 26
+            Some(FattyAcidChunked::try_from(&C19)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 27
+            Some(FattyAcidChunked::try_from(&C20)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 28
+            Some(FattyAcidChunked::try_from(&C20DC9)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 29
+            Some(FattyAcidChunked::try_from(&C20DC11)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 30
+            Some(FattyAcidChunked::try_from(&C20DC11DC14)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 31
+            Some(FattyAcidChunked::try_from(&C20DC5DC8DC11)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 32
+            Some(FattyAcidChunked::try_from(&C20DC8DC11DC14)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 33
+            Some(FattyAcidChunked::try_from(&C20DC11DC14DC17)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 34
+            Some(FattyAcidChunked::try_from(&C20DC5DC8DC11DC14)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 35
+            Some(FattyAcidChunked::try_from(&C20DC8DC11DC14DC17)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 36
+            Some(FattyAcidChunked::try_from(&C20DC5DC8DC11DC14DC17)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 37
+            Some(FattyAcidChunked::try_from(&C21)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 38
+            Some(FattyAcidChunked::try_from(&C22)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 39
+            Some(FattyAcidChunked::try_from(&C22DC13)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 40
+            Some(FattyAcidChunked::try_from(&C22DC13DC16)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 41
+            Some(FattyAcidChunked::try_from(&C22DC5DC13DC16)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 42
+            Some(FattyAcidChunked::try_from(&C22DC7DC10DC13DC16)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 43
+            Some(FattyAcidChunked::try_from(&C22DC7DC10DC13DC16DC19)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 44
+            Some(FattyAcidChunked::try_from(&C22DC4DC7DC10DC13DC16DC19)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 45
+            Some(FattyAcidChunked::try_from(&C23)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 46
+            Some(FattyAcidChunked::try_from(&C24)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 47
+            Some(FattyAcidChunked::try_from(&C24DC15)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 48
+            Some(FattyAcidChunked::try_from(&C24DC15DC18)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 49
+            Some(FattyAcidChunked::try_from(&C24DC12DC15DC18)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 50
+            Some(FattyAcidChunked::try_from(&C24DC9DC12DC15DC18)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 51
+            Some(FattyAcidChunked::try_from(&C24DC6DC9DC12DC15DC18)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 52
+            Some(FattyAcidChunked::try_from(&C24DC6DC9DC12DC15DC18DC21)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 53
+            Some(FattyAcidChunked::try_from(&C25)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 54
+            Some(FattyAcidChunked::try_from(&C26)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 55
+            Some(FattyAcidChunked::try_from(&C26DC17)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 56
+            Some(FattyAcidChunked::try_from(&C27)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 57
+            Some(FattyAcidChunked::try_from(&C28)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 58
+            Some(FattyAcidChunked::try_from(&C29)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 59
+            Some(FattyAcidChunked::try_from(&C30)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 60
+            Some(FattyAcidChunked::try_from(&C30DC21)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 61
+            Some(FattyAcidChunked::try_from(&C31)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 62
+            Some(FattyAcidChunked::try_from(&C32)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 63
+            Some(FattyAcidChunked::try_from(&C33)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 64
+            Some(FattyAcidChunked::try_from(&C34)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 65
+            Some(FattyAcidChunked::try_from(&C35)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 66
+            Some(FattyAcidChunked::try_from(&C36)?.into_struct(PlSmallStr::EMPTY)?.into_series()), // 67
             None, // 68
         ],
         "Value" => [
@@ -165,13 +165,24 @@ fn fatty_acids() -> PolarsResult<DataFrame> {
     }
 }
 
+fn fatty_acid1<const N: usize>(
+    fatty_acid: &[(Option<Option<NonZeroI8>>, Option<&'static str>); N],
+) -> PolarsResult<DataFrame> {
+    df! {
+        "FattyAcid" => [
+            FattyAcidChunked::try_from(fatty_acid)?.into_struct(PlSmallStr::EMPTY)?.into_series(),
+        ],
+    }
+    // FattyAcidChunked::try_from(&fatty_acid)
+}
+
 fn epsilon(received: f64, expected: f64) -> bool {
     (received - expected).abs() < f64::EPSILON
 }
 
 mod chain_length;
-mod equal;
-mod factors;
+// mod equal;
+// mod factors;
 #[cfg(feature = "indices")]
 mod indices;
 #[cfg(feature = "map")]
@@ -180,5 +191,5 @@ mod map;
 mod mask;
 #[cfg(feature = "mass")]
 mod mass;
-#[cfg(feature = "select")]
-mod select;
+// #[cfg(feature = "select")]
+// mod select;

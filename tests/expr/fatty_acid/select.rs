@@ -13,7 +13,7 @@ fn saturated() -> PolarsResult<()> {
         .unwrap();
     let saturated = data_frame[""]
         .as_materialized_series()
-        .fatty_acid()?
+        .try_fatty_acid()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
@@ -105,7 +105,7 @@ fn unsaturated() -> PolarsResult<()> {
         .collect()?;
     let unsaturated = data_frame[""]
         .as_materialized_series()
-        .fatty_acid()?
+        .try_fatty_acid()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
@@ -197,7 +197,7 @@ fn monounsaturated() -> PolarsResult<()> {
         .collect()?;
     let monounsaturated = data_frame[""]
         .as_materialized_series()
-        .fatty_acid()?
+        .try_fatty_acid()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(
@@ -289,7 +289,7 @@ fn polyunsaturated() -> PolarsResult<()> {
         .collect()?;
     let polyunsaturated = data_frame[""]
         .as_materialized_series()
-        .fatty_acid()?
+        .try_fatty_acid()?
         .into_iter()
         .collect::<Vec<_>>();
     assert_eq!(

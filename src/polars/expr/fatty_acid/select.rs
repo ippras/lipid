@@ -1,6 +1,6 @@
 use super::FattyAcidExpr;
 use polars::prelude::*;
-use polars_ext::ExprExt as _;
+use polars_ext::prelude::*;
 
 impl FattyAcidExpr {
     pub fn select(self, mask: Expr, filter: bool) -> Expr {

@@ -1,6 +1,6 @@
 use crate::prelude::*;
 
-impl BoundChunked {
+impl FattyAcidChunked {
     pub fn rco(&self) -> Rco<&Self> {
         Rco(self)
     }

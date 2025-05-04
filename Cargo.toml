@@ -61,9 +61,11 @@ name = "compare"
 # name = "expr"
 
 [features]
-default = ["atomic", "indices", "map", "mask", "mass", "select"]
+default = ["atomic", "ecl", "ecn", "indices", "map", "mask", "mass", "select"]
 
 atomic = []
+ecl = []
+ecn = []
 indices = []
 map = []
 mask = []

@@ -1,47 +1,62 @@
-pub use self::expr::ExprExt;
-use crate::polars::chunked_array::{BoundChunked, FattyAcidChunked};
+// pub use self::expr::ExprExt;
+use crate::prelude::{FattyAcidChunked, FattyAcidListChunked};
 use polars::prelude::*;
-// use super::{FATTY_ACID_COLUMN, chunked_array::FattyAcidChunked, column::ColumnExt as _};
 
 /// Fatty acid column name
-pub const FATTY_ACID_COLUMN: &str = "FattyAcid";
-
-/// Extension methods for [`Column`]
-pub trait ColumnExt {
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
-}
-
-impl ColumnExt for Column {
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
-        self.as_materialized_series().fatty_acid()
-    }
-}
+pub const FATTY_ACID: &str = "FattyAcid";
 
 /// Extension methods for [`DataFrame`]
 pub trait DataFrameExt {
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+    fn fatty_acid(&self) -> &FattyAcidListChunked {
+        self.try_fatty_acid_list().unwrap()
+    }
+
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked>;
 }
 
 impl DataFrameExt for DataFrame {
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
-        self[FATTY_ACID_COLUMN].fatty_acid()
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked> {
+        self[FATTY_ACID].try_fatty_acid_list()
+    }
+}
+
+/// Extension methods for [`Column`]
+pub trait ColumnExt {
+    fn fatty_acid_list(&self) -> &FattyAcidListChunked {
+        self.try_fatty_acid_list().unwrap()
+    }
+
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked>;
+}
+
+impl ColumnExt for Column {
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked> {
+        self.as_materialized_series().try_fatty_acid_list()
     }
 }
 
 /// Extension methods for [`Series`]
 pub trait SeriesExt {
-    fn bound(&self) -> PolarsResult<&BoundChunked>;
+    fn fatty_acid_list(&self) -> &FattyAcidListChunked {
+        self.try_fatty_acid_list().unwrap()
+    }
 
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+    fn fatty_acid(&self) -> FattyAcidChunked {
+        self.try_fatty_acid().unwrap()
+    }
+
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked>;
+
+    fn try_fatty_acid(&self) -> PolarsResult<FattyAcidChunked>;
 }
 
 impl SeriesExt for Series {
-    fn bound(&self) -> PolarsResult<&BoundChunked> {
-        BoundChunked::new(self)
+    fn try_fatty_acid_list(&self) -> PolarsResult<&FattyAcidListChunked> {
+        self.try_into()
     }
 
-    fn fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
-        FattyAcidChunked::new(self)
+    fn try_fatty_acid(&self) -> PolarsResult<FattyAcidChunked> {
+        FattyAcidChunked::try_from(self)
     }
 }
 

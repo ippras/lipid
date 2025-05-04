@@ -1,0 +1,507 @@
+use super::{DECIMALS, fatty_acid, round_to_decimals};
+use lipid::prelude::*;
+use polars::prelude::*;
+
+fn check_mass(fatty_acid: FattyAcidChunked, expected: f64) {
+    let mass = round_to_decimals(fatty_acid.mass(None), DECIMALS);
+    assert!((mass - expected).abs() < f64::EPSILON);
+}
+
+#[test]
+fn c4u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C4)?, r#const::C4);
+    Ok(())
+}
+
+#[test]
+fn c5u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C5)?, r#const::C5);
+    Ok(())
+}
+
+#[test]
+fn c6u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C6)?, r#const::C6);
+    Ok(())
+}
+
+#[test]
+fn c7u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C7)?, r#const::C7);
+    Ok(())
+}
+
+#[test]
+fn c8u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C8)?, r#const::C8);
+    Ok(())
+}
+
+#[test]
+fn c9u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C9)?, r#const::C9);
+    Ok(())
+}
+
+#[test]
+fn c10u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C10)?, r#const::C10);
+    Ok(())
+}
+
+#[test]
+fn c11u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C11)?, r#const::C11);
+    Ok(())
+}
+
+#[test]
+fn c12u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C12)?, r#const::C12);
+    Ok(())
+}
+
+#[test]
+fn c13u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C13)?, r#const::C13);
+    Ok(())
+}
+
+#[test]
+fn c14u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C14)?, r#const::C14);
+    Ok(())
+}
+
+#[test]
+fn c15u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C15)?, r#const::C15);
+    Ok(())
+}
+
+#[test]
+fn c16u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C16)?, r#const::C16);
+    Ok(())
+}
+
+#[test]
+fn c16u1dc9() -> PolarsResult<()> {
+    check_mass(fatty_acid(C16DC9)?, r#const::C16DC9);
+    Ok(())
+}
+
+#[test]
+fn c16u1dt9() -> PolarsResult<()> {
+    check_mass(fatty_acid(C16DT9)?, r#const::C16DT9);
+    Ok(())
+}
+
+#[test]
+fn c17u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C17)?, r#const::C17);
+    Ok(())
+}
+
+#[test]
+fn c18u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18)?, r#const::C18);
+    Ok(())
+}
+
+#[test]
+fn c18u1dc9() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC9)?, r#const::C18DC9);
+    Ok(())
+}
+
+#[test]
+fn c18u1dt9() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DT9)?, r#const::C18DT9);
+    Ok(())
+}
+
+#[test]
+fn c18u2dc9dc12() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC9DC12)?, r#const::C18DC9DC12);
+    Ok(())
+}
+
+#[test]
+fn c18u3dc6dc9dc12() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC6DC9DC12)?, r#const::C18DC6DC9DC12);
+    Ok(())
+}
+
+#[test]
+fn c18u3dc8dt10dc12() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC8DT10DC12)?, r#const::C18DC8DT10DC12);
+    Ok(())
+}
+
+#[test]
+fn c18u3dc9dc12dc15() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC9DC12DC15)?, r#const::C18DC9DC12DC15);
+    Ok(())
+}
+
+#[test]
+fn c18u3dc9dt11dt13() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC9DT11DT13)?, r#const::C18DC9DT11DT13);
+    Ok(())
+}
+
+#[test]
+fn c18u3dt9dt11dc13() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DT9DT11DC13)?, r#const::C18DT9DT11DC13);
+    Ok(())
+}
+
+#[test]
+fn c18u3dt9dt11dt13() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DT9DT11DT13)?, r#const::C18DT9DT11DT13);
+    Ok(())
+}
+
+#[test]
+fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
+    check_mass(fatty_acid(C18DC6DC9DC12DC15)?, r#const::C18DC6DC9DC12DC15);
+    Ok(())
+}
+
+#[test]
+fn c19u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C19)?, r#const::C19);
+    Ok(())
+}
+
+#[test]
+fn c20u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20)?, r#const::C20);
+    Ok(())
+}
+
+#[test]
+fn c20u1dc9() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC9)?, r#const::C20DC9);
+    Ok(())
+}
+
+#[test]
+fn c20u1dc11() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC11)?, r#const::C20DC11);
+    Ok(())
+}
+
+#[test]
+fn c20u2dc11dc14() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC11DC14)?, r#const::C20DC11DC14);
+    Ok(())
+}
+
+#[test]
+fn c20u3dc5dc8dc11() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC5DC8DC11)?, r#const::C20DC5DC8DC11);
+    Ok(())
+}
+
+#[test]
+fn c20u3dc8dc11dc14() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC8DC11DC14)?, r#const::C20DC8DC11DC14);
+    Ok(())
+}
+
+#[test]
+fn c20u3dc11dc14dc17() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC11DC14DC17)?, r#const::C20DC11DC14DC17);
+    Ok(())
+}
+
+#[test]
+fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC5DC8DC11DC14)?, r#const::C20DC5DC8DC11DC14);
+    Ok(())
+}
+
+#[test]
+fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
+    check_mass(fatty_acid(C20DC8DC11DC14DC17)?, r#const::C20DC8DC11DC14DC17);
+    Ok(())
+}
+
+#[test]
+fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
+    check_mass(
+        fatty_acid(C20DC5DC8DC11DC14DC17)?,
+        r#const::C20DC5DC8DC11DC14DC17,
+    );
+    Ok(())
+}
+
+#[test]
+fn c21u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C21)?, r#const::C21);
+    Ok(())
+}
+
+#[test]
+fn c22u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C22)?, r#const::C22);
+    Ok(())
+}
+
+#[test]
+fn c22u1dc13() -> PolarsResult<()> {
+    check_mass(fatty_acid(C22DC13)?, r#const::C22DC13);
+    Ok(())
+}
+
+#[test]
+fn c22u2dc13dc16() -> PolarsResult<()> {
+    check_mass(fatty_acid(C22DC13DC16)?, r#const::C22DC13DC16);
+    Ok(())
+}
+
+#[test]
+fn c22u3dc5dc13dc16() -> PolarsResult<()> {
+    check_mass(fatty_acid(C22DC5DC13DC16)?, r#const::C22DC5DC13DC16);
+    Ok(())
+}
+
+#[test]
+fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
+    check_mass(fatty_acid(C22DC7DC10DC13DC16)?, r#const::C22DC7DC10DC13DC16);
+    Ok(())
+}
+
+#[test]
+fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
+    check_mass(
+        fatty_acid(C22DC7DC10DC13DC16DC19)?,
+        r#const::C22DC7DC10DC13DC16DC19,
+    );
+    Ok(())
+}
+
+#[test]
+fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
+    check_mass(
+        fatty_acid(C22DC4DC7DC10DC13DC16DC19)?,
+        r#const::C22DC4DC7DC10DC13DC16DC19,
+    );
+    Ok(())
+}
+
+#[test]
+fn c23u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C23)?, r#const::C23);
+    Ok(())
+}
+
+#[test]
+fn c24u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C24)?, r#const::C24);
+    Ok(())
+}
+
+#[test]
+fn c24u1dc15() -> PolarsResult<()> {
+    check_mass(fatty_acid(C24DC15)?, r#const::C24DC15);
+    Ok(())
+}
+
+#[test]
+fn c24u2dc15dc18() -> PolarsResult<()> {
+    check_mass(fatty_acid(C24DC15DC18)?, r#const::C24DC15DC18);
+    Ok(())
+}
+
+#[test]
+fn c24u3dc12dc15dc18() -> PolarsResult<()> {
+    check_mass(fatty_acid(C24DC12DC15DC18)?, r#const::C24DC12DC15DC18);
+    Ok(())
+}
+
+#[test]
+fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
+    check_mass(fatty_acid(C24DC9DC12DC15DC18)?, r#const::C24DC9DC12DC15DC18);
+    Ok(())
+}
+
+#[test]
+fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
+    check_mass(
+        fatty_acid(C24DC6DC9DC12DC15DC18)?,
+        r#const::C24DC6DC9DC12DC15DC18,
+    );
+    Ok(())
+}
+
+#[test]
+fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
+    check_mass(
+        fatty_acid(C24DC6DC9DC12DC15DC18DC21)?,
+        r#const::C24DC6DC9DC12DC15DC18DC21,
+    );
+    Ok(())
+}
+
+#[test]
+fn c25u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C25)?, r#const::C25);
+    Ok(())
+}
+
+#[test]
+fn c26u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C26)?, r#const::C26);
+    Ok(())
+}
+
+#[test]
+fn c26u1dc17() -> PolarsResult<()> {
+    check_mass(fatty_acid(C26DC17)?, r#const::C26DC17);
+    Ok(())
+}
+
+#[test]
+fn c27u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C27)?, r#const::C27);
+    Ok(())
+}
+
+#[test]
+fn c28u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C28)?, r#const::C28);
+    Ok(())
+}
+
+#[test]
+fn c29u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C29)?, r#const::C29);
+    Ok(())
+}
+
+#[test]
+fn c30u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C30)?, r#const::C30);
+    Ok(())
+}
+
+#[test]
+fn c30u1dc21() -> PolarsResult<()> {
+    check_mass(fatty_acid(C30DC21)?, r#const::C30DC21);
+    Ok(())
+}
+
+#[test]
+fn c31u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C31)?, r#const::C31);
+    Ok(())
+}
+
+#[test]
+fn c32u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C32)?, r#const::C32);
+    Ok(())
+}
+
+#[test]
+fn c33u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C33)?, r#const::C33);
+    Ok(())
+}
+
+#[test]
+fn c34u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C34)?, r#const::C34);
+    Ok(())
+}
+
+#[test]
+fn c35u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C35)?, r#const::C35);
+    Ok(())
+}
+
+#[test]
+fn c36u0() -> PolarsResult<()> {
+    check_mass(fatty_acid(C36)?, r#const::C36);
+    Ok(())
+}
+
+mod r#const {
+    pub(super) const C4: f64 = 88.0524;
+    pub(super) const C5: f64 = 102.0681;
+    pub(super) const C6: f64 = 116.0837;
+    pub(super) const C7: f64 = 130.0994;
+    pub(super) const C8: f64 = 144.1150;
+    pub(super) const C9: f64 = 158.1307;
+    pub(super) const C10: f64 = 172.1463;
+    pub(super) const C11: f64 = 186.1620;
+    pub(super) const C12: f64 = 200.1776;
+    pub(super) const C13: f64 = 214.1933;
+    pub(super) const C14: f64 = 228.2089;
+    pub(super) const C15: f64 = 242.2246;
+    pub(super) const C16: f64 = 256.2402;
+    pub(super) const C16DC9: f64 = 254.2246;
+    pub(super) const C16DT9: f64 = 254.2246;
+    pub(super) const C17: f64 = 270.2559;
+    pub(super) const C18: f64 = 284.2715;
+    pub(super) const C18DC9: f64 = 282.2559;
+    pub(super) const C18DT9: f64 = 282.2559;
+    pub(super) const C18DC9DC12: f64 = 280.2402;
+    pub(super) const C18DC6DC9DC12: f64 = 278.2246;
+    pub(super) const C18DC8DT10DC12: f64 = 278.2246;
+    pub(super) const C18DC9DC12DC15: f64 = 278.2246;
+    pub(super) const C18DC9DT11DT13: f64 = 278.2246;
+    pub(super) const C18DT9DT11DC13: f64 = 278.2246;
+    pub(super) const C18DT9DT11DT13: f64 = 278.2246;
+    pub(super) const C18DC6DC9DC12DC15: f64 = 276.2089;
+    pub(super) const C19: f64 = 298.2872;
+    pub(super) const C20: f64 = 312.3028;
+    pub(super) const C20DC9: f64 = 310.2872;
+    pub(super) const C20DC11: f64 = 310.2872;
+    pub(super) const C20DC11DC14: f64 = 308.2715;
+    pub(super) const C20DC5DC8DC11: f64 = 306.2559;
+    pub(super) const C20DC8DC11DC14: f64 = 306.2559;
+    pub(super) const C20DC11DC14DC17: f64 = 306.2559;
+    pub(super) const C20DC5DC8DC11DC14: f64 = 304.2402;
+    pub(super) const C20DC8DC11DC14DC17: f64 = 304.2402;
+    pub(super) const C20DC5DC8DC11DC14DC17: f64 = 302.2246;
+    pub(super) const C21: f64 = 326.3185;
+    pub(super) const C22: f64 = 340.3341;
+    pub(super) const C22DC13: f64 = 338.3185;
+    pub(super) const C22DC13DC16: f64 = 336.3028;
+    pub(super) const C22DC5DC13DC16: f64 = 334.2872;
+    pub(super) const C22DC7DC10DC13DC16: f64 = 332.2715;
+    pub(super) const C22DC7DC10DC13DC16DC19: f64 = 330.2559;
+    pub(super) const C22DC4DC7DC10DC13DC16DC19: f64 = 328.2402;
+    pub(super) const C23: f64 = 354.3498;
+    pub(super) const C24: f64 = 368.3654;
+    pub(super) const C24DC15: f64 = 366.3498;
+    pub(super) const C24DC15DC18: f64 = 364.3341;
+    pub(super) const C24DC12DC15DC18: f64 = 362.3185;
+    pub(super) const C24DC9DC12DC15DC18: f64 = 360.3028;
+    pub(super) const C24DC6DC9DC12DC15DC18: f64 = 358.2872;
+    pub(super) const C24DC6DC9DC12DC15DC18DC21: f64 = 356.2715;
+    pub(super) const C25: f64 = 382.3811;
+    pub(super) const C26: f64 = 396.3967;
+    pub(super) const C26DC17: f64 = 394.3811;
+    pub(super) const C27: f64 = 410.4124;
+    pub(super) const C28: f64 = 424.4280;
+    pub(super) const C29: f64 = 438.4437;
+    pub(super) const C30: f64 = 452.4593;
+    pub(super) const C30DC21: f64 = 450.4437;
+    pub(super) const C31: f64 = 466.4750;
+    pub(super) const C32: f64 = 480.4906;
+    pub(super) const C33: f64 = 494.5063;
+    pub(super) const C34: f64 = 508.5219;
+    pub(super) const C35: f64 = 522.5376;
+    pub(super) const C36: f64 = 536.5532;
+}
+
+mod rco;
+mod rcoo;
+mod rcooch3;
+mod rcooh;

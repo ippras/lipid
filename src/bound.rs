@@ -61,7 +61,10 @@ impl Bound {
     /// * [`true`] if the bound is double, otherwise [`false`].
     pub fn is_double(self) -> bool {
         match self {
-            Self::D | Self::DC | Self::DT => true,
+            Self::Unsaturated(Unsaturated {
+                unsaturation: Some(unsaturation),
+                ..
+            }) => unsaturation == Unsaturation::Double,
             _ => false,
         }
     }
@@ -73,7 +76,10 @@ impl Bound {
     /// * [`true`] if the bound is triple, otherwise [`false`].
     pub fn is_triple(self) -> bool {
         match self {
-            Self::T | Self::TC | Self::TT => true,
+            Self::Unsaturated(Unsaturated {
+                unsaturation: Some(unsaturation),
+                ..
+            }) => unsaturation == Unsaturation::Triple,
             _ => false,
         }
     }
@@ -92,14 +98,20 @@ impl Bound {
 
     pub fn is_cis(self) -> bool {
         match self {
-            Self::DC | Self::TC | Self::UC => true,
+            Self::Unsaturated(Unsaturated {
+                isomerism: Some(isomerism),
+                ..
+            }) => isomerism == Isomerism::Cis,
             _ => false,
         }
     }
 
     pub fn is_trans(self) -> bool {
         match self {
-            Self::DT | Self::TT | Self::UT => true,
+            Self::Unsaturated(Unsaturated {
+                isomerism: Some(isomerism),
+                ..
+            }) => isomerism == Isomerism::Trans,
             _ => false,
         }
     }
@@ -118,6 +130,9 @@ impl Bound {
         }
     }
 }
+
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct Saturated;
 
 /// Represents an unsaturated bond with optional isomerism.
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]

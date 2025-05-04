@@ -1,4 +1,4 @@
-use crate::polars::ExprExt as _;
+use crate::prelude::*;
 use polars::prelude::*;
 
 /// Triacylglycerol [`Expr`]
@@ -77,7 +77,29 @@ impl From<TriacylglycerolExpr> for Expr {
     }
 }
 
+#[cfg(feature = "chain_length")]
+impl EquivalentCarbonNumber for TriacylglycerolExpr {
+    type Output = Expr;
+
+    fn equivalent_carbon_number(self) -> Expr {
+        (self
+            .clone()
+            .stereospecific_number1()
+            .fatty_acid()
+            .equivalent_carbon_number()
+            + self
+                .clone()
+                .stereospecific_number2()
+                .fatty_acid()
+                .equivalent_carbon_number()
+            + self
+                .stereospecific_number3()
+                .fatty_acid()
+                .equivalent_carbon_number())
+        .alias("EquivalentCarbonNumber")
+    }
+}
+
 pub mod permutation;
 
-mod chain_length;
 mod mass;

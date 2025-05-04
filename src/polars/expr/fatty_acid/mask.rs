@@ -7,10 +7,10 @@ impl FattyAcidExpr {
     #[inline]
     pub fn mask(
         self,
-        f: impl Fn(&FattyAcidChunked) -> PolarsResult<BooleanChunked> + Send + Sync + 'static,
+        f: impl Fn(&FattyAcidListChunked) -> PolarsResult<BooleanChunked> + Send + Sync + 'static,
     ) -> Expr {
         self.0.map(
-            move |column| Ok(Some(f(column.fatty_acid()?)?.into_column())),
+            move |column| Ok(Some(f(column.try_fatty_acid_list()?)?.into_column())),
             GetOutput::from_type(DataType::Boolean),
         )
     }
@@ -18,13 +18,13 @@ impl FattyAcidExpr {
     /// Is saturated
     #[inline]
     pub fn is_saturated(self) -> Expr {
-        self.mask(|fatty_acids| fatty_acids.is_saturated())
+        self.mask(move |fatty_acids| fatty_acids.is_saturated())
     }
 
     /// Is unsaturated
     #[inline]
-    pub fn is_unsaturated(self, n: Option<NonZeroI8>) -> Expr {
-        self.mask(move |fatty_acids| fatty_acids.is_unsaturated(n))
+    pub fn is_unsaturated(self, index: Option<NonZeroI8>) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_unsaturated(index))
     }
 
     /// Is monounsaturated
