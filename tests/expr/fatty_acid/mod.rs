@@ -165,7 +165,7 @@ fn fatty_acids() -> PolarsResult<DataFrame> {
     }
 }
 
-fn fatty_acid1<const N: usize>(
+fn fatty_acid_data_frame<const N: usize>(
     fatty_acid: &[(Option<Option<NonZeroI8>>, Option<&'static str>); N],
 ) -> PolarsResult<DataFrame> {
     df! {
@@ -173,7 +173,6 @@ fn fatty_acid1<const N: usize>(
             FattyAcidChunked::try_from(fatty_acid)?.into_struct(PlSmallStr::EMPTY)?.into_series(),
         ],
     }
-    // FattyAcidChunked::try_from(&fatty_acid)
 }
 
 fn epsilon(received: f64, expected: f64) -> bool {

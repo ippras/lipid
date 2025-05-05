@@ -192,7 +192,7 @@ fn test1() -> Result<()> {
         println!(
             "fatty_acid: {:#} {:?}",
             fatty_acid.display(Default::default()),
-            fatty_acid.first_unsaturated(NonZero::new(-6).unwrap()),
+            fatty_acid.find_unsaturated(NonZero::new(-6).unwrap()),
         );
     }
     // println!("omega_3: {}", OMEGA_3.clone().into_series());

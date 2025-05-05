@@ -1,27 +1,40 @@
 use crate::prelude::*;
+use atom::isotopes::O;
 use polars::prelude::*;
 use std::num::NonZeroI8;
 
 impl FattyAcidChunked {
-    pub fn first_unsaturated(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
-        let is_omega = Some(false);
-        let index = index.get();
-        if index > 0 {
-            let unsaturated = index;
-            let saturated = index - 1..0;
-        } else {
-            let unsaturated = index;
-            let saturated = index + 1..0;
-            for (index, bound) in self.iter() {
-                match index {
-                    Some(Some(index)) if saturated.contains(&index.get()) => todo!(),
-                    Some(Some(index)) => todo!(),
-                    Some(None) => todo!(),
-                    None => todo!(),
+    pub fn find_unsaturated(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
+        let first_unsaturated = Some(false);
+        for bound in self.bound.try_iter() {
+            let bound = bound?;
+            match bound {
+                Some(Bound::Saturated) => {}
+                Some(Bound::Unsaturated(unsaturated)) => {
+                    // first_unsaturated
                 }
+                None => first_unsaturated = None,
             }
-            println!("index: {index}");
         }
+        Ok()
+        // let index = index.get();
+        // if index > 0 {
+        //     let unsaturated = index;
+        //     let saturated = index - 1..0;
+        // } else {
+        //     let unsaturated = index;
+        //     let saturated = index + 1..0;
+        //     for (index, bound) in self.iter() {
+        //         match index {
+        //             Some(Some(index)) if saturated.contains(&index.get()) => todo!(),
+        //             Some(Some(index)) => todo!(),
+        //             Some(None) => todo!(),
+        //             None => todo!(),
+        //         }
+        //     }
+        //     println!("index: {index}");
+        // }
+
         // let bound = self.bound.physical();
         // if bound.has_nulls() {
         //     return Ok(None);
@@ -54,9 +67,6 @@ impl Mask for FattyAcidChunked {
     /// no `false` values.
     fn is_saturated(&self) -> PolarsResult<Option<bool>> {
         let mask = self.bound.equal(S)?;
-        // if let Some(index) = index {
-        //     mask = mask.filter(&self.index.equal(index.get()))?;
-        // }
         Ok(mask.all_kleene())
     }
 
