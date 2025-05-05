@@ -10,4 +10,4 @@ fn fatty_acid<const N: usize>(
 
 mod chunked_array;
 mod display;
-// mod expr;
+mod expr;
