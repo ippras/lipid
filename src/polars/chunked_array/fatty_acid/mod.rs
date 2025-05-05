@@ -32,6 +32,15 @@ impl FattyAcidChunked {
             .zip(self.bound.iter())
     }
 
+    pub fn try_iter(
+        &self,
+    ) -> impl Iterator<Item = (Option<Option<NonZeroI8>>, PolarsResult<Option<Bound>>)> {
+        self.index
+            .iter()
+            .map(|index| index.map(NonZeroI8::new))
+            .zip(self.bound.try_iter())
+    }
+
     pub fn into_struct(self, name: PlSmallStr) -> PolarsResult<StructChunked> {
         StructChunked::from_series(
             name,

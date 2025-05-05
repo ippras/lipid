@@ -187,12 +187,12 @@ fn test1() -> Result<()> {
             FattyAcidChunked::try_from(&C30DC21)?.into_struct(PlSmallStr::EMPTY)?.into_series(),
         ]
     }?;
-    println!("data_frame: {data_frame}");
+    // println!("data_frame: {data_frame}");
     for fatty_acid in data_frame.fatty_acid() {
         println!(
             "fatty_acid: {:#} {:?}",
             fatty_acid.display(Default::default()),
-            fatty_acid.find_unsaturated(NonZero::new(-6).unwrap()),
+            fatty_acid.is_unsaturated_before(NonZero::new(-6).unwrap()),
         );
     }
     // println!("omega_3: {}", OMEGA_3.clone().into_series());

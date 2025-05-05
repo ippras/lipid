@@ -1,4 +1,5 @@
 use super::FattyAcidExpr;
+use crate::prelude::*;
 use polars::prelude::*;
 
 /// Selectivity and enrichment factor methods for [`FattyAcidExpr`]

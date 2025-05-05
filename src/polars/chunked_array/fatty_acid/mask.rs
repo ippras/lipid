@@ -2,72 +2,14 @@ use crate::prelude::*;
 use polars::prelude::*;
 use std::num::NonZeroI8;
 
-impl FattyAcidChunked {
-    pub fn find_unsaturated(&self) -> PolarsResult<Option<Option<NonZeroI8>>> {
-        let mut first_unsaturated = Some(None);
-        // if self.bound.physical().has_nulls() {
-        //     return Ok(None);
-        // }
-        for (index, bound) in self.iter() {
-            // let bound = bound?;
-            match bound {
-                Some(Bound::Saturated) => {}
-                Some(Bound::Unsaturated(_)) => {
-                    // self.index
-                    // first_unsaturated
-                }
-                None => first_unsaturated = None,
-            }
-        }
-        Ok(first_unsaturated)
-        // let index = index.get();
-        // if index > 0 {
-        //     let unsaturated = index;
-        //     let saturated = index - 1..0;
-        // } else {
-        //     let unsaturated = index;
-        //     let saturated = index + 1..0;
-        //     for (index, bound) in self.iter() {
-        //         match index {
-        //             Some(Some(index)) if saturated.contains(&index.get()) => todo!(),
-        //             Some(Some(index)) => todo!(),
-        //             Some(None) => todo!(),
-        //             None => todo!(),
-        //         }
-        //     }
-        //     println!("index: {index}");
-        // }
-
-        // let bound = self.bound.physical();
-        // if bound.has_nulls() {
-        //     return Ok(None);
-        // }
-        // for zip in self.iter() {
-        //     match &zip.0 {
-        //         Some(Some(source)) => todo!(),
-        //         Some(None) => todo!(),
-        //         None => todo!(),
-        //     }
-        //     // zip.0 == index
-        // }
-
-        // let bound = bound.drop_nulls();
-        // // MAP.find(S).unwrap()
-        // let mask = self.bound.not_equal(S)?;
-        // // if let Some(index) = index {
-        // //     mask = mask & self.index.equal(index.get());
-        // // }
-    }
-}
-
-impl Mask for FattyAcidChunked {
+impl Mask for &FattyAcidChunked {
     type Output = PolarsResult<Option<bool>>;
 
     /// # Returns
     ///
     /// The output is unknown (`None`) if the array contains any null values and
     /// no `false` values.
-    fn is_saturated(&self) -> PolarsResult<Option<bool>> {
+    fn is_saturated(self) -> PolarsResult<Option<bool>> {
         let mask = self.bound.equal(S)?;
         Ok(mask.all_kleene())
     }
@@ -78,27 +20,26 @@ impl Mask for FattyAcidChunked {
     ///
     /// The output is unknown (`None`) if the array contains any null values and
     /// no `true` values.
-    fn is_unsaturated(&self) -> PolarsResult<Option<bool>> {
-        let bound = self.bound.physical();
-        if bound.has_nulls() {
-            return Ok(None);
-        }
-        for zip in self.iter() {
-            match &zip.0 {
-                Some(Some(source)) => todo!(),
-                Some(None) => todo!(),
-                None => todo!(),
-            }
-            // zip.0 == index
-        }
-
-        let bound = bound.drop_nulls();
-        // MAP.find(S).unwrap()
+    fn is_unsaturated(self) -> PolarsResult<Option<bool>> {
         let mask = self.bound.not_equal(S)?;
-        // if let Some(index) = index {
-        //     mask = mask & self.index.equal(index.get());
-        // }
         Ok(mask.any_kleene())
+    }
+
+    fn is_unsaturated_before(self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
+        let mut is_first_unsaturated = Some(false);
+        let target = index;
+        for (source, bound) in self.try_iter() {
+            let bound = bound?;
+            match bound {
+                Some(Bound::Saturated) => {}
+                Some(Bound::Unsaturated(_)) => {
+                    // self.index
+                    // first_unsaturated
+                }
+                None => is_first_unsaturated = None,
+            }
+        }
+        Ok(is_first_unsaturated)
     }
 
     /// Checks if the bound chunked array contains exactly one unsaturated bond.
@@ -106,7 +47,7 @@ impl Mask for FattyAcidChunked {
     /// # Returns
     ///
     /// [`true`] if there is exactly one unsaturated bond, [`false`] otherwise.
-    fn is_monounsaturated(&self) -> PolarsResult<Option<bool>> {
+    fn is_monounsaturated(self) -> PolarsResult<Option<bool>> {
         let mask = self.bound.not_equal(S)?;
         if mask.has_nulls() {
             Ok(None)
@@ -120,7 +61,7 @@ impl Mask for FattyAcidChunked {
     /// # Returns
     ///
     /// [`true`] if there are more than one unsaturated bonds, [`false`] otherwise.
-    fn is_polyunsaturated(&self) -> PolarsResult<Option<bool>> {
+    fn is_polyunsaturated(self) -> PolarsResult<Option<bool>> {
         let mask = self.bound.not_equal(S)?;
         let trues = mask.num_trues();
         if trues > 1 {
@@ -137,7 +78,7 @@ impl Mask for FattyAcidChunked {
     /// # Returns
     ///
     /// [`true`] if all unsaturated bounds are cis, [`false`] otherwise.
-    fn is_cis(&self) -> PolarsResult<Option<bool>> {
+    fn is_cis(self) -> PolarsResult<Option<bool>> {
         let mut is_cis = Some(false);
         for bound in self.bound.try_iter() {
             let bound = bound?;
@@ -162,7 +103,7 @@ impl Mask for FattyAcidChunked {
     /// # Returns
     ///
     /// [`true`] if any bound is trans, [`false`] otherwise.
-    fn is_trans(&self) -> PolarsResult<Option<bool>> {
+    fn is_trans(self) -> PolarsResult<Option<bool>> {
         let mut is_trans = Some(false);
         for bound in self.bound.try_iter() {
             let bound = bound?;
