@@ -1,22 +1,25 @@
 use crate::prelude::*;
-use atom::isotopes::O;
 use polars::prelude::*;
 use std::num::NonZeroI8;
 
 impl FattyAcidChunked {
-    pub fn find_unsaturated(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
-        let first_unsaturated = Some(false);
-        for bound in self.bound.try_iter() {
-            let bound = bound?;
+    pub fn find_unsaturated(&self) -> PolarsResult<Option<Option<NonZeroI8>>> {
+        let mut first_unsaturated = Some(None);
+        // if self.bound.physical().has_nulls() {
+        //     return Ok(None);
+        // }
+        for (index, bound) in self.iter() {
+            // let bound = bound?;
             match bound {
                 Some(Bound::Saturated) => {}
-                Some(Bound::Unsaturated(unsaturated)) => {
+                Some(Bound::Unsaturated(_)) => {
+                    // self.index
                     // first_unsaturated
                 }
                 None => first_unsaturated = None,
             }
         }
-        Ok()
+        Ok(first_unsaturated)
         // let index = index.get();
         // if index > 0 {
         //     let unsaturated = index;
@@ -54,7 +57,6 @@ impl FattyAcidChunked {
         // // if let Some(index) = index {
         // //     mask = mask & self.index.equal(index.get());
         // // }
-        Ok(None)
     }
 }
 
@@ -76,7 +78,7 @@ impl Mask for FattyAcidChunked {
     ///
     /// The output is unknown (`None`) if the array contains any null values and
     /// no `true` values.
-    fn is_unsaturated(&self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
+    fn is_unsaturated(&self) -> PolarsResult<Option<bool>> {
         let bound = self.bound.physical();
         if bound.has_nulls() {
             return Ok(None);

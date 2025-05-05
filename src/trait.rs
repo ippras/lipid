@@ -1,5 +1,3 @@
-use std::num::NonZeroI8;
-
 use crate::prelude::*;
 
 pub trait Atomic {
@@ -43,7 +41,7 @@ pub trait Mask {
     fn is_saturated(&self) -> Self::Output;
 
     /// Checks if the fatty acid contains any unsaturated bonds.
-    fn is_unsaturated(&self, index: Option<NonZeroI8>) -> Self::Output;
+    fn is_unsaturated(&self) -> Self::Output;
 
     /// Checks if the fatty acid contains exactly one unsaturated bond.
     fn is_monounsaturated(&self) -> Self::Output;

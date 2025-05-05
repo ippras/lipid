@@ -54,8 +54,8 @@ impl Mask for FattyAcidListChunked {
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// unsaturated fatty acids and [`false`] otherwise.
     #[inline]
-    fn is_unsaturated(&self, index: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| Ok(fatty_acid.is_unsaturated(index)?.is_some_and(identity)))
+    fn is_unsaturated(&self) -> PolarsResult<BooleanChunked> {
+        self.mask(|fatty_acid| Ok(fatty_acid.is_unsaturated()?.is_some_and(identity)))
     }
 
     /// Returns a boolean chunked array indicating which fatty acids are

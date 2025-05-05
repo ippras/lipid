@@ -1,7 +1,6 @@
 use super::FattyAcidExpr;
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
     #[inline]
@@ -23,8 +22,8 @@ impl FattyAcidExpr {
 
     /// Is unsaturated
     #[inline]
-    pub fn is_unsaturated(self, index: Option<NonZeroI8>) -> Expr {
-        self.mask(move |fatty_acids| fatty_acids.is_unsaturated(index))
+    pub fn is_unsaturated(self) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_unsaturated())
     }
 
     /// Is monounsaturated

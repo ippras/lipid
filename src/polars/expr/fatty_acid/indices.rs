@@ -63,7 +63,7 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids
     pub fn unsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_unsaturated(None)).sum()
+        expr.filter(self.is_unsaturated()).sum()
     }
 
     /// Monounsaturated fatty acids (MUFA).
