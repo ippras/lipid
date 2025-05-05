@@ -1,7 +1,8 @@
+use super::fatty_acid;
 use anyhow::Result;
 use lipid::{polars::FATTY_ACID, prelude::*};
 use polars::prelude::*;
-use std::{num::NonZeroI8, sync::LazyLock};
+use std::sync::LazyLock;
 
 const DECIMALS: usize = 4;
 
@@ -86,12 +87,6 @@ fn fatty_acids() -> PolarsResult<DataFrame> {
             FattyAcidChunked::try_from(&C36)?.into_struct(PlSmallStr::EMPTY)?.into_series(), // 67
         ],
     }
-}
-
-fn fatty_acid<const N: usize>(
-    fatty_acid: [(Option<Option<NonZeroI8>>, Option<&'static str>); N],
-) -> PolarsResult<FattyAcidChunked> {
-    FattyAcidChunked::try_from(&fatty_acid)
 }
 
 /// Round a value to the given number of decimal places.

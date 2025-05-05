@@ -7,276 +7,282 @@ fn check_mass(fatty_acid: FattyAcidChunked, expected: f64) {
 
 #[test]
 fn c4() -> PolarsResult<()> {
-    check_mass(fatty_acid(C4)?, r#const::C4);
+    check_mass(fatty_acid(&C4)?, expected::C4);
     Ok(())
 }
 
 #[test]
 fn c5() -> PolarsResult<()> {
-    check_mass(fatty_acid(C5)?, r#const::C5);
+    check_mass(fatty_acid(&C5)?, expected::C5);
     Ok(())
 }
 
 #[test]
 fn c6() -> PolarsResult<()> {
-    check_mass(fatty_acid(C6)?, r#const::C6);
+    check_mass(fatty_acid(&C6)?, expected::C6);
     Ok(())
 }
 
 #[test]
 fn c7() -> PolarsResult<()> {
-    check_mass(fatty_acid(C7)?, r#const::C7);
+    check_mass(fatty_acid(&C7)?, expected::C7);
     Ok(())
 }
 
 #[test]
 fn c8() -> PolarsResult<()> {
-    check_mass(fatty_acid(C8)?, r#const::C8);
+    check_mass(fatty_acid(&C8)?, expected::C8);
     Ok(())
 }
 
 #[test]
 fn c9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C9)?, r#const::C9);
+    check_mass(fatty_acid(&C9)?, expected::C9);
     Ok(())
 }
 
 #[test]
 fn c10() -> PolarsResult<()> {
-    check_mass(fatty_acid(C10)?, r#const::C10);
+    check_mass(fatty_acid(&C10)?, expected::C10);
     Ok(())
 }
 
 #[test]
 fn c11() -> PolarsResult<()> {
-    check_mass(fatty_acid(C11)?, r#const::C11);
+    check_mass(fatty_acid(&C11)?, expected::C11);
     Ok(())
 }
 
 #[test]
 fn c12() -> PolarsResult<()> {
-    check_mass(fatty_acid(C12)?, r#const::C12);
+    check_mass(fatty_acid(&C12)?, expected::C12);
     Ok(())
 }
 
 #[test]
 fn c13() -> PolarsResult<()> {
-    check_mass(fatty_acid(C13)?, r#const::C13);
+    check_mass(fatty_acid(&C13)?, expected::C13);
     Ok(())
 }
 
 #[test]
 fn c14() -> PolarsResult<()> {
-    check_mass(fatty_acid(C14)?, r#const::C14);
+    check_mass(fatty_acid(&C14)?, expected::C14);
     Ok(())
 }
 
 #[test]
 fn c15() -> PolarsResult<()> {
-    check_mass(fatty_acid(C15)?, r#const::C15);
+    check_mass(fatty_acid(&C15)?, expected::C15);
     Ok(())
 }
 
 #[test]
 fn c16() -> PolarsResult<()> {
-    check_mass(fatty_acid(C16)?, r#const::C16);
+    check_mass(fatty_acid(&C16)?, expected::C16);
     Ok(())
 }
 
 #[test]
 fn c16u1dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C16DC9)?, r#const::C16DC9);
+    check_mass(fatty_acid(&C16DC9)?, expected::C16DC9);
     Ok(())
 }
 
 #[test]
 fn c16u1dt9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C16DT9)?, r#const::C16DT9);
+    check_mass(fatty_acid(&C16DT9)?, expected::C16DT9);
     Ok(())
 }
 
 #[test]
 fn c17() -> PolarsResult<()> {
-    check_mass(fatty_acid(C17)?, r#const::C17);
+    check_mass(fatty_acid(&C17)?, expected::C17);
     Ok(())
 }
 
 #[test]
 fn c18() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18)?, r#const::C18);
+    check_mass(fatty_acid(&C18)?, expected::C18);
     Ok(())
 }
 
 #[test]
 fn c18u1dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC9)?, r#const::C18DC9);
+    check_mass(fatty_acid(&C18DC9)?, expected::C18DC9);
     Ok(())
 }
 
 #[test]
 fn c18u1dt9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DT9)?, r#const::C18DT9);
+    check_mass(fatty_acid(&C18DT9)?, expected::C18DT9);
     Ok(())
 }
 
 #[test]
 fn c18u2dc9dc12() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC9DC12)?, r#const::C18DC9DC12);
+    check_mass(fatty_acid(&C18DC9DC12)?, expected::C18DC9DC12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc6dc9dc12() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC6DC9DC12)?, r#const::C18DC6DC9DC12);
+    check_mass(fatty_acid(&C18DC6DC9DC12)?, expected::C18DC6DC9DC12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc8dt10dc12() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC8DT10DC12)?, r#const::C18DC8DT10DC12);
+    check_mass(fatty_acid(&C18DC8DT10DC12)?, expected::C18DC8DT10DC12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc9dc12dc15() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC9DC12DC15)?, r#const::C18DC9DC12DC15);
+    check_mass(fatty_acid(&C18DC9DC12DC15)?, expected::C18DC9DC12DC15);
     Ok(())
 }
 
 #[test]
 fn c18u3dc9dt11dt13() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC9DT11DT13)?, r#const::C18DC9DT11DT13);
+    check_mass(fatty_acid(&C18DC9DT11DT13)?, expected::C18DC9DT11DT13);
     Ok(())
 }
 
 #[test]
 fn c18u3dt9dt11dc13() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DT9DT11DC13)?, r#const::C18DT9DT11DC13);
+    check_mass(fatty_acid(&C18DT9DT11DC13)?, expected::C18DT9DT11DC13);
     Ok(())
 }
 
 #[test]
 fn c18u3dt9dt11dt13() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DT9DT11DT13)?, r#const::C18DT9DT11DT13);
+    check_mass(fatty_acid(&C18DT9DT11DT13)?, expected::C18DT9DT11DT13);
     Ok(())
 }
 
 #[test]
 fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
-    check_mass(fatty_acid(C18DC6DC9DC12DC15)?, r#const::C18DC6DC9DC12DC15);
+    check_mass(fatty_acid(&C18DC6DC9DC12DC15)?, expected::C18DC6DC9DC12DC15);
     Ok(())
 }
 
 #[test]
 fn c19() -> PolarsResult<()> {
-    check_mass(fatty_acid(C19)?, r#const::C19);
+    check_mass(fatty_acid(&C19)?, expected::C19);
     Ok(())
 }
 
 #[test]
 fn c20() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20)?, r#const::C20);
+    check_mass(fatty_acid(&C20)?, expected::C20);
     Ok(())
 }
 
 #[test]
 fn c20u1dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC9)?, r#const::C20DC9);
+    check_mass(fatty_acid(&C20DC9)?, expected::C20DC9);
     Ok(())
 }
 
 #[test]
 fn c20u1dc11() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC11)?, r#const::C20DC11);
+    check_mass(fatty_acid(&C20DC11)?, expected::C20DC11);
     Ok(())
 }
 
 #[test]
 fn c20u2dc11dc14() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC11DC14)?, r#const::C20DC11DC14);
+    check_mass(fatty_acid(&C20DC11DC14)?, expected::C20DC11DC14);
     Ok(())
 }
 
 #[test]
 fn c20u3dc5dc8dc11() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC5DC8DC11)?, r#const::C20DC5DC8DC11);
+    check_mass(fatty_acid(&C20DC5DC8DC11)?, expected::C20DC5DC8DC11);
     Ok(())
 }
 
 #[test]
 fn c20u3dc8dc11dc14() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC8DC11DC14)?, r#const::C20DC8DC11DC14);
+    check_mass(fatty_acid(&C20DC8DC11DC14)?, expected::C20DC8DC11DC14);
     Ok(())
 }
 
 #[test]
 fn c20u3dc11dc14dc17() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC11DC14DC17)?, r#const::C20DC11DC14DC17);
+    check_mass(fatty_acid(&C20DC11DC14DC17)?, expected::C20DC11DC14DC17);
     Ok(())
 }
 
 #[test]
 fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC5DC8DC11DC14)?, r#const::C20DC5DC8DC11DC14);
+    check_mass(fatty_acid(&C20DC5DC8DC11DC14)?, expected::C20DC5DC8DC11DC14);
     Ok(())
 }
 
 #[test]
 fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
-    check_mass(fatty_acid(C20DC8DC11DC14DC17)?, r#const::C20DC8DC11DC14DC17);
+    check_mass(
+        fatty_acid(&C20DC8DC11DC14DC17)?,
+        expected::C20DC8DC11DC14DC17,
+    );
     Ok(())
 }
 
 #[test]
 fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
     check_mass(
-        fatty_acid(C20DC5DC8DC11DC14DC17)?,
-        r#const::C20DC5DC8DC11DC14DC17,
+        fatty_acid(&C20DC5DC8DC11DC14DC17)?,
+        expected::C20DC5DC8DC11DC14DC17,
     );
     Ok(())
 }
 
 #[test]
 fn c21() -> PolarsResult<()> {
-    check_mass(fatty_acid(C21)?, r#const::C21);
+    check_mass(fatty_acid(&C21)?, expected::C21);
     Ok(())
 }
 
 #[test]
 fn c22() -> PolarsResult<()> {
-    check_mass(fatty_acid(C22)?, r#const::C22);
+    check_mass(fatty_acid(&C22)?, expected::C22);
     Ok(())
 }
 
 #[test]
 fn c22u1dc13() -> PolarsResult<()> {
-    check_mass(fatty_acid(C22DC13)?, r#const::C22DC13);
+    check_mass(fatty_acid(&C22DC13)?, expected::C22DC13);
     Ok(())
 }
 
 #[test]
 fn c22u2dc13dc16() -> PolarsResult<()> {
-    check_mass(fatty_acid(C22DC13DC16)?, r#const::C22DC13DC16);
+    check_mass(fatty_acid(&C22DC13DC16)?, expected::C22DC13DC16);
     Ok(())
 }
 
 #[test]
 fn c22u3dc5dc13dc16() -> PolarsResult<()> {
-    check_mass(fatty_acid(C22DC5DC13DC16)?, r#const::C22DC5DC13DC16);
+    check_mass(fatty_acid(&C22DC5DC13DC16)?, expected::C22DC5DC13DC16);
     Ok(())
 }
 
 #[test]
 fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
-    check_mass(fatty_acid(C22DC7DC10DC13DC16)?, r#const::C22DC7DC10DC13DC16);
+    check_mass(
+        fatty_acid(&C22DC7DC10DC13DC16)?,
+        expected::C22DC7DC10DC13DC16,
+    );
     Ok(())
 }
 
 #[test]
 fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     check_mass(
-        fatty_acid(C22DC7DC10DC13DC16DC19)?,
-        r#const::C22DC7DC10DC13DC16DC19,
+        fatty_acid(&C22DC7DC10DC13DC16DC19)?,
+        expected::C22DC7DC10DC13DC16DC19,
     );
     Ok(())
 }
@@ -284,53 +290,56 @@ fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 #[test]
 fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     check_mass(
-        fatty_acid(C22DC4DC7DC10DC13DC16DC19)?,
-        r#const::C22DC4DC7DC10DC13DC16DC19,
+        fatty_acid(&C22DC4DC7DC10DC13DC16DC19)?,
+        expected::C22DC4DC7DC10DC13DC16DC19,
     );
     Ok(())
 }
 
 #[test]
 fn c23() -> PolarsResult<()> {
-    check_mass(fatty_acid(C23)?, r#const::C23);
+    check_mass(fatty_acid(&C23)?, expected::C23);
     Ok(())
 }
 
 #[test]
 fn c24() -> PolarsResult<()> {
-    check_mass(fatty_acid(C24)?, r#const::C24);
+    check_mass(fatty_acid(&C24)?, expected::C24);
     Ok(())
 }
 
 #[test]
 fn c24u1dc15() -> PolarsResult<()> {
-    check_mass(fatty_acid(C24DC15)?, r#const::C24DC15);
+    check_mass(fatty_acid(&C24DC15)?, expected::C24DC15);
     Ok(())
 }
 
 #[test]
 fn c24u2dc15dc18() -> PolarsResult<()> {
-    check_mass(fatty_acid(C24DC15DC18)?, r#const::C24DC15DC18);
+    check_mass(fatty_acid(&C24DC15DC18)?, expected::C24DC15DC18);
     Ok(())
 }
 
 #[test]
 fn c24u3dc12dc15dc18() -> PolarsResult<()> {
-    check_mass(fatty_acid(C24DC12DC15DC18)?, r#const::C24DC12DC15DC18);
+    check_mass(fatty_acid(&C24DC12DC15DC18)?, expected::C24DC12DC15DC18);
     Ok(())
 }
 
 #[test]
 fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
-    check_mass(fatty_acid(C24DC9DC12DC15DC18)?, r#const::C24DC9DC12DC15DC18);
+    check_mass(
+        fatty_acid(&C24DC9DC12DC15DC18)?,
+        expected::C24DC9DC12DC15DC18,
+    );
     Ok(())
 }
 
 #[test]
 fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
     check_mass(
-        fatty_acid(C24DC6DC9DC12DC15DC18)?,
-        r#const::C24DC6DC9DC12DC15DC18,
+        fatty_acid(&C24DC6DC9DC12DC15DC18)?,
+        expected::C24DC6DC9DC12DC15DC18,
     );
     Ok(())
 }
@@ -338,97 +347,97 @@ fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
 #[test]
 fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
     check_mass(
-        fatty_acid(C24DC6DC9DC12DC15DC18DC21)?,
-        r#const::C24DC6DC9DC12DC15DC18DC21,
+        fatty_acid(&C24DC6DC9DC12DC15DC18DC21)?,
+        expected::C24DC6DC9DC12DC15DC18DC21,
     );
     Ok(())
 }
 
 #[test]
 fn c25() -> PolarsResult<()> {
-    check_mass(fatty_acid(C25)?, r#const::C25);
+    check_mass(fatty_acid(&C25)?, expected::C25);
     Ok(())
 }
 
 #[test]
 fn c26() -> PolarsResult<()> {
-    check_mass(fatty_acid(C26)?, r#const::C26);
+    check_mass(fatty_acid(&C26)?, expected::C26);
     Ok(())
 }
 
 #[test]
 fn c26u1dc17() -> PolarsResult<()> {
-    check_mass(fatty_acid(C26DC17)?, r#const::C26DC17);
+    check_mass(fatty_acid(&C26DC17)?, expected::C26DC17);
     Ok(())
 }
 
 #[test]
 fn c27() -> PolarsResult<()> {
-    check_mass(fatty_acid(C27)?, r#const::C27);
+    check_mass(fatty_acid(&C27)?, expected::C27);
     Ok(())
 }
 
 #[test]
 fn c28() -> PolarsResult<()> {
-    check_mass(fatty_acid(C28)?, r#const::C28);
+    check_mass(fatty_acid(&C28)?, expected::C28);
     Ok(())
 }
 
 #[test]
 fn c29() -> PolarsResult<()> {
-    check_mass(fatty_acid(C29)?, r#const::C29);
+    check_mass(fatty_acid(&C29)?, expected::C29);
     Ok(())
 }
 
 #[test]
 fn c30() -> PolarsResult<()> {
-    check_mass(fatty_acid(C30)?, r#const::C30);
+    check_mass(fatty_acid(&C30)?, expected::C30);
     Ok(())
 }
 
 #[test]
 fn c30u1dc21() -> PolarsResult<()> {
-    check_mass(fatty_acid(C30DC21)?, r#const::C30DC21);
+    check_mass(fatty_acid(&C30DC21)?, expected::C30DC21);
     Ok(())
 }
 
 #[test]
 fn c31() -> PolarsResult<()> {
-    check_mass(fatty_acid(C31)?, r#const::C31);
+    check_mass(fatty_acid(&C31)?, expected::C31);
     Ok(())
 }
 
 #[test]
 fn c32() -> PolarsResult<()> {
-    check_mass(fatty_acid(C32)?, r#const::C32);
+    check_mass(fatty_acid(&C32)?, expected::C32);
     Ok(())
 }
 
 #[test]
 fn c33() -> PolarsResult<()> {
-    check_mass(fatty_acid(C33)?, r#const::C33);
+    check_mass(fatty_acid(&C33)?, expected::C33);
     Ok(())
 }
 
 #[test]
 fn c34() -> PolarsResult<()> {
-    check_mass(fatty_acid(C34)?, r#const::C34);
+    check_mass(fatty_acid(&C34)?, expected::C34);
     Ok(())
 }
 
 #[test]
 fn c35() -> PolarsResult<()> {
-    check_mass(fatty_acid(C35)?, r#const::C35);
+    check_mass(fatty_acid(&C35)?, expected::C35);
     Ok(())
 }
 
 #[test]
 fn c36() -> PolarsResult<()> {
-    check_mass(fatty_acid(C36)?, r#const::C36);
+    check_mass(fatty_acid(&C36)?, expected::C36);
     Ok(())
 }
 
-mod r#const {
+mod expected {
     pub(super) const C4: f64 = 71.0497;
     pub(super) const C5: f64 = 85.0653;
     pub(super) const C6: f64 = 99.0810;
