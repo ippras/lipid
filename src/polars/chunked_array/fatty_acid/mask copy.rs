@@ -1,6 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::{NonZero, NonZeroI8, NonZeroU8};
+use std::num::{NonZeroI8, NonZeroU8};
 
 impl FattyAcidChunked {
     fn is_index(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
@@ -18,75 +18,70 @@ impl FattyAcidChunked {
         todo!()
     }
 
-    pub fn is_omega(&self, omega: NonZeroI8) -> PolarsResult<Option<bool>> {
-        assert!(omega.is_negative());
-        let delta = self.carbons().saturating_add_signed(omega.get());
-        let Some(delta) = NonZeroU8::new(delta) {
-
+    pub fn is_omega(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
+        assert!(index.is_negative());
+        let mut sized = Some(0);
+        let mut r#unsized = Some(Unsized::default());
+        let target = index.get();
+        let range = target..0;
+        let carbons = self.carbons();
+        for (source, bound) in self.try_iter() {
+            let bound = bound?;
+            match source {
+                Some(Some(source)) => {
+                    let forward = source.get();
+                    let backward = if forward.is_positive() {
+                        forward.saturating_sub_unsigned(carbons)
+                    } else {
+                        forward.saturating_add_unsigned(carbons)
+                    };
+                    if forward == target || backward == target {
+                        match bound {
+                            Some(Bound::Saturated) => return Ok(Some(false)),
+                            Some(Bound::Unsaturated(_)) => {
+                                if let Some(sized) = &mut sized {
+                                    *sized += 1
+                                }
+                            }
+                            None => {
+                                sized = None;
+                                if let Some(r#unsized) = &mut r#unsized {
+                                    r#unsized.any += 1;
+                                }
+                            }
+                        }
+                    } else if range.contains(&forward) || range.contains(&backward) {
+                        match bound {
+                            Some(Bound::Saturated) => {
+                                if let Some(sized) = &mut sized {
+                                    *sized += 1
+                                }
+                            }
+                            Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
+                            None => {
+                                sized = None;
+                                if let Some(r#unsized) = &mut r#unsized {
+                                    r#unsized.any += 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                Some(None) => {
+                    if let Some(r#unsized) = &mut r#unsized {
+                        match bound {
+                            Some(Bound::Saturated) => r#unsized.saturated += 1,
+                            Some(Bound::Unsaturated(_)) => r#unsized.unsaturated += 1,
+                            None => r#unsized.any += 1,
+                        }
+                    }
+                }
+                None => r#unsized = None,
+            }
         }
-        self.is_delta(delta)
-
-        // let mut sized = Some(0);
-        // let mut r#unsized = Some(Unsized::default());
-        // let target = omega.get();
-        // let range = target..0;
-        // for (source, bound) in self.try_iter() {
-        //     let bound = bound?;
-        //     match source {
-        //         Some(Some(source)) => {
-        //             let forward = source.get();
-        //             let backward = if forward.is_positive() {
-        //                 forward.saturating_sub_unsigned(carbons)
-        //             } else {
-        //                 forward.saturating_add_unsigned(carbons)
-        //             };
-        //             if forward == target || backward == target {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => return Ok(Some(false)),
-        //                     Some(Bound::Unsaturated(_)) => {
-        //                         if let Some(sized) = &mut sized {
-        //                             *sized += 1
-        //                         }
-        //                     }
-        //                     None => {
-        //                         sized = None;
-        //                         if let Some(r#unsized) = &mut r#unsized {
-        //                             r#unsized.any += 1;
-        //                         }
-        //                     }
-        //                 }
-        //             } else if range.contains(&forward) || range.contains(&backward) {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => {
-        //                         if let Some(sized) = &mut sized {
-        //                             *sized += 1
-        //                         }
-        //                     }
-        //                     Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
-        //                     None => {
-        //                         sized = None;
-        //                         if let Some(r#unsized) = &mut r#unsized {
-        //                             r#unsized.any += 1;
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         Some(None) => {
-        //             if let Some(r#unsized) = &mut r#unsized {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => r#unsized.saturated += 1,
-        //                     Some(Bound::Unsaturated(_)) => r#unsized.unsaturated += 1,
-        //                     None => r#unsized.any += 1,
-        //                 }
-        //             }
-        //         }
-        //         None => r#unsized = None,
-        //     }
-        // }
-        // // println!("sized: {sized:?}");
-        // // println!("target: {target:?}");
-        // Ok(sized.map(|sized| sized == target.abs()))
+        // println!("sized: {sized:?}");
+        // println!("target: {target:?}");
+        Ok(sized.map(|sized| sized == target.abs()))
     }
     // pub fn is_omega(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
     //     assert!(index.is_negative());

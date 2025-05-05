@@ -44,7 +44,7 @@ pub trait Mask {
     /// Checks if the fatty acid contains any unsaturated bonds.
     fn is_unsaturated(self) -> Self::Output;
 
-    fn is_unsaturated_before(self, index: NonZeroI8) -> Self::Output;
+    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> Self::Output;
 
     /// Checks if the fatty acid contains exactly one unsaturated bond.
     fn is_monounsaturated(self) -> Self::Output;

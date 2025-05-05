@@ -1,5 +1,6 @@
 #![feature(debug_closure_helpers)]
 #![feature(impl_trait_in_assoc_type)]
+#![feature(mixed_integer_ops_unsigned_sub)]
 
 pub mod bound;
 pub mod kind;

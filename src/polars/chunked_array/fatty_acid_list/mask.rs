@@ -59,7 +59,7 @@ impl Mask for &FattyAcidListChunked {
     }
 
     #[inline]
-    fn is_unsaturated_before(self, index: NonZeroI8) -> PolarsResult<BooleanChunked> {
+    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
         self.mask(|fatty_acid| {
             Ok(fatty_acid
                 .is_unsaturated_before(index)?

@@ -192,9 +192,12 @@ fn test1() -> Result<()> {
         println!(
             "fatty_acid: {:#} {:?}",
             fatty_acid.display(Default::default()),
-            fatty_acid.is_unsaturated_before(NonZero::new(-6).unwrap()),
+            fatty_acid.is_omega(NonZero::new(-3).unwrap()),
         );
     }
+    //     *
+    // 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19;
+
     // println!("omega_3: {}", OMEGA_3.clone().into_series());
     // let tail = FattyAcidChunked::try_from(&C18DC9DC12DC15)?
     //     .bound()

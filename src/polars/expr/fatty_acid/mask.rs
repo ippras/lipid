@@ -31,7 +31,7 @@ impl Mask for FattyAcidExpr {
     }
 
     #[inline]
-    fn is_unsaturated_before(self, index: NonZeroI8) -> Expr {
+    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> Expr {
         self.mask(move |fatty_acid| fatty_acid.is_unsaturated_before(index))
     }
 
