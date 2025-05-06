@@ -202,5 +202,6 @@ impl EquivalentCarbonNumber for &BoundChunked {
     }
 }
 
+mod mask;
 #[cfg(feature = "mass")]
 mod mass;
