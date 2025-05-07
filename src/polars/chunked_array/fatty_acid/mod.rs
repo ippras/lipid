@@ -3,6 +3,7 @@ use polars::prelude::{enum_::EnumChunkedBuilder, *};
 use std::{
     fmt::{self, Display, Formatter, Write, from_fn},
     num::NonZeroI8,
+    rc::Rc,
     sync::LazyLock,
 };
 
@@ -16,20 +17,37 @@ pub const FATTY_ACID_DATA_TYPE: LazyLock<DataType> = LazyLock::new(|| {
 
 /// Fatty acid chunked array.
 #[derive(Clone, Default)]
-pub struct FattyAcidChunked {
-    index: Int8Chunked,
-    bound: BoundChunked,
-}
+#[repr(transparent)]
+pub struct FattyAcidChunked(StructChunked);
 
 impl FattyAcidChunked {
     pub const INDEX: &str = INDEX;
     pub const IDENTIFIER: &str = IDENTIFIER;
 
-    pub fn iter(&self) -> impl Iterator<Item = (Option<Option<NonZeroI8>>, Option<Bound>)> {
-        self.index
-            .iter()
-            .map(|index| index.map(NonZeroI8::new))
-            .zip(self.bound.iter())
+    pub fn new(r#struct: StructChunked) -> Self {
+        Self::try_new(r#struct).unwrap()
+    }
+
+    pub fn try_new(r#struct: StructChunked) -> PolarsResult<Self> {
+        polars_ensure!(
+            *r#struct.dtype() == *FATTY_ACID_DATA_TYPE,
+            SchemaMismatch: "invalid fatty acid datatype: expected `FATTY_ACID_DATA_TYPE`, got = `{}`",
+            r#struct.dtype(),
+        );
+        Ok(Self(r#struct))
+    }
+
+    pub fn iter(
+        &self,
+    ) -> PolarsResult<impl Iterator<Item = (Option<Option<NonZeroI8>>, Option<&'static str>)>> {
+        let index = self.0.field_by_name(Self::INDEX)?.i8()?.clone();
+        let identifier = self
+            .0
+            .field_by_name(Self::IDENTIFIER)?
+            .categorical()?
+            .clone();
+        let mut iter = Iter { index, identifier }.into_iter();
+        Ok(std::iter::from_fn(move || iter.next()))
     }
 
     pub fn try_iter(
@@ -242,7 +260,7 @@ impl TryFrom<&Series> for FattyAcidChunked {
         //     value.dtype(),
         // );
         // let index = r#struct.field_by_name(Self::INDEX)?.i8()?.clone();
-        // let bopund = BoundChunked::try_new(
+        // let bound = BoundChunked::try_new(
         //     r#struct
         //         .field_by_name(Self::IDENTIFIER)?
         //         .categorical()?
@@ -250,7 +268,7 @@ impl TryFrom<&Series> for FattyAcidChunked {
         // )?;
         // Ok(Self {
         //     index,
-        //     bound: bopund,
+        //     bound,
         // })
     }
 }
@@ -303,6 +321,24 @@ impl<const N: usize> TryFrom<&[(Option<Option<NonZeroI8>>, Option<&str>); N]> fo
             index: indices.finish(),
             bound: BoundChunked::new(identifiers.finish()),
         })
+    }
+}
+
+pub struct Iter {
+    index: Int8Chunked,
+    identifier: CategoricalChunked,
+}
+
+impl<'a> IntoIterator for &'a Iter {
+    type Item = (Option<Option<NonZeroI8>>, Option<&'a str>);
+
+    type IntoIter = impl Iterator<Item = Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.index
+            .iter()
+            .map(|index| index.map(NonZeroI8::new))
+            .zip(self.identifier.iter_str())
     }
 }
 
