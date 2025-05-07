@@ -56,6 +56,26 @@ impl FattyAcidChunked {
     pub fn bound(&self) -> &BoundChunked {
         &self.bound
     }
+
+    pub fn sort(self) -> PolarsResult<FattyAcidChunked> {
+        self.into_struct(PlSmallStr::EMPTY)?
+            .sort_with(SortOptions {
+                nulls_last: true,
+                descending: false,
+                multithreaded: true,
+                maintain_order: false,
+                limit: None,
+            })
+            .as_ref()
+            .try_into()
+        // &self.bound.sort_with(SortOptions {
+        //     nulls_last: false,
+        //     descending,
+        //     multithreaded: true,
+        //     maintain_order: false,
+        //     limit: None,
+        // })
+    }
 }
 
 impl FattyAcidChunked {
@@ -214,24 +234,45 @@ impl TryFrom<&Series> for FattyAcidChunked {
     type Error = PolarsError;
 
     fn try_from(value: &Series) -> Result<Self, Self::Error> {
+        value.struct_()?.try_into()
+        // polars_ensure!(
+        //     *value.dtype() == *FATTY_ACID_DATA_TYPE,
+        //     SchemaMismatch: "invalid series data type: expected `{}`, got = `{}`",
+        //     *FATTY_ACID_DATA_TYPE,
+        //     value.dtype(),
+        // );
+        // let index = r#struct.field_by_name(Self::INDEX)?.i8()?.clone();
+        // let bopund = BoundChunked::try_new(
+        //     r#struct
+        //         .field_by_name(Self::IDENTIFIER)?
+        //         .categorical()?
+        //         .clone(),
+        // )?;
+        // Ok(Self {
+        //     index,
+        //     bound: bopund,
+        // })
+    }
+}
+
+impl TryFrom<&StructChunked> for FattyAcidChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &StructChunked) -> Result<Self, Self::Error> {
         polars_ensure!(
             *value.dtype() == *FATTY_ACID_DATA_TYPE,
-            SchemaMismatch: "invalid series data type: expected `{}`, got = `{}`",
+            SchemaMismatch: "invalid fatty acid data type: expected `{}`, got = `{}`",
             *FATTY_ACID_DATA_TYPE,
             value.dtype(),
         );
-        let r#struct = value.struct_()?;
-        let index = r#struct.field_by_name(Self::INDEX)?.i8()?.clone();
-        let bopund = BoundChunked::try_new(
-            r#struct
+        let index = value.field_by_name(Self::INDEX)?.i8()?.clone();
+        let bound = BoundChunked::try_new(
+            value
                 .field_by_name(Self::IDENTIFIER)?
                 .categorical()?
                 .clone(),
         )?;
-        Ok(Self {
-            index,
-            bound: bopund,
-        })
+        Ok(Self { index, bound })
     }
 }
 

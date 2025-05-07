@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use std::num::NonZeroI8;
+use std::num::{NonZeroI8, NonZeroU8};
 
 pub trait Atomic {
     type Output;
@@ -44,8 +44,6 @@ pub trait Mask {
     /// Checks if the fatty acid contains any unsaturated bonds.
     fn is_unsaturated(self) -> Self::Output;
 
-    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> Self::Output;
-
     /// Checks if the fatty acid contains exactly one unsaturated bond.
     fn is_monounsaturated(self) -> Self::Output;
 
@@ -57,6 +55,15 @@ pub trait Mask {
 
     /// Checks if the fatty acid contains any trans bonds.
     fn is_trans(self) -> Self::Output;
+}
+
+/// Extension methods for [`Mask`].
+pub trait MaskExt: Mask {
+    fn try_unsaturated(self, index: Option<NonZeroI8>) -> Self::Output;
+
+    fn is_delta_unsaturated(self, index: NonZeroU8) -> Self::Output;
+
+    fn is_omega_unsaturated(self, index: NonZeroU8) -> Self::Output;
 }
 
 pub trait Mass {

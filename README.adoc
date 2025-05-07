@@ -6,3 +6,8 @@
 // Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
 
 == Triacylglycerol
+
+== Build
+
+[sounce]
+cargo build --features=polars

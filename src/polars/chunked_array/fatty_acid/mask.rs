@@ -1,95 +1,55 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::{NonZero, NonZeroI8, NonZeroU8};
+use std::num::{NonZeroI8, NonZeroU8};
 
 impl FattyAcidChunked {
-    fn is_index(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
+    fn is_affix(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
         let Some(index) = index else {
             return Ok(self.bound.not_equal(S)?.any_kleene());
         };
         if index.is_positive() {
-            self.is_delta(index.cast_unsigned())
+            self.is_delta_unsaturated(index.cast_unsigned())
         } else {
-            self.is_omega(index)
+            self.is_omega_unsaturated(index.unsigned_abs())
         }
     }
 
-    fn is_delta(self, index: NonZeroU8) -> PolarsResult<Option<bool>> {
-        todo!()
+    // fn is_saturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
+    //     let Some(index) = index else {
+    //         return self.bound.is_saturated();
+    //     };
+    //     if index.is_positive() {
+    //         self.is_delta(index.cast_unsigned())
+    //     } else {
+    //         self.is_omega(index.unsigned_abs())
+    //     }
+    //     let index = index.get();
+    //     let length = self.carbons();
+    //     if index >= length {
+    //         return Ok(Some(false));
+    //     }
+    //     let mut sized = Some(0);
+    //     let mut r#unsized = Some(Unsized::default());
+    //     let range = index..length;
+    //     let Some(sized) = sized else {
+    //         return Ok(None);
+    //     };
+    //     Ok(Some(sized == range.len() + 1))
+    // }
+}
+
+impl Mask for &FattyAcidChunked {
+    type Output = PolarsResult<Option<bool>>;
+
+    fn is_saturated(self) -> PolarsResult<Option<bool>> {
+        self.bound.is_saturated()
     }
 
-    pub fn is_omega(&self, omega: NonZeroI8) -> PolarsResult<Option<bool>> {
-        assert!(omega.is_negative());
-        let delta = self.carbons().saturating_add_signed(omega.get());
-        let Some(delta) = NonZeroU8::new(delta) {
-
-        }
-        self.is_delta(delta)
-
-        // let mut sized = Some(0);
-        // let mut r#unsized = Some(Unsized::default());
-        // let target = omega.get();
-        // let range = target..0;
-        // for (source, bound) in self.try_iter() {
-        //     let bound = bound?;
-        //     match source {
-        //         Some(Some(source)) => {
-        //             let forward = source.get();
-        //             let backward = if forward.is_positive() {
-        //                 forward.saturating_sub_unsigned(carbons)
-        //             } else {
-        //                 forward.saturating_add_unsigned(carbons)
-        //             };
-        //             if forward == target || backward == target {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => return Ok(Some(false)),
-        //                     Some(Bound::Unsaturated(_)) => {
-        //                         if let Some(sized) = &mut sized {
-        //                             *sized += 1
-        //                         }
-        //                     }
-        //                     None => {
-        //                         sized = None;
-        //                         if let Some(r#unsized) = &mut r#unsized {
-        //                             r#unsized.any += 1;
-        //                         }
-        //                     }
-        //                 }
-        //             } else if range.contains(&forward) || range.contains(&backward) {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => {
-        //                         if let Some(sized) = &mut sized {
-        //                             *sized += 1
-        //                         }
-        //                     }
-        //                     Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
-        //                     None => {
-        //                         sized = None;
-        //                         if let Some(r#unsized) = &mut r#unsized {
-        //                             r#unsized.any += 1;
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //         Some(None) => {
-        //             if let Some(r#unsized) = &mut r#unsized {
-        //                 match bound {
-        //                     Some(Bound::Saturated) => r#unsized.saturated += 1,
-        //                     Some(Bound::Unsaturated(_)) => r#unsized.unsaturated += 1,
-        //                     None => r#unsized.any += 1,
-        //                 }
-        //             }
-        //         }
-        //         None => r#unsized = None,
-        //     }
-        // }
-        // // println!("sized: {sized:?}");
-        // // println!("target: {target:?}");
-        // Ok(sized.map(|sized| sized == target.abs()))
+    fn is_unsaturated(self) -> PolarsResult<Option<bool>> {
+        self.bound.is_unsaturated()
     }
-    // pub fn is_omega(&self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
-    //     assert!(index.is_negative());
+
+    // fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
     //     // forward
     //     let carbons = self.carbons();
     //     let backward = |index: i8| {
@@ -99,171 +59,80 @@ impl FattyAcidChunked {
     //             index.saturating_add_unsigned(carbons)
     //         }
     //     };
-    //     let mut sized = Some(0);
-    //     let mut r#unsized = Some(Unsized::default());
-    //     let target = index.get();
-    //     let range = target..0;
+    //     let Some(index) = index else {
+    //         return Ok(self.bound.not_equal(S)?.any_kleene());
+    //     };
+    //     let mut sized = (Some(0), Some(0));
+    //     let mut r#unsized = Some(0);
+    //     let forward = index.get();
+    //     let target = (forward, backward(forward));
+    //     let range = (
+    //         target.0.min(0)..target.0.max(0),
+    //         target.1.min(0)..target.1.max(0),
+    //     );
     //     for (source, bound) in self.try_iter() {
     //         let bound = bound?;
     //         match source {
     //             Some(Some(source)) => {
     //                 let forward = source.get();
     //                 let backward = backward(forward);
-    //                 if forward == target || backward == target {
+    //                 if forward == target.0 || backward == target.0 {
     //                     match bound {
-    //                         Some(Bound::Saturated) => return Ok(Some(false)),
     //                         Some(Bound::Unsaturated(_)) => {
-    //                             if let Some(sized) = &mut sized {
+    //                             if let Some(sized) = &mut sized.0 {
     //                                 *sized += 1
     //                             }
     //                         }
-    //                         None => {
-    //                             sized = None;
-    //                             if let Some(r#unsized) = &mut r#unsized {
-    //                                 r#unsized.any += 1;
-    //                             }
-    //                         }
+    //                         None => r#unsized = None,
+    //                         _ => {}
     //                     }
-    //                 } else if range.contains(&forward) || range.contains(&backward) {
+    //                 } else if range.0.contains(&forward) || range.0.contains(&backward) {
     //                     match bound {
     //                         Some(Bound::Saturated) => {
-    //                             if let Some(sized) = &mut sized {
+    //                             if let Some(sized) = &mut sized.0 {
     //                                 *sized += 1
     //                             }
     //                         }
-    //                         Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
-    //                         None => {
-    //                             sized = None;
-    //                             if let Some(r#unsized) = &mut r#unsized {
-    //                                 r#unsized.any += 1;
+    //                         None => r#unsized = None,
+    //                         _ => {}
+    //                     }
+    //                 }
+    //                 if forward == target.1 || backward == target.1 {
+    //                     match bound {
+    //                         // Some(Bound::Saturated) => return Ok(Some(false)),
+    //                         Some(Bound::Unsaturated(_)) => {
+    //                             if let Some(sized) = &mut sized.1 {
+    //                                 *sized += 1
     //                             }
     //                         }
+    //                         None => r#unsized = None,
+    //                         _ => {}
     //                     }
-    //                 }
-    //             }
-    //             Some(None) => {
-    //                 if let Some(r#unsized) = &mut r#unsized {
+    //                 } else if range.1.contains(&forward) || range.1.contains(&backward) {
+    //                     // println!("contains1: {forward}/{backward} {bound:?} {range:?}");
     //                     match bound {
-    //                         Some(Bound::Saturated) => r#unsized.saturated += 1,
-    //                         Some(Bound::Unsaturated(_)) => r#unsized.unsaturated += 1,
-    //                         None => r#unsized.any += 1,
+    //                         Some(Bound::Saturated) => {
+    //                             if let Some(sized) = &mut sized.1 {
+    //                                 *sized += 1
+    //                             }
+    //                         }
+    //                         // Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
+    //                         None => r#unsized = None,
+    //                         _ => {}
     //                     }
     //                 }
     //             }
+    //             Some(None) => r#unsized = r#unsized.map(|r#unsized| r#unsized + 1),
     //             None => r#unsized = None,
     //         }
     //     }
     //     // println!("sized: {sized:?}");
     //     // println!("target: {target:?}");
-    //     Ok(sized.map(|sized| sized == target.abs()))
+    //     Ok(sized
+    //         .0
+    //         .zip(sized.1)
+    //         .map(|sized| sized.0 == target.0.abs() || sized.1 == target.1.abs()))
     // }
-}
-
-impl Mask for &FattyAcidChunked {
-    type Output = PolarsResult<Option<bool>>;
-
-    /// [`BoundChunked::is_saturated`]
-    fn is_saturated(self) -> PolarsResult<Option<bool>> {
-        self.bound.is_saturated()
-    }
-
-    /// Checks if the bound chunked array contains any unsaturated bonds.
-    ///
-    /// # Returns
-    ///
-    /// The output is unknown (`None`) if the array contains any null values and
-    /// no `true` values.
-    fn is_unsaturated(self) -> PolarsResult<Option<bool>> {
-        self.bound.is_unsaturated()
-    }
-
-    //     *
-    // 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19;
-    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
-        // forward
-        let carbons = self.carbons();
-        let backward = |index: i8| {
-            if index.is_positive() {
-                index.saturating_sub_unsigned(carbons)
-            } else {
-                index.saturating_add_unsigned(carbons)
-            }
-        };
-
-        let Some(index) = index else {
-            return Ok(self.bound.not_equal(S)?.any_kleene());
-        };
-        let mut sized = (Some(0), Some(0));
-        let mut r#unsized = Some(0);
-        let forward = index.get();
-        let target = (forward, backward(forward));
-        let range = (
-            target.0.min(0)..target.0.max(0),
-            target.1.min(0)..target.1.max(0),
-        );
-        for (source, bound) in self.try_iter() {
-            let bound = bound?;
-            match source {
-                Some(Some(source)) => {
-                    let forward = source.get();
-                    let backward = backward(forward);
-                    if forward == target.0 || backward == target.0 {
-                        match bound {
-                            Some(Bound::Unsaturated(_)) => {
-                                if let Some(sized) = &mut sized.0 {
-                                    *sized += 1
-                                }
-                            }
-                            None => r#unsized = None,
-                            _ => {}
-                        }
-                    } else if range.0.contains(&forward) || range.0.contains(&backward) {
-                        match bound {
-                            Some(Bound::Saturated) => {
-                                if let Some(sized) = &mut sized.0 {
-                                    *sized += 1
-                                }
-                            }
-                            None => r#unsized = None,
-                            _ => {}
-                        }
-                    }
-                    if forward == target.1 || backward == target.1 {
-                        match bound {
-                            // Some(Bound::Saturated) => return Ok(Some(false)),
-                            Some(Bound::Unsaturated(_)) => {
-                                if let Some(sized) = &mut sized.1 {
-                                    *sized += 1
-                                }
-                            }
-                            None => r#unsized = None,
-                            _ => {}
-                        }
-                    } else if range.1.contains(&forward) || range.1.contains(&backward) {
-                        // println!("contains1: {forward}/{backward} {bound:?} {range:?}");
-                        match bound {
-                            Some(Bound::Saturated) => {
-                                if let Some(sized) = &mut sized.1 {
-                                    *sized += 1
-                                }
-                            }
-                            // Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
-                            None => r#unsized = None,
-                            _ => {}
-                        }
-                    }
-                }
-                Some(None) => r#unsized = r#unsized.map(|r#unsized| r#unsized + 1),
-                None => r#unsized = None,
-            }
-        }
-        // println!("sized: {sized:?}");
-        // println!("target: {target:?}");
-        Ok(sized
-            .0
-            .zip(sized.1)
-            .map(|sized| sized.0 == target.0.abs() || sized.1 == target.1.abs()))
-    }
 
     // fn is_unsaturated_before(self, index: NonZeroI8) -> PolarsResult<Option<bool>> {
     //     let mut is_unsaturated = Some(index.get());
@@ -316,41 +185,143 @@ impl Mask for &FattyAcidChunked {
     //     Ok(is_unsaturated.map(|is_unsaturated| is_unsaturated == 0))
     // }
 
-    /// Checks if the bound chunked array contains exactly one unsaturated bond.
-    ///
-    /// # Returns
-    ///
-    /// [`true`] if there is exactly one unsaturated bond, [`false`] otherwise.
     fn is_monounsaturated(self) -> PolarsResult<Option<bool>> {
         self.bound.is_monounsaturated()
     }
 
-    /// Checks if the bound chunked array contains more than one unsaturated bond.
-    ///
-    /// # Returns
-    ///
-    /// [`true`] if there are more than one unsaturated bonds, [`false`] otherwise.
     fn is_polyunsaturated(self) -> PolarsResult<Option<bool>> {
         self.bound.is_polyunsaturated()
     }
 
-    /// Checks if the bound chunked array contains unsaturated cis-only bonds.
-    ///
-    /// # Returns
-    ///
-    /// [`true`] if all unsaturated bounds are cis, [`false`] otherwise.
     fn is_cis(self) -> PolarsResult<Option<bool>> {
         self.bound.is_cis()
     }
 
-    /// Checks if the bound chunked array contains any trans bonds.
-    ///
-    /// # Returns
-    ///
-    /// [`true`] if any bound is trans, [`false`] otherwise.
     fn is_trans(self) -> PolarsResult<Option<bool>> {
         self.bound.is_trans()
     }
+}
+
+enum Index {
+    Delta(NonZeroU8),
+    Omega(NonZeroU8),
+}
+
+impl MaskExt for &FattyAcidChunked {
+    fn try_unsaturated(self, index: Option<NonZeroI8>) -> PolarsResult<Option<bool>> {
+        let Some(index) = index else {
+            return self.bound.is_unsaturated();
+        };
+        if index.is_positive() {
+            self.is_delta_unsaturated(index.cast_unsigned())
+        } else {
+            self.is_omega_unsaturated(index.unsigned_abs())
+        }
+    }
+
+    fn is_delta_unsaturated(self, index: NonZeroU8) -> PolarsResult<Option<bool>> {
+        println!("is_delta: {index}");
+        let index = index.get();
+        let length = self.carbons();
+        if index >= length {
+            return Ok(Some(false));
+        }
+        let mut sized = Some(0);
+        let mut r#unsized = Some(Unsized::default());
+        let unsaturated = index;
+        let saturated = 1..index;
+        for (index, bound) in self.try_iter() {
+            let bound = bound?;
+            match index {
+                Some(Some(index)) => {
+                    // Convert to delta
+                    let index = if index.is_positive() {
+                        index.get() as _
+                    } else {
+                        length.saturating_add_signed(index.get())
+                    };
+                    if index == unsaturated {
+                        match bound {
+                            Some(Bound::Saturated) => return Ok(Some(false)),
+                            Some(Bound::Unsaturated(_)) => {
+                                if let Some(sized) = &mut sized {
+                                    *sized += 1
+                                }
+                            }
+                            None => {
+                                sized = None;
+                                if let Some(r#unsized) = &mut r#unsized {
+                                    r#unsized.any += 1;
+                                }
+                            }
+                        }
+                    } else if saturated.contains(&index) {
+                        match bound {
+                            Some(Bound::Saturated) => {
+                                if let Some(sized) = &mut sized {
+                                    *sized += 1
+                                }
+                            }
+                            Some(Bound::Unsaturated(_)) => return Ok(Some(false)),
+                            None => {
+                                sized = None;
+                                if let Some(r#unsized) = &mut r#unsized {
+                                    r#unsized.any += 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                Some(None) => {
+                    if let Some(r#unsized) = &mut r#unsized {
+                        match bound {
+                            Some(Bound::Saturated) => r#unsized.saturated += 1,
+                            Some(Bound::Unsaturated(_)) => r#unsized.unsaturated += 1,
+                            None => r#unsized.any += 1,
+                        }
+                    }
+                }
+                None => r#unsized = None,
+            }
+        }
+        let Some(sized) = sized else {
+            return Ok(None);
+        };
+        Ok(Some(sized == unsaturated))
+    }
+
+    fn is_omega_unsaturated(self, index: NonZeroU8) -> PolarsResult<Option<bool>> {
+        println!("is_omega: {index}");
+        let index = index.get();
+        let length = self.carbons();
+        if index >= length {
+            return Ok(Some(false));
+        }
+        let mut sized = Some(0);
+        let mut r#unsized = Some(Unsized::default());
+        let unsaturated = index;
+        let saturated = index + 1..length;
+        for (index, bound) in self.try_iter() {
+            let bound = bound?;
+        }
+        let Some(sized) = sized else {
+            return Ok(None);
+        };
+        Ok(Some(sized == saturated.len() + 1))
+    }
+
+    // fn is_omega(self, index: NonZeroU8) -> PolarsResult<Option<bool>> {
+    //     let index = index.get();
+    //     let length = self.carbons();
+    //     if index >= length {
+    //         return Ok(Some(false));
+    //     }
+    //     let delta = length - index;
+    //     let Some(delta) = NonZeroU8::new(delta) else {
+    //         return Ok(Some(false));
+    //     };
+    //     self.is_delta(delta)
+    // }
 }
 
 #[derive(Clone, Copy, Debug, Default)]

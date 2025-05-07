@@ -6,6 +6,7 @@ use polars::prelude::*;
 use polars_arrow::array::MutableBinaryViewArray;
 use std::{
     collections::BTreeMap,
+    default,
     fmt::Sign,
     iter::{once, repeat, repeat_n},
     num::{NonZero, NonZeroI8},
@@ -79,30 +80,6 @@ fn test() -> Result<()> {
     }
     Ok(())
 }
-
-// Series::from_iter([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
-// Series::from_iter([S, S, S, S, S, S, S, S, D, S, S , D , S , S , S , D , S , S , S])
-
-// Series::from_iter([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18])
-// Series::from_iter([S, S, S, S, S, S, S, S, D, S, S , D , S , S , S , D , S , S , S])
-
-// MUFA
-// Series::from_iter([None, None, None])
-// Series::from_iter([S   , U   , S])
-
-// PUFA
-// Series::from_iter([None, None, None, None, None])
-// Series::from_iter([S   , U   , S   , U   , S   ])
-// Series::from_iter([None, 1   , None, 1   , None])
-
-// 15:1
-// Series::from_iter([None, None, None, None, None])
-// Series::from_iter([S   , U   , S   , U   , S   ])
-
-// PUFA None[None, {None, U}, None, {None, U}, None]
-// W3 None[None, {-3, U}]
-// W6 None[None, {-6, U}]
-// W9 None[None, {-9, U}]
 
 pub const INDEX: &str = FattyAcidChunked::INDEX;
 pub const IDENTIFIER: &str = FattyAcidChunked::IDENTIFIER;
@@ -192,9 +169,36 @@ fn test1() -> Result<()> {
         println!(
             "fatty_acid: {:#} {:?}",
             fatty_acid.display(Default::default()),
-            fatty_acid.is_omega(NonZero::new(-3).unwrap()),
+            fatty_acid
+                .index()
+                .sort_with(SortOptions::default().with_nulls_last(true)),
+            // fatty_acid.is_delta(NonZero::new(9).unwrap()),
+            // fatty_acid.is_omega_unsaturated(NonZero::new(3).unwrap()),
         );
     }
+    let indices = Series::from_iter([
+        Some(1),
+        Some(2),
+        Some(3),
+        None,
+        Some(-3),
+        Some(-2),
+        Some(-1),
+    ]);
+    println!("indices: {indices}");
+    let indices = indices.sort_with(SortOptions::default().with_nulls_last(true))?;
+    println!("sort indices: {indices}");
+
+    // df! {
+    //     FattyAcidChunked::INDEX => Series::from_iter(repeat_n(0i8, b)),
+    //     FattyAcidChunked::IDENTIFIER => Series::from_iter(repeat_n(U, u).chain(repeat_n(S, s))).cast(&BOUND_DATA_TYPE)?,
+    // }?
+    // .into_struct(PlSmallStr::EMPTY).into_series();
+    // let data_frame = df! {
+    //     INDEX => Series::from_iter([1, 2, 3, -3, -2, -1]),
+    //     INDEX => Series::from_iter([1, 2, 3, -3, -2, -1]),
+    // };
+
     //     *
     // 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19;
 

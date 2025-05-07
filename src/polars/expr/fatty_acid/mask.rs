@@ -1,6 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::NonZeroI8;
+use std::num::{NonZeroI8, NonZeroU8};
 
 impl FattyAcidExpr {
     #[inline]
@@ -30,11 +30,6 @@ impl Mask for FattyAcidExpr {
         self.mask(move |fatty_acids| fatty_acids.is_unsaturated())
     }
 
-    #[inline]
-    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> Expr {
-        self.mask(move |fatty_acid| fatty_acid.is_unsaturated_before(index))
-    }
-
     /// Is monounsaturated
     #[inline]
     fn is_monounsaturated(self) -> Expr {
@@ -57,5 +52,19 @@ impl Mask for FattyAcidExpr {
     #[inline]
     fn is_trans(self) -> Expr {
         self.mask(|fatty_acids| fatty_acids.is_trans())
+    }
+}
+
+impl MaskExt for FattyAcidExpr {
+    fn try_unsaturated(self, index: Option<NonZeroI8>) -> Expr {
+        self.mask(move |fatty_acid| fatty_acid.try_unsaturated(index))
+    }
+
+    fn is_delta_unsaturated(self, index: NonZeroU8) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_delta_unsaturated(index))
+    }
+
+    fn is_omega_unsaturated(self, index: NonZeroU8) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_omega_unsaturated(index))
     }
 }

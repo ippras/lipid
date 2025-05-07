@@ -57,7 +57,7 @@ impl BoundChunked {
 impl BoundChunked {
     /// Returns the number of sized bounds in the bound chunked array.
     pub fn sized(&self) -> u8 {
-        (self.0.physical().len() - self.0.null_count()) as _
+        (self.0.len() - self.0.null_count()) as _
     }
 
     // /// Returns the number of unsized bounds in the bound chunked array.

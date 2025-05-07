@@ -33,7 +33,9 @@ pub mod prelude {
         r#const::*,
         display::{Elision, Options},
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
-        r#trait::{Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, Mask, Mass},
+        r#trait::{
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, Mask, MaskExt, Mass,
+        },
     };
 }
 

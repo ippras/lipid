@@ -1,6 +1,9 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::{convert::identity, num::NonZeroI8};
+use std::{
+    convert::identity,
+    num::{NonZeroI8, NonZeroU8},
+};
 
 impl FattyAcidListChunked {
     /// Applies a mask function to the chunked array.
@@ -58,14 +61,14 @@ impl Mask for &FattyAcidListChunked {
         self.mask(|fatty_acid| Ok(fatty_acid.is_unsaturated()?.is_some_and(identity)))
     }
 
-    #[inline]
-    fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| {
-            Ok(fatty_acid
-                .is_unsaturated_before(index)?
-                .is_some_and(identity))
-        })
-    }
+    // #[inline]
+    // fn is_unsaturated_before(self, index: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
+    //     self.mask(|fatty_acid| {
+    //         Ok(fatty_acid
+    //             .is_unsaturated_before(index)?
+    //             .is_some_and(identity))
+    //     })
+    // }
 
     /// Returns a boolean chunked array indicating which fatty acids are
     /// monounsaturated.
@@ -111,5 +114,19 @@ impl Mask for &FattyAcidListChunked {
     #[inline]
     fn is_trans(self) -> PolarsResult<BooleanChunked> {
         self.mask(|fatty_acid| Ok(fatty_acid.is_trans()?.is_some_and(identity)))
+    }
+}
+
+impl MaskExt for &FattyAcidListChunked {
+    fn try_unsaturated(self, index: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
+        self.mask(|fatty_acid| Ok(fatty_acid.try_unsaturated(index)?.is_some_and(identity)))
+    }
+
+    fn is_delta_unsaturated(self, index: NonZeroU8) -> PolarsResult<BooleanChunked> {
+        self.mask(|fatty_acid| Ok(fatty_acid.is_delta_unsaturated(index)?.is_some_and(identity)))
+    }
+
+    fn is_omega_unsaturated(self, index: NonZeroU8) -> PolarsResult<BooleanChunked> {
+        self.mask(|fatty_acid| Ok(fatty_acid.is_omega_unsaturated(index)?.is_some_and(identity)))
     }
 }

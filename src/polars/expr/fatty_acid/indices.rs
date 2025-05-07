@@ -1,6 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::NonZeroI8;
+use std::num::NonZeroU8;
 
 impl FattyAcidExpr {
     pub fn enoics(self, n: u8) -> Expr {
@@ -115,25 +115,25 @@ impl FattyAcidExpr {
         let monounsaturated = self.clone().monounsaturated(expr.clone());
         let unsaturated_minus_3 = expr
             .clone()
-            .filter(self.clone().is_unsaturated_before(NonZeroI8::new(-3)))
+            .filter(self.clone().is_omega_unsaturated(NonZeroU8::new(3).unwrap()))
             .sum();
         let unsaturated_minus_6 = expr
             .clone()
-            .filter(self.clone().is_unsaturated_before(NonZeroI8::new(-6)))
+            .filter(self.clone().is_omega_unsaturated(NonZeroU8::new(6).unwrap()))
             .sum();
         let polyunsaturated_minus_3 = expr
             .clone()
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.clone().is_unsaturated_before(NonZeroI8::new(-3))),
+                    .and(self.clone().is_omega_unsaturated(NonZeroU8::new(3).unwrap())),
             )
             .sum();
         let polyunsaturated_minus_6 = expr
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.is_unsaturated_before(NonZeroI8::new(-6))),
+                    .and(self.is_omega_unsaturated(NonZeroU8::new(6).unwrap())),
             )
             .sum();
         (c14u0 + c16u0 + c18u0)
