@@ -1,6 +1,8 @@
+#![feature(custom_inner_attributes)]
 #![feature(debug_closure_helpers)]
 #![feature(impl_trait_in_assoc_type)]
-#![feature(mixed_integer_ops_unsigned_sub)]
+#![feature(exact_size_is_empty)]
+// #![feature(mixed_integer_ops_unsigned_sub)]
 
 pub mod bound;
 pub mod kind;
@@ -14,10 +16,13 @@ pub mod r#trait;
 pub mod prelude {
     #[cfg(feature = "polars")]
     pub use crate::polars::{
-        ColumnExt, DataFrameExt, SeriesExt,
+        ColumnExt, DataFrameExt, FATTY_ACID, SeriesExt,
         bound::{
-            IDENTIFIER, IDENTIFIERS, INDEX, MAP,
-            identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
+            BOUNDS, IDENTIFIERS, INDICES, MAP,
+            identifiers::{
+                logical::{D, DC, DT, S, T, TC, TT, U, UC, UT},
+                physical,
+            },
         },
         chunked_array::{
             BOUND_DATA_TYPE, BoundChunked, FATTY_ACID_DATA_TYPE, FattyAcidChunked,
@@ -34,7 +39,8 @@ pub mod prelude {
         display::{Elision, Options},
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#trait::{
-            Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, Mask, MaskExt, Mass,
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
+            Mass,
         },
     };
 }

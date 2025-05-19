@@ -1,0 +1,10 @@
+mod cis;
+mod delta12;
+mod delta6;
+mod delta9;
+mod monounsaturated;
+mod omega3;
+mod omega6;
+mod omega9;
+mod polyunsaturated;
+mod trans;

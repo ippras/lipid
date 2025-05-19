@@ -43,7 +43,7 @@ impl FattyAcidListChunked {
     /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the unsaturation
     /// levels.
     pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.unsaturation_count())
+        self.map(|fatty_acid| fatty_acid.unsaturation())
             .collect()
     }
 }

@@ -1,13 +1,70 @@
 = Lipid library
 
-== Fatty acid
+== Index
 
-// Linolenic acid
-// Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
+`None`:: любое количество связей с неизвестными индексами
+`Some(Some(0) (Some(None))`:: одна связь с неизвестным индексом
+`Some(Some(NonZeroI8))`:: одна связь с известным индексом
 
-== Triacylglycerol
+== Identifier
+
+`None`:: любая связь
+`S`:: насыщенная связь
+`U`:: ненасыщенная связь
+`UC`:: ненасыщенная цис связь
+`UT`:: ненасыщенная транс связь
+`D`:: ненасыщенная двойная связь
+`DC`:: ненасыщенная двойная цис связь
+`DT`:: ненасыщенная двойная транс связь
+`T`:: ненасыщенная тройная связь
+`TC`:: ненасыщенная тройная цис связь
+`TT`:: ненасыщенная тройная транс связь
+
+FA C*:*
+SFA C*:0
+MUFA C*:1
+PUFA C*:2+
+
+"CCCCCCCCCCCCCCCC(=O)O"
+"CCCCCCCCCCCCCCCCCC(=O)O"
+Oleic "CCCCCCCCC=CCCCC(=O)O"
+Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
+
+W3 C*:1+[*,D-3]
+W6 C*:1+[*,D-6]
+W9 C*:1+[*,D-9]
+
+C18:3[D9,D12,D15]
+
+FA    *:*  [{None, None}]
+SFA   *:0= [{None, S}]
+MUFA 1+:1= [{0, U}, {None, S}]
+PUFA 2+:2+ [{0, U}, {0, U}, {None, S}]
+     15:1= [{0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, S}, {0, U}]
+ω3   3+:1+ [{-3, U}, {-2, S}, {-1, S}, {None, None}]
+ω6   6+:1+ [{-6, U}, {-5, S}, {-4, S}, {-3, S}, {-2, S}, {-1, S}, {None, None}]
+ω9   9+:1+ [{-9, U}, {-8, S}, {-7, S}, {-6, S}, {-5, S}, {-4, S}, {-3, S}, {-2, S}, {-1, S}, {None, None}]
+
+Index
+None: any unknown indices
+Some(0): one unknown index
+Some(x): one known index
+
+PUFA
+Series::from_iter([None, 1, None, 1, None])
+Series::from_iter([None, U, None, U, None])
+
+== Use
+
+=== Fatty acid
+
+.Linolenic acid
+[source]
+Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
+
+=== Triacylglycerol
 
 == Build
 
-[sounce]
+[source,shell]
 cargo build --features=polars

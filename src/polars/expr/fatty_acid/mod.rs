@@ -45,23 +45,68 @@ impl FattyAcidExpr {
     }
 }
 
+impl FattyAcidExpr {
+    #[inline]
+    pub fn mask(
+        self,
+        f: impl Fn(&FattyAcidListChunked) -> PolarsResult<BooleanChunked> + Send + Sync + 'static,
+    ) -> Expr {
+        self.0.map(
+            move |column| Ok(Some(f(column.try_fatty_acid_list()?)?.into_column())),
+            GetOutput::from_type(DataType::Boolean),
+        )
+    }
+
+    /// Is saturated
+    #[inline]
+    pub fn is_saturated(self) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_saturated())
+    }
+
+    /// Is unsaturated
+    #[inline]
+    pub fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Expr {
+        self.mask(move |fatty_acids| fatty_acids.is_unsaturated(offset))
+    }
+
+    /// Is monounsaturated
+    #[inline]
+    pub fn is_monounsaturated(self) -> Expr {
+        self.mask(|fatty_acids| fatty_acids.is_monounsaturated())
+    }
+
+    /// Is polyunsaturated
+    #[inline]
+    pub fn is_polyunsaturated(self) -> Expr {
+        self.mask(|fatty_acids| fatty_acids.is_polyunsaturated())
+    }
+
+    /// Is cis
+    #[inline]
+    pub fn is_cis(self) -> Expr {
+        self.mask(|fatty_acids| fatty_acids.is_cis())
+    }
+
+    /// Is trans
+    #[inline]
+    pub fn is_trans(self) -> Expr {
+        self.mask(|fatty_acids| fatty_acids.is_trans())
+    }
+}
+
 impl From<FattyAcidExpr> for Expr {
     fn from(value: FattyAcidExpr) -> Self {
         value.0
     }
 }
 
-// let series = if value.is_empty() {
-//     Series::new_empty(PlSmallStr::EMPTY, &BOUND_DATA_TYPE)
-// } else {
-//     Series::from_iter(value).cast(&BOUND_DATA_TYPE)?
-// };
-impl<const N: usize> From<&[(Option<Option<NonZeroI8>>, Option<&str>); N]> for FattyAcidExpr {
-    fn from(value: &[(Option<Option<NonZeroI8>>, Option<&str>); N]) -> Self {
+impl<T: TryInto<FattyAcidChunked, Error = PolarsError>> From<T> for FattyAcidExpr {
+    fn from(value: T) -> Self {
         Self(lit(Scalar::new(
             DataType::List(Box::new(FATTY_ACID_DATA_TYPE.clone())),
             AnyValue::List(
-                FattyAcidChunked::try_from(value)
+                value
+                    .try_into()
                     .unwrap()
                     .into_struct(PlSmallStr::EMPTY)
                     .unwrap()
@@ -128,15 +173,17 @@ impl EquivalentChainLength for FattyAcidExpr {
             .nullify(self.clone().is_saturated())
             .fatty_acid()
             .carbons()
-            .forward_fill(None)
+            .fill_null_with_strategy(FillNullStrategy::Forward(None))
             + self.fractional_chain_length(retention_time, logarithmic)
     }
 
     #[inline]
     fn fractional_chain_length(self, retention_time: Expr, logarithmic: bool) -> Expr {
+        const BASE: f64 = 10.0;
+
         let maybe_logarithmic = |mut expr: Expr| {
             if logarithmic {
-                expr = expr.log(10.0)
+                expr = expr.log(BASE)
             }
             expr
         };
@@ -152,9 +199,12 @@ impl EquivalentChainLength for FattyAcidExpr {
         ternary_expr(
             self.clone().is_saturated(),
             lit(0),
-            (saturated_carbons().backward_fill(None) - saturated_carbons().forward_fill(None))
-                * (unsaturated_time() - saturated_time().forward_fill(None))
-                / (saturated_time().backward_fill(None) - saturated_time().forward_fill(None)),
+            (saturated_carbons().fill_null_with_strategy(FillNullStrategy::Backward(None))
+                - saturated_carbons().fill_null_with_strategy(FillNullStrategy::Forward(None)))
+                * (unsaturated_time()
+                    - saturated_time().fill_null_with_strategy(FillNullStrategy::Forward(None)))
+                / (saturated_time().fill_null_with_strategy(FillNullStrategy::Backward(None))
+                    - saturated_time().fill_null_with_strategy(FillNullStrategy::Forward(None))),
         )
     }
 }
@@ -164,8 +214,6 @@ pub mod factor;
 mod equal;
 mod indices;
 mod kind;
-#[cfg(feature = "mask")]
-mod mask;
 #[cfg(feature = "mass")]
 mod mass;
 #[cfg(feature = "select")]

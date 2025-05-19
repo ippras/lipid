@@ -1,15 +1,16 @@
 [package]
 name = "lipid"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
-polars = { version = "0.46.0", default-features = false, features = [
+polars = { version = "0.47.1", default-features = false, features = [
     "abs",
     "cum_agg",
     "dtype-categorical",
+    "dtype-i128",
     "dtype-i8",
     "dtype-struct",
     "dtype-u8",
@@ -19,24 +20,24 @@ polars = { version = "0.46.0", default-features = false, features = [
     "list_any_all",
     "list_arithmetic",
     "list_eval",
-    "list_sets",
+    # "list_sets",
     "log",
     "round_series",
     "serde-lazy",
 ], optional = true }
-polars-arrow = "0.46.0"
-polars-plan = "0.46.0"
-polars_ext = { git = "https://github.com/kgv/polars_ext", rev = "c86e4e53e63d79f6619e95242324522a252b9643", optional = true }
+polars-arrow = "0.47.1"
+polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
 rayon = "1.10.0"
-serde = { version = "1.0.218", features = ["derive", "std"] }
+serde = { version = "1.0.219", features = ["derive", "std"] }
 
+# polars-plan = "0.46.0"
 # fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 
 [dev-dependencies]
 anyhow = "1.0.98"
 criterion = { version = "0.5.1", features = ["html_reports"] }
 lipid = { path = ".", features = ["polars"] }
-polars = { version = "0.46.0", default-features = false, features = [
+polars = { version = "0.47.1", default-features = false, features = [
     "abs",
     "cum_agg",
     "dtype-categorical",
@@ -49,7 +50,7 @@ polars = { version = "0.46.0", default-features = false, features = [
     "list_any_all",
     "list_arithmetic",
     "list_eval",
-    "list_sets",
+    # "list_sets",
     "list_to_struct",
     "log",
     "round_series",
@@ -62,14 +63,13 @@ name = "compare"
 # name = "expr"
 
 [features]
-default = ["atomic", "ecl", "ecn", "indices", "map", "mask", "mass", "select"]
+default = ["atomic", "ecl", "ecn", "indices", "map", "mass", "select"]
 
 atomic = []
 ecl = []
 ecn = []
 indices = []
 map = []
-mask = []
 mass = []
 polars = ["dep:polars", "dep:polars_ext"]
 select = []

@@ -59,7 +59,7 @@ fn unsaturated() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn unsaturated_minus_3() -> PolarsResult<()> {
+fn unsaturated_minus_3() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -87,7 +87,7 @@ pub fn unsaturated_minus_3() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn unsaturated_minus_6() -> PolarsResult<()> {
+fn unsaturated_minus_6() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -185,7 +185,7 @@ fn polyunsaturated() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn polyunsaturated_minus_3() -> PolarsResult<()> {
+fn polyunsaturated_minus_3() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -215,7 +215,7 @@ pub fn polyunsaturated_minus_3() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn polyunsaturated_minus_6() -> PolarsResult<()> {
+fn polyunsaturated_minus_6() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -243,7 +243,7 @@ pub fn polyunsaturated_minus_6() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn index_of_atherogenicity() -> PolarsResult<()> {
+fn index_of_atherogenicity() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -265,7 +265,7 @@ pub fn index_of_atherogenicity() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn index_of_thrombogenicity() -> PolarsResult<()> {
+fn index_of_thrombogenicity() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -288,7 +288,7 @@ pub fn index_of_thrombogenicity() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn hypercholesterolemic_ratio() -> PolarsResult<()> {
+fn hypercholesterolemic_ratio() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()
@@ -310,7 +310,7 @@ pub fn hypercholesterolemic_ratio() -> PolarsResult<()> {
 }
 
 #[test]
-pub fn health_promoting_index() -> PolarsResult<()> {
+fn health_promoting_index() -> PolarsResult<()> {
     let data_frame = FATTY_ACIDS
         .clone()
         .lazy()

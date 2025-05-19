@@ -1,8 +1,11 @@
-use crate::prelude::*;
+use super::Identifier;
+use crate::prelude::{
+    physical::{S, TRANS},
+    *,
+};
 use polars::prelude::{enum_::EnumChunkedBuilder, *};
 use std::{
-    fmt::{self, Display, Formatter, from_fn},
-    ops::Deref,
+    fmt::{self, Debug, Display, Formatter, from_fn},
     sync::LazyLock,
 };
 
@@ -26,16 +29,21 @@ impl BoundChunked {
     ///
     /// Returns an error if the series datatype is not the [`BOUND_DATA_TYPE`].
     pub fn try_new(categorical: CategoricalChunked) -> PolarsResult<Self> {
-        polars_ensure!(
-            *categorical.dtype() == *BOUND_DATA_TYPE,
-            SchemaMismatch: "invalid bound series datatype: expected `{}`, got = `{}`",
-            *BOUND_DATA_TYPE,
-            categorical.dtype(),
-        );
+        check_data_type(&categorical)?;
         Ok(Self(categorical))
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = Option<Bound>> {
+    #[inline]
+    pub fn as_categorical(&self) -> &CategoricalChunked {
+        &self.0
+    }
+
+    #[inline]
+    pub fn into_categorical(self) -> CategoricalChunked {
+        self.0
+    }
+
+    pub fn iter(&self) -> impl DoubleEndedIterator<Item = Option<Bound>> + ExactSizeIterator {
         self.0
             .iter_str()
             .map(|identifier| Some(Bound::new(identifier?)))
@@ -59,16 +67,16 @@ impl BoundChunked {
 
     pub fn filter(&self, filter: &BooleanChunked) -> PolarsResult<Self> {
         let physical = self.0.physical().filter(filter)?;
-        // SAFETY: we only filter the indexes so we are still in bounds.
+        // SAFETY: we only filter the physical indexes so we are still in bounds.
         Ok(Self(unsafe {
             CategoricalChunked::from_cats_and_rev_map_unchecked(
                 physical,
                 self.0.get_rev_map().clone(),
                 self.0.is_enum(),
-                CategoricalOrdering::Lexical, // TODO
+                self.0.get_ordering(),
             )
         }))
-    } 
+    }
 }
 
 impl BoundChunked {
@@ -78,19 +86,15 @@ impl BoundChunked {
     }
 
     /// Returns the number of saturated bounds in the fatty acid.
-    pub fn saturated(&self) -> u8 {
-        self.0
-            .equal(S)
-            .expect("S is valid bound identifier")
-            .num_trues() as _
+    #[inline]
+    pub fn saturated(&self) -> BooleanChunked {
+        self.equal(S)
     }
 
     /// Returns the number of unsaturated bounds in the fatty acid.
-    pub fn unsaturated(&self) -> u8 {
-        self.0
-            .not_equal(S)
-            .expect("S is valid bound identifier")
-            .num_trues() as _
+    #[inline]
+    pub fn unsaturated(&self) -> BooleanChunked {
+        self.not_equal(S)
     }
 
     /// Returns the total number of unsaturations in the bound chunked array.
@@ -101,17 +105,210 @@ impl BoundChunked {
     }
 }
 
+impl BoundChunked {
+    /// # Returns
+    ///
+    /// The output is unknown (`None`) if the array contains any null values and
+    /// no `false` values.
+    pub fn is_saturated(&self) -> Option<bool> {
+        self.saturated().all_kleene()
+    }
+
+    /// Checks if the bound chunked array contains any unsaturated bonds.
+    ///
+    /// # Returns
+    ///
+    /// The output is unknown (`None`) if the array contains any null values and
+    /// no `true` values.
+    pub fn is_unsaturated(&self) -> Option<bool> {
+        self.unsaturated().any_kleene()
+    }
+
+    /// Checks if the bound chunked array contains exactly one unsaturated bond.
+    ///
+    /// # Returns
+    ///
+    /// [`true`] if there is exactly one unsaturated bond, [`false`] otherwise.
+    pub fn is_monounsaturated(&self) -> Option<bool> {
+        let is_unsaturated = self.unsaturated();
+        if is_unsaturated.has_nulls() {
+            None
+        } else {
+            Some(is_unsaturated.num_trues() == 1)
+        }
+    }
+
+    /// Checks if the bound chunked array contains more than one unsaturated bond.
+    ///
+    /// # Returns
+    ///
+    /// [`true`] if there are more than one unsaturated bonds, [`false`] otherwise.
+    pub fn is_polyunsaturated(&self) -> Option<bool> {
+        let is_unsaturated = self.unsaturated();
+        let trues = is_unsaturated.num_trues();
+        if trues > 1 {
+            Some(true)
+        } else if trues + is_unsaturated.null_count() > 1 {
+            None
+        } else {
+            Some(false)
+        }
+    }
+
+    pub fn is_cis(&self) -> Option<bool> {
+        let is_unsaturated = self.unsaturated().any_kleene()?;
+        let is_not_trans = (self.0.physical() % 3).not_equal(TRANS).all_kleene()?;
+        Some(is_unsaturated & is_not_trans)
+    }
+
+    pub fn is_trans(&self) -> Option<bool> {
+        let is_unsaturated = self.unsaturated();
+        let is_trans = (self.0.physical() % 3).equal(TRANS);
+        Some((is_unsaturated & is_trans).any_kleene()?)
+    }
+
+    /// Checks if the bound chunked array contains unsaturated cis-only bonds.
+    ///
+    /// # Returns
+    ///
+    /// [`true`] if all unsaturated bounds are cis, [`false`] otherwise.
+    pub fn is_cis_old(&self) -> PolarsResult<Option<bool>> {
+        let mut is_cis = Some(false);
+        for bound in self.try_iter() {
+            let bound = bound?;
+            is_cis = match bound {
+                Some(Bound::Saturated) => is_cis,
+                Some(Bound::Unsaturated(Unsaturated {
+                    isomerism: Some(Isomerism::Cis),
+                    ..
+                })) => Some(true),
+                Some(Bound::Unsaturated(Unsaturated {
+                    isomerism: Some(Isomerism::Trans),
+                    ..
+                })) => return Ok(Some(false)),
+                _ => None,
+            };
+        }
+        Ok(is_cis)
+    }
+
+    /// Checks if the bound chunked array contains any trans bonds.
+    ///
+    /// # Returns
+    ///
+    /// [`true`] if any bound is trans, [`false`] otherwise.
+    pub fn is_trans_old(&self) -> PolarsResult<Option<bool>> {
+        let mut is_trans = Some(false);
+        for bound in self.try_iter() {
+            let bound = bound?;
+            is_trans = match bound {
+                Some(Bound::Saturated) => is_trans,
+                Some(Bound::Unsaturated(Unsaturated {
+                    isomerism: Some(Isomerism::Cis),
+                    ..
+                })) => is_trans,
+                Some(Bound::Unsaturated(Unsaturated {
+                    isomerism: Some(Isomerism::Trans),
+                    ..
+                })) => return Ok(Some(true)),
+                _ => None,
+            };
+        }
+        Ok(is_trans)
+    }
+}
+
+impl ChunkCompareEq<&str> for BoundChunked {
+    type Item = PolarsResult<BooleanChunked>;
+
+    fn equal(&self, rhs: &str) -> Self::Item {
+        self.0.equal(rhs)
+    }
+
+    fn equal_missing(&self, rhs: &str) -> Self::Item {
+        self.0.equal_missing(rhs)
+    }
+
+    fn not_equal(&self, rhs: &str) -> Self::Item {
+        self.0.not_equal(rhs)
+    }
+
+    fn not_equal_missing(&self, rhs: &str) -> Self::Item {
+        self.0.not_equal_missing(rhs)
+    }
+}
+
+impl ChunkCompareEq<u32> for BoundChunked {
+    type Item = BooleanChunked;
+
+    fn equal(&self, rhs: u32) -> Self::Item {
+        self.0.physical().equal(rhs)
+    }
+
+    fn equal_missing(&self, rhs: u32) -> Self::Item {
+        self.0.physical().equal_missing(rhs)
+    }
+
+    fn not_equal(&self, rhs: u32) -> Self::Item {
+        self.0.physical().not_equal(rhs)
+    }
+
+    fn not_equal_missing(&self, rhs: u32) -> Self::Item {
+        self.0.physical().not_equal_missing(rhs)
+    }
+}
+
+impl ChunkCompareIneq<&str> for BoundChunked {
+    type Item = PolarsResult<BooleanChunked>;
+
+    fn gt(&self, rhs: &str) -> Self::Item {
+        self.0.gt(rhs)
+    }
+
+    fn gt_eq(&self, rhs: &str) -> Self::Item {
+        self.0.gt_eq(rhs)
+    }
+
+    fn lt(&self, rhs: &str) -> Self::Item {
+        self.0.lt(rhs)
+    }
+
+    fn lt_eq(&self, rhs: &str) -> Self::Item {
+        self.0.lt_eq(rhs)
+    }
+}
+
+impl ChunkCompareIneq<u32> for BoundChunked {
+    type Item = BooleanChunked;
+
+    fn gt(&self, rhs: u32) -> Self::Item {
+        self.0.physical().gt(rhs)
+    }
+
+    fn gt_eq(&self, rhs: u32) -> Self::Item {
+        self.0.physical().gt_eq(rhs)
+    }
+
+    fn lt(&self, rhs: u32) -> Self::Item {
+        self.0.physical().lt(rhs)
+    }
+
+    fn lt_eq(&self, rhs: u32) -> Self::Item {
+        self.0.physical().lt_eq(rhs)
+    }
+}
+
 unsafe impl IntoSeries for BoundChunked {
     fn into_series(self) -> Series {
         self.0.into_series()
     }
 }
 
-impl Deref for BoundChunked {
-    type Target = CategoricalChunked;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
+impl Debug for BoundChunked {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        f.debug_tuple("BoundChunked")
+            .field(&self.0.physical())
+            .finish()
     }
 }
 
@@ -163,14 +360,9 @@ impl<'a> TryFrom<&'a CategoricalChunked> for &'a BoundChunked {
     type Error = PolarsError;
 
     fn try_from(value: &'a CategoricalChunked) -> Result<Self, Self::Error> {
-        polars_ensure!(
-            *value.dtype() == *BOUND_DATA_TYPE,
-            SchemaMismatch: "invalid bound series datatype: expected `{}`, got = `{}`",
-            *BOUND_DATA_TYPE,
-            value.dtype(),
-        );
+        check_data_type(value)?;
         // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
-        Ok(unsafe { &*(value as *const CategoricalChunked as *const Self) })
+        Ok(unsafe { &*(value as *const CategoricalChunked as *const BoundChunked) })
     }
 }
 
@@ -182,60 +374,21 @@ impl<'a> TryFrom<&'a Series> for &'a BoundChunked {
     }
 }
 
-impl<const N: usize> TryFrom<&[Option<&str>; N]> for BoundChunked {
+impl<const N: usize, T: Identifier> TryFrom<[T; N]> for BoundChunked {
     type Error = PolarsError;
 
-    fn try_from(value: &[Option<&str>; N]) -> Result<Self, Self::Error> {
+    fn try_from(value: [T; N]) -> Result<Self, Self::Error> {
         let mut identifiers = EnumChunkedBuilder::new(
-            PlSmallStr::from_static(IDENTIFIER),
+            PlSmallStr::from_static(BOUNDS),
             value.len(),
             MAP.clone(),
             Default::default(),
             true,
         );
         for identifier in value {
-            match identifier {
-                Some(identifier) => identifiers.append_str(identifier)?,
-                None => identifiers.append_null(),
-            };
+            identifier.append_to(&mut identifiers)?;
         }
         Ok(Self::new(identifiers.finish()))
-    }
-}
-
-impl<const N: usize> TryFrom<&[&str; N]> for BoundChunked {
-    type Error = PolarsError;
-
-    fn try_from(value: &[&str; N]) -> Result<Self, Self::Error> {
-        let mut identifiers = EnumChunkedBuilder::new(
-            PlSmallStr::from_static(IDENTIFIER),
-            value.len(),
-            MAP.clone(),
-            Default::default(),
-            true,
-        );
-        for identifier in value {
-            identifiers.append_str(identifier)?;
-        }
-        Ok(Self::new(identifiers.finish()))
-    }
-}
-
-impl BoundChunked {
-    pub fn rco(&self) -> Rco<&Self> {
-        Rco(self)
-    }
-
-    pub fn rcoo(&self) -> Rcoo<&Self> {
-        Rcoo(self)
-    }
-
-    pub fn rcooh(&self) -> Rcooh<&Self> {
-        Rcooh(self)
-    }
-
-    pub fn rcooch3(&self) -> Rcooch3<&Self> {
-        Rcooch3(self)
     }
 }
 
@@ -264,6 +417,14 @@ impl EquivalentCarbonNumber for &BoundChunked {
     }
 }
 
-mod mask;
+fn check_data_type(categorical: &CategoricalChunked) -> PolarsResult<()> {
+    polars_ensure!(
+        *categorical.dtype() == *BOUND_DATA_TYPE,
+        SchemaMismatch: "invalid bound data type: expected `BOUND_DATA_TYPE`, got = `{}`",
+        categorical.dtype(),
+    );
+    Ok(())
+}
+
 #[cfg(feature = "mass")]
 mod mass;

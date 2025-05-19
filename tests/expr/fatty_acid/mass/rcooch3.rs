@@ -1,555 +1,424 @@
-use super::fatty_acid_data_frame;
-use lipid::prelude::*;
-use polars::prelude::*;
+use super::*;
 
-fn check_mass(data_frame: DataFrame, expected: f64) -> PolarsResult<()> {
-    let data_frame = data_frame
-        .lazy()
-        .select([col("FattyAcid").fatty_acid().rcooch3().mass(None).round(4)])
-        .collect()?;
-    let mass = data_frame["Mass"].f64()?.get(0).unwrap();
-    assert!((mass - expected).abs() < f64::EPSILON);
-    Ok(())
+macro_rules! check {
+    ($identifier:ident, $expected:expr) => {{
+        let data_frame = fatty_acid($identifier)?
+            .lazy()
+            .select([col(FATTY_ACID)
+                .fatty_acid()
+                .rcooch3()
+                .mass(None)
+                .round(DECIMALS, RoundMode::HalfToEven)])
+            .collect()?;
+        let got = data_frame["Mass"].f64()?.get(0).unwrap();
+        assert!((got - $expected).abs() < f64::EPSILON);
+    }};
 }
 
 #[test]
 fn c4() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C4)?, expected::C4)?;
+    check!(C4, 102.0681);
     Ok(())
 }
 
 #[test]
 fn c5() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C5)?, expected::C5)?;
+    check!(C5, 116.0837);
     Ok(())
 }
 
 #[test]
 fn c6() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C6)?, expected::C6)?;
+    check!(C6, 130.0994);
     Ok(())
 }
 
 #[test]
 fn c7() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C7)?, expected::C7)?;
+    check!(C7, 144.1150);
     Ok(())
 }
 
 #[test]
 fn c8() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C8)?, expected::C8)?;
+    check!(C8, 158.1307);
     Ok(())
 }
 
 #[test]
 fn c9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C9)?, expected::C9)?;
+    check!(C9, 172.1463);
     Ok(())
 }
 
 #[test]
 fn c10() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C10)?, expected::C10)?;
+    check!(C10, 186.1620);
     Ok(())
 }
 
 #[test]
 fn c11() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C11)?, expected::C11)?;
+    check!(C11, 200.1776);
     Ok(())
 }
 
 #[test]
 fn c12() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C12)?, expected::C12)?;
+    check!(C12, 214.1933);
     Ok(())
 }
 
 #[test]
 fn c13() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C13)?, expected::C13)?;
+    check!(C13, 228.2089);
     Ok(())
 }
 
 #[test]
 fn c14() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C14)?, expected::C14)?;
+    check!(C14, 242.2246);
     Ok(())
 }
 
 #[test]
 fn c15() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C15)?, expected::C15)?;
+    check!(C15, 256.2402);
     Ok(())
 }
 
 #[test]
 fn c16() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C16)?, expected::C16)?;
+    check!(C16, 270.2559);
     Ok(())
 }
 
 #[test]
 fn c16dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C16DC9)?, expected::C16DC9)?;
+    check!(C16DC9, 268.2402);
     Ok(())
 }
 
 #[test]
 fn c16dt9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C16DT9)?, expected::C16DT9)?;
+    check!(C16DT9, 268.2402);
     Ok(())
 }
 
 #[test]
 fn c17() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C17)?, expected::C17)?;
+    check!(C17, 284.2715);
     Ok(())
 }
 
 #[test]
 fn c18() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C18)?, expected::C18)?;
+    check!(C18, 298.2872);
     Ok(())
 }
 
 #[test]
 fn c18dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C18DC9)?, expected::C18DC9)?;
+    check!(C18DC9, 296.2715);
     Ok(())
 }
 
 #[test]
 fn c18dt9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C18DT9)?, expected::C18DT9)?;
+    check!(C18DT9, 296.2715);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C18DC9DC12)?, expected::C18DC9DC12)?;
+    check!(C18DC9DC12, 294.2559);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DC6DC9DC12)?,
-        expected::C18DC6DC9DC12,
-    )?;
+    check!(C18DC6DC9DC12, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dc8dt10dc12() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DC8DT10DC12)?,
-        expected::C18DC8DT10DC12,
-    )?;
+    check!(C18DC8DT10DC12, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12dc15() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DC9DC12DC15)?,
-        expected::C18DC9DC12DC15,
-    )?;
+    check!(C18DC9DC12DC15, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dc9dt11dt13() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DC9DT11DT13)?,
-        expected::C18DC9DT11DT13,
-    )?;
+    check!(C18DC9DT11DT13, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dc13() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DT9DT11DC13)?,
-        expected::C18DT9DT11DC13,
-    )?;
+    check!(C18DT9DT11DC13, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dt13() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DT9DT11DT13)?,
-        expected::C18DT9DT11DT13,
-    )?;
+    check!(C18DT9DT11DT13, 292.2402);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C18DC6DC9DC12DC15)?,
-        expected::C18DC6DC9DC12DC15,
-    )?;
+    check!(C18DC6DC9DC12DC15, 290.2246);
     Ok(())
 }
 
 #[test]
 fn c19() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C19)?, expected::C19)?;
+    check!(C19, 312.3028);
     Ok(())
 }
 
 #[test]
 fn c20() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C20)?, expected::C20)?;
+    check!(C20, 326.3185);
     Ok(())
 }
 
 #[test]
 fn c20dc9() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C20DC9)?, expected::C20DC9)?;
+    check!(C20DC9, 324.3028);
     Ok(())
 }
 
 #[test]
 fn c20dc11() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C20DC11)?, expected::C20DC11)?;
+    check!(C20DC11, 324.3028);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C20DC11DC14)?, expected::C20DC11DC14)?;
+    check!(C20DC11DC14, 322.2872);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC5DC8DC11)?,
-        expected::C20DC5DC8DC11,
-    )?;
+    check!(C20DC5DC8DC11, 320.2715);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC8DC11DC14)?,
-        expected::C20DC8DC11DC14,
-    )?;
+    check!(C20DC8DC11DC14, 320.2715);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14dc17() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC11DC14DC17)?,
-        expected::C20DC11DC14DC17,
-    )?;
+    check!(C20DC11DC14DC17, 320.2715);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC5DC8DC11DC14)?,
-        expected::C20DC5DC8DC11DC14,
-    )?;
+    check!(C20DC5DC8DC11DC14, 318.2559);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14dc17() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC8DC11DC14DC17)?,
-        expected::C20DC8DC11DC14DC17,
-    )?;
+    check!(C20DC8DC11DC14DC17, 318.2559);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C20DC5DC8DC11DC14DC17)?,
-        expected::C20DC5DC8DC11DC14DC17,
-    )?;
+    check!(C20DC5DC8DC11DC14DC17, 316.2402);
     Ok(())
 }
 
 #[test]
 fn c21() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C21)?, expected::C21)?;
+    check!(C21, 340.3341);
     Ok(())
 }
 
 #[test]
 fn c22() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C22)?, expected::C22)?;
+    check!(C22, 354.3498);
     Ok(())
 }
 
 #[test]
 fn c22dc13() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C22DC13)?, expected::C22DC13)?;
+    check!(C22DC13, 352.3341);
     Ok(())
 }
 
 #[test]
 fn c22dc13dc16() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C22DC13DC16)?, expected::C22DC13DC16)?;
+    check!(C22DC13DC16, 350.3185);
     Ok(())
 }
 
 #[test]
 fn c22dc5dc13dc16() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C22DC5DC13DC16)?,
-        expected::C22DC5DC13DC16,
-    )?;
+    check!(C22DC5DC13DC16, 348.3028);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C22DC7DC10DC13DC16)?,
-        expected::C22DC7DC10DC13DC16,
-    )?;
+    check!(C22DC7DC10DC13DC16, 346.2872);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C22DC7DC10DC13DC16DC19)?,
-        expected::C22DC7DC10DC13DC16DC19,
-    )?;
+    check!(C22DC7DC10DC13DC16DC19, 344.2715);
     Ok(())
 }
 
 #[test]
 fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C22DC4DC7DC10DC13DC16DC19)?,
-        expected::C22DC4DC7DC10DC13DC16DC19,
-    )?;
+    check!(C22DC4DC7DC10DC13DC16DC19, 342.2559);
     Ok(())
 }
 
 #[test]
 fn c23() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C23)?, expected::C23)?;
+    check!(C23, 368.3654);
     Ok(())
 }
 
 #[test]
 fn c24() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C24)?, expected::C24)?;
+    check!(C24, 382.3811);
     Ok(())
 }
 
 #[test]
 fn c24dc15() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C24DC15)?, expected::C24DC15)?;
+    check!(C24DC15, 380.3654);
     Ok(())
 }
 
 #[test]
 fn c24dc15dc18() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C24DC15DC18)?, expected::C24DC15DC18)?;
+    check!(C24DC15DC18, 378.3498);
     Ok(())
 }
 
 #[test]
 fn c24dc12dc15dc18() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C24DC12DC15DC18)?,
-        expected::C24DC12DC15DC18,
-    )?;
+    check!(C24DC12DC15DC18, 376.3341);
     Ok(())
 }
 
 #[test]
 fn c24dc9dc12dc15dc18() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C24DC9DC12DC15DC18)?,
-        expected::C24DC9DC12DC15DC18,
-    )?;
+    check!(C24DC9DC12DC15DC18, 374.3185);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C24DC6DC9DC12DC15DC18)?,
-        expected::C24DC6DC9DC12DC15DC18,
-    )?;
+    check!(C24DC6DC9DC12DC15DC18, 372.3028);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check_mass(
-        fatty_acid_data_frame(&C24DC6DC9DC12DC15DC18DC21)?,
-        expected::C24DC6DC9DC12DC15DC18DC21,
-    )?;
+    check!(C24DC6DC9DC12DC15DC18DC21, 370.2872);
     Ok(())
 }
 
 #[test]
 fn c25() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C25)?, expected::C25)?;
+    check!(C25, 396.3967);
     Ok(())
 }
 
 #[test]
 fn c26() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C26)?, expected::C26)?;
+    check!(C26, 410.4124);
     Ok(())
 }
 
 #[test]
 fn c26dc17() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C26DC17)?, expected::C26DC17)?;
+    check!(C26DC17, 408.3967);
     Ok(())
 }
 
 #[test]
 fn c27() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C27)?, expected::C27)?;
+    check!(C27, 424.4280);
     Ok(())
 }
 
 #[test]
 fn c28() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C28)?, expected::C28)?;
+    check!(C28, 438.4437);
     Ok(())
 }
 
 #[test]
 fn c29() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C29)?, expected::C29)?;
+    check!(C29, 452.4593);
     Ok(())
 }
 
 #[test]
 fn c30() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C30)?, expected::C30)?;
+    check!(C30, 466.4750);
     Ok(())
 }
 
 #[test]
 fn c30dc21() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C30DC21)?, expected::C30DC21)?;
+    check!(C30DC21, 464.4593);
     Ok(())
 }
 
 #[test]
 fn c31() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C31)?, expected::C31)?;
+    check!(C31, 480.4906);
     Ok(())
 }
 
 #[test]
 fn c32() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C32)?, expected::C32)?;
+    check!(C32, 494.5063);
     Ok(())
 }
 
 #[test]
 fn c33() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C33)?, expected::C33)?;
+    check!(C33, 508.5219);
     Ok(())
 }
 
 #[test]
 fn c34() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C34)?, expected::C34)?;
+    check!(C34, 522.5376);
     Ok(())
 }
 
 #[test]
 fn c35() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C35)?, expected::C35)?;
+    check!(C35, 536.5532);
     Ok(())
 }
 
 #[test]
 fn c36() -> PolarsResult<()> {
-    check_mass(fatty_acid_data_frame(&C36)?, expected::C36)?;
+    check!(C36, 550.5689);
     Ok(())
-}
-
-mod expected {
-    pub(super) const C4: f64 = 102.0681;
-    pub(super) const C5: f64 = 116.0837;
-    pub(super) const C6: f64 = 130.0994;
-    pub(super) const C7: f64 = 144.1150;
-    pub(super) const C8: f64 = 158.1307;
-    pub(super) const C9: f64 = 172.1463;
-    pub(super) const C10: f64 = 186.1620;
-    pub(super) const C11: f64 = 200.1776;
-    pub(super) const C12: f64 = 214.1933;
-    pub(super) const C13: f64 = 228.2089;
-    pub(super) const C14: f64 = 242.2246;
-    pub(super) const C15: f64 = 256.2402;
-    pub(super) const C16: f64 = 270.2559;
-    pub(super) const C16DC9: f64 = 268.2402;
-    pub(super) const C16DT9: f64 = 268.2402;
-    pub(super) const C17: f64 = 284.2715;
-    pub(super) const C18: f64 = 298.2872;
-    pub(super) const C18DC9: f64 = 296.2715;
-    pub(super) const C18DT9: f64 = 296.2715;
-    pub(super) const C18DC9DC12: f64 = 294.2559;
-    pub(super) const C18DC6DC9DC12: f64 = 292.2402;
-    pub(super) const C18DC8DT10DC12: f64 = 292.2402;
-    pub(super) const C18DC9DC12DC15: f64 = 292.2402;
-    pub(super) const C18DC9DT11DT13: f64 = 292.2402;
-    pub(super) const C18DT9DT11DC13: f64 = 292.2402;
-    pub(super) const C18DT9DT11DT13: f64 = 292.2402;
-    pub(super) const C18DC6DC9DC12DC15: f64 = 290.2246;
-    pub(super) const C19: f64 = 312.3028;
-    pub(super) const C20: f64 = 326.3185;
-    pub(super) const C20DC9: f64 = 324.3028;
-    pub(super) const C20DC11: f64 = 324.3028;
-    pub(super) const C20DC11DC14: f64 = 322.2872;
-    pub(super) const C20DC5DC8DC11: f64 = 320.2715;
-    pub(super) const C20DC8DC11DC14: f64 = 320.2715;
-    pub(super) const C20DC11DC14DC17: f64 = 320.2715;
-    pub(super) const C20DC5DC8DC11DC14: f64 = 318.2559;
-    pub(super) const C20DC8DC11DC14DC17: f64 = 318.2559;
-    pub(super) const C20DC5DC8DC11DC14DC17: f64 = 316.2402;
-    pub(super) const C21: f64 = 340.3341;
-    pub(super) const C22: f64 = 354.3498;
-    pub(super) const C22DC13: f64 = 352.3341;
-    pub(super) const C22DC13DC16: f64 = 350.3185;
-    pub(super) const C22DC5DC13DC16: f64 = 348.3028;
-    pub(super) const C22DC7DC10DC13DC16: f64 = 346.2872;
-    pub(super) const C22DC7DC10DC13DC16DC19: f64 = 344.2715;
-    pub(super) const C22DC4DC7DC10DC13DC16DC19: f64 = 342.2559;
-    pub(super) const C23: f64 = 368.3654;
-    pub(super) const C24: f64 = 382.3811;
-    pub(super) const C24DC15: f64 = 380.3654;
-    pub(super) const C24DC15DC18: f64 = 378.3498;
-    pub(super) const C24DC12DC15DC18: f64 = 376.3341;
-    pub(super) const C24DC9DC12DC15DC18: f64 = 374.3185;
-    pub(super) const C24DC6DC9DC12DC15DC18: f64 = 372.3028;
-    pub(super) const C24DC6DC9DC12DC15DC18DC21: f64 = 370.2872;
-    pub(super) const C25: f64 = 396.3967;
-    pub(super) const C26: f64 = 410.4124;
-    pub(super) const C26DC17: f64 = 408.3967;
-    pub(super) const C27: f64 = 424.4280;
-    pub(super) const C28: f64 = 438.4437;
-    pub(super) const C29: f64 = 452.4593;
-    pub(super) const C30: f64 = 466.4750;
-    pub(super) const C30DC21: f64 = 464.4593;
-    pub(super) const C31: f64 = 480.4906;
-    pub(super) const C32: f64 = 494.5063;
-    pub(super) const C33: f64 = 508.5219;
-    pub(super) const C34: f64 = 522.5376;
-    pub(super) const C35: f64 = 536.5532;
-    pub(super) const C36: f64 = 550.5689;
 }

@@ -7,7 +7,7 @@ pub const FATTY_ACID: &str = "FattyAcid";
 
 /// Extension methods for [`DataFrame`]
 pub trait DataFrameExt {
-    fn fatty_acid(&self) -> &FattyAcidListChunked {
+    fn fatty_acid_list(&self) -> &FattyAcidListChunked {
         self.try_fatty_acid_list().unwrap()
     }
 
@@ -56,7 +56,7 @@ impl SeriesExt for Series {
     }
 
     fn try_fatty_acid(&self) -> PolarsResult<FattyAcidChunked> {
-        FattyAcidChunked::try_from(self)
+        self.try_into()
     }
 }
 

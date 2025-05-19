@@ -1,761 +1,102 @@
+#![rustfmt::skip]
+
 use crate::prelude::*;
-use std::num::NonZeroI8;
 
 /// [Butyric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C4: [(Option<Option<NonZeroI8>>, Option<&str>); 3] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-];
+pub static C4: [&str; 3] = [S, S, S];
 
 /// [Valeric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C5: [(Option<Option<NonZeroI8>>, Option<&str>); 4] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-];
+pub static C5: [&str; 4] = [S, S, S, S];
 
 /// [Caproic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C6: [(Option<Option<NonZeroI8>>, Option<&str>); 5] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-];
+pub static C6: [&str; 5] = [S, S, S, S, S];
 
 /// [Enanthic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C7: [(Option<Option<NonZeroI8>>, Option<&str>); 6] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-];
+pub static C7: [&str; 6] = [S, S, S, S, S, S];
 
 /// [Caprylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C8: [(Option<Option<NonZeroI8>>, Option<&str>); 7] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-];
+pub static C8: [&str; 7] = [S, S, S, S, S, S, S];
 
 /// [Pelargonic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C9: [(Option<Option<NonZeroI8>>, Option<&str>); 8] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-];
+pub static C9: [&str; 8] = [S, S, S, S, S, S, S, S];
 
 /// [Capric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C10: [(Option<Option<NonZeroI8>>, Option<&str>); 9] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-];
+pub static C10: [&str; 9] = [S, S, S, S, S, S, S, S, S];
 
 /// [Undecylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C11: [(Option<Option<NonZeroI8>>, Option<&str>); 10] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-];
+pub static C11: [&str; 10] = [S, S, S, S, S, S, S, S, S, S];
 
 /// [Lauric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C12: [(Option<Option<NonZeroI8>>, Option<&str>); 11] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-];
+pub static C12: [&str; 11] = [S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Tridecylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C13: [(Option<Option<NonZeroI8>>, Option<&str>); 12] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-];
+pub static C13: [&str; 12] = [S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Myristic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C14: [(Option<Option<NonZeroI8>>, Option<&str>); 13] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-];
+pub static C14: [&str; 13] = [S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Pentadecylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C15: [(Option<Option<NonZeroI8>>, Option<&str>); 14] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-];
+pub static C15: [&str; 14] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Palmitic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C16: [(Option<Option<NonZeroI8>>, Option<&str>); 15] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-];
+pub static C16: [&str; 15] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Margaric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C17: [(Option<Option<NonZeroI8>>, Option<&str>); 16] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-];
+pub static C17: [&str; 16] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Stearic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C18: [(Option<Option<NonZeroI8>>, Option<&str>); 17] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-];
+pub static C18: [&str; 17] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Nonadecylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C19: [(Option<Option<NonZeroI8>>, Option<&str>); 18] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-];
+pub static C19: [&str; 18] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Arachidic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C20: [(Option<Option<NonZeroI8>>, Option<&str>); 19] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-];
+pub static C20: [&str; 19] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Heneicosylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C21: [(Option<Option<NonZeroI8>>, Option<&str>); 20] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-];
+pub static C21: [&str; 20] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Behenic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C22: [(Option<Option<NonZeroI8>>, Option<&str>); 21] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-];
+pub static C22: [&str; 21] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Tricosylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C23: [(Option<Option<NonZeroI8>>, Option<&str>); 22] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-];
+pub static C23: [&str; 22] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Lignoceric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C24: [(Option<Option<NonZeroI8>>, Option<&str>); 23] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-];
+pub static C24: [&str; 23] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Hyenic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C25: [(Option<Option<NonZeroI8>>, Option<&str>); 24] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-];
+pub static C25: [&str; 24] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Cerotic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C26: [(Option<Option<NonZeroI8>>, Option<&str>); 25] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-];
+pub static C26: [&str; 25] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Carboceric acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C27: [(Option<Option<NonZeroI8>>, Option<&str>); 26] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-];
+pub static C27: [&str; 26] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Montanic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C28: [(Option<Option<NonZeroI8>>, Option<&str>); 27] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-];
+pub static C28: [&str; 27] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Nonacosylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C29: [(Option<Option<NonZeroI8>>, Option<&str>); 28] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-];
+pub static C29: [&str; 28] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Melissic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C30: [(Option<Option<NonZeroI8>>, Option<&str>); 29] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-];
+pub static C30: [&str; 29] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Henatriacontylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C31: [(Option<Option<NonZeroI8>>, Option<&str>); 30] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-];
+pub static C31: [&str; 30] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Lacceroic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C32: [(Option<Option<NonZeroI8>>, Option<&str>); 31] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-    (Some(NonZeroI8::new(31)), Some(S)),
-];
+pub static C32: [&str; 31] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Psyllic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C33: [(Option<Option<NonZeroI8>>, Option<&str>); 32] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-    (Some(NonZeroI8::new(31)), Some(S)),
-    (Some(NonZeroI8::new(32)), Some(S)),
-];
+pub static C33: [&str; 32] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Gheddic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C34: [(Option<Option<NonZeroI8>>, Option<&str>); 33] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-    (Some(NonZeroI8::new(31)), Some(S)),
-    (Some(NonZeroI8::new(32)), Some(S)),
-    (Some(NonZeroI8::new(33)), Some(S)),
-];
+pub static C34: [&str; 33] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Ceroplastic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C35: [(Option<Option<NonZeroI8>>, Option<&str>); 34] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-    (Some(NonZeroI8::new(31)), Some(S)),
-    (Some(NonZeroI8::new(32)), Some(S)),
-    (Some(NonZeroI8::new(33)), Some(S)),
-    (Some(NonZeroI8::new(34)), Some(S)),
-];
+pub static C35: [&str; 34] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];
 
 /// [Hexatriacontylic acid](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
-pub static C36: [(Option<Option<NonZeroI8>>, Option<&str>); 35] = [
-    (Some(NonZeroI8::new(1)), Some(S)),
-    (Some(NonZeroI8::new(2)), Some(S)),
-    (Some(NonZeroI8::new(3)), Some(S)),
-    (Some(NonZeroI8::new(4)), Some(S)),
-    (Some(NonZeroI8::new(5)), Some(S)),
-    (Some(NonZeroI8::new(6)), Some(S)),
-    (Some(NonZeroI8::new(7)), Some(S)),
-    (Some(NonZeroI8::new(8)), Some(S)),
-    (Some(NonZeroI8::new(9)), Some(S)),
-    (Some(NonZeroI8::new(10)), Some(S)),
-    (Some(NonZeroI8::new(11)), Some(S)),
-    (Some(NonZeroI8::new(12)), Some(S)),
-    (Some(NonZeroI8::new(13)), Some(S)),
-    (Some(NonZeroI8::new(14)), Some(S)),
-    (Some(NonZeroI8::new(15)), Some(S)),
-    (Some(NonZeroI8::new(16)), Some(S)),
-    (Some(NonZeroI8::new(17)), Some(S)),
-    (Some(NonZeroI8::new(18)), Some(S)),
-    (Some(NonZeroI8::new(19)), Some(S)),
-    (Some(NonZeroI8::new(20)), Some(S)),
-    (Some(NonZeroI8::new(21)), Some(S)),
-    (Some(NonZeroI8::new(22)), Some(S)),
-    (Some(NonZeroI8::new(23)), Some(S)),
-    (Some(NonZeroI8::new(24)), Some(S)),
-    (Some(NonZeroI8::new(25)), Some(S)),
-    (Some(NonZeroI8::new(26)), Some(S)),
-    (Some(NonZeroI8::new(27)), Some(S)),
-    (Some(NonZeroI8::new(28)), Some(S)),
-    (Some(NonZeroI8::new(29)), Some(S)),
-    (Some(NonZeroI8::new(30)), Some(S)),
-    (Some(NonZeroI8::new(31)), Some(S)),
-    (Some(NonZeroI8::new(32)), Some(S)),
-    (Some(NonZeroI8::new(33)), Some(S)),
-    (Some(NonZeroI8::new(34)), Some(S)),
-    (Some(NonZeroI8::new(35)), Some(S)),
-];
+pub static C36: [&str; 35] = [S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S, S];

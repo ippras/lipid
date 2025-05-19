@@ -40,7 +40,7 @@ fn is_unsaturated() -> PolarsResult<()> {
     SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fatty_acid().is_unsaturated()])
+        .select([col("FattyAcid").fatty_acid().is_unsaturated(None)])
         .collect()?;
     Ok(())
 }

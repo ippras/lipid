@@ -35,7 +35,7 @@ pub trait EquivalentChainLength {
 }
 
 /// Mask
-pub trait Mask {
+pub trait IdentifierMask {
     type Output;
 
     /// Checks if the fatty acid contains only saturated bonds.
@@ -58,7 +58,7 @@ pub trait Mask {
 }
 
 /// Extension methods for [`Mask`].
-pub trait MaskExt: Mask {
+pub trait MaskExt: IdentifierMask {
     fn try_unsaturated(self, index: Option<NonZeroI8>) -> Self::Output;
 
     fn is_delta_unsaturated(self, index: NonZeroU8) -> Self::Output;

@@ -44,3 +44,21 @@ impl Mass for Rcooch3<&BoundChunked> {
         self.0.mass(adduct) + 2.0 * H + C
     }
 }
+
+impl BoundChunked {
+    pub fn rco(&self) -> Rco<&Self> {
+        Rco(self)
+    }
+
+    pub fn rcoo(&self) -> Rcoo<&Self> {
+        Rcoo(self)
+    }
+
+    pub fn rcooh(&self) -> Rcooh<&Self> {
+        Rcooh(self)
+    }
+
+    pub fn rcooch3(&self) -> Rcooch3<&Self> {
+        Rcooch3(self)
+    }
+}

@@ -30,6 +30,13 @@ impl Bound {
     /// Constant for unknown trans bound type.
     pub const UT: Self = Self::Unsaturated(Unsaturated::UT);
 
+    pub fn as_saturated(self) -> Option<Saturated> {
+        match self {
+            Self::Saturated => Some(Saturated),
+            _ => None,
+        }
+    }
+
     /// Converts the bond to an optional unsaturated bond.
     ///
     /// # Returns

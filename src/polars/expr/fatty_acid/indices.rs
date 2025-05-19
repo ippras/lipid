@@ -1,6 +1,6 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::NonZeroU8;
+use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
     pub fn enoics(self, n: u8) -> Expr {
@@ -10,7 +10,7 @@ impl FattyAcidExpr {
                     column
                         .try_fatty_acid_list()?
                         .nullify(&column.try_fatty_acid_list()?.mask(|fatty_acid| {
-                            Ok(fatty_acid.iter().unsaturated().count() == n as usize)
+                            fatty_acid.iter().unsaturated().count() == n as usize
                         })?)?
                         .into_list()
                         .into_column(),
@@ -63,7 +63,7 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids
     pub fn unsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_unsaturated()).sum()
+        expr.filter(self.is_unsaturated(None)).sum()
     }
 
     /// Monounsaturated fatty acids (MUFA).
@@ -98,9 +98,9 @@ impl FattyAcidExpr {
     ///
     /// (C12:0 + 4 * C14:0 + C16:0) / ΣUFA
     pub fn index_of_atherogenicity(self, expr: Expr) -> Expr {
-        let c12u0 = expr.clone().filter(self.clone().equal(&C12));
-        let c14u0 = expr.clone().filter(self.clone().equal(&C14));
-        let c16u0 = expr.clone().filter(self.clone().equal(&C16));
+        let c12u0 = expr.clone().filter(self.clone().equal(C12));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14));
+        let c16u0 = expr.clone().filter(self.clone().equal(C16));
         let unsaturated = self.unsaturated(expr);
         (c12u0 + lit(4) * c14u0 + c16u0) / unsaturated
     }
@@ -109,31 +109,31 @@ impl FattyAcidExpr {
     ///
     /// `(C14:0 + C16:0 + C18:0) / [(0.5 * ΣMUFA + 0.5 * ΣPUFA(n-6) + 3 * ΣPUFA(n-3) + ΣUFA(n-3) / ΣUFA(n-6)]`
     pub fn index_of_thrombogenicity(self, expr: Expr) -> Expr {
-        let c14u0 = expr.clone().filter(self.clone().equal(&C14));
-        let c16u0 = expr.clone().filter(self.clone().equal(&C16));
-        let c18u0 = expr.clone().filter(self.clone().equal(&C18));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14));
+        let c16u0 = expr.clone().filter(self.clone().equal(C16));
+        let c18u0 = expr.clone().filter(self.clone().equal(C18));
         let monounsaturated = self.clone().monounsaturated(expr.clone());
         let unsaturated_minus_3 = expr
             .clone()
-            .filter(self.clone().is_omega_unsaturated(NonZeroU8::new(3).unwrap()))
+            .filter(self.clone().is_unsaturated(NonZeroI8::new(-3)))
             .sum();
         let unsaturated_minus_6 = expr
             .clone()
-            .filter(self.clone().is_omega_unsaturated(NonZeroU8::new(6).unwrap()))
+            .filter(self.clone().is_unsaturated(NonZeroI8::new(-6)))
             .sum();
         let polyunsaturated_minus_3 = expr
             .clone()
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.clone().is_omega_unsaturated(NonZeroU8::new(3).unwrap())),
+                    .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         let polyunsaturated_minus_6 = expr
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.is_omega_unsaturated(NonZeroU8::new(6).unwrap())),
+                    .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
         (c14u0 + c16u0 + c18u0)
@@ -147,10 +147,10 @@ impl FattyAcidExpr {
     ///
     /// `(cis-C18:1 + ΣPUFA) / (C12:0 + C14:0 + C16:0)` TODO:cis-C18:1???
     pub fn hypercholesterolemic_ratio(self, expr: Expr) -> Expr {
-        let c12u0 = expr.clone().filter(self.clone().equal(&C12));
-        let c14u0 = expr.clone().filter(self.clone().equal(&C14));
-        let c16u0 = expr.clone().filter(self.clone().equal(&C16));
-        let c18u1 = expr.clone().filter(self.clone().equal(&C18DC9));
+        let c12u0 = expr.clone().filter(self.clone().equal(C12));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14));
+        let c16u0 = expr.clone().filter(self.clone().equal(C16));
+        let c18u1 = expr.clone().filter(self.clone().equal(C18DC9));
         let polyunsaturated = self.polyunsaturated(expr);
         (c18u1 + polyunsaturated) / (c12u0 + c14u0 + c16u0)
     }
@@ -164,9 +164,9 @@ impl FattyAcidExpr {
     ///
     /// `ΣUFA / (C12:0 + 4 * C14:0 + C16:0)`
     pub fn health_promoting_index(self, expr: Expr) -> Expr {
-        let c12u0 = expr.clone().filter(self.clone().equal(&C12));
-        let c14u0 = expr.clone().filter(self.clone().equal(&C14));
-        let c16u0 = expr.clone().filter(self.clone().equal(&C16));
+        let c12u0 = expr.clone().filter(self.clone().equal(C12));
+        let c14u0 = expr.clone().filter(self.clone().equal(C14));
+        let c16u0 = expr.clone().filter(self.clone().equal(C16));
         let unsaturated = self.unsaturated(expr);
         unsaturated / (c12u0 + lit(4) * c14u0 + c16u0)
     }

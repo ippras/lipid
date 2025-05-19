@@ -1,17 +1,17 @@
 //! Represents different types of chemical bonds with optional isomerism.
 
-use self::identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT};
+use self::identifiers::logical::{D, DC, DT, S, T, TC, TT, U, UC, UT};
 use crate::prelude::*;
 use polars::prelude::*;
 use polars_arrow::array::Utf8ViewArray;
 use std::sync::LazyLock;
 
 /// Index field name.
-pub const INDEX: &str = "Index";
+pub const INDICES: &str = "Indices";
 /// Identifier field name.
-pub const IDENTIFIER: &str = "Identifier";
+pub const BOUNDS: &str = "Bounds";
 /// Array of bond identifiers.
-pub const IDENTIFIERS: [&str; 10] = [S, U, UC, UT, D, DC, DT, T, TC, TT];
+pub const IDENTIFIERS: [&str; 10] = [S, DC, DT, D, TC, TT, T, UC, UT, U];
 
 pub const MAP: LazyLock<Arc<RevMapping>> = LazyLock::new(|| {
     Arc::new(RevMapping::build_local(Utf8ViewArray::from_slice_values(
@@ -100,14 +100,32 @@ impl<'a> TryFrom<&'a str> for Unsaturated {
 }
 
 pub mod identifiers {
-    pub const S: &str = "S";
-    pub const D: &str = "D";
-    pub const DC: &str = "DC";
-    pub const DT: &str = "DT";
-    pub const T: &str = "T";
-    pub const TC: &str = "TC";
-    pub const TT: &str = "TT";
-    pub const U: &str = "U";
-    pub const UC: &str = "UC";
-    pub const UT: &str = "UT";
+    pub mod physical {
+        pub const S: u32 = 0;
+        pub const DC: u32 = 1;
+        pub const DT: u32 = 2;
+        pub const D: u32 = 3;
+        pub const TC: u32 = 4;
+        pub const TT: u32 = 5;
+        pub const T: u32 = 6;
+        pub const UC: u32 = 7;
+        pub const UT: u32 = 8;
+        pub const U: u32 = 9;
+
+        pub const CIS: u32 = 1;
+        pub const TRANS: u32 = 2;
+    }
+
+    pub mod logical {
+        pub const S: &str = "S";
+        pub const DC: &str = "DC";
+        pub const DT: &str = "DT";
+        pub const D: &str = "D";
+        pub const TC: &str = "TC";
+        pub const TT: &str = "TT";
+        pub const T: &str = "T";
+        pub const UC: &str = "UC";
+        pub const UT: &str = "UT";
+        pub const U: &str = "U";
+    }
 }
