@@ -43,6 +43,13 @@ impl FattyAcidExpr {
         )
         // ternary_expr(self.is_saturated(), lit(S), lit(U)).cast(BOUND_DATA_TYPE.clone())
     }
+
+    pub fn display(self) -> Expr {
+        self.0.map(
+            |column| Ok(Some(column.try_fatty_acid_list()?.display()?.into_column())),
+            GetOutput::from_type(DataType::String),
+        )
+    }
 }
 
 impl FattyAcidExpr {
