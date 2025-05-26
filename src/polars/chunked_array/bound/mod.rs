@@ -5,7 +5,8 @@ use crate::prelude::{
 };
 use polars::prelude::{enum_::EnumChunkedBuilder, *};
 use std::{
-    fmt::{self, Debug, Display, Formatter, from_fn},
+    fmt::{self, Debug, Display, Formatter},
+    mem::take,
     sync::LazyLock,
 };
 
@@ -43,18 +44,18 @@ impl BoundChunked {
         self.0
     }
 
-    pub fn iter(&self) -> impl DoubleEndedIterator<Item = Option<Bound>> + ExactSizeIterator {
+    pub fn iter(&self) -> impl DoubleEndedIterator<Item = Bound> + ExactSizeIterator {
         self.0
             .iter_str()
-            .map(|identifier| Some(Bound::new(identifier?)))
+            .map(|identifier| Bound(identifier.map(Explicit::new)))
     }
 
-    pub fn try_iter(&self) -> impl Iterator<Item = PolarsResult<Option<Bound>>> {
+    pub fn try_iter(&self) -> impl Iterator<Item = PolarsResult<Option<Explicit>>> {
         self.0.iter_str().map(|identifier| {
             let Some(identifier) = identifier else {
                 return Ok(None);
             };
-            match Bound::try_from(identifier) {
+            match Explicit::try_from(identifier) {
                 Err(identifier) => Err(polars_err!(
                     not_in_enum,
                     value = identifier,
@@ -76,6 +77,39 @@ impl BoundChunked {
                 self.0.get_ordering(),
             )
         }))
+    }
+
+    pub fn pop(&mut self) {
+        let physical = self.0.physical();
+        let categorical = unsafe {
+            CategoricalChunked::from_cats_and_dtype_unchecked(
+                physical.slice(0, physical.len().saturating_sub(1)),
+                BOUND_DATA_TYPE.clone(),
+            )
+        };
+        *self = Self(categorical);
+    }
+
+    pub fn push(&mut self) -> PolarsResult<()> {
+        let mut physical = take(self).0.into_physical();
+        physical.extend(&UInt32Chunked::full(PlSmallStr::EMPTY, physical::S, 1))?;
+        // SAFETY: we extend the physical by one `S` so we are still in bounds.
+        let categorical = unsafe {
+            CategoricalChunked::from_cats_and_dtype_unchecked(physical, BOUND_DATA_TYPE.clone())
+        };
+        *self = Self(categorical);
+        Ok(())
+    }
+
+    pub fn with_name(self, name: PlSmallStr) -> Self {
+        let physical = self.0.into_physical().with_name(name);
+        // SAFETY: we only rename the physical so we are still in bounds.
+        unsafe {
+            Self(CategoricalChunked::from_cats_and_dtype_unchecked(
+                physical,
+                BOUND_DATA_TYPE.clone(),
+            ))
+        }
     }
 }
 
@@ -100,7 +134,7 @@ impl BoundChunked {
     /// Returns the total number of unsaturations in the bound chunked array.
     pub fn unsaturation(&self) -> u8 {
         self.iter()
-            .filter_map(|bound| bound?.as_unsaturated()?.unsaturation())
+            .filter_map(|bound| bound.0?.as_unsaturated()?.unsaturation())
             .sum()
     }
 }
@@ -177,12 +211,12 @@ impl BoundChunked {
         for bound in self.try_iter() {
             let bound = bound?;
             is_cis = match bound {
-                Some(Bound::Saturated) => is_cis,
-                Some(Bound::Unsaturated(Unsaturated {
+                Some(Explicit::Saturated) => is_cis,
+                Some(Explicit::Unsaturated(Unsaturated {
                     isomerism: Some(Isomerism::Cis),
                     ..
                 })) => Some(true),
-                Some(Bound::Unsaturated(Unsaturated {
+                Some(Explicit::Unsaturated(Unsaturated {
                     isomerism: Some(Isomerism::Trans),
                     ..
                 })) => return Ok(Some(false)),
@@ -202,12 +236,12 @@ impl BoundChunked {
         for bound in self.try_iter() {
             let bound = bound?;
             is_trans = match bound {
-                Some(Bound::Saturated) => is_trans,
-                Some(Bound::Unsaturated(Unsaturated {
+                Some(Explicit::Saturated) => is_trans,
+                Some(Explicit::Unsaturated(Unsaturated {
                     isomerism: Some(Isomerism::Cis),
                     ..
                 })) => is_trans,
-                Some(Bound::Unsaturated(Unsaturated {
+                Some(Explicit::Unsaturated(Unsaturated {
                     isomerism: Some(Isomerism::Trans),
                     ..
                 })) => return Ok(Some(true)),
@@ -314,32 +348,11 @@ impl Debug for BoundChunked {
 
 impl Display for BoundChunked {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        let item = |bound: Option<Bound>| {
-            from_fn(move |f| {
-                match bound {
-                    None => f.write_str("b")?,
-                    Some(Bound::Saturated) => f.write_str("s")?,
-                    Some(Bound::Unsaturated(unsaturated)) => {
-                        match unsaturated.unsaturation {
-                            None => f.write_str("u")?,
-                            Some(Unsaturation::Double) => f.write_str("d")?,
-                            Some(Unsaturation::Triple) => f.write_str("t")?,
-                        }
-                        match unsaturated.isomerism {
-                            None => {}
-                            Some(Isomerism::Cis) => f.write_str("c")?,
-                            Some(Isomerism::Trans) => f.write_str("t")?,
-                        }
-                    }
-                }
-                Ok(())
-            })
-        };
         let mut iter = self.iter();
         if let Some(bound) = iter.next() {
-            Display::fmt(&item(bound), f)?;
+            Display::fmt(&bound, f)?;
             for bound in iter {
-                Display::fmt(&item(bound), f)?;
+                Display::fmt(&bound, f)?;
             }
         }
         Ok(())
@@ -347,7 +360,7 @@ impl Display for BoundChunked {
 }
 
 impl IntoIterator for &BoundChunked {
-    type Item = Option<Bound>;
+    type Item = Bound;
 
     type IntoIter = impl Iterator<Item = Self::Item>;
 
@@ -379,7 +392,7 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for BoundChunked {
 
     fn try_from(value: [T; N]) -> Result<Self, Self::Error> {
         let mut identifiers = EnumChunkedBuilder::new(
-            PlSmallStr::from_static(BOUNDS),
+            PlSmallStr::from_static(BOUND),
             value.len(),
             MAP.clone(),
             Default::default(),
@@ -389,6 +402,22 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for BoundChunked {
             identifier.append_to(&mut identifiers)?;
         }
         Ok(Self::new(identifiers.finish()))
+    }
+}
+
+impl FromIterator<Bound> for BoundChunked {
+    fn from_iter<T: IntoIterator<Item = Bound>>(iter: T) -> Self {
+        BoundChunked::new(unsafe {
+            CategoricalChunked::from_cats_and_rev_map_unchecked(
+                UInt32Chunked::from_iter_options(
+                    BOUND.into(),
+                    iter.into_iter().map(|bound| bound.categorical()),
+                ),
+                MAP.clone(),
+                true,
+                CategoricalOrdering::Physical,
+            )
+        })
     }
 }
 

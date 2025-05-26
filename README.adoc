@@ -68,3 +68,4 @@ Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
 
 [source,shell]
 cargo build --features=polars
+cargo build --features=polars,serde

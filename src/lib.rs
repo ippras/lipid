@@ -18,9 +18,9 @@ pub mod prelude {
     pub use crate::polars::{
         ColumnExt, DataFrameExt, FATTY_ACID, SeriesExt,
         bound::{
-            BOUNDS, IDENTIFIERS, INDICES, MAP,
+            BOUND, IDENTIFIERS, INDEX, MAP,
             identifiers::{
-                logical::{D, DC, DT, S, T, TC, TT, U, UC, UT},
+                logical::{B, D, DC, DT, S, T, TC, TT, U, UC, UT},
                 physical,
             },
         },
@@ -34,7 +34,7 @@ pub mod prelude {
         },
     };
     pub use crate::{
-        bound::{Bound, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
+        bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
         r#const::*,
         display::{Elision, Options},
         kind::{Rco, Rcoo, Rcooch3, Rcooh},

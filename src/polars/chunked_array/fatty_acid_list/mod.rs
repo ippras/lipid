@@ -59,7 +59,13 @@ impl FattyAcidListChunked {
     /// An [`Option`] containing the [`Series`] at the specified index, or
     /// [`None`] if the series does not contain the specified index
     pub fn get(&self, index: usize) -> Option<FattyAcidChunked> {
-        Some(self.0.get_as_series(index)?.fatty_acid())
+        Some(
+            self.0
+                .get_as_series(index)?
+                .cast(&FATTY_ACID_DATA_TYPE)
+                .unwrap()
+                .fatty_acid(),
+        )
     }
 
     pub fn iter(&self) -> impl Iterator<Item = FattyAcidChunked> {

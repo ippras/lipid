@@ -7,9 +7,9 @@ use polars_arrow::array::Utf8ViewArray;
 use std::sync::LazyLock;
 
 /// Index field name.
-pub const INDICES: &str = "Indices";
+pub const INDEX: &str = "Index";
 /// Identifier field name.
-pub const BOUNDS: &str = "Bounds";
+pub const BOUND: &str = "Bound";
 /// Array of bond identifiers.
 pub const IDENTIFIERS: [&str; 10] = [S, DC, DT, D, TC, TT, T, UC, UT, U];
 
@@ -20,6 +20,12 @@ pub const MAP: LazyLock<Arc<RevMapping>> = LazyLock::new(|| {
 });
 
 impl Bound {
+    pub fn categorical(&self) -> Option<u32> {
+        Some(self.0?.categorical())
+    }
+}
+
+impl Explicit {
     /// Creates a new [`Bound`] instance from the given identifier string.
     ///
     /// # Arguments
@@ -34,18 +40,33 @@ impl Bound {
             "unexpected bound identifier: {id}; expected: {IDENTIFIERS:?}",
         ))
     }
-}
 
-impl From<Bound> for &'static str {
-    fn from(value: Bound) -> Self {
-        match value {
-            Bound::Saturated => S,
-            Bound::Unsaturated(unsaturated) => unsaturated.into(),
+    pub fn categorical(&self) -> u32 {
+        match *self {
+            Self::S => physical::S,
+            Self::DC => physical::DC,
+            Self::DT => physical::DT,
+            Self::D => physical::D,
+            Self::TC => physical::TC,
+            Self::TT => physical::TT,
+            Self::T => physical::T,
+            Self::UC => physical::UC,
+            Self::UT => physical::UT,
+            Self::U => physical::U,
         }
     }
 }
 
-impl<'a> TryFrom<&'a str> for Bound {
+impl From<Explicit> for &'static str {
+    fn from(value: Explicit) -> Self {
+        match value {
+            Explicit::Saturated => S,
+            Explicit::Unsaturated(unsaturated) => unsaturated.into(),
+        }
+    }
+}
+
+impl<'a> TryFrom<&'a str> for Explicit {
     type Error = &'a str;
 
     fn try_from(value: &'a str) -> Result<Self, Self::Error> {
@@ -117,6 +138,7 @@ pub mod identifiers {
     }
 
     pub mod logical {
+        pub const B: &str = "B";
         pub const S: &str = "S";
         pub const DC: &str = "DC";
         pub const DT: &str = "DT";

@@ -1,5 +1,3 @@
-use serde::{Deserialize, Serialize};
-
 /// Triacylglycerol
 #[derive(Clone, Debug, Hash)]
 pub struct Triacylglycerol<T>([Option<T>; 3]);
@@ -27,8 +25,10 @@ impl<T> Triacylglycerol<T> {
 }
 
 /// Stereospecificity
-#[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Stereospecificity {
+    Mono,
     Positional,
     Stereo,
 }

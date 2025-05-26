@@ -63,36 +63,36 @@ pub trait IdentifierIteratorExt<T> {
     fn not_unsaturated(self) -> impl Iterator<Item = (T, Option<Saturated>)>;
 }
 
-impl<I: Iterator<Item = (T, Option<Bound>)>, T> IdentifierIteratorExt<T> for I {
+impl<I: Iterator<Item = (T, Bound)>, T> IdentifierIteratorExt<T> for I {
     fn is_saturated(&mut self) -> bool {
-        self.all(|(_, bound)| bound.is_some_and(Bound::is_saturated))
+        self.all(|(_, bound)| bound.0.is_some_and(Explicit::is_saturated))
     }
 
     fn is_unsaturated(&mut self) -> bool {
-        self.any(|(_, bound)| bound.is_some_and(Bound::is_unsaturated))
+        self.any(|(_, bound)| bound.0.is_some_and(Explicit::is_unsaturated))
     }
 
     fn saturated(self) -> impl Iterator<Item = (T, Saturated)> {
-        self.filter_map(|(index, bound)| Some((index, bound?.as_saturated()?)))
+        self.filter_map(|(index, bound)| Some((index, bound.0?.as_saturated()?)))
     }
 
     fn unsaturated(self) -> impl Iterator<Item = (T, Unsaturated)> {
-        self.filter_map(|(index, bound)| Some((index, bound?.as_unsaturated()?)))
+        self.filter_map(|(index, bound)| Some((index, bound.0?.as_unsaturated()?)))
     }
 
     fn not_saturated(self) -> impl Iterator<Item = (T, Option<Unsaturated>)> {
-        self.filter_map(|(index, bound)| match bound {
+        self.filter_map(|(index, bound)| match bound.0 {
             None => Some((index, None)),
-            Some(Bound::Saturated) => None,
-            Some(Bound::Unsaturated(unsaturated)) => Some((index, Some(unsaturated))),
+            Some(Explicit::Saturated) => None,
+            Some(Explicit::Unsaturated(unsaturated)) => Some((index, Some(unsaturated))),
         })
     }
 
     fn not_unsaturated(self) -> impl Iterator<Item = (T, Option<Saturated>)> {
-        self.filter_map(|(index, bound)| match bound {
+        self.filter_map(|(index, bound)| match bound.0 {
             None => Some((index, None)),
-            Some(Bound::Saturated) => Some((index, Some(Saturated))),
-            Some(Bound::Unsaturated(_)) => None,
+            Some(Explicit::Saturated) => Some((index, Some(Saturated))),
+            Some(Explicit::Unsaturated(_)) => None,
         })
     }
 }

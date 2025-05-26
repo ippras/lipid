@@ -1,34 +1,94 @@
 //! Represents different types of chemical bonds with optional isomerism.
 
+use std::fmt::{self, Display, Formatter};
+
+/// Bound.
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct Bound(pub(crate) Option<Explicit>);
+
+impl Bound {
+    /// Constant for unknown bound type.
+    pub const B: Self = Self(None);
+    /// Constant for single bound type.
+    pub const S: Self = Self(Some(Explicit::S));
+    /// Constant for double cis bound type.
+    pub const DC: Self = Self(Some(Explicit::DC));
+    /// Constant for double trans bound type.
+    pub const DT: Self = Self(Some(Explicit::DT));
+    /// Constant for double bound type.
+    pub const D: Self = Self(Some(Explicit::D));
+    /// Constant for triple cis bound type.
+    pub const TC: Self = Self(Some(Explicit::TC));
+    /// Constant for triple trans bound type.
+    pub const TT: Self = Self(Some(Explicit::TT));
+    /// Constant for triple bound type.
+    pub const T: Self = Self(Some(Explicit::T));
+    /// Constant for unknown cis bound type.
+    pub const UC: Self = Self(Some(Explicit::UC));
+    /// Constant for unknown trans bound type.
+    pub const UT: Self = Self(Some(Explicit::UT));
+    /// Constant for unknown bound type.
+    pub const U: Self = Self(Some(Explicit::U));
+}
+
+impl Display for Bound {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
+        match self.0 {
+            None if f.alternate() => f.write_str("B")?,
+            None => f.write_str("b")?,
+            Some(Explicit::Saturated) if f.alternate() => f.write_str("S")?,
+            Some(Explicit::Saturated) => f.write_str("s")?,
+            Some(Explicit::Unsaturated(unsaturated)) => {
+                match unsaturated.unsaturation {
+                    None if f.alternate() => f.write_str("U")?,
+                    None => f.write_str("u")?,
+                    Some(Unsaturation::Double) if f.alternate() => f.write_str("D")?,
+                    Some(Unsaturation::Double) => f.write_str("d")?,
+                    Some(Unsaturation::Triple) if f.alternate() => f.write_str("T")?,
+                    Some(Unsaturation::Triple) => f.write_str("t")?,
+                }
+                match unsaturated.isomerism {
+                    None => {}
+                    Some(Isomerism::Cis) => f.write_str("c")?,
+                    Some(Isomerism::Trans) => f.write_str("t")?,
+                }
+            }
+        };
+        Ok(())
+    }
+}
+
 /// Represents a bound with various types and associated constants.
 #[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub enum Bound {
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub enum Explicit {
     #[default]
     Saturated,
     Unsaturated(Unsaturated),
 }
 
-impl Bound {
+impl Explicit {
     /// Constant for single bound type.
     pub const S: Self = Self::Saturated;
-    /// Constant for double bound type.
-    pub const D: Self = Self::Unsaturated(Unsaturated::D);
     /// Constant for double cis bound type.
     pub const DC: Self = Self::Unsaturated(Unsaturated::DC);
     /// Constant for double trans bound type.
     pub const DT: Self = Self::Unsaturated(Unsaturated::DT);
-    /// Constant for triple bound type.
-    pub const T: Self = Self::Unsaturated(Unsaturated::T);
+    /// Constant for double bound type.
+    pub const D: Self = Self::Unsaturated(Unsaturated::D);
     /// Constant for triple cis bound type.
     pub const TC: Self = Self::Unsaturated(Unsaturated::TC);
     /// Constant for triple trans bound type.
     pub const TT: Self = Self::Unsaturated(Unsaturated::TT);
-    /// Constant for unknown bound type.
-    pub const U: Self = Self::Unsaturated(Unsaturated::U);
+    /// Constant for triple bound type.
+    pub const T: Self = Self::Unsaturated(Unsaturated::T);
     /// Constant for unknown cis bound type.
     pub const UC: Self = Self::Unsaturated(Unsaturated::UC);
     /// Constant for unknown trans bound type.
     pub const UT: Self = Self::Unsaturated(Unsaturated::UT);
+    /// Constant for unknown bound type.
+    pub const U: Self = Self::Unsaturated(Unsaturated::U);
 
     pub fn as_saturated(self) -> Option<Saturated> {
         match self {
@@ -143,6 +203,7 @@ pub struct Saturated;
 
 /// Represents an unsaturated bond with optional isomerism.
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Unsaturated {
     pub unsaturation: Option<Unsaturation>,
     pub isomerism: Option<Isomerism>,
@@ -192,6 +253,7 @@ impl Unsaturated {
 
 /// Represents the level of unsaturation.
 #[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Unsaturation {
     #[default]
     Double = 1,
@@ -200,6 +262,7 @@ pub enum Unsaturation {
 
 /// Represents the type of isomerism.
 #[derive(Clone, Copy, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Isomerism {
     /// Represents cis bond.
     #[default]

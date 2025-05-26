@@ -1,6 +1,6 @@
 [package]
 name = "lipid"
-version = "0.4.0"
+version = "0.4.1"
 authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
@@ -28,7 +28,7 @@ polars = { version = "0.48.1", default-features = false, features = [
 polars-arrow = "0.48.1"
 polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
 rayon = "1.10.0"
-serde = { version = "1.0.219", features = ["derive", "std"] }
+serde = { version = "1.0.219", features = ["derive", "std"], optional = true }
 
 # polars-plan = "0.46.0"
 # fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }

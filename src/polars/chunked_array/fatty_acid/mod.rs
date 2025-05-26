@@ -13,86 +13,109 @@ use std::{
 /// The fatty acid data type.
 pub const FATTY_ACID_DATA_TYPE: LazyLock<DataType> = LazyLock::new(|| {
     DataType::Struct(vec![
-        Field::new(PlSmallStr::from_static(INDICES), DataType::Int8),
-        Field::new(PlSmallStr::from_static(BOUNDS), BOUND_DATA_TYPE.clone()),
+        Field::new(PlSmallStr::from_static(INDEX), DataType::Int8),
+        Field::new(PlSmallStr::from_static(BOUND), BOUND_DATA_TYPE.clone()),
     ])
 });
 
 /// Fatty acid chunked array.
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug)]
 pub struct FattyAcidChunked {
-    indices: Int8Chunked,
-    bounds: BoundChunked,
+    index: Int8Chunked,
+    bound: BoundChunked,
 }
 
 impl FattyAcidChunked {
-    pub const INDICES: &str = INDICES;
-    pub const BOUNDS: &str = BOUNDS;
+    pub const INDEX: &str = INDEX;
+    pub const BOUND: &str = BOUND;
 
     pub fn iter(
         &self,
-    ) -> impl DoubleEndedIterator<Item = (Option<Option<NonZeroI8>>, Option<Bound>)> + ExactSizeIterator
+    ) -> impl DoubleEndedIterator<Item = (Option<Option<NonZeroI8>>, Bound)> + ExactSizeIterator
     {
-        self.indices
+        self.index
             .iter()
             .map(|index| index.map(NonZeroI8::new))
-            .zip(self.bounds.iter())
+            .zip(self.bound.iter())
     }
 
     pub fn into_struct(self, name: PlSmallStr) -> PolarsResult<StructChunked> {
         StructChunked::from_series(
             name,
-            self.bounds.as_categorical().len(),
-            [self.indices.into_series(), self.bounds.into_series()].iter(),
+            self.bound.as_categorical().len(),
+            [self.index.into_series(), self.bound.into_series()].iter(),
         )
     }
 
     pub fn index(&self) -> &Int8Chunked {
-        &self.indices
+        &self.index
+    }
+
+    pub fn index_mut(&mut self) -> &mut Int8Chunked {
+        &mut self.index
     }
 
     pub fn bound(&self) -> &BoundChunked {
-        &self.bounds
+        &self.bound
+    }
+
+    pub fn bound_mut(&mut self) -> &mut BoundChunked {
+        &mut self.bound
+    }
+
+    pub fn pop(&mut self) {
+        self.index = self.index.slice(0, self.index.len().saturating_sub(1));
+        self.bound.pop();
+    }
+
+    pub fn push(&mut self) -> PolarsResult<()> {
+        self.index.extend(&Int8Chunked::full(
+            PlSmallStr::EMPTY,
+            self.index.len() as i8 + 1,
+            1,
+        ))?;
+        self.bound.push()?;
+        Ok(())
     }
 
     pub fn sort(&self) -> FattyAcidChunked {
         // SAFETY: we only reordered the indexes so we are still in bounds.
         let options = Default::default();
-        let bounds_indices = self.bounds.as_categorical().arg_sort(options);
-        let mut indices = unsafe { self.indices.take_unchecked(&bounds_indices) };
+        let indices = self.bound.as_categorical().arg_sort(options);
+        let mut index = unsafe { self.index.take_unchecked(&indices) };
         let mut identifiers = unsafe {
-            self.bounds
+            self.bound
                 .as_categorical()
                 .physical()
-                .take_unchecked(&bounds_indices)
+                .take_unchecked(&indices)
         };
-        let index_indices = indices.arg_sort(options);
-        indices = unsafe { indices.take_unchecked(&index_indices) };
-        identifiers = unsafe { identifiers.take_unchecked(&index_indices) };
-        let bounds = BoundChunked::new(unsafe {
+        let indices = index.arg_sort(options);
+        index = unsafe { index.take_unchecked(&indices) };
+        identifiers = unsafe { identifiers.take_unchecked(&indices) };
+        let bound = BoundChunked::new(unsafe {
             CategoricalChunked::from_cats_and_rev_map_unchecked(
                 identifiers,
-                self.bounds.as_categorical().get_rev_map().clone(),
-                self.bounds.as_categorical().is_enum(),
-                self.bounds.as_categorical().get_ordering(),
+                self.bound.as_categorical().get_rev_map().clone(),
+                self.bound.as_categorical().is_enum(),
+                self.bound.as_categorical().get_ordering(),
             )
         });
-        Self { indices, bounds }
+        Self { index, bound }
     }
 }
 
 impl FattyAcidChunked {
-    pub fn unsized_sized(&self) -> (Option<Option<Bound>>, Cow<Self>) {
+    pub fn unsized_sized(&self) -> (Option<Option<Explicit>>, Cow<Self>) {
         if self.is_sized() {
             return (None, Cow::Borrowed(&self));
         }
-        let null_count = self.indices.null_count();
+        let null_count = self.index.null_count();
         assert_eq!(null_count, 1);
-        let indices = self.indices.slice(1, self.indices.len() - 1);
-        let physical = self.bounds.as_categorical().physical();
+        let indices = self.index.slice(1, self.index.len() - 1);
+        let physical = self.bound.as_categorical().physical();
         let r#unsized = physical
             .first()
-            .map(|physical| Bound::new(self.bounds.as_categorical().get_rev_map().get(physical)));
+            .map(|physical| Explicit::new(self.bound.as_categorical().get_rev_map().get(physical)));
         let sized = physical.slice(1, physical.len() - 1);
         // SAFETY: we created the physical from the enum categories.
         let sized = unsafe {
@@ -101,31 +124,29 @@ impl FattyAcidChunked {
         (
             Some(r#unsized),
             Cow::Owned(Self {
-                indices,
-                bounds: BoundChunked::new(sized),
+                index: indices,
+                bound: BoundChunked::new(sized),
             }),
         )
     }
 
     pub fn implicit_explicit(&self) -> (BoundChunked, Self) {
-        assert!(!self.indices.has_nulls());
+        assert!(!self.index.has_nulls());
         let offset = self.implicit_count() as _;
-        let (implicit, explicit) = self.bounds.as_categorical().physical().split_at(offset);
+        let (implicit, explicit) = self.bound.as_categorical().physical().split_at(offset);
         // SAFETY: we created the physical from the enum categories.
         let implicit = unsafe {
             CategoricalChunked::from_cats_and_dtype_unchecked(implicit, BOUND_DATA_TYPE.clone())
         };
-        let index = self
-            .indices
-            .slice(offset, self.indices.len() - offset as usize);
+        let index = self.index.slice(offset, self.index.len() - offset as usize);
         let explicit = unsafe {
             CategoricalChunked::from_cats_and_dtype_unchecked(explicit, BOUND_DATA_TYPE.clone())
         };
         (
             BoundChunked(implicit),
             Self {
-                indices: index,
-                bounds: BoundChunked(explicit),
+                index,
+                bound: BoundChunked(explicit),
             },
         )
     }
@@ -135,34 +156,34 @@ impl FattyAcidChunked {
 impl FattyAcidChunked {
     #[inline]
     pub fn is_sized(&self) -> bool {
-        !self.indices.has_nulls()
+        !self.index.has_nulls()
     }
 
     #[inline]
     pub fn is_unsized(&self) -> bool {
-        self.indices.has_nulls()
+        self.index.has_nulls()
     }
 
     #[inline]
     pub fn is_explicit(&self) -> Option<bool> {
-        self.indices.not_equal(0).all_kleene()
+        self.index.not_equal(0).all_kleene()
     }
 
     #[inline]
     pub fn is_implicit(&self) -> Option<bool> {
-        self.indices.equal(0).any_kleene()
+        self.index.equal(0).any_kleene()
     }
 }
 
 impl FattyAcidChunked {
     #[inline]
     pub fn is_saturated(&self) -> Option<bool> {
-        self.bounds.is_saturated()
+        self.bound.is_saturated()
     }
 
     pub fn is_unsaturated(&self, offset: Option<NonZeroI8>) -> Option<bool> {
         let Some(offset) = offset else {
-            return self.bounds.is_unsaturated();
+            return self.bound.is_unsaturated();
         };
         let mut is_unsaturated;
         if offset.is_positive() {
@@ -171,9 +192,9 @@ impl FattyAcidChunked {
             if carbons < delta as _ {
                 return Some(false);
             }
-            let unsaturated = self.indices.equal(delta) & self.bounds.gt(S);
+            let unsaturated = self.index.equal(delta) & self.bound.gt(S);
             is_unsaturated = unsaturated.num_trues() == 1;
-            let saturated = self.indices.lt(delta) & self.bounds.equal(S);
+            let saturated = self.index.lt(delta) & self.bound.equal(S);
             is_unsaturated &= saturated.num_trues() == delta as usize - 1;
         } else {
             let offset = offset.get();
@@ -181,9 +202,9 @@ impl FattyAcidChunked {
             let Some(delta) = carbons.checked_add_signed(offset) else {
                 return Some(false);
             };
-            let unsaturated = self.indices.equal(delta) & self.bounds.gt(S);
+            let unsaturated = self.index.equal(delta) & self.bound.gt(S);
             is_unsaturated = unsaturated.num_trues() == 1;
-            let saturated = self.indices.gt(delta) & self.bounds.equal(S);
+            let saturated = self.index.gt(delta) & self.bound.equal(S);
             is_unsaturated &= saturated.num_trues() == offset.abs() as usize - 1;
         }
         Some(is_unsaturated)
@@ -191,22 +212,22 @@ impl FattyAcidChunked {
 
     #[inline]
     pub fn is_monounsaturated(&self) -> Option<bool> {
-        self.bounds.is_monounsaturated()
+        self.bound.is_monounsaturated()
     }
 
     #[inline]
     pub fn is_polyunsaturated(&self) -> Option<bool> {
-        self.bounds.is_polyunsaturated()
+        self.bound.is_polyunsaturated()
     }
 
     #[inline]
     pub fn is_cis(&self) -> Option<bool> {
-        self.bounds.is_cis()
+        self.bound.is_cis()
     }
 
     #[inline]
     pub fn is_trans(&self) -> Option<bool> {
-        self.bounds.is_trans()
+        self.bound.is_trans()
     }
 }
 
@@ -214,32 +235,32 @@ impl FattyAcidChunked {
 impl FattyAcidChunked {
     /// Returns the number of sized (Some) indices in the fatty acid.
     pub fn sized_count(&self) -> u8 {
-        (self.indices.len() - self.indices.null_count()) as _
+        (self.index.len() - self.index.null_count()) as _
     }
 
     /// Returns the number of unsized (None) indices in the fatty acid.
     pub fn unsized_count(&self) -> u8 {
-        self.indices.null_count() as _
+        self.index.null_count() as _
     }
 
     // Returns the number of explicit (NonZeroI8) indices in the fatty acid.
     pub fn explicit_count(&self) -> u8 {
-        self.indices.not_equal(0).num_trues() as _
+        self.index.not_equal(0).num_trues() as _
     }
 
     // Returns the number of implicit (Some(0)) indices in the fatty acid.
     pub fn implicit_count(&self) -> u8 {
-        self.indices.equal(0).num_trues() as _
+        self.index.equal(0).num_trues() as _
     }
 }
 
 impl FattyAcidChunked {
     pub fn saturated_count(&self) -> u8 {
-        (self.indices.is_not_null() & self.bounds.equal(S)).num_trues() as _
+        (self.index.is_not_null() & self.bound.equal(S)).num_trues() as _
     }
 
     pub fn unsaturated_count(&self) -> u8 {
-        (self.indices.is_not_null() & self.bounds.not_equal(S)).num_trues() as _
+        (self.index.is_not_null() & self.bound.not_equal(S)).num_trues() as _
     }
 
     /// Returns the total number of unsaturations in the fatty acid.
@@ -268,7 +289,7 @@ impl FattyAcidChunked {
                             Some(Some(index)) => Display::fmt(&index, f)?,
                         }
                         match unsaturated.unsaturation {
-                            None => f.write_char('≅')?,
+                            None => f.write_char('≊')?, // ≅
                             Some(Unsaturation::Double) => {
                                 if options.isomerism == Elision::Explicit {
                                     f.write_char('=')?;
@@ -306,26 +327,20 @@ impl FattyAcidChunked {
     }
 }
 
+impl Default for FattyAcidChunked {
+    fn default() -> Self {
+        Self {
+            index: Int8Chunked::default().with_name(INDEX.into()),
+            bound: BoundChunked::default().with_name(BOUND.into()),
+        }
+    }
+}
+
 impl Display for FattyAcidChunked {
     fn fmt(&self, f: &mut Formatter) -> fmt::Result {
-        let item = |index: Option<Option<NonZeroI8>>, bound: Option<Bound>| {
+        let item = |index: Option<Option<NonZeroI8>>, bound: Bound| {
             from_fn(move |f| {
-                match bound {
-                    None => f.write_str("b")?,
-                    Some(Bound::Saturated) => f.write_str("s")?,
-                    Some(Bound::Unsaturated(unsaturated)) => {
-                        match unsaturated.unsaturation {
-                            None => f.write_str("u")?,
-                            Some(Unsaturation::Double) => f.write_str("d")?,
-                            Some(Unsaturation::Triple) => f.write_str("t")?,
-                        }
-                        match unsaturated.isomerism {
-                            None => {}
-                            Some(Isomerism::Cis) => f.write_str("c")?,
-                            Some(Isomerism::Trans) => f.write_str("t")?,
-                        }
-                    }
-                }
+                Display::fmt(&bound, f)?;
                 match index {
                     None if f.alternate() => f.write_char('*')?,
                     Some(None) if f.alternate() => f.write_char('?')?,
@@ -349,7 +364,7 @@ impl Display for FattyAcidChunked {
 }
 
 impl IntoIterator for &FattyAcidChunked {
-    type Item = (Option<Option<NonZeroI8>>, Option<Bound>);
+    type Item = (Option<Option<NonZeroI8>>, Bound);
 
     type IntoIter = impl Iterator<Item = Self::Item>;
 
@@ -375,10 +390,10 @@ impl TryFrom<&StructChunked> for FattyAcidChunked {
             SchemaMismatch: "invalid fatty acid data type: expected `FATTY_ACID_DATA_TYPE`, got = `{}`",
             value.dtype(),
         );
-        let indices = value.field_by_name(Self::INDICES)?.i8()?.clone();
-        let bounds =
-            BoundChunked::try_new(value.field_by_name(Self::BOUNDS)?.categorical()?.clone())?;
-        Ok(Self { indices, bounds })
+        let index = value.field_by_name(Self::INDEX)?.i8()?.clone();
+        let bound =
+            BoundChunked::try_new(value.field_by_name(Self::BOUND)?.categorical()?.clone())?;
+        Ok(Self { index, bound })
     }
 }
 
@@ -389,9 +404,9 @@ impl<const N: usize, U: Identifier> TryFrom<[(Option<Option<NonZeroI8>>, U); N]>
 
     fn try_from(value: [(Option<Option<NonZeroI8>>, U); N]) -> Result<Self, Self::Error> {
         let capacity = value.len();
-        let mut indices = PrimitiveChunkedBuilder::<Int8Type>::new(INDICES.into(), capacity);
-        let mut identifiers = EnumChunkedBuilder::new(
-            BOUNDS.into(),
+        let mut indices = PrimitiveChunkedBuilder::<Int8Type>::new(INDEX.into(), capacity);
+        let mut bounds = EnumChunkedBuilder::new(
+            BOUND.into(),
             capacity,
             MAP.clone(),
             Default::default(),
@@ -400,11 +415,11 @@ impl<const N: usize, U: Identifier> TryFrom<[(Option<Option<NonZeroI8>>, U); N]>
         for (index, identifier) in value {
             let index = index.map(|index| index.map_or(0, |index| index.into()));
             indices.append_option(index);
-            identifier.append_to(&mut identifiers)?;
+            identifier.append_to(&mut bounds)?;
         }
         Ok(Self {
-            indices: indices.finish(),
-            bounds: BoundChunked::new(identifiers.finish()),
+            index: indices.finish(),
+            bound: BoundChunked::new(bounds.finish()),
         })
     }
 }
@@ -414,8 +429,8 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for FattyAcidChunked {
 
     fn try_from(value: [T; N]) -> Result<Self, Self::Error> {
         Ok(Self {
-            indices: Int8Chunked::new_vec(INDICES.into(), (1i8..=value.len() as _).collect()),
-            bounds: value.try_into()?,
+            index: Int8Chunked::new_vec(INDEX.into(), (1i8..=value.len() as _).collect()),
+            bound: value.try_into()?,
         })
     }
 }
@@ -426,12 +441,12 @@ impl Atomic for &FattyAcidChunked {
 
     #[inline]
     fn carbons(self) -> u8 {
-        self.bounds.carbons()
+        self.bound.carbons()
     }
 
     #[inline]
     fn hydrogens(self) -> u8 {
-        self.bounds.hydrogens()
+        self.bound.hydrogens()
     }
 }
 
@@ -441,7 +456,7 @@ impl EquivalentCarbonNumber for &FattyAcidChunked {
 
     #[inline]
     fn equivalent_carbon_number(self) -> u8 {
-        self.bounds.equivalent_carbon_number()
+        self.bound.equivalent_carbon_number()
     }
 }
 
