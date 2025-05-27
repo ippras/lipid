@@ -405,6 +405,24 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for BoundChunked {
     }
 }
 
+impl<T: Copy + Identifier> TryFrom<&[T]> for BoundChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &[T]) -> Result<Self, Self::Error> {
+        let mut identifiers = EnumChunkedBuilder::new(
+            PlSmallStr::from_static(BOUND),
+            value.len(),
+            MAP.clone(),
+            Default::default(),
+            true,
+        );
+        for identifier in value {
+            identifier.append_to(&mut identifiers)?;
+        }
+        Ok(Self::new(identifiers.finish()))
+    }
+}
+
 impl FromIterator<Bound> for BoundChunked {
     fn from_iter<T: IntoIterator<Item = Bound>>(iter: T) -> Self {
         BoundChunked::new(unsafe {
