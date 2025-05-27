@@ -435,6 +435,17 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for FattyAcidChunked {
     }
 }
 
+impl<T: Copy + Identifier> TryFrom<&[T]> for FattyAcidChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &[T]) -> Result<Self, Self::Error> {
+        Ok(Self {
+            index: Int8Chunked::new_vec(INDEX.into(), (1i8..=value.len() as _).collect()),
+            bound: value.try_into()?,
+        })
+    }
+}
+
 #[cfg(feature = "atomic")]
 impl Atomic for &FattyAcidChunked {
     type Output = u8;

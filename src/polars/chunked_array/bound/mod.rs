@@ -15,9 +15,22 @@ pub const BOUND_DATA_TYPE: LazyLock<DataType> =
     LazyLock::new(|| DataType::Enum(Some(MAP.clone()), Default::default()));
 
 /// The bound chunked array.
-#[derive(Clone, Default)]
+#[derive(Clone)]
 #[repr(transparent)]
 pub struct BoundChunked(pub(crate) CategoricalChunked);
+
+impl Default for BoundChunked {
+    fn default() -> Self {
+        unsafe {
+            Self(CategoricalChunked::from_cats_and_rev_map_unchecked(
+                Default::default(),
+                MAP.clone(),
+                true,
+                CategoricalOrdering::Physical,
+            ))
+        }
+    }
+}
 
 impl BoundChunked {
     pub fn new(categorical: CategoricalChunked) -> Self {
@@ -391,6 +404,24 @@ impl<const N: usize, T: Identifier> TryFrom<[T; N]> for BoundChunked {
     type Error = PolarsError;
 
     fn try_from(value: [T; N]) -> Result<Self, Self::Error> {
+        let mut identifiers = EnumChunkedBuilder::new(
+            PlSmallStr::from_static(BOUND),
+            value.len(),
+            MAP.clone(),
+            Default::default(),
+            true,
+        );
+        for identifier in value {
+            identifier.append_to(&mut identifiers)?;
+        }
+        Ok(Self::new(identifiers.finish()))
+    }
+}
+
+impl<T: Copy + Identifier> TryFrom<&[T]> for BoundChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &[T]) -> Result<Self, Self::Error> {
         let mut identifiers = EnumChunkedBuilder::new(
             PlSmallStr::from_static(BOUND),
             value.len(),
