@@ -1,0 +1,29 @@
+| Shorthand | Common Name (Recommended) | Systematic IUPAC Name | InChI                                                                                                                           |
+| --------- | ------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| С4:0      | Butyric acid              | Butanoic acid         | InChI=1S/C4H8O2/c1-2-3-4(5)6/h2-3H2,1H3,(H,5,6)                                                                                 |
+| С5:0      | Valeric acid              | Pentanoic acid        | InChI=1S/C5H10O2/c1-2-3-4-5(6)7/h2-4H2,1H3,(H,6,7)                                                                              |
+| С6:0      | Caproic acid              | Hexanoic acid         | InChI=1S/C6H12O2/c1-2-3-4-5-6(7)8/h2-5H2,1H3,(H,7,8)                                                                            |
+| С7:0      | Enanthic acid             | Heptanoic acid        | InChI=1S/C7H14O2/c1-2-3-4-5-6-7(8)9/h2-6H2,1H3,(H,8,9)                                                                          |
+| С8:0      | Caprylic acid             | Octanoic acid         | InChI=1S/C8H16O2/c1-2-3-4-5-6-7-8(9)10/h2-7H2,1H3,(H,9,10)                                                                      |
+| С9:0      | Pelargonic acid           | Nonanoic acid         | InChI=1S/C9H18O2/c1-2-3-4-5-6-7-8-9(10)11/h2-8H2,1H3,(H,10,11)                                                                  |
+| С10:0     | Capric acid               | Decanoic acid         | InChI=1S/C10H20O2/c1-2-3-4-5-6-7-8-9-10(11)12/h2-9H2,1H3,(H,11,12)                                                              |
+| С11:0     | Undecylic acid            | Undecanoic acid       | InChI=1S/C11H22O2/c1-2-3-4-5-6-7-8-9-10-11(12)13/h2-10H2,1H3,(H,12,13)                                                          |
+| С12:0     | Lauric acid               | Dodecanoic acid       | InChI=1S/C12H24O2/c1-2-3-4-5-6-7-8-9-10-11-12(13)14/h2-11H2,1H3,(H,13,14)                                                       |
+| С13:0     | Tridecylic acid           | Tridecanoic acid      | InChI=1S/C13H26O2/c1-2-3-4-5-6-7-8-9-10-11-12-13(14)15/h2-12H2,1H3,(H,14,15)                                                    |
+| С14:0     | Myristic acid             | Tetradecanoic acid    | InChI=1S/C14H28O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14(15)16/h2-13H2,1H3,(H,15,16)                                                 |
+| С15:0     | Pentadecylic acid         | Pentadecanoic acid    | InChI=1S/C15H30O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15(16)17/h2-14H2,1H3,(H,16,17)                                              |
+| С16:0     | Palmitic acid             | Hexadecanoic acid     | InChI=1S/C16H32O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16(17)18/h2-15H2,1H3,(H,17,18)                                           |
+| С17:0     | Margaric acid             | Heptadecanoic acid    | InChI=1S/C17H34O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17(18)19/h2-16H2,1H3,(H,18,19)                                        |
+| С18:0     | Stearic acid              | Octadecanoic acid     | InChI=1S/C18H36O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h2-17H2,1H3,(H,19,20)                                     |
+| С19:0     | Nonadecylic acid          | Nonadecanoic acid     | InChI=1S/C19H38O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19(20)21/h2-18H2,1H3,(H,20,21)                                  |
+| С20:0     | Arachidic acid            | Icosanoic acid        | InChI=1S/C20H40O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20(21)22/h2-19H2,1H3,(H,21,22)                               |
+| С21:0     | Heneicosylic acid         | Heneicosanoic acid    | InChI=1S/C21H42O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21(22)23/h2-20H2,1H3,(H,22,23)                            |
+| С22:0     | Behenic acid              | Docosanoic acid       | InChI=1S/C22H44O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22(23)24/h2-21H2,1H3,(H,23,24)                         |
+| С23:0     | Tricosylic acid           | Tricosanoic acid      | InChI=1S/C23H46O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23(24)25/h2-22H2,1H3,(H,24,25)                      |
+| С24:0     | Lignoceric acid           | Tetracosanoic acid    | InChI=1S/C24H48O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24(25)26/h2-23H2,1H3,(H,25,26)                   |
+| С25:0     | Pentacosylic acid         | Pentacosanoic acid    | InChI=1S/C25H50O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25(26)27/h2-24H2,1H3,(H,26,27)                |
+| С26:0     | Cerotic acid              | Hexacosanoic acid     | InChI=1S/C26H52O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26(27)28/h2-25H2,1H3,(H,27,28)             |
+| С27:0     | Carboceric acid           | Heptacosanoic acid    | InChI=1S/C27H54O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27(28)29/h2-26H2,1H3,(H,28,29)          |
+| С28:0     | Montanic acid             | Octacosanoic acid     | InChI=1S/C28H56O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28(29)30/h2-27H2,1H3,(H,29,30)       |
+| С29:0     | Nonacosylic acid          | Nonacosanoic acid     | InChI=1S/C29H58O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29(30)31/h2-28H2,1H3,(H,30,31)    |
+| С30:0     | Melissic acid             | Triacontanoic acid    | InChI=1S/C30H60O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22-23-24-25-26-27-28-29-30(31)32/h2-29H2,1H3,(H,31,32) |
