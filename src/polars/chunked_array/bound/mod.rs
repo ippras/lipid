@@ -15,9 +15,22 @@ pub const BOUND_DATA_TYPE: LazyLock<DataType> =
     LazyLock::new(|| DataType::Enum(Some(MAP.clone()), Default::default()));
 
 /// The bound chunked array.
-#[derive(Clone, Default)]
+#[derive(Clone)]
 #[repr(transparent)]
 pub struct BoundChunked(pub(crate) CategoricalChunked);
+
+impl Default for BoundChunked {
+    fn default() -> Self {
+        unsafe {
+            Self(CategoricalChunked::from_cats_and_rev_map_unchecked(
+                Default::default(),
+                MAP.clone(),
+                true,
+                CategoricalOrdering::Physical,
+            ))
+        }
+    }
+}
 
 impl BoundChunked {
     pub fn new(categorical: CategoricalChunked) -> Self {
