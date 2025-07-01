@@ -4,10 +4,10 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acids()?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().equal($identifier)])
+            .select([col(FATTY_ACID).fatty_acid().equal($identifier.clone())])
             .collect()?;
-        let got: Vec<_> = data_frame[FATTY_ACID].bool()?.into_iter().collect();
-        assert_eq!(got, $expected);
+        let is_equal: Vec<_> = data_frame[FATTY_ACID].bool()?.into_iter().collect();
+        assert_eq!(is_equal, $expected);
     }};
 }
 

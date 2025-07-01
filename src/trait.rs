@@ -5,10 +5,13 @@ pub trait Atomic {
     type Output;
 
     /// Returns the number of carbon atoms in the principle chain.
-    fn carbons(self) -> Self::Output;
+    fn carbon(self) -> Self::Output;
 
     /// Returns the number of hydrogen atoms.
-    fn hydrogens(self) -> Self::Output;
+    fn hydrogen(self) -> Self::Output;
+
+    /// Returns the number of oxygen atoms.
+    fn oxygen(self) -> Self::Output;
 }
 
 pub trait EquivalentCarbonNumber {

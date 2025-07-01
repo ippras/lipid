@@ -4,39 +4,71 @@
 #![feature(exact_size_is_empty)]
 // #![feature(mixed_integer_ops_unsigned_sub)]
 
-pub mod bound;
-pub mod kind;
-pub mod triacylglycerol;
+use crate::prelude::*;
+use polars::prelude::*;
 
-pub mod display;
-#[cfg(feature = "polars")]
-pub mod polars;
-pub mod r#trait;
+/// Extension methods for [`DataFrame`]
+pub trait DataFrameExt {
+    fn fatty_acid_list(&self) -> &FattyAcidChunked {
+        self.try_fatty_acid().unwrap()
+    }
+
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+}
+
+impl DataFrameExt for DataFrame {
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
+        self[FATTY_ACID].try_fatty_acid()
+    }
+}
+
+/// Extension methods for [`Column`]
+pub trait ColumnExt {
+    fn fatty_acid(&self) -> &FattyAcidChunked {
+        self.try_fatty_acid().unwrap()
+    }
+
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+}
+
+impl ColumnExt for Column {
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
+        self.as_materialized_series().try_fatty_acid()
+    }
+}
+
+/// Extension methods for [`Series`]
+pub trait SeriesExt {
+    fn fatty_acid(&self) -> &FattyAcidChunked {
+        self.try_fatty_acid().unwrap()
+    }
+
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+}
+
+impl SeriesExt for Series {
+    fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
+        self.try_into()
+    }
+}
 
 pub mod prelude {
-    #[cfg(feature = "polars")]
-    pub use crate::polars::{
-        ColumnExt, DataFrameExt, FATTY_ACID, SeriesExt,
-        bound::{
-            BOUND, IDENTIFIERS, INDEX, MAP,
-            identifiers::{
-                logical::{B, D, DC, DT, S, T, TC, TT, U, UC, UT},
-                physical,
-            },
-        },
-        chunked_array::{
-            BOUND_DATA_TYPE, BoundChunked, FATTY_ACID_DATA_TYPE, FattyAcidChunked,
-            FattyAcidListChunked, IdentifierIteratorExt as _, IndexIteratorExt as _,
-        },
+    pub use crate::{
+        ColumnExt, DataFrameExt, SeriesExt,
+        bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
+        chunked_array::FattyAcidChunked,
+        r#const::*,
+        data_type,
+        display::{Elision, Options},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            triacylglycerol::permutation::Permutation as _,
+            fatty_acid::{BOUNDS, CARBON, FATTY_ACID, INDEX, PARITY, TRIPLE},
+            triacylglycerol::{
+                LABEL, STEREOSPECIFIC_NUMBER1, STEREOSPECIFIC_NUMBER2, STEREOSPECIFIC_NUMBER3,
+                TRIACYLGLYCEROL, permutation::Permutation as _,
+            },
         },
-    };
-    pub use crate::{
-        bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
-        r#const::*,
-        display::{Elision, Options},
+        field,
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#trait::{
             Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
@@ -45,4 +77,11 @@ pub mod prelude {
     };
 }
 
+pub mod bound;
+pub mod chunked_array;
 pub mod r#const;
+pub mod display;
+pub mod expr;
+pub mod kind;
+pub mod r#macro;
+pub mod r#trait;

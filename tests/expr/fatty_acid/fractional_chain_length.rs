@@ -2,18 +2,17 @@ use super::*;
 
 macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
-        let data_frame = fatty_acids()?
+        let data_frame = fatty_acids_with_row_index()?
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
-                .fractional_chain_length(col("Index").cast(DataType::Float64), false)
-                .alias(FATTY_ACID)])
+                .fractional_chain_length(col("Index").cast(DataType::Float64), false)])
             .collect()?;
-        let got = data_frame[FATTY_ACID]
+        let fcl = data_frame["FractionalChainLength"]
             .f64()?
             .get(index!($identifier))
             .unwrap();
-        assert!((got - $expected).abs() < f64::EPSILON);
+        assert!((fcl - $expected).abs() < f64::EPSILON);
     }};
 }
 

@@ -4,15 +4,15 @@ const DECIMALS: u32 = 4;
 
 macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
-        let data_frame = fatty_acid($identifier)?
+        let data_frame = fatty_acid($identifier.clone())?
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
                 .mass(None)
                 .round(DECIMALS, RoundMode::HalfToEven)])
             .collect()?;
-        let got = data_frame["Mass"].f64()?.get(0).unwrap();
-        assert!((got - $expected).abs() < f64::EPSILON);
+        let mass = data_frame["Mass"].f64()?.get(0).unwrap();
+        assert_epsilon!(mass, $expected);
     }};
 }
 

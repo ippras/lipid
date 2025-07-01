@@ -1,32 +1,18 @@
 use super::*;
 
-fn tag<const SN1: usize, const SN2: usize, const SN3: usize>(
-    sn1: (&str, FattyAcid<SN1>),
-    sn2: (&str, FattyAcid<SN2>),
-    sn3: (&str, FattyAcid<SN3>),
-) -> PolarsResult<DataFrame> {
-    df! {
-       "Triacylglycerol" => df! {
-            "StereospecificNumber1" => df! {
-                "Label" => &[sn1.0],
-                "FattyAcid" => &[Series::from_iter(sn1.1).cast(&IDENTIFIER_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber2" => df! {
-                "Label" => &[sn2.0],
-                "FattyAcid" => &[Series::from_iter(sn2.1).cast(&IDENTIFIER_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-            "StereospecificNumber3" => df! {
-                "Label" => &[sn3.0],
-                "FattyAcid" => &[Series::from_iter(sn3.1).cast(&IDENTIFIER_DATA_TYPE)?],
-            }?
-            .into_struct(PlSmallStr::EMPTY),
-        }?.into_struct(PlSmallStr::EMPTY),
-    }
+#[test]
+fn temp() -> PolarsResult<()> {
+    let la_m_p = triacylglycerol(&LA, &M, &P);
+    println!("la_m_p: {la_m_p}");
+    let tags = triacylglycerols()?;
+    println!("tags: {tags}");
+    // assert_eq!(la_m_p?, LA_M_P);
+    Ok(())
 }
 
-mod chain_length;
-#[cfg(feature = "mass")]
-mod mass;
-mod permutation;
+// mod chain_length;
+// #[cfg(feature = "mass")]
+// mod mass;
+// mod permutation;
+mod equivalent_carbon_number;
+mod indices;

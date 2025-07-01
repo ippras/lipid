@@ -2,488 +2,418 @@ use lipid::prelude::*;
 use polars::prelude::*;
 
 macro_rules! check {
-    ($identifier:ident) => {{
-        let fatty_acid = FattyAcidChunked::try_from($identifier)?;
-        let is_trans = fatty_acid.is_trans();
-        assert!(is_trans == Some(expected::$identifier));
+    ($identifier:ident, $expected:literal) => {{
+        let series = Series::from_any_values(PlSmallStr::EMPTY, &[$identifier.clone()], true)?;
+        let fatty_acid = series.fatty_acid();
+        let is_trans = fatty_acid.is_trans()?;
+        assert!(is_trans.first() == Some($expected));
     }};
 }
 
 #[test]
 fn c4() -> PolarsResult<()> {
-    check!(C4);
+    check!(C4, false);
     Ok(())
 }
 
 #[test]
 fn c5() -> PolarsResult<()> {
-    check!(C5);
+    check!(C5, false);
     Ok(())
 }
 
 #[test]
 fn c6() -> PolarsResult<()> {
-    check!(C6);
+    check!(C6, false);
     Ok(())
 }
 
 #[test]
 fn c7() -> PolarsResult<()> {
-    check!(C7);
+    check!(C7, false);
     Ok(())
 }
 
 #[test]
 fn c8() -> PolarsResult<()> {
-    check!(C8);
+    check!(C8, false);
     Ok(())
 }
 
 #[test]
 fn c9() -> PolarsResult<()> {
-    check!(C9);
+    check!(C9, false);
     Ok(())
 }
 
 #[test]
 fn c10() -> PolarsResult<()> {
-    check!(C10);
+    check!(C10, false);
     Ok(())
 }
 
 #[test]
 fn c11() -> PolarsResult<()> {
-    check!(C11);
+    check!(C11, false);
     Ok(())
 }
 
 #[test]
 fn c12() -> PolarsResult<()> {
-    check!(C12);
+    check!(C12, false);
     Ok(())
 }
 
 #[test]
 fn c13() -> PolarsResult<()> {
-    check!(C13);
+    check!(C13, false);
     Ok(())
 }
 
 #[test]
 fn c14() -> PolarsResult<()> {
-    check!(C14);
+    check!(C14, false);
     Ok(())
 }
 
 #[test]
 fn c15() -> PolarsResult<()> {
-    check!(C15);
+    check!(C15, false);
     Ok(())
 }
 
 #[test]
 fn c16() -> PolarsResult<()> {
-    check!(C16);
+    check!(C16, false);
     Ok(())
 }
 
 #[test]
 fn c16dc9() -> PolarsResult<()> {
-    check!(C16DC9);
+    check!(C16DC9, false);
     Ok(())
 }
 
 #[test]
 fn c16dt9() -> PolarsResult<()> {
-    check!(C16DT9);
+    check!(C16DT9, true);
     Ok(())
 }
 
 #[test]
 fn c17() -> PolarsResult<()> {
-    check!(C17);
+    check!(C17, false);
     Ok(())
 }
 
 #[test]
 fn c18() -> PolarsResult<()> {
-    check!(C18);
+    check!(C18, false);
     Ok(())
 }
 
 #[test]
 fn c18dc9() -> PolarsResult<()> {
-    check!(C18DC9);
+    check!(C18DC9, false);
     Ok(())
 }
 
 #[test]
 fn c18dt9() -> PolarsResult<()> {
-    check!(C18DT9);
+    check!(C18DT9, true);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12() -> PolarsResult<()> {
-    check!(C18DC9DC12);
+    check!(C18DC9DC12, false);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12);
+    check!(C18DC6DC9DC12, false);
     Ok(())
 }
 
 #[test]
 fn c18dc8dt10dc12() -> PolarsResult<()> {
-    check!(C18DC8DT10DC12);
+    check!(C18DC8DT10DC12, true);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC9DC12DC15);
+    check!(C18DC9DC12DC15, false);
     Ok(())
 }
 
 #[test]
 fn c18dc9dt11dt13() -> PolarsResult<()> {
-    check!(C18DC9DT11DT13);
+    check!(C18DC9DT11DT13, true);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dc13() -> PolarsResult<()> {
-    check!(C18DT9DT11DC13);
+    check!(C18DT9DT11DC13, true);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dt13() -> PolarsResult<()> {
-    check!(C18DT9DT11DT13);
+    check!(C18DT9DT11DT13, true);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12DC15);
+    check!(C18DC6DC9DC12DC15, false);
     Ok(())
 }
 
 #[test]
 fn c19() -> PolarsResult<()> {
-    check!(C19);
+    check!(C19, false);
     Ok(())
 }
 
 #[test]
 fn c20() -> PolarsResult<()> {
-    check!(C20);
+    check!(C20, false);
     Ok(())
 }
 
 #[test]
 fn c20dc9() -> PolarsResult<()> {
-    check!(C20DC9);
+    check!(C20DC9, false);
     Ok(())
 }
 
 #[test]
 fn c20dc11() -> PolarsResult<()> {
-    check!(C20DC11);
+    check!(C20DC11, false);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14() -> PolarsResult<()> {
-    check!(C20DC11DC14);
+    check!(C20DC11DC14, false);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11);
+    check!(C20DC5DC8DC11, false);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14);
+    check!(C20DC8DC11DC14, false);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC11DC14DC17);
+    check!(C20DC11DC14DC17, false);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14);
+    check!(C20DC5DC8DC11DC14, false);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14DC17);
+    check!(C20DC8DC11DC14DC17, false);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14DC17);
+    check!(C20DC5DC8DC11DC14DC17, false);
     Ok(())
 }
 
 #[test]
 fn c21() -> PolarsResult<()> {
-    check!(C21);
+    check!(C21, false);
     Ok(())
 }
 
 #[test]
 fn c22() -> PolarsResult<()> {
-    check!(C22);
+    check!(C22, false);
     Ok(())
 }
 
 #[test]
 fn c22dc13() -> PolarsResult<()> {
-    check!(C22DC13);
+    check!(C22DC13, false);
     Ok(())
 }
 
 #[test]
 fn c22dc13dc16() -> PolarsResult<()> {
-    check!(C22DC13DC16);
+    check!(C22DC13DC16, false);
     Ok(())
 }
 
 #[test]
 fn c22dc5dc13dc16() -> PolarsResult<()> {
-    check!(C22DC5DC13DC16);
+    check!(C22DC5DC13DC16, false);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16);
+    check!(C22DC7DC10DC13DC16, false);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16DC19);
+    check!(C22DC7DC10DC13DC16DC19, false);
     Ok(())
 }
 
 #[test]
 fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC4DC7DC10DC13DC16DC19);
+    check!(C22DC4DC7DC10DC13DC16DC19, false);
     Ok(())
 }
 
 #[test]
 fn c23() -> PolarsResult<()> {
-    check!(C23);
+    check!(C23, false);
     Ok(())
 }
 
 #[test]
 fn c24() -> PolarsResult<()> {
-    check!(C24);
+    check!(C24, false);
     Ok(())
 }
 
 #[test]
 fn c24dc15() -> PolarsResult<()> {
-    check!(C24DC15);
+    check!(C24DC15, false);
     Ok(())
 }
 
 #[test]
 fn c24dc15dc18() -> PolarsResult<()> {
-    check!(C24DC15DC18);
+    check!(C24DC15DC18, false);
     Ok(())
 }
 
 #[test]
 fn c24dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC12DC15DC18);
+    check!(C24DC12DC15DC18, false);
     Ok(())
 }
 
 #[test]
 fn c24dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC9DC12DC15DC18);
+    check!(C24DC9DC12DC15DC18, false);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18);
+    check!(C24DC6DC9DC12DC15DC18, false);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18DC21);
+    check!(C24DC6DC9DC12DC15DC18DC21, false);
     Ok(())
 }
 
 #[test]
 fn c25() -> PolarsResult<()> {
-    check!(C25);
+    check!(C25, false);
     Ok(())
 }
 
 #[test]
 fn c26() -> PolarsResult<()> {
-    check!(C26);
+    check!(C26, false);
     Ok(())
 }
 
 #[test]
 fn c26dc17() -> PolarsResult<()> {
-    check!(C26DC17);
+    check!(C26DC17, false);
     Ok(())
 }
 
 #[test]
 fn c27() -> PolarsResult<()> {
-    check!(C27);
+    check!(C27, false);
     Ok(())
 }
 
 #[test]
 fn c28() -> PolarsResult<()> {
-    check!(C28);
+    check!(C28, false);
     Ok(())
 }
 
 #[test]
 fn c29() -> PolarsResult<()> {
-    check!(C29);
+    check!(C29, false);
     Ok(())
 }
 
 #[test]
 fn c30() -> PolarsResult<()> {
-    check!(C30);
+    check!(C30, false);
     Ok(())
 }
 
 #[test]
 fn c30dc21() -> PolarsResult<()> {
-    check!(C30DC21);
+    check!(C30DC21, false);
     Ok(())
 }
 
 #[test]
 fn c31() -> PolarsResult<()> {
-    check!(C31);
+    check!(C31, false);
     Ok(())
 }
 
 #[test]
 fn c32() -> PolarsResult<()> {
-    check!(C32);
+    check!(C32, false);
     Ok(())
 }
 
 #[test]
 fn c33() -> PolarsResult<()> {
-    check!(C33);
+    check!(C33, false);
     Ok(())
 }
 
 #[test]
 fn c34() -> PolarsResult<()> {
-    check!(C34);
+    check!(C34, false);
     Ok(())
 }
 
 #[test]
 fn c35() -> PolarsResult<()> {
-    check!(C35);
+    check!(C35, false);
     Ok(())
 }
 
 #[test]
 fn c36() -> PolarsResult<()> {
-    check!(C36);
+    check!(C36, false);
     Ok(())
-}
-
-mod expected {
-    pub(super) const C4: bool = false;
-    pub(super) const C5: bool = false;
-    pub(super) const C6: bool = false;
-    pub(super) const C7: bool = false;
-    pub(super) const C8: bool = false;
-    pub(super) const C9: bool = false;
-    pub(super) const C10: bool = false;
-    pub(super) const C11: bool = false;
-    pub(super) const C12: bool = false;
-    pub(super) const C13: bool = false;
-    pub(super) const C14: bool = false;
-    pub(super) const C15: bool = false;
-    pub(super) const C16: bool = false;
-    pub(super) const C16DC9: bool = false;
-    pub(super) const C16DT9: bool = true;
-    pub(super) const C17: bool = false;
-    pub(super) const C18: bool = false;
-    pub(super) const C18DC9: bool = false;
-    pub(super) const C18DT9: bool = true;
-    pub(super) const C18DC9DC12: bool = false;
-    pub(super) const C18DC6DC9DC12: bool = false;
-    pub(super) const C18DC8DT10DC12: bool = true;
-    pub(super) const C18DC9DC12DC15: bool = false;
-    pub(super) const C18DC9DT11DT13: bool = true;
-    pub(super) const C18DT9DT11DC13: bool = true;
-    pub(super) const C18DT9DT11DT13: bool = true;
-    pub(super) const C18DC6DC9DC12DC15: bool = false;
-    pub(super) const C19: bool = false;
-    pub(super) const C20: bool = false;
-    pub(super) const C20DC9: bool = false;
-    pub(super) const C20DC11: bool = false;
-    pub(super) const C20DC11DC14: bool = false;
-    pub(super) const C20DC5DC8DC11: bool = false;
-    pub(super) const C20DC8DC11DC14: bool = false;
-    pub(super) const C20DC11DC14DC17: bool = false;
-    pub(super) const C20DC5DC8DC11DC14: bool = false;
-    pub(super) const C20DC8DC11DC14DC17: bool = false;
-    pub(super) const C20DC5DC8DC11DC14DC17: bool = false;
-    pub(super) const C21: bool = false;
-    pub(super) const C22: bool = false;
-    pub(super) const C22DC13: bool = false;
-    pub(super) const C22DC13DC16: bool = false;
-    pub(super) const C22DC5DC13DC16: bool = false;
-    pub(super) const C22DC7DC10DC13DC16: bool = false;
-    pub(super) const C22DC7DC10DC13DC16DC19: bool = false;
-    pub(super) const C22DC4DC7DC10DC13DC16DC19: bool = false;
-    pub(super) const C23: bool = false;
-    pub(super) const C24: bool = false;
-    pub(super) const C24DC15: bool = false;
-    pub(super) const C24DC15DC18: bool = false;
-    pub(super) const C24DC12DC15DC18: bool = false;
-    pub(super) const C24DC9DC12DC15DC18: bool = false;
-    pub(super) const C24DC6DC9DC12DC15DC18: bool = false;
-    pub(super) const C24DC6DC9DC12DC15DC18DC21: bool = false;
-    pub(super) const C25: bool = false;
-    pub(super) const C26: bool = false;
-    pub(super) const C26DC17: bool = false;
-    pub(super) const C27: bool = false;
-    pub(super) const C28: bool = false;
-    pub(super) const C29: bool = false;
-    pub(super) const C30: bool = false;
-    pub(super) const C30DC21: bool = false;
-    pub(super) const C31: bool = false;
-    pub(super) const C32: bool = false;
-    pub(super) const C33: bool = false;
-    pub(super) const C34: bool = false;
-    pub(super) const C35: bool = false;
-    pub(super) const C36: bool = false;
 }

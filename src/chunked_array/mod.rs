@@ -1,0 +1,306 @@
+use crate::prelude::*;
+use polars::prelude::*;
+use std::{
+    fmt::{Display, Write, from_fn},
+    num::NonZeroI8,
+};
+
+#[cfg(feature = "atomic")]
+use crate::r#trait::Atomic;
+#[cfg(feature = "ecn")]
+use crate::r#trait::EquivalentCarbonNumber;
+
+#[repr(transparent)]
+pub struct FattyAcidChunked(pub(crate) StructChunked);
+
+impl FattyAcidChunked {
+    pub fn new(r#struct: StructChunked) -> Self {
+        Self(r#struct)
+    }
+
+    pub fn try_new(r#struct: StructChunked) -> PolarsResult<Self> {
+        check_data_type(&r#struct)?;
+        Ok(Self(r#struct))
+    }
+
+    #[inline]
+    pub fn carbon(&self) -> PolarsResult<UInt8Chunked> {
+        Ok(self.0.field_by_name(CARBON)?.u8()?.clone())
+    }
+
+    #[inline]
+    pub fn bounds(&self) -> PolarsResult<ListChunked> {
+        Ok(self.0.field_by_name(BOUNDS)?.list()?.clone())
+    }
+}
+
+impl FattyAcidChunked {
+    pub fn format(&self) -> PolarsResult<StringChunked> {
+        self.carbon()?
+            .iter()
+            .zip(self.bounds()?.amortized_iter())
+            .map(|(carbon, bounds)| {
+                let Some(carbon) = carbon else {
+                    return Ok(None);
+                };
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let index = bounds.index()?;
+                let parity = bounds.parity()?;
+                let triple = bounds.triple()?;
+                let unsaturated = bounds.len();
+                let format = from_fn(move |f| {
+                    Display::fmt(&carbon, f)?;
+                    f.write_char(':')?;
+                    Display::fmt(&unsaturated, f)?;
+                    let item = |index, parity, triple| {
+                        from_fn(move |f| {
+                            match index {
+                                None => f.write_char('*')?,
+                                Some(index) => Display::fmt(&index, f)?,
+                            }
+                            match triple {
+                                None => f.write_char('u')?,
+                                Some(false) => match parity {
+                                    None => f.write_char('o')?, // Olefinic
+                                    Some(false) => f.write_char('c')?,
+                                    Some(true) => f.write_char('t')?,
+                                },
+                                Some(true) => f.write_char('a')?, // Acetylenic
+                            }
+                            Ok(())
+                        })
+                    };
+                    let mut iter = index.iter().zip(&parity).zip(&triple);
+                    if let Some(((index, parity), triple)) = iter.next() {
+                        f.write_char('Δ')?;
+                        Display::fmt(&item(index, parity, triple), f)?;
+                        for ((index, parity), triple) in iter {
+                            f.write_char(',')?;
+                            Display::fmt(&item(index, parity, triple), f)?;
+                        }
+                    }
+                    Ok(())
+                })
+                .to_string();
+                Ok(Some(format))
+            })
+            .collect()
+    }
+}
+
+impl FattyAcidChunked {
+    pub fn is_cis(&self) -> PolarsResult<BooleanChunked> {
+        self.bounds()?
+            .amortized_iter()
+            .map(|bounds| {
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                if bounds.as_ref().is_empty() {
+                    return Ok(Some(false));
+                }
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let parity = bounds.parity()?;
+                let is_cis = !parity.any();
+                Ok(Some(is_cis))
+            })
+            .collect()
+    }
+
+    pub fn is_monounsaturated(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self.bounds()?.lst_lengths().equal(1))
+    }
+
+    pub fn is_polyunsaturated(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self.bounds()?.lst_lengths().gt(1))
+    }
+
+    pub fn is_saturated(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self.bounds()?.lst_lengths().equal(0))
+    }
+
+    pub fn is_trans(&self) -> PolarsResult<BooleanChunked> {
+        self.bounds()?
+            .amortized_iter()
+            .map(|bounds| {
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                if bounds.as_ref().is_empty() {
+                    return Ok(Some(false));
+                }
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let parity = bounds.parity()?;
+                let is_trans = parity.any();
+                Ok(Some(is_trans))
+            })
+            .collect()
+    }
+
+    pub fn is_unsaturated(&self, offset: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
+        self.carbon()?
+            .iter()
+            .zip(self.bounds()?.amortized_iter())
+            .map(|(carbon, bounds)| {
+                let Some(carbon) = carbon else {
+                    return Ok(None);
+                };
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let index = bounds.index()?;
+                let is_unsaturated = match offset {
+                    Some(offset) => {
+                        let offset = offset.get();
+                        match offset {
+                            omega @ ..0 => {
+                                if index.is_empty() {
+                                    return Ok(Some(false));
+                                }
+                                let Some(last) = index.last() else {
+                                    return Ok(Some(false));
+                                };
+                                last == carbon - omega.unsigned_abs()
+                            }
+                            delta @ 0.. => {
+                                if index.is_empty() {
+                                    return Ok(Some(false));
+                                }
+                                let Some(first) = index.first() else {
+                                    return Ok(Some(false));
+                                };
+                                first == delta as u8
+                            }
+                        }
+                    }
+                    None => !index.is_empty(),
+                };
+                Ok(Some(is_unsaturated))
+            })
+            .collect()
+    }
+
+    pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
+        self.bounds()?
+            .amortized_iter()
+            .map(|bounds| {
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let triple = bounds.triple()?;
+                let mut unsaturation = 2 * triple.sum().unwrap_or_default();
+                unsaturation += (!triple).sum().unwrap_or_default();
+                Ok(Some(unsaturation as _))
+            })
+            .collect()
+    }
+}
+
+impl FattyAcidChunked {
+    #[inline]
+    pub fn filter(&self, mask: &BooleanChunked) -> PolarsResult<Self> {
+        Ok(Self::new(self.0.filter(mask)?))
+    }
+
+    #[inline]
+    pub fn nullify(&self, mask: &BooleanChunked) -> PolarsResult<Self> {
+        Ok(Self::new(self.0.zip_with(
+            mask,
+            &StructChunked::full_null_like(&self.0, 1),
+        )?))
+    }
+}
+
+#[cfg(feature = "atomic")]
+impl Atomic for &FattyAcidChunked {
+    type Output = PolarsResult<UInt8Chunked>;
+
+    fn carbon(self) -> PolarsResult<UInt8Chunked> {
+        self.carbon()
+    }
+
+    fn hydrogen(self) -> PolarsResult<UInt8Chunked> {
+        Ok(self.carbon()? * 2 - self.unsaturation()? * 2)
+    }
+
+    fn oxygen(self) -> PolarsResult<UInt8Chunked> {
+        Ok(UInt8Chunked::full(PlSmallStr::EMPTY, 2, 1))
+    }
+}
+
+#[cfg(feature = "ecn")]
+impl EquivalentCarbonNumber for &FattyAcidChunked {
+    type Output = PolarsResult<UInt8Chunked>;
+
+    #[inline]
+    fn equivalent_carbon_number(self) -> PolarsResult<UInt8Chunked> {
+        Ok(self.carbon()? - self.unsaturation()? * 2)
+    }
+}
+
+impl<'a> TryFrom<&'a Series> for &'a FattyAcidChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &'a Series) -> Result<Self, Self::Error> {
+        value.struct_()?.try_into()
+    }
+}
+
+impl TryFrom<StructChunked> for FattyAcidChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: StructChunked) -> Result<Self, Self::Error> {
+        check_data_type(&value)?;
+        Ok(Self(value))
+    }
+}
+
+impl<'a> TryFrom<&'a StructChunked> for &'a FattyAcidChunked {
+    type Error = PolarsError;
+
+    fn try_from(value: &'a StructChunked) -> Result<Self, Self::Error> {
+        check_data_type(value)?;
+        // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
+        Ok(unsafe { &*(value as *const StructChunked as *const FattyAcidChunked) })
+    }
+}
+
+#[repr(transparent)]
+pub struct BoundsChunked(StructChunked);
+
+impl BoundsChunked {
+    fn new(r#struct: &StructChunked) -> &Self {
+        // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
+        unsafe { &*(r#struct as *const StructChunked as *const BoundsChunked) }
+    }
+
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
+
+    pub fn index(&self) -> PolarsResult<UInt8Chunked> {
+        Ok(self.0.field_by_name(INDEX)?.u8()?.clone())
+    }
+
+    pub fn parity(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self.0.field_by_name(PARITY)?.bool()?.clone())
+    }
+
+    pub fn triple(&self) -> PolarsResult<BooleanChunked> {
+        Ok(self.0.field_by_name(TRIPLE)?.bool()?.clone())
+    }
+}
+
+fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
+    polars_ensure!(
+        *r#struct.dtype() == data_type!(FATTY_ACID),
+        SchemaMismatch: "invalid fatty acid data type: expected `FATTY_ACID`, got = `{}`",
+        r#struct.dtype(),
+    );
+    Ok(())
+}

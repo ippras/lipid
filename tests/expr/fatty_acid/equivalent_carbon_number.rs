@@ -2,12 +2,12 @@ use super::*;
 
 macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
-        let data_frame = fatty_acid($identifier)?
+        let data_frame = fatty_acid($identifier.clone())?
             .lazy()
             .select([col(FATTY_ACID).fatty_acid().equivalent_carbon_number()])
             .collect()?;
-        let got = data_frame[FATTY_ACID].u8()?.get(0).unwrap();
-        assert_eq!(got, $expected);
+        let ecn = data_frame["EquivalentCarbonNumber"].u8()?.get(0).unwrap();
+        assert_eq!(ecn, $expected);
     }};
 }
 

@@ -2,12 +2,12 @@ use super::*;
 
 macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
-        let data_frame = fatty_acid($identifier)?
+        let data_frame = fatty_acid($identifier.clone())?
             .lazy()
             .select([col(FATTY_ACID).fatty_acid().is_trans()])
             .collect()?;
-        let got = data_frame[FATTY_ACID].bool()?.get(0);
-        assert!(got == Some($expected));
+        let is_trans = data_frame["IsTrans"].bool()?.get(0).unwrap();
+        assert!(is_trans == $expected);
     }};
 }
 
