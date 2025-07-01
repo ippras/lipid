@@ -51,6 +51,7 @@ polars = { version = "0.49.1", default-features = false, features = [
     "list_arithmetic",
     "list_eval",
     # "list_sets",
+    "parquet",
     "list_to_struct",
     "log",
     "round_series",
