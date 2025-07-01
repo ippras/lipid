@@ -70,6 +70,9 @@ Omega -> CCC=CCC=CCC=CCCCCCCCC(=O)O <- Delta
 - **(9Z,12Z)-octadeca-9,12-dienoic acid**: `InChI=1S/C18H32O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h6-7,9-10H,2-5,8,11-17H2,1H3,(H,19,20)/b7-6-,10-9-`
 - **(9E,12E)-octadeca-9,12-dienoic acid**: `InChI=1S/C18H32O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18(19)20/h6-7,9-10H,2-5,8,11-17H2,1H3,(H,19,20)/b7-6+,10-9+`
 
+Formula: "C18H32O2"
+DoubleBondStereo: [{start: 7, end: 6, parity: false}, {start: 10, end: 9, parity: false}]
+
 === Triacylglycerol
 
 == Build
