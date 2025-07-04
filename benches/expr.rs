@@ -11,9 +11,9 @@ pub const SOURCE: LazyLock<PolarsResult<DataFrame>> = LazyLock::new(|| {
     df! {
         "Index" => [0, 1, 2],
         "FattyAcid" => [
-            Series::from_iter(C14U0).cast(&BOUND_DATA_TYPE)?,
-            Series::from_iter(C18U0).cast(&BOUND_DATA_TYPE)?,
-            Series::from_iter(C18U2C9T12).cast(&BOUND_DATA_TYPE)?,
+            Series::from_iter(C14U0).cast(&TRIPLE_BOUND_DATA_TYPE)?,
+            Series::from_iter(C18U0).cast(&TRIPLE_BOUND_DATA_TYPE)?,
+            Series::from_iter(C18U2C9T12).cast(&TRIPLE_BOUND_DATA_TYPE)?,
         ],
     }
 });

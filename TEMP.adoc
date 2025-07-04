@@ -1,0 +1,103 @@
+// src/main.rs (продолжение)
+use polars::prelude::*;
+use polars::datatypes::{AnyValue, PlSmallStr};
+use std::collections::HashMap;
+
+// Утилита для преобразования полей структуры в HashMap
+fn struct_to_map(payload: (Vec<AnyValue<'_>>, Vec<PlSmallStr>)) -> HashMap<PlSmallStr, AnyValue<'_>> {
+    let (values, names) = payload;
+    names.into_iter().zip(values.into_iter()).collect()
+}
+
+// Парсер для Formula
+impl<'a> TryFrom<AnyValue<'a>> for Formula {
+    type Error = PolarsError;
+
+    fn try_from(value: AnyValue<'a>) -> PolarsResult<Self> {
+        if let AnyValue::StructOwned(payload) = value {
+            let map = struct_to_map(payload);
+            let c = map.get("C").ok_or_else(|| polars_err!(ComputeError: "Missing 'C' field"))?.try_extract()?;
+            let h = map.get("H").ok_or_else(|| polars_err!(ComputeError: "Missing 'H' field"))?.try_extract()?;
+            let o = map.get("O").ok_or_else(|| polars_err!(ComputeError: "Missing 'O' field"))?.try_extract()?;
+            Ok(Formula { c, h, o })
+        } else {
+            polars_bail!(ComputeError: "Expected a struct to create Formula, got {:?}", value);
+        }
+    }
+}
+
+// Парсер для DoubleBound
+impl<'a> TryFrom<AnyValue<'a>> for DoubleBound {
+    type Error = PolarsError;
+
+    fn try_from(value: AnyValue<'a>) -> PolarsResult<Self> {
+        if let AnyValue::StructOwned(payload) = value {
+            let map = struct_to_map(payload);
+            let index = map.get("Index").ok_or_else(|| polars_err!(ComputeError: "Missing 'Index' field"))?.try_extract()?;
+            let parity = map.get("Parity").ok_or_else(|| polars_err!(ComputeError: "Missing 'Parity' field"))?.try_extract()?;
+            Ok(DoubleBound { index, parity })
+        } else {
+            polars_bail!(ComputeError: "Expected a struct to create DoubleBound, got {:?}", value);
+        }
+    }
+}
+
+// Главный парсер для FattyAcid
+impl<'a> TryFrom<AnyValue<'a>> for FattyAcid {
+    type Error = PolarsError;
+
+    fn try_from(value: AnyValue<'a>) -> PolarsResult<Self> {
+        if let AnyValue::StructOwned(payload) = value {
+            let map = struct_to_map(payload);
+
+            // Парсим вложенную структуру Formula
+            let formula = Formula::try_from(map.get("FORMULA").unwrap().clone())?;
+
+            // Парсим список структур DoubleBounds
+            let double_bounds = if let AnyValue::List(series) = map.get("DOUBLE_BOUNDS").unwrap() {
+                series.struct_()?
+                    .amortized_iter()
+                    .map(|row_val| DoubleBound::try_from(row_val.unwrap()))
+                    .collect::<PolarsResult<Vec<_>>>()?
+            } else {
+                vec![]
+            };
+
+            // Парсим список i8 TripleBounds
+            let triple_bounds = if let AnyValue::List(series) = map.get("TRIPLE_BOUNDS").unwrap() {
+                series.i8()?.into_iter().filter_map(|opt| opt).collect()
+            } else {
+                vec![]
+            };
+
+            Ok(FattyAcid { formula, double_bounds, triple_bounds })
+        } else {
+            polars_bail!(ComputeError: "Expected a struct to create FattyAcid, got {:?}", value);
+        }
+    }
+}
+
+// src/main.rs
+
+// Оболочка для структуры Formula
+#[derive(Debug, Clone)]
+struct Formula {
+    c: u8,
+    h: u8,
+    o: u8,
+}
+
+// Оболочка для структуры DoubleBound
+#[derive(Debug, Clone)]
+struct DoubleBound {
+    index: i8,
+    parity: bool,
+}
+
+// Главная оболочка для всей строки FattyAcid
+#[derive(Debug, Clone)]
+struct FattyAcid {
+    formula: Formula,
+    double_bounds: Vec<DoubleBound>,
+    triple_bounds: Vec<i8>,
+}

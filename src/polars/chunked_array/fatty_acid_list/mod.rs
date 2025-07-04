@@ -39,10 +39,12 @@ impl FattyAcidListChunked {
         Ok(Self(list))
     }
 
+    #[inline]
     pub fn as_list(&self) -> &ListChunked {
         &self.0
     }
 
+    #[inline]
     pub fn into_list(self) -> ListChunked {
         self.0
     }
@@ -68,11 +70,11 @@ impl FattyAcidListChunked {
         )
     }
 
-    pub fn iter(&self) -> impl Iterator<Item = FattyAcidChunked> {
-        self.0.amortized_iter().map(|series| {
-            series.map_or_else(Default::default, |series| series.as_ref().fatty_acid())
-        })
-    }
+    // pub fn iter(&self) -> impl Iterator<Item = FattyAcidChunked> {
+    //     self.0.amortized_iter().map(|series| {
+    //         series.map_or_else(Default::default, |series| series.as_ref().fatty_acid())
+    //     })
+    // }
 }
 
 // Mask.
@@ -91,12 +93,12 @@ impl FattyAcidListChunked {
     #[inline]
     pub fn mask(&self, f: impl Fn(FattyAcidChunked) -> bool) -> PolarsResult<BooleanChunked> {
         self.0
-            .into_iter()
+            .amortized_iter()
             .map(move |item| {
                 let Some(series) = item else {
                     return Ok(None);
                 };
-                Ok(Some(f(series.try_fatty_acid()?)))
+                Ok(Some(f(series.as_ref().try_fatty_acid()?)))
             })
             .collect()
     }
@@ -108,10 +110,10 @@ impl FattyAcidListChunked {
     ///
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// saturated fatty acids and [`false`] otherwise.
-    #[inline]
-    pub fn is_saturated(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_saturated().is_some_and(identity))
-    }
+    // #[inline]
+    // pub fn is_saturated(&self) -> PolarsResult<BooleanChunked> {
+    //     self.mask(|fatty_acid| fatty_acid.is_saturated())
+    // }
 
     /// Returns a boolean chunked array indicating which fatty acids are
     /// unsaturated.
@@ -120,10 +122,10 @@ impl FattyAcidListChunked {
     ///
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// unsaturated fatty acids and [`false`] otherwise.
-    #[inline]
-    pub fn is_unsaturated(&self, offset: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_unsaturated(offset).is_some_and(identity))
-    }
+    // #[inline]
+    // pub fn is_unsaturated(&self, offset: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
+    //     self.mask(|fatty_acid| fatty_acid.is_unsaturated(offset))
+    // }
 
     /// Returns a boolean chunked array indicating which fatty acids are
     /// monounsaturated.
@@ -132,10 +134,10 @@ impl FattyAcidListChunked {
     ///
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// monounsaturated fatty acids and [`false`] otherwise.
-    #[inline]
-    pub fn is_monounsaturated(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_monounsaturated().is_some_and(identity))
-    }
+    // #[inline]
+    // pub fn is_monounsaturated(&self) -> PolarsResult<BooleanChunked> {
+    //     self.mask(|fatty_acid| fatty_acid.is_monounsaturated())
+    // }
 
     /// Returns a boolean chunked array indicating which fatty acids are
     /// polyunsaturated.
@@ -144,10 +146,10 @@ impl FattyAcidListChunked {
     ///
     /// A [`PolarsResult`] containing a [`BooleanChunked`] with [`true`] for
     /// polyunsaturated fatty acids and [`false`] otherwise.
-    #[inline]
-    pub fn is_polyunsaturated(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_polyunsaturated().is_some_and(identity))
-    }
+    // #[inline]
+    // pub fn is_polyunsaturated(&self) -> PolarsResult<BooleanChunked> {
+    //     self.mask(|fatty_acid| fatty_acid.is_polyunsaturated())
+    // }
 
     /// Returns a boolean chunked array indicating which fatty acids are cis.
     ///
@@ -157,7 +159,7 @@ impl FattyAcidListChunked {
     /// fatty acids with unsaturated cis-only bonds and [`false`] otherwise.
     #[inline]
     pub fn is_cis(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_cis().is_some_and(identity))
+        self.mask(|fatty_acid| fatty_acid.is_cis())
     }
 
     /// Returns a boolean chunked array indicating which fatty acids are trans.
@@ -168,7 +170,7 @@ impl FattyAcidListChunked {
     /// fatty acids with trans bonds and [`false`] otherwise.
     #[inline]
     pub fn is_trans(&self) -> PolarsResult<BooleanChunked> {
-        self.mask(|fatty_acid| fatty_acid.is_trans().is_some_and(identity))
+        self.mask(|fatty_acid| fatty_acid.is_trans())
     }
 }
 
@@ -184,15 +186,15 @@ impl FromIterator<Option<Series>> for FattyAcidListChunked {
     }
 }
 
-impl IntoIterator for &FattyAcidListChunked {
-    type Item = FattyAcidChunked;
+// impl IntoIterator for &FattyAcidListChunked {
+//     type Item = FattyAcidChunked;
 
-    type IntoIter = impl Iterator<Item = Self::Item>;
+//     type IntoIter = impl Iterator<Item = Self::Item>;
 
-    fn into_iter(self) -> Self::IntoIter {
-        self.iter()
-    }
-}
+//     fn into_iter(self) -> Self::IntoIter {
+//         self.iter()
+//     }
+// }
 
 impl<'a> TryFrom<&'a ListChunked> for &'a FattyAcidListChunked {
     type Error = PolarsError;
@@ -212,31 +214,31 @@ impl<'a> TryFrom<&'a Series> for &'a FattyAcidListChunked {
     }
 }
 
-#[cfg(feature = "atomic")]
-impl Atomic for &FattyAcidListChunked {
-    type Output = PolarsResult<UInt8Chunked>;
+// #[cfg(feature = "atomic")]
+// impl Atomic for &FattyAcidListChunked {
+//     type Output = PolarsResult<UInt8Chunked>;
 
-    #[inline]
-    fn carbons(self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.carbons()).collect()
-    }
+//     #[inline]
+//     fn carbons(self) -> PolarsResult<UInt8Chunked> {
+//         self.map(|fatty_acid| fatty_acid.carbons()).collect()
+//     }
 
-    #[inline]
-    fn hydrogens(self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.hydrogens()).collect()
-    }
-}
+//     #[inline]
+//     fn hydrogens(self) -> PolarsResult<UInt8Chunked> {
+//         self.map(|fatty_acid| fatty_acid.hydrogens()).collect()
+//     }
+// }
 
-#[cfg(feature = "ecn")]
-impl EquivalentCarbonNumber for &FattyAcidListChunked {
-    type Output = PolarsResult<UInt8Chunked>;
+// #[cfg(feature = "ecn")]
+// impl EquivalentCarbonNumber for &FattyAcidListChunked {
+//     type Output = PolarsResult<UInt8Chunked>;
 
-    #[inline]
-    fn equivalent_carbon_number(self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.equivalent_carbon_number())
-            .collect()
-    }
-}
+//     #[inline]
+//     fn equivalent_carbon_number(self) -> PolarsResult<UInt8Chunked> {
+//         self.map(|fatty_acid| fatty_acid.equivalent_carbon_number())
+//             .collect()
+//     }
+// }
 
 fn check_data_type(list: &ListChunked) -> PolarsResult<()> {
     polars_ensure!(

@@ -16,26 +16,29 @@ pub mod r#trait;
 pub mod prelude {
     #[cfg(feature = "polars")]
     pub use crate::polars::{
-        ColumnExt, DataFrameExt, FATTY_ACID, SeriesExt,
-        bound::{
-            BOUND, IDENTIFIERS, INDEX, MAP,
-            identifiers::{
-                logical::{B, D, DC, DT, S, T, TC, TT, U, UC, UT},
-                physical,
-            },
-        },
+        ColumnExt,
+        DataFrameExt,
+        FATTY_ACID,
+        SeriesExt,
+        // bound::{
+        //     BOUND, IDENTIFIERS, INDEX, MAP,
+        //     identifiers::{
+        //         logical::{B, D, DC, DT, S, T, TC, TT, U, UC, UT},
+        //         physical,
+        //     },
+        // },
         chunked_array::{
-            BOUND_DATA_TYPE, BoundChunked, FATTY_ACID_DATA_TYPE, FattyAcidChunked,
-            FattyAcidListChunked, IdentifierIteratorExt as _, IndexIteratorExt as _,
+            DOUBLE_BOUNDS, FATTY_ACID_DATA_TYPE, FORMULA, FattyAcidChunked, FattyAcidListChunked,
+            Formula, INDEX, PARITY, TRIPLE_BOUNDS, TripleBoundListChunked,
         },
-        expr::{
-            ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            triacylglycerol::permutation::Permutation as _,
-        },
+        // expr::{
+        //     ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
+        //     triacylglycerol::permutation::Permutation as _,
+        // },
     };
     pub use crate::{
         bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
-        r#const::*,
+        // r#const::*,
         display::{Elision, Options},
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#trait::{
@@ -45,4 +48,4 @@ pub mod prelude {
     };
 }
 
-pub mod r#const;
+// pub mod r#const;

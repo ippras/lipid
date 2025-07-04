@@ -1,9 +1,17 @@
 pub use self::{
-    bound::{BOUND_DATA_TYPE, BoundChunked},
-    fatty_acid::{FATTY_ACID_DATA_TYPE, FattyAcidChunked, IdentifierIteratorExt, IndexIteratorExt},
+    double_bound::{DoubleBoundChunked, DoubleBoundListChunked},
+    fatty_acid::{FATTY_ACID_DATA_TYPE, FattyAcidChunked},
     fatty_acid_list::FattyAcidListChunked,
+    formula::Formula,
+    triple_bound::TripleBoundListChunked,
 };
 use polars::prelude::{enum_::EnumChunkedBuilder, *};
+
+pub const DOUBLE_BOUNDS: &str = "DoubleBounds";
+pub const FORMULA: &str = "Formula";
+pub const INDEX: &str = "Index";
+pub const PARITY: &str = "Parity";
+pub const TRIPLE_BOUNDS: &str = "TripleBounds";
 
 /// Identifier.
 pub(crate) trait Identifier {
@@ -27,7 +35,10 @@ impl Identifier for Option<&str> {
     }
 }
 
-mod bound;
+mod double_bound;
 mod fatty_acid;
 mod fatty_acid_list;
-mod unsaturated;
+mod formula;
+mod triple_bound;
+
+// pub mod fatty_acid_new;

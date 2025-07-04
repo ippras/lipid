@@ -48,8 +48,8 @@ fn test() -> Result<()> {
 
 pub const INDEX: &str = FattyAcidChunked::INDEX;
 pub const IDENTIFIER: &str = FattyAcidChunked::BOUND;
-pub const OMEGA_3: LazyLock<BoundChunked> =
-    LazyLock::new(|| BoundChunked::try_from([DC, S, S]).unwrap());
+pub const OMEGA_3: LazyLock<DoubleBoundChunked> =
+    LazyLock::new(|| DoubleBoundChunked::try_from([DC, S, S]).unwrap());
 
 #[test]
 fn test1() -> Result<()> {

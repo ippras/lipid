@@ -26,25 +26,25 @@ impl FattyAcidListChunked {
         })
     }
 
-    /// Returns the number of bounds for each fatty acid in the chunked array.
-    ///
-    /// # Returns
-    ///
-    /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the number of
-    /// bounds for each fatty acid.
-    pub fn sized(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.sized_count()).collect()
-    }
+    // /// Returns the number of bounds for each fatty acid in the chunked array.
+    // ///
+    // /// # Returns
+    // ///
+    // /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the number of
+    // /// bounds for each fatty acid.
+    // pub fn sized(&self) -> PolarsResult<UInt8Chunked> {
+    //     self.map(|fatty_acid| fatty_acid.sized_count()).collect()
+    // }
 
-    /// Returns the unsaturation levels of each fatty acid in the chunked array.
-    ///
-    /// # Returns
-    ///
-    /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the unsaturation
-    /// levels.
-    pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
-        self.map(|fatty_acid| fatty_acid.unsaturation()).collect()
-    }
+    // /// Returns the unsaturation levels of each fatty acid in the chunked array.
+    // ///
+    // /// # Returns
+    // ///
+    // /// A [`PolarsResult`] containing a [`UInt8Chunked`] with the unsaturation
+    // /// levels.
+    // pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
+    //     self.map(|fatty_acid| fatty_acid.unsaturation()).collect()
+    // }
 
     pub fn display(&self) -> PolarsResult<StringChunked> {
         self.map(|fatty_acid| format!("{:#}", fatty_acid.display(Options::default())))
