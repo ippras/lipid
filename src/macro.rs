@@ -26,9 +26,6 @@ macro_rules! data_type {
         ])
     };
 }
-// (STEREOSPECIFIC_NUMBER) => {
-//     DataType::Struct(vec![field!(LABEL), field!(FATTY_ACID)])
-// };
 
 #[macro_export]
 macro_rules! field {
@@ -51,9 +48,6 @@ macro_rules! field {
         Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
     };
 }
-// (LABEL) => {
-//     Field::new(PlSmallStr::from_static(LABEL), DataType::String)
-// };
 
 // #[macro_export]
 // macro_rules! any_value {
