@@ -241,7 +241,13 @@ fn health_promoting_index() -> PolarsResult<()> {
             .health_promoting_index(col("Float"))])
         .collect()?;
     let health_promoting_index = data_frame["HealthPromotingIndex"].f64()?.get(0).unwrap();
-    assert_epsilon!(health_promoting_index, 2436.0 / (8.0 + 4.0 * 10.0 + 12.0));
+    assert_epsilon!(
+        health_promoting_index,
+        2436.0
+            / (0.0
+                + 4.0 * (0.0 + 1.0 + 2.0 + 3.0 + 4.0 + 5.0 + 6.0)
+                + (7.0 + 8.0 + 9.0 + 10.0 + 11.0 + 12.0 + 27.0 + 28.0 + 29.0 + 30.0 + 31.0 + 32.0))
+    );
     Ok(())
 }
 

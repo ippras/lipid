@@ -10,7 +10,6 @@ fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 polars = { version = "0.49.1", default-features = false, features = [
     "abs",
     "cum_agg",
-    "dtype-categorical",
     "dtype-i128",
     "dtype-i8",
     "dtype-struct",
@@ -21,44 +20,17 @@ polars = { version = "0.49.1", default-features = false, features = [
     "list_any_all",
     "list_arithmetic",
     "list_eval",
-    # "list_sets",
     "log",
     "round_series",
     "serde-lazy",
-], optional = true }
-polars-arrow = "0.49.1"
-polars-core = "0.49.1"
-polars_ext = { git = "https://github.com/kgv/polars_ext", optional = true }
-rayon = "1.10.0"
+    # "list_sets",
+    # "dtype-categorical",
+] }
+polars_ext = { git = "https://github.com/kgv/polars_ext" }
 serde = { version = "1.0.219", features = ["derive", "std"], optional = true }
 
 [dev-dependencies]
-anyhow = "1.0.98"
 criterion = { version = "0.6.0", features = ["html_reports"] }
-lipid = { path = ".", features = ["polars"] }
-polars = { version = "0.49.1", default-features = false, features = [
-    "abs",
-    "cum_agg",
-    "diagonal_concat",
-    "dtype-categorical",
-    "dtype-i8",
-    "dtype-struct",
-    "dtype-u8",
-    "fmt_no_tty",
-    "is_in",
-    "lazy",
-    "list_any_all",
-    "list_arithmetic",
-    "list_eval",
-    "list_to_struct",
-    "log",
-    "parquet",
-    "round_series",
-    "serde-lazy",
-    # "concat_str",
-    # "list_sets",
-    # "strings",
-] }
 
 [[bench]]
 harness = false
@@ -74,5 +46,4 @@ ecn = []
 indices = []
 map = []
 mass = []
-# polars = ["dep:polars", "dep:polars_ext"]
 select = []
