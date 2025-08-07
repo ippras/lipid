@@ -63,6 +63,15 @@ impl TriacylglycerolExpr {
         .alias("Triacylglycerol")
     }
 
+    pub fn try_map_expr(self, f: impl Fn(Expr) -> PolarsResult<Expr>) -> PolarsResult<Expr> {
+        Ok(as_struct(vec![
+            f(self.clone().stereospecific_number1())?.alias("StereospecificNumber1"),
+            f(self.clone().stereospecific_number2())?.alias("StereospecificNumber2"),
+            f(self.stereospecific_number3())?.alias("StereospecificNumber3"),
+        ])
+        .alias("Triacylglycerol"))
+    }
+
     pub fn test_map_apply<F>(self, f: &'static F) -> Expr
     where
         F: Fn(Column) -> PolarsResult<Option<Column>> + Send + Sync,

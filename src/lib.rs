@@ -9,7 +9,7 @@ use polars::prelude::*;
 
 /// Extension methods for [`DataFrame`]
 pub trait DataFrameExt {
-    fn fatty_acid_list(&self) -> &FattyAcidChunked {
+    fn fatty_acid(&self) -> &FattyAcidChunked {
         self.try_fatty_acid().unwrap()
     }
 
@@ -54,12 +54,14 @@ impl SeriesExt for Series {
 
 pub mod prelude {
     pub use crate::{
-        ColumnExt, DataFrameExt, SeriesExt,
-        bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
+        // bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
+        ColumnExt,
+        DataFrameExt,
+        SeriesExt,
         chunked_array::FattyAcidChunked,
         r#const::*,
         data_type,
-        display::{Elision, Options},
+        display::{Unsaturated, Elision, FattyAcid, Options},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
             fatty_acid::{BOUNDS, CARBON, FATTY_ACID, INDEX, PARITY, TRIPLE},
@@ -77,7 +79,7 @@ pub mod prelude {
     };
 }
 
-pub mod bound;
+// pub mod bound;
 pub mod chunked_array;
 pub mod r#const;
 pub mod display;

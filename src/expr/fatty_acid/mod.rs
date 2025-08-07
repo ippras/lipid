@@ -34,7 +34,7 @@ impl FattyAcidExpr {
         // let unsaturated = bounds.list().len();
         // format_str("{}:{}-{}", [carbon, unsaturated, bounds])
         self.0.map(
-            |column| Ok(Some(column.try_fatty_acid()?.format()?.into_column())),
+            |column| Ok(Some(column.try_fatty_acid()?.delta()?.into_column())),
             GetOutput::from_type(DataType::String),
         )
     }

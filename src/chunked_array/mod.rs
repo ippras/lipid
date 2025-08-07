@@ -1,9 +1,6 @@
-use crate::prelude::*;
+use crate::{display::FattyAcid, prelude::*};
 use polars::prelude::*;
-use std::{
-    fmt::{Display, Write, from_fn},
-    num::NonZeroI8,
-};
+use std::num::NonZeroI8;
 
 #[cfg(feature = "atomic")]
 use crate::r#trait::Atomic;
@@ -32,10 +29,115 @@ impl FattyAcidChunked {
     pub fn bounds(&self) -> PolarsResult<ListChunked> {
         Ok(self.0.field_by_name(BOUNDS)?.list()?.clone())
     }
+
+    #[inline]
+    pub fn get(&self, idx: usize) -> PolarsResult<Option<FattyAcid>> {
+        let Some(carbon) = self.0.field_by_name(CARBON)?.u8()?.get(idx) else {
+            return Ok(None);
+        };
+        let Some(bounds) = self.0.field_by_name(BOUNDS)?.list()?.get_as_series(idx) else {
+            return Ok(None);
+        };
+        let bounds = BoundsChunked::new(bounds.struct_()?);
+        let index = bounds.index()?;
+        let parity = bounds.parity()?;
+        let triple = bounds.triple()?;
+        let unsaturated = index
+            .iter()
+            .zip(&parity)
+            .zip(&triple)
+            .map(|((index, parity), triple)| Unsaturated {
+                index,
+                parity,
+                triple,
+            })
+            .collect();
+        Ok(Some(FattyAcid::new(carbon, unsaturated)))
+    }
+
+    #[inline]
+    pub fn get_any_value(&self, idx: usize) -> PolarsResult<AnyValue<'_>> {
+        self.0.get_any_value(idx)
+    }
 }
 
 impl FattyAcidChunked {
-    pub fn format(&self) -> PolarsResult<StringChunked> {
+    // pub fn formula(&self) -> PolarsResult<Utf8Chunked> {
+    //     let carbon = self.carbon()?;
+    //     let hydrogen = self.hydrogen()?;
+    //     let oxygen = self.oxygen()?;
+    //     let mut builder = Utf8ChunkedBuilder::new("Formula", self.0.len(), self.0.len() * 10);
+    //     for ((c, h), o) in carbon.iter().zip(hydrogen.iter()).zip(oxygen.iter()) {
+    //         match (c, h, o) {
+    //             (Some(c), Some(h), Some(o)) => builder.append_value(format!("C{}H{}O{}", c, h, o)),
+    //             _ => builder.append_null(),
+    //         }
+    //     }
+    //     Ok(builder.finish())
+    // }
+
+    // pub fn get_format(&self, idx: usize) -> PolarsResult<Option<impl Display>> {
+    //     let Some(carbon) = self.0.field_by_name(CARBON)?.u8()?.get(idx) else {
+    //         return Ok(None);
+    //     };
+    //     let Some(bounds) = self.0.field_by_name(BOUNDS)?.list()?.get_as_series(idx) else {
+    //         return Ok(None);
+    //     };
+    //     let bounds = BoundsChunked::new(bounds.struct_()?);
+    //     let index = bounds.index()?;
+    //     let parity = bounds.parity()?;
+    //     let triple = bounds.triple()?;
+    //     let unsaturated = bounds.len();
+    //     let format = from_fn(move |f| {
+    //         Display::fmt(&carbon, f)?;
+    //         f.write_char(':')?;
+    //         Display::fmt(&unsaturated, f)?;
+    //         let mut iter = index.iter().zip(&parity).zip(&triple);
+    //         if let Some(((index, parity), triple)) = iter.next() {
+    //             f.write_char('Δ')?;
+    //             Display::fmt(&Bound::new(index, parity, triple), f)?;
+    //             for ((index, parity), triple) in iter {
+    //                 f.write_char(',')?;
+    //                 Display::fmt(&Bound::new(index, parity, triple), f)?;
+    //             }
+    //         }
+    //         Ok(())
+    //     });
+    //     Ok(Some(format))
+    // }
+
+    pub fn id(&self) -> PolarsResult<StringChunked> {
+        self.carbon()?
+            .into_iter()
+            .zip(self.bounds()?.amortized_iter())
+            .map(|(carbon, bounds)| {
+                let Some(carbon) = carbon else {
+                    return Ok(None);
+                };
+                let Some(bounds) = bounds else {
+                    return Ok(None);
+                };
+                let bounds = BoundsChunked::new(bounds.as_ref().struct_()?);
+                let index = bounds.index()?;
+                let parity = bounds.parity()?;
+                let triple = bounds.triple()?;
+                let unsaturated = index
+                    .iter()
+                    .zip(&parity)
+                    .zip(&triple)
+                    .map(|((index, parity), triple)| Unsaturated {
+                        index,
+                        parity,
+                        triple,
+                    })
+                    .collect();
+                let fatty_acid = FattyAcid::new(carbon, unsaturated);
+                Ok(Some(fatty_acid.id().to_string()))
+            })
+            .collect()
+    }
+
+    pub fn delta(&self) -> PolarsResult<StringChunked> {
         self.carbon()?
             .iter()
             .zip(self.bounds()?.amortized_iter())
@@ -50,42 +152,18 @@ impl FattyAcidChunked {
                 let index = bounds.index()?;
                 let parity = bounds.parity()?;
                 let triple = bounds.triple()?;
-                let unsaturated = bounds.len();
-                let format = from_fn(move |f| {
-                    Display::fmt(&carbon, f)?;
-                    f.write_char(':')?;
-                    Display::fmt(&unsaturated, f)?;
-                    let item = |index, parity, triple| {
-                        from_fn(move |f| {
-                            match index {
-                                None => f.write_char('*')?,
-                                Some(index) => Display::fmt(&index, f)?,
-                            }
-                            match triple {
-                                None => f.write_char('u')?,
-                                Some(false) => match parity {
-                                    None => f.write_char('o')?, // Olefinic
-                                    Some(false) => f.write_char('c')?,
-                                    Some(true) => f.write_char('t')?,
-                                },
-                                Some(true) => f.write_char('a')?, // Acetylenic
-                            }
-                            Ok(())
-                        })
-                    };
-                    let mut iter = index.iter().zip(&parity).zip(&triple);
-                    if let Some(((index, parity), triple)) = iter.next() {
-                        f.write_char('Δ')?;
-                        Display::fmt(&item(index, parity, triple), f)?;
-                        for ((index, parity), triple) in iter {
-                            f.write_char(',')?;
-                            Display::fmt(&item(index, parity, triple), f)?;
-                        }
-                    }
-                    Ok(())
-                })
-                .to_string();
-                Ok(Some(format))
+                let unsaturated = index
+                    .iter()
+                    .zip(&parity)
+                    .zip(&triple)
+                    .map(|((index, parity), triple)| Unsaturated {
+                        index,
+                        parity,
+                        triple,
+                    })
+                    .collect();
+                let fatty_acid = FattyAcid::new(carbon, unsaturated);
+                Ok(Some(fatty_acid.delta().to_string()))
             })
             .collect()
     }
