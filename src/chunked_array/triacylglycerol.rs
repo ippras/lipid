@@ -16,15 +16,15 @@ impl TriacylglycerolChunked {
 }
 
 impl TriacylglycerolChunked {
-    pub fn stereospecific_number1(self) -> PolarsResult<Series> {
+    pub fn stereospecific_number1(&self) -> PolarsResult<Series> {
         self.0.field_by_name("StereospecificNumber1")
     }
 
-    pub fn stereospecific_number2(self) -> PolarsResult<Series> {
+    pub fn stereospecific_number2(&self) -> PolarsResult<Series> {
         self.0.field_by_name("StereospecificNumber2")
     }
 
-    pub fn stereospecific_number3(self) -> PolarsResult<Series> {
+    pub fn stereospecific_number3(&self) -> PolarsResult<Series> {
         self.0.field_by_name("StereospecificNumber3")
     }
 }
