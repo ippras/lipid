@@ -6,7 +6,7 @@ edition = "2024"
 
 [dependencies]
 atom = { git = "https://github.com/ippras/atom" }
-fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
+fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro", rev = "8acd05f689d715873e90a30e117cc22dc9b85ab7" }
 polars = { version = "0.50.0", default-features = false, features = [
     "abs",
     "cum_agg",

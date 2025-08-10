@@ -163,11 +163,11 @@ criterion_main!(benches);
 //     criterion.bench_function("function", |bencher| bencher.iter(|| function()));
 // }
 
-// fn bounds() -> PolarsResult<()> {
+// fn indices() -> PolarsResult<()> {
 //     SOURCE
 //         .clone()?
 //         .lazy()
-//         .select([col("FattyAcid").fatty_acid().bounds()])
+//         .select([col("FattyAcid").fatty_acid().indices()])
 //         .collect()?;
 //     Ok(())
 // }

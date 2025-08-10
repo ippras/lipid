@@ -28,12 +28,22 @@ pub trait ColumnExt {
         self.try_fatty_acid().unwrap()
     }
 
+    fn triacylglycerol(&self) -> &TriacylglycerolChunked {
+        self.try_triacylglycerol().unwrap()
+    }
+
     fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+
+    fn try_triacylglycerol(&self) -> PolarsResult<&TriacylglycerolChunked>;
 }
 
 impl ColumnExt for Column {
     fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
         self.as_materialized_series().try_fatty_acid()
+    }
+
+    fn try_triacylglycerol(&self) -> PolarsResult<&TriacylglycerolChunked> {
+        self.as_materialized_series().try_triacylglycerol()
     }
 }
 
@@ -43,11 +53,21 @@ pub trait SeriesExt {
         self.try_fatty_acid().unwrap()
     }
 
+    fn triacylglycerol(&self) -> &TriacylglycerolChunked {
+        self.try_triacylglycerol().unwrap()
+    }
+
     fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked>;
+
+    fn try_triacylglycerol(&self) -> PolarsResult<&TriacylglycerolChunked>;
 }
 
 impl SeriesExt for Series {
     fn try_fatty_acid(&self) -> PolarsResult<&FattyAcidChunked> {
+        self.try_into()
+    }
+
+    fn try_triacylglycerol(&self) -> PolarsResult<&TriacylglycerolChunked> {
         self.try_into()
     }
 }
@@ -58,13 +78,13 @@ pub mod prelude {
         ColumnExt,
         DataFrameExt,
         SeriesExt,
-        chunked_array::FattyAcidChunked,
+        chunked_array::{IndicesChunked, FattyAcidChunked, TriacylglycerolChunked},
         r#const::*,
         data_type,
-        display::{Unsaturated, Elision, FattyAcid, Options},
+        display::{Elision, FattyAcid, Options, Unsaturated},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            fatty_acid::{BOUNDS, CARBON, FATTY_ACID, INDEX, PARITY, TRIPLE},
+            fatty_acid::{INDICES, CARBON, FATTY_ACID, INDEX, PARITY, TRIPLE},
             triacylglycerol::{
                 LABEL, STEREOSPECIFIC_NUMBER1, STEREOSPECIFIC_NUMBER2, STEREOSPECIFIC_NUMBER3,
                 TRIACYLGLYCEROL, permutation::Permutation as _,

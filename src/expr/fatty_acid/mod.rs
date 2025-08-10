@@ -3,8 +3,8 @@ use polars::prelude::*;
 use polars_ext::prelude::ExprExt;
 use std::num::NonZeroI8;
 
-/// Fatty acid bounds column name
-pub const BOUNDS: &str = "Bounds";
+/// Fatty acid indices column name
+pub const INDICES: &str = "Indices";
 /// Fatty acid carbon column name
 pub const CARBON: &str = "Carbon";
 /// Fatty acid column name
@@ -21,18 +21,18 @@ pub const TRIPLE: &str = "Triple";
 pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
-    /// Bounds
+    /// Indices
     #[inline]
-    pub fn bounds(self) -> Expr {
-        self.0.struct_().field_by_name(BOUNDS)
+    pub fn indices(self) -> Expr {
+        self.0.struct_().field_by_name(INDICES)
     }
 
     #[inline]
     pub fn format(self) -> Expr {
-        // let bounds = self.bounds();
+        // let indices = self.indices();
         // let carbon = self.carbon();
-        // let unsaturated = bounds.list().len();
-        // format_str("{}:{}-{}", [carbon, unsaturated, bounds])
+        // let unsaturated = indices.list().len();
+        // format_str("{}:{}-{}", [carbon, unsaturated, indices])
         self.0.map(
             |column| Ok(Some(column.try_fatty_acid()?.delta()?.into_column())),
             GetOutput::from_type(DataType::String),
@@ -44,53 +44,53 @@ impl FattyAcidExpr {
     /// Is saturated
     #[inline]
     pub fn is_saturated(self) -> Expr {
-        self.bounds().list().len().eq(0).alias("IsSaturated")
+        self.indices().list().len().eq(0).alias("IsSaturated")
     }
 
     /// Is unsaturated
     #[inline]
     pub fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Expr {
-        let bounds = self.clone().bounds().list();
+        let indices = self.clone().indices().list();
         match offset {
             Some(offset) => match offset.get() {
                 omega @ ..0 => {
-                    let last = bounds.last().struct_().field_by_name(INDEX);
+                    let last = indices.last().struct_().field_by_name(INDEX);
                     last.eq_missing(self.carbon() - lit(omega.unsigned_abs()))
                         .alias(format!("IsUnsaturated{omega}"))
                 }
                 delta @ 0.. => {
-                    let first = bounds.first().struct_().field_by_name(INDEX);
+                    let first = indices.first().struct_().field_by_name(INDEX);
                     first
                         .eq_missing(delta)
                         .alias(format!("IsUnsaturated{delta}"))
                 }
             },
-            None => bounds.len().neq(0).alias("IsUnsaturated"),
+            None => indices.len().neq(0).alias("IsUnsaturated"),
         }
     }
 
     /// Is monounsaturated
     #[inline]
     pub fn is_monounsaturated(self) -> Expr {
-        self.bounds().list().len().eq(1).alias("IsMonounsaturated")
+        self.indices().list().len().eq(1).alias("IsMonounsaturated")
     }
 
     /// Is polyunsaturated
     #[inline]
     pub fn is_polyunsaturated(self) -> Expr {
-        self.bounds().list().len().gt(1).alias("IsPolyunsaturated")
+        self.indices().list().len().gt(1).alias("IsPolyunsaturated")
     }
 
     /// Is cis
     #[inline]
     pub fn is_cis(self) -> Expr {
         self.clone()
-            .bounds()
+            .indices()
             .list()
             .len()
             .gt(0)
             .and(
-                self.bounds()
+                self.indices()
                     .list()
                     .eval(col("").struct_().field_by_name(PARITY))
                     .list()
@@ -103,7 +103,7 @@ impl FattyAcidExpr {
     /// Is trans
     #[inline]
     pub fn is_trans(self) -> Expr {
-        self.bounds()
+        self.indices()
             .list()
             .eval(col("").struct_().field_by_name(PARITY))
             .list()
@@ -122,7 +122,7 @@ impl FattyAcidExpr {
     /// Double bounds unsaturation
     #[inline]
     pub fn double_bounds_unsaturation(self) -> Expr {
-        self.bounds()
+        self.indices()
             .list()
             .eval(col("").struct_().field_by_name(TRIPLE).not())
             .list()
@@ -132,7 +132,7 @@ impl FattyAcidExpr {
     /// Unsaturation
     #[inline]
     pub fn unsaturation(self) -> Expr {
-        self.bounds()
+        self.indices()
             .list()
             .eval(
                 col("")

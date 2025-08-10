@@ -18,11 +18,11 @@ pub const SOURCE: LazyLock<PolarsResult<DataFrame>> = LazyLock::new(|| {
     }
 });
 
-fn bounds() -> PolarsResult<()> {
+fn indices() -> PolarsResult<()> {
     SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fatty_acid().bounds()])
+        .select([col("FattyAcid").fatty_acid().indices()])
         .collect()?;
     Ok(())
 }
@@ -46,7 +46,7 @@ fn is_unsaturated() -> PolarsResult<()> {
 }
 
 fn criterion_benchmark(criterion: &mut Criterion) {
-    criterion.bench_function("bounds", |bencher| bencher.iter(|| bounds()));
+    criterion.bench_function("indices", |bencher| bencher.iter(|| indices()));
     criterion.bench_function("carbons", |bencher| bencher.iter(|| carbons()));
     criterion.bench_function("is_unsaturated", |bencher| {
         bencher.iter(|| is_unsaturated())

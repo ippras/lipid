@@ -4,7 +4,7 @@ use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
     pub fn is_enoics(self, n: u8) -> Expr {
-        self.bounds().list().len().eq(n)
+        self.indices().list().len().eq(n)
     }
 
     pub fn is_monoenoics(self) -> Expr {

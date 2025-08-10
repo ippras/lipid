@@ -1,13 +1,13 @@
 #[macro_export]
 macro_rules! data_type {
-    (BOUND) => {
+    (INDEX) => {
         DataType::Struct(vec![field!(INDEX), field!(PARITY), field!(TRIPLE)])
     };
-    (BOUNDS) => {
-        DataType::List(Box::new(data_type!(BOUND)))
+    (INDICES) => {
+        DataType::List(Box::new(data_type!(INDEX)))
     };
     (FATTY_ACID) => {
-        DataType::Struct(vec![field!(CARBON), field!(BOUNDS)])
+        DataType::Struct(vec![field!(CARBON), field!(INDICES)])
     };
     (TRIACYLGLYCEROL) => {
         DataType::Struct(vec![
@@ -29,9 +29,6 @@ macro_rules! data_type {
 
 #[macro_export]
 macro_rules! field {
-    (BOUNDS) => {
-        Field::new(PlSmallStr::from_static(BOUNDS), data_type!(BOUNDS))
-    };
     (CARBON) => {
         Field::new(PlSmallStr::from_static(CARBON), DataType::UInt8)
     };
@@ -41,6 +38,9 @@ macro_rules! field {
     (INDEX) => {
         Field::new(PlSmallStr::from_static(INDEX), DataType::UInt8)
     };
+    (INDICES) => {
+        Field::new(PlSmallStr::from_static(INDICES), data_type!(INDICES))
+    };
     (PARITY) => {
         Field::new(PlSmallStr::from_static(PARITY), DataType::Boolean)
     };
@@ -48,17 +48,3 @@ macro_rules! field {
         Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
     };
 }
-
-// #[macro_export]
-// macro_rules! any_value {
-//     (BOUND, $index:literal, $parity:literal, $triple:literal) => {
-//         AnyValue::StructOwned(Box::new((
-//             vec![
-//                 AnyValue::UInt8($index),
-//                 AnyValue::Boolean($parity),
-//                 AnyValue::Boolean($triple),
-//             ],
-//             vec![field!(INDEX), field!(PARITY), field!(TRIPLE)],
-//         )))
-//     };
-// }
