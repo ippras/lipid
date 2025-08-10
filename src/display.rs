@@ -39,60 +39,23 @@ impl FattyAcid {
     }
 }
 
-// impl Display for FattyAcid {
-//     fn fmt(&self, f: &mut Formatter) -> Result {
-//         Display::fmt(&self.carbon, f)?;
-//         f.write_char(':')?;
-//         Display::fmt(&self.unsaturated.len(), f)?;
-//         let mut iter = self.unsaturated.iter();
-//         if let Some(unsaturated) = iter.next() {
-//             f.write_char('Δ')?;
-//             Display::fmt(unsaturated, f)?;
-//             for unsaturated in iter {
-//                 f.write_char(',')?;
-//                 Display::fmt(unsaturated, f)?;
-//             }
-//         }
-//         Ok(())
-//     }
-// }
-
 /// Unsaturated bound
 #[derive(Clone, Copy, Debug, Default)]
 pub struct Unsaturated {
     pub index: Option<u8>,
-    pub parity: Option<bool>,
     pub triple: Option<bool>,
+    pub parity: Option<bool>,
 }
 
 impl Unsaturated {
-    pub fn new(index: Option<u8>, parity: Option<bool>, triple: Option<bool>) -> Self {
+    pub fn new(index: Option<u8>, triple: Option<bool>, parity: Option<bool>) -> Self {
         Self {
             index,
-            parity,
             triple,
+            parity,
         }
     }
 }
-
-// impl Display for Unsaturated {
-//     fn fmt(&self, f: &mut Formatter) -> Result {
-//         match self.index {
-//             None => f.write_char('*')?,
-//             Some(index) => Display::fmt(&index, f)?,
-//         }
-//         match self.triple {
-//             None => f.write_char('u')?,
-//             Some(false) => match self.parity {
-//                 None => f.write_char('o')?, // Olefinic
-//                 Some(false) => f.write_char('c')?,
-//                 Some(true) => f.write_char('t')?,
-//             },
-//             Some(true) => f.write_char('a')?, // Acetylenic
-//         }
-//         Ok(())
-//     }
-// }
 
 /// Delta
 #[derive(Clone, Debug, Default)]

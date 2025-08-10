@@ -1,7 +1,7 @@
 #[macro_export]
 macro_rules! data_type {
     (INDEX) => {
-        DataType::Struct(vec![field!(INDEX), field!(PARITY), field!(TRIPLE)])
+        DataType::Struct(vec![field!(INDEX), field!(TRIPLE), field!(PARITY)])
     };
     (INDICES) => {
         DataType::List(Box::new(data_type!(INDEX)))

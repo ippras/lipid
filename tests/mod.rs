@@ -305,55 +305,55 @@ fn fatty_acids() -> PolarsResult<DataFrame> {
             fatty_acid!(C14 { })?, // 10
             fatty_acid!(C15 { })?, // 11
             fatty_acid!(C16 { })?, // 12
-            fatty_acid!(C16 { 9 => DC })?, // 13
-            fatty_acid!(C16 { 9 => DT })?, // 14
+            fatty_acid!(C16 { 9 => C })?, // 13
+            fatty_acid!(C16 { 9 => T })?, // 14
             fatty_acid!(C17 { })?, // 15
             fatty_acid!(C18 { })?, // 16
-            fatty_acid!(C18 { 9 => DC })?, // 17
-            fatty_acid!(C18 { 9 => DT })?, // 18
-            fatty_acid!(C18 { 9 => DC, 12 => DC })?, // 19
-            fatty_acid!(C18 { 6 => DC, 9 => DC, 12 => DC })?, // 20
-            fatty_acid!(C18 { 8 => DC, 10 => DT, 12 => DC })?, // 21
-            fatty_acid!(C18 { 9 => DC, 12 => DC, 15 => DC })?, // 22
-            fatty_acid!(C18 { 9 => DC, 11 => DT, 13 => DT })?, // 23
-            fatty_acid!(C18 { 9 => DT, 11 => DT, 13 => DC })?, // 24
-            fatty_acid!(C18 { 9 => DT, 11 => DT, 13 => DT })?, // 25
-            fatty_acid!(C18 { 6 => DC, 9 => DC, 12 => DC, 15 => DC })?, // 26
+            fatty_acid!(C18 { 9 => C })?, // 17
+            fatty_acid!(C18 { 9 => T })?, // 18
+            fatty_acid!(C18 { 9 => C, 12 => C })?, // 19
+            fatty_acid!(C18 { 6 => C, 9 => C, 12 => C })?, // 20
+            fatty_acid!(C18 { 8 => C, 10 => T, 12 => C })?, // 21
+            fatty_acid!(C18 { 9 => C, 12 => C, 15 => C })?, // 22
+            fatty_acid!(C18 { 9 => C, 11 => T, 13 => T })?, // 23
+            fatty_acid!(C18 { 9 => T, 11 => T, 13 => C })?, // 24
+            fatty_acid!(C18 { 9 => T, 11 => T, 13 => T })?, // 25
+            fatty_acid!(C18 { 6 => C, 9 => C, 12 => C, 15 => C })?, // 26
             fatty_acid!(C19 { })?, // 27
             fatty_acid!(C20 { })?, // 28
-            fatty_acid!(C20 { 9 => DC })?, // 29
-            fatty_acid!(C20 { 11 => DC })?, // 30
-            fatty_acid!(C20 { 11 => DC, 14 => DC })?, // 31
-            fatty_acid!(C20 { 5 => DC, 8 => DC, 11 => DC })?, // 32
-            fatty_acid!(C20 { 8 => DC, 11 => DC, 14 => DC })?, // 33
-            fatty_acid!(C20 { 11 => DC, 14 => DC, 17 => DC })?, // 34
-            fatty_acid!(C20 { 5 => DC, 8 => DC, 11 => DC, 14 => DC })?, // 35
-            fatty_acid!(C20 { 8 => DC, 11 => DC, 14 => DC, 17 => DC })?, // 36
-            fatty_acid!(C20 { 5 => DC, 8 => DC, 11 => DC, 14 => DC, 17 => DC })?, // 37
+            fatty_acid!(C20 { 9 => C })?, // 29
+            fatty_acid!(C20 { 11 => C })?, // 30
+            fatty_acid!(C20 { 11 => C, 14 => C })?, // 31
+            fatty_acid!(C20 { 5 => C, 8 => C, 11 => C })?, // 32
+            fatty_acid!(C20 { 8 => C, 11 => C, 14 => C })?, // 33
+            fatty_acid!(C20 { 11 => C, 14 => C, 17 => C })?, // 34
+            fatty_acid!(C20 { 5 => C, 8 => C, 11 => C, 14 => C })?, // 35
+            fatty_acid!(C20 { 8 => C, 11 => C, 14 => C, 17 => C })?, // 36
+            fatty_acid!(C20 { 5 => C, 8 => C, 11 => C, 14 => C, 17 => C })?, // 37
             fatty_acid!(C21 { })?, // 38
             fatty_acid!(C22 { })?, // 39
-            fatty_acid!(C22 { 13 => DC })?, // 40
-            fatty_acid!(C22 { 13 => DC, 16 => DC })?, // 41
-            fatty_acid!(C22 { 5 => DC, 13 => DC, 16 => DC })?, // 42
-            fatty_acid!(C22 { 7 => DC, 10 => DC, 13 => DC, 16 => DC })?, // 43
-            fatty_acid!(C22 { 7 => DC, 10 => DC, 13 => DC, 16 => DC, 19 => DC })?, // 44
-            fatty_acid!(C22 { 4 => DC, 7 => DC, 10 => DC, 13 => DC, 16 => DC, 19 => DC })?, // 45
+            fatty_acid!(C22 { 13 => C })?, // 40
+            fatty_acid!(C22 { 13 => C, 16 => C })?, // 41
+            fatty_acid!(C22 { 5 => C, 13 => C, 16 => C })?, // 42
+            fatty_acid!(C22 { 7 => C, 10 => C, 13 => C, 16 => C })?, // 43
+            fatty_acid!(C22 { 7 => C, 10 => C, 13 => C, 16 => C, 19 => C })?, // 44
+            fatty_acid!(C22 { 4 => C, 7 => C, 10 => C, 13 => C, 16 => C, 19 => C })?, // 45
             fatty_acid!(C23 { })?, // 46
             fatty_acid!(C24 { })?, // 47
-            fatty_acid!(C24 { 15 => DC })?, // 48
-            fatty_acid!(C24 { 15 => DC, 18 => DC })?, // 49
-            fatty_acid!(C24 { 12 => DC, 15 => DC, 18 => DC })?, // 50
-            fatty_acid!(C24 { 9 => DC, 12 => DC, 15 => DC, 18 => DC })?, // 51
-            fatty_acid!(C24 { 6 => DC, 9 => DC, 12 => DC, 15 => DC, 18 => DC })?, // 52
-            fatty_acid!(C24 { 6 => DC, 9 => DC, 12 => DC, 15 => DC, 18 => DC, 21 => DC })?, // 53
+            fatty_acid!(C24 { 15 => C })?, // 48
+            fatty_acid!(C24 { 15 => C, 18 => C })?, // 49
+            fatty_acid!(C24 { 12 => C, 15 => C, 18 => C })?, // 50
+            fatty_acid!(C24 { 9 => C, 12 => C, 15 => C, 18 => C })?, // 51
+            fatty_acid!(C24 { 6 => C, 9 => C, 12 => C, 15 => C, 18 => C })?, // 52
+            fatty_acid!(C24 { 6 => C, 9 => C, 12 => C, 15 => C, 18 => C, 21 => C })?, // 53
             fatty_acid!(C25 { })?, // 54
             fatty_acid!(C26 { })?, // 55
-            fatty_acid!(C26 { 17 => DC })?, // 56
+            fatty_acid!(C26 { 17 => C })?, // 56
             fatty_acid!(C27 { })?, // 57
             fatty_acid!(C28 { })?, // 58
             fatty_acid!(C29 { })?, // 59
             fatty_acid!(C30 { })?, // 60
-            fatty_acid!(C30 { 21 => DC })?, // 61
+            fatty_acid!(C30 { 21 => C })?, // 61
             fatty_acid!(C31 { })?, // 62
             fatty_acid!(C32 { })?, // 63
             fatty_acid!(C33 { })?, // 64

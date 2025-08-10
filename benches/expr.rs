@@ -31,7 +31,7 @@ fn carbons() -> PolarsResult<()> {
     SOURCE
         .clone()?
         .lazy()
-        .select([col("FattyAcid").fatty_acid().carbons()])
+        .select([col("FattyAcid").fatty_acid().carbon()])
         .collect()?;
     Ok(())
 }

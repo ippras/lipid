@@ -40,16 +40,16 @@ impl FattyAcidChunked {
         };
         let indices = IndicesChunked::new(indices.struct_()?);
         let index = indices.index()?;
-        let parity = indices.parity()?;
         let triple = indices.triple()?;
+        let parity = indices.parity()?;
         let unsaturated = index
             .iter()
-            .zip(&parity)
             .zip(&triple)
-            .map(|((index, parity), triple)| Unsaturated {
+            .zip(&parity)
+            .map(|((index, triple), parity)| Unsaturated {
                 index,
-                parity,
                 triple,
+                parity,
             })
             .collect();
         Ok(Some(FattyAcid::new(carbon, unsaturated)))
@@ -89,16 +89,16 @@ impl FattyAcidChunked {
                 };
                 let indices = IndicesChunked::new(indices.as_ref().struct_()?);
                 let index = indices.index()?;
-                let parity = indices.parity()?;
                 let triple = indices.triple()?;
+                let parity = indices.parity()?;
                 let unsaturated = index
                     .iter()
-                    .zip(&parity)
                     .zip(&triple)
-                    .map(|((index, parity), triple)| Unsaturated {
+                    .zip(&parity)
+                    .map(|((index, triple), parity)| Unsaturated {
                         index,
-                        parity,
                         triple,
+                        parity,
                     })
                     .collect();
                 let fatty_acid = FattyAcid::new(carbon, unsaturated);
@@ -120,16 +120,16 @@ impl FattyAcidChunked {
                 };
                 let indices = IndicesChunked::new(indices.as_ref().struct_()?);
                 let index = indices.index()?;
-                let parity = indices.parity()?;
                 let triple = indices.triple()?;
+                let parity = indices.parity()?;
                 let unsaturated = index
                     .iter()
-                    .zip(&parity)
                     .zip(&triple)
-                    .map(|((index, parity), triple)| Unsaturated {
+                    .zip(&parity)
+                    .map(|((index, triple), parity)| Unsaturated {
                         index,
-                        parity,
                         triple,
+                        parity,
                     })
                     .collect();
                 let fatty_acid = FattyAcid::new(carbon, unsaturated);
