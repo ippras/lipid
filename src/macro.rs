@@ -44,6 +44,12 @@ macro_rules! field {
     (PARITY) => {
         Field::new(PlSmallStr::from_static(PARITY), DataType::Boolean)
     };
+    (TRIACYLGLYCEROL) => {
+        Field::new(
+            PlSmallStr::from_static(TRIACYLGLYCEROL),
+            data_type!(TRIACYLGLYCEROL),
+        )
+    };
     (TRIPLE) => {
         Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
     };
