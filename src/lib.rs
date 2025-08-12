@@ -78,15 +78,16 @@ pub mod prelude {
         ColumnExt,
         DataFrameExt,
         SeriesExt,
-        chunked_array::{IndicesChunked, FattyAcidChunked, TriacylglycerolChunked},
+        chunked_array::{FattyAcidChunked, IndicesChunked, TriacylglycerolChunked},
         r#const::*,
         data_type,
         display::{Elision, FattyAcid, Options, Unsaturated},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            fatty_acid::{INDICES, CARBON, FATTY_ACID, INDEX, PARITY, TRIPLE},
+            fatty_acid::{CARBON, FATTY_ACID, INDEX, INDICES, PARITY, TRIPLE},
             triacylglycerol::{
                 LABEL, STEREOSPECIFIC_NUMBER1, STEREOSPECIFIC_NUMBER2, STEREOSPECIFIC_NUMBER3,
+                STEREOSPECIFIC_NUMBER13, STEREOSPECIFIC_NUMBER123, STEREOSPECIFIC_NUMBER1223,
                 TRIACYLGLYCEROL, permutation::Permutation as _,
             },
         },

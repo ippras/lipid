@@ -9,6 +9,12 @@ pub const STEREOSPECIFIC_NUMBER1: &str = "StereospecificNumber1";
 pub const STEREOSPECIFIC_NUMBER2: &str = "StereospecificNumber2";
 /// Stereospecific number 3
 pub const STEREOSPECIFIC_NUMBER3: &str = "StereospecificNumber3";
+/// Stereospecific number 1 and 2 or 2 and 3
+pub const STEREOSPECIFIC_NUMBER1223: &str = "StereospecificNumber1And2Or2And3";
+/// Stereospecific number 1 and 3
+pub const STEREOSPECIFIC_NUMBER13: &str = "StereospecificNumber1And3";
+/// Stereospecific number 1 and 2 and 3
+pub const STEREOSPECIFIC_NUMBER123: &str = "StereospecificNumber1And2And3";
 /// Label
 pub const LABEL: &str = "Label";
 
