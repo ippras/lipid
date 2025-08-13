@@ -1,20 +1,5 @@
 use std::fmt::{Display, Formatter, Result, Write as _};
 
-/// Display common options
-#[derive(Clone, Copy, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
-pub struct Options {
-    pub bounds: Elision,
-    pub isomerism: Elision,
-}
-
-/// Elision
-#[derive(Clone, Copy, Debug, Default, Eq, Ord, PartialEq, PartialOrd)]
-pub enum Elision {
-    Explicit,
-    #[default]
-    Implicit,
-}
-
 /// Fatty acid
 #[derive(Clone, Debug, Default)]
 pub struct FattyAcid {
@@ -59,7 +44,7 @@ impl Unsaturated {
 
 /// Delta
 #[derive(Clone, Debug, Default)]
-pub struct Delta<T>(T);
+pub struct Delta<T>(pub(super) T);
 
 impl Display for Delta<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {

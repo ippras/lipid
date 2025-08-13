@@ -13,17 +13,44 @@ impl TriacylglycerolChunked {
         check_data_type(&r#struct)?;
         Ok(Self(r#struct))
     }
+
+    #[inline]
+    pub fn get(&self, idx: usize) -> PolarsResult<Triacylglycerol<Option<FattyAcid>>> {
+        let stereospecific_number1 = self.stereospecific_number1()?.try_fatty_acid()?.get(idx)?;
+        let stereospecific_number2 = self.stereospecific_number2()?.try_fatty_acid()?.get(idx)?;
+        let stereospecific_number3 = self.stereospecific_number3()?.try_fatty_acid()?.get(idx)?;
+        Ok(Triacylglycerol([
+            stereospecific_number1,
+            stereospecific_number2,
+            stereospecific_number3,
+        ]))
+    }
+
+    #[inline]
+    pub fn get_any_value(&self, idx: usize) -> PolarsResult<Triacylglycerol<AnyValue<'static>>> {
+        let stereospecific_number1 = self.stereospecific_number1()?.get(idx)?.into_static();
+        let stereospecific_number2 = self.stereospecific_number2()?.get(idx)?.into_static();
+        let stereospecific_number3 = self.stereospecific_number3()?.get(idx)?.into_static();
+        Ok(Triacylglycerol([
+            stereospecific_number1,
+            stereospecific_number2,
+            stereospecific_number3,
+        ]))
+    }
 }
 
 impl TriacylglycerolChunked {
+    #[inline]
     pub fn stereospecific_number1(&self) -> PolarsResult<Series> {
         self.0.field_by_name(STEREOSPECIFIC_NUMBER1)
     }
 
+    #[inline]
     pub fn stereospecific_number2(&self) -> PolarsResult<Series> {
         self.0.field_by_name(STEREOSPECIFIC_NUMBER2)
     }
 
+    #[inline]
     pub fn stereospecific_number3(&self) -> PolarsResult<Series> {
         self.0.field_by_name(STEREOSPECIFIC_NUMBER3)
     }
