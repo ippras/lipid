@@ -17,15 +17,15 @@ impl TriacylglycerolChunked {
 
 impl TriacylglycerolChunked {
     pub fn stereospecific_number1(&self) -> PolarsResult<Series> {
-        self.0.field_by_name("StereospecificNumber1")
+        self.0.field_by_name(STEREOSPECIFIC_NUMBER1)
     }
 
     pub fn stereospecific_number2(&self) -> PolarsResult<Series> {
-        self.0.field_by_name("StereospecificNumber2")
+        self.0.field_by_name(STEREOSPECIFIC_NUMBER2)
     }
 
     pub fn stereospecific_number3(&self) -> PolarsResult<Series> {
-        self.0.field_by_name("StereospecificNumber3")
+        self.0.field_by_name(STEREOSPECIFIC_NUMBER3)
     }
 }
 
@@ -57,10 +57,20 @@ impl<'a> TryFrom<&'a StructChunked> for &'a TriacylglycerolChunked {
 }
 
 fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
-    polars_ensure!(
-        *r#struct.dtype() == data_type!(TRIACYLGLYCEROL),
-        SchemaMismatch: "invalid triacylglycerol data type: expected `TRIACYLGLYCEROL`, got = `{}`",
-        r#struct.dtype(),
-    );
-    Ok(())
+    let data_type = r#struct.dtype();
+    if let DataType::Struct(fields) = data_type
+        && let [fields1, fields2, fields3] = &**fields
+        && fields1.name == STEREOSPECIFIC_NUMBER1
+        && fields2.name == STEREOSPECIFIC_NUMBER2
+        && fields3.name == STEREOSPECIFIC_NUMBER3
+    {
+        return Ok(());
+    }
+    polars_bail!(SchemaMismatch: "invalid triacylglycerol data type: expected `Struct {{ {STEREOSPECIFIC_NUMBER1}, {STEREOSPECIFIC_NUMBER2}, {STEREOSPECIFIC_NUMBER3} }}`, got = `{data_type}`");
+    // polars_ensure!(
+    //     *r#struct.dtype() == data_type!(TRIACYLGLYCEROL),
+    //     SchemaMismatch: "invalid triacylglycerol data type: expected `TRIACYLGLYCEROL`, got = `{}`",
+    //     r#struct.dtype(),
+    // );
+    // Ok(())
 }

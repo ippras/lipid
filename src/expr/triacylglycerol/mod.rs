@@ -24,15 +24,15 @@ pub struct TriacylglycerolExpr(pub Expr);
 
 impl TriacylglycerolExpr {
     pub fn stereospecific_number1(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber1")
+        self.0.struct_().field_by_name(STEREOSPECIFIC_NUMBER1)
     }
 
     pub fn stereospecific_number2(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber2")
+        self.0.struct_().field_by_name(STEREOSPECIFIC_NUMBER2)
     }
 
     pub fn stereospecific_number3(self) -> Expr {
-        self.0.struct_().field_by_name("StereospecificNumber3")
+        self.0.struct_().field_by_name(STEREOSPECIFIC_NUMBER3)
     }
 
     pub fn stereospecific_numbers(self) -> Expr {
@@ -62,18 +62,18 @@ impl TriacylglycerolExpr {
 
     pub fn map_expr(self, f: impl Fn(Expr) -> Expr) -> Expr {
         as_struct(vec![
-            f(self.clone().stereospecific_number1()).alias("StereospecificNumber1"),
-            f(self.clone().stereospecific_number2()).alias("StereospecificNumber2"),
-            f(self.stereospecific_number3()).alias("StereospecificNumber3"),
+            f(self.clone().stereospecific_number1()).alias(STEREOSPECIFIC_NUMBER1),
+            f(self.clone().stereospecific_number2()).alias(STEREOSPECIFIC_NUMBER2),
+            f(self.stereospecific_number3()).alias(STEREOSPECIFIC_NUMBER3),
         ])
         .alias("Triacylglycerol")
     }
 
     pub fn try_map_expr(self, f: impl Fn(Expr) -> PolarsResult<Expr>) -> PolarsResult<Expr> {
         Ok(as_struct(vec![
-            f(self.clone().stereospecific_number1())?.alias("StereospecificNumber1"),
-            f(self.clone().stereospecific_number2())?.alias("StereospecificNumber2"),
-            f(self.stereospecific_number3())?.alias("StereospecificNumber3"),
+            f(self.clone().stereospecific_number1())?.alias(STEREOSPECIFIC_NUMBER1),
+            f(self.clone().stereospecific_number2())?.alias(STEREOSPECIFIC_NUMBER2),
+            f(self.stereospecific_number3())?.alias(STEREOSPECIFIC_NUMBER3),
         ])
         .alias("Triacylglycerol"))
     }
@@ -86,15 +86,15 @@ impl TriacylglycerolExpr {
             self.clone()
                 .stereospecific_number1()
                 .map(f, GetOutput::same_type())
-                .alias("StereospecificNumber1"),
+                .alias(STEREOSPECIFIC_NUMBER1),
             self.clone()
                 .stereospecific_number2()
                 .map(f, GetOutput::same_type())
-                .alias("StereospecificNumber2"),
+                .alias(STEREOSPECIFIC_NUMBER2),
             self.clone()
                 .stereospecific_number3()
                 .map(f, GetOutput::same_type())
-                .alias("StereospecificNumber3"),
+                .alias(STEREOSPECIFIC_NUMBER3),
         ])
     }
 }

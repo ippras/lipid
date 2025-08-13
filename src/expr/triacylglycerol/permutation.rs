@@ -1,4 +1,5 @@
 use super::TriacylglycerolExpr;
+use crate::prelude::*;
 use polars::prelude::*;
 // use polars::lazy::dsl::{max_horizontal, min_horizontal},
 
@@ -35,9 +36,9 @@ impl Permutation for TriacylglycerolExpr {
             ternary_expr(predicate, sn2.clone(), sn3.clone()),
         );
         Ok(as_struct(vec![
-            sn1.alias("StereospecificNumber1"),
-            sn2.alias("StereospecificNumber2"),
-            sn3.alias("StereospecificNumber3"),
+            sn1.alias(STEREOSPECIFIC_NUMBER1),
+            sn2.alias(STEREOSPECIFIC_NUMBER2),
+            sn3.alias(STEREOSPECIFIC_NUMBER3),
         ]))
     }
 
@@ -52,9 +53,9 @@ impl Permutation for TriacylglycerolExpr {
             ternary_expr(predicate, sn3, sn1),
         );
         as_struct(vec![
-            sn1.alias("StereospecificNumber1"),
-            sn2.alias("StereospecificNumber2"),
-            sn3.alias("StereospecificNumber3"),
+            sn1.alias(STEREOSPECIFIC_NUMBER1),
+            sn2.alias(STEREOSPECIFIC_NUMBER2),
+            sn3.alias(STEREOSPECIFIC_NUMBER3),
         ])
     }
 }
