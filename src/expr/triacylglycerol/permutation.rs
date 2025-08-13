@@ -6,14 +6,14 @@ use polars::prelude::*;
 /// Permutation
 pub trait Permutation {
     /// Non-stereospecific permutation
-    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> PolarsResult<Expr>;
+    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> Expr;
 
     /// Positional permutation
     fn positional(self, f: impl Fn(Expr) -> Expr) -> Expr;
 }
 
 impl Permutation for TriacylglycerolExpr {
-    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> PolarsResult<Expr> {
+    fn non_stereospecific(self, f: impl Fn(Expr) -> Expr) -> Expr {
         let sn1 = self.clone().stereospecific_number1();
         let sn2 = self.clone().stereospecific_number2();
         let sn3 = self.clone().stereospecific_number3();
@@ -35,11 +35,11 @@ impl Permutation for TriacylglycerolExpr {
             ternary_expr(predicate.clone(), sn3.clone(), sn2.clone()),
             ternary_expr(predicate, sn2.clone(), sn3.clone()),
         );
-        Ok(as_struct(vec![
+        as_struct(vec![
             sn1.alias(STEREOSPECIFIC_NUMBER1),
             sn2.alias(STEREOSPECIFIC_NUMBER2),
             sn3.alias(STEREOSPECIFIC_NUMBER3),
-        ]))
+        ])
     }
 
     fn positional(self, f: impl Fn(Expr) -> Expr) -> Expr {
