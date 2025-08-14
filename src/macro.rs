@@ -25,6 +25,13 @@ macro_rules! data_type {
             ),
         ])
     };
+    ([$data_type:expr]) => {
+        DataType::Struct(vec![
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1), $data_type),
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2), $data_type),
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3), $data_type),
+        ])
+    };
 }
 
 #[macro_export]
@@ -52,5 +59,8 @@ macro_rules! field {
     };
     (TRIPLE) => {
         Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
+    };
+    ($name:ident[$data_type:expr]) => {
+        Field::new(PlSmallStr::from_static($name), data_type!([$data_type]))
     };
 }
