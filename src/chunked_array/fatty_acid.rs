@@ -59,6 +59,14 @@ impl FattyAcidChunked {
     pub fn get_any_value(&self, idx: usize) -> PolarsResult<AnyValue<'_>> {
         self.0.get_any_value(idx)
     }
+
+    #[inline]
+    pub fn fields(&self) -> PolarsResult<FattyAcidChunkedFields> {
+        Ok(FattyAcidChunkedFields {
+            carbon: self.carbon()?,
+            indices: self.indices()?,
+        })
+    }
 }
 
 impl FattyAcidChunked {
@@ -77,62 +85,24 @@ impl FattyAcidChunked {
     // }
 
     pub fn id(&self) -> PolarsResult<StringChunked> {
-        self.carbon()?
-            .into_iter()
-            .zip(self.indices()?.amortized_iter())
-            .map(|(carbon, indices)| {
-                let Some(carbon) = carbon else {
+        self.fields()?
+            .iter()
+            .map(|fatty_acid| {
+                let Some(fatty_acid) = fatty_acid? else {
                     return Ok(None);
                 };
-                let Some(indices) = indices else {
-                    return Ok(None);
-                };
-                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
-                let index = indices.index()?;
-                let triple = indices.triple()?;
-                let parity = indices.parity()?;
-                let unsaturated = index
-                    .iter()
-                    .zip(&triple)
-                    .zip(&parity)
-                    .map(|((index, triple), parity)| Unsaturated {
-                        index,
-                        triple,
-                        parity,
-                    })
-                    .collect();
-                let fatty_acid = FattyAcid::new(carbon, unsaturated);
                 Ok(Some(fatty_acid.id().to_string()))
             })
             .collect()
     }
 
     pub fn delta(&self) -> PolarsResult<StringChunked> {
-        self.carbon()?
+        self.fields()?
             .iter()
-            .zip(self.indices()?.amortized_iter())
-            .map(|(carbon, indices)| {
-                let Some(carbon) = carbon else {
+            .map(|fatty_acid| {
+                let Some(fatty_acid) = fatty_acid? else {
                     return Ok(None);
                 };
-                let Some(indices) = indices else {
-                    return Ok(None);
-                };
-                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
-                let index = indices.index()?;
-                let triple = indices.triple()?;
-                let parity = indices.parity()?;
-                let unsaturated = index
-                    .iter()
-                    .zip(&triple)
-                    .zip(&parity)
-                    .map(|((index, triple), parity)| Unsaturated {
-                        index,
-                        triple,
-                        parity,
-                    })
-                    .collect();
-                let fatty_acid = FattyAcid::new(carbon, unsaturated);
                 Ok(Some(fatty_acid.delta().to_string()))
             })
             .collect()
@@ -315,6 +285,52 @@ impl<'a> TryFrom<&'a StructChunked> for &'a FattyAcidChunked {
         check_data_type(value)?;
         // [safe](https://doc.rust-lang.org/reference/type-layout.html?highlight=transparent#the-transparent-representation)
         Ok(unsafe { &*(value as *const StructChunked as *const FattyAcidChunked) })
+    }
+}
+
+/// Fatty acid chunked fields
+pub struct FattyAcidChunkedFields {
+    carbon: UInt8Chunked,
+    indices: ListChunked,
+}
+
+impl FattyAcidChunkedFields {
+    pub fn iter(&self) -> impl Iterator<Item = PolarsResult<Option<FattyAcid>>> {
+        self.carbon.iter().zip(self.indices.amortized_iter()).map(
+            |(carbon, indices)| -> PolarsResult<Option<_>> {
+                let Some(carbon) = carbon else {
+                    return Ok(None);
+                };
+                let Some(indices) = indices else {
+                    return Ok(None);
+                };
+                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
+                let index = indices.index()?;
+                let triple = indices.triple()?;
+                let parity = indices.parity()?;
+                let unsaturated = index
+                    .iter()
+                    .zip(&triple)
+                    .zip(&parity)
+                    .map(|((index, triple), parity)| Unsaturated {
+                        index,
+                        triple,
+                        parity,
+                    })
+                    .collect();
+                Ok(Some(FattyAcid::new(carbon, unsaturated)))
+            },
+        )
+    }
+}
+
+impl IntoIterator for &FattyAcidChunkedFields {
+    type Item = PolarsResult<Option<FattyAcid>>;
+
+    type IntoIter = impl Iterator<Item = PolarsResult<Option<FattyAcid>>>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter()
     }
 }
 

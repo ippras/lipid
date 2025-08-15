@@ -1,6 +1,6 @@
 use crate::display::{Delta, FattyAcid};
 use polars::prelude::*;
-use std::fmt::{Display, Formatter, Result, Write};
+use std::fmt::{Display, Formatter, Result, Write, from_fn};
 
 /// Triacylglycerol
 #[derive(Clone, Copy, Debug, Default)]
@@ -25,6 +25,24 @@ impl<T> Triacylglycerol<T> {
         Stereo(self)
     }
 }
+
+// impl<T: Display> Display for Triacylglycerol<Option<T>> {
+//     fn fmt(&self, f: &mut Formatter) -> Result {
+//         let mut stereospecific_number = |number| {
+//             from_fn(|f| match &self.0[number] {
+//                 Some(value) => Display::fmt(value, f),
+//                 None => f.write_str("None"),
+//             })
+//         };
+//         write!(
+//             f,
+//             "{}, {}, {}",
+//             stereospecific_number(0),
+//             stereospecific_number(1),
+//             stereospecific_number(2),
+//         )
+//     }
+// }
 
 impl<T: Display> Display for Triacylglycerol<T> {
     fn fmt(&self, f: &mut Formatter) -> Result {

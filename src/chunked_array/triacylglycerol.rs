@@ -1,6 +1,7 @@
 use crate::prelude::*;
 use polars::prelude::*;
 
+/// Triacylglycerol chunked
 #[repr(transparent)]
 pub struct TriacylglycerolChunked(pub(crate) StructChunked);
 
@@ -35,6 +36,27 @@ impl TriacylglycerolChunked {
             stereospecific_number1,
             stereospecific_number2,
             stereospecific_number3,
+        ]))
+    }
+
+    // #[inline]
+    // pub fn map(&self) -> PolarsResult<Triacylglycerol<FattyAcidChunkedFields>> {
+    //     Ok(Triacylglycerol([
+    //         self.stereospecific_number1()?.try_fatty_acid()?.fields()?,
+    //         self.stereospecific_number2()?.try_fatty_acid()?.fields()?,
+    //         self.stereospecific_number3()?.try_fatty_acid()?.fields()?,
+    //     ]))
+    // }
+
+    #[inline]
+    pub fn fields<T>(
+        &self,
+        f: impl Fn(Series) -> PolarsResult<T>,
+    ) -> PolarsResult<Triacylglycerol<T>> {
+        Ok(Triacylglycerol([
+            f(self.stereospecific_number1()?)?,
+            f(self.stereospecific_number2()?)?,
+            f(self.stereospecific_number3()?)?,
         ]))
     }
 }
@@ -83,17 +105,87 @@ impl<'a> TryFrom<&'a StructChunked> for &'a TriacylglycerolChunked {
     }
 }
 
-fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
-    let data_type = r#struct.dtype();
-    if let DataType::Struct(fields) = data_type
-        && let [fields1, fields2, fields3] = &**fields
-        && fields1.name == STEREOSPECIFIC_NUMBER1
-        && fields2.name == STEREOSPECIFIC_NUMBER2
-        && fields3.name == STEREOSPECIFIC_NUMBER3
-    {
-        return Ok(());
+// impl<T> Triacylglycerol<T> {
+//     pub fn iter(&self) -> impl Iterator<Item = Triacylglycerol<<&T as IntoIterator>::Item>>
+//     where
+//         for<'a> &'a T: IntoIterator,
+//     {
+//         (&self.0[0])
+//             .into_iter()
+//             .zip(self.0[1].into_iter())
+//             .zip(self.0[2].into_iter())
+//             .map(
+//                 |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
+//                     Triacylglycerol([
+//                         stereospecific_number1,
+//                         stereospecific_number2,
+//                         stereospecific_number3,
+//                     ])
+//                 },
+//             )
+//     }
+// }
+impl<T: IntoIterator> Triacylglycerol<T> {
+    pub fn iter(self) -> impl Iterator<Item = Triacylglycerol<T::Item>> {
+        let [
+            stereospecific_number1,
+            stereospecific_number2,
+            stereospecific_number3,
+        ] = self.0;
+        stereospecific_number1
+            .into_iter()
+            .zip(stereospecific_number2.into_iter())
+            .zip(stereospecific_number3.into_iter())
+            .map(
+                |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
+                    Triacylglycerol([
+                        stereospecific_number1,
+                        stereospecific_number2,
+                        stereospecific_number3,
+                    ])
+                },
+            )
     }
-    polars_bail!(SchemaMismatch: "invalid triacylglycerol data type: expected `Struct {{ {STEREOSPECIFIC_NUMBER1}, {STEREOSPECIFIC_NUMBER2}, {STEREOSPECIFIC_NUMBER3} }}`, got = `{data_type}`");
+}
+
+impl<T: IntoIterator> IntoIterator for Triacylglycerol<T> {
+    type Item = Triacylglycerol<T::Item>;
+
+    type IntoIter = impl Iterator<Item = Triacylglycerol<T::Item>>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter()
+    }
+}
+
+fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
+    let data_type = DataType::Struct(vec![
+        Field::new(
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1),
+            DataType::Null,
+        ),
+        Field::new(
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2),
+            DataType::Null,
+        ),
+        Field::new(
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3),
+            DataType::Null,
+        ),
+    ]);
+    data_type.matches_schema_type(r#struct.dtype())?;
+    Ok(())
+
+    // if let DataType::Struct(fields) = data_type
+    //     && let [fields1, fields2, fields3] = &**fields
+    //     && fields1.name == STEREOSPECIFIC_NUMBER1
+    //     && fields2.name == STEREOSPECIFIC_NUMBER2
+    //     && fields3.name == STEREOSPECIFIC_NUMBER3
+    // {
+    //     return Ok(());
+    // }
+    // polars_bail!(SchemaMismatch: "invalid triacylglycerol data type: expected `Struct {{ {STEREOSPECIFIC_NUMBER1}, {STEREOSPECIFIC_NUMBER2}, {STEREOSPECIFIC_NUMBER3} }}`, got = `{data_type}`");
+
     // polars_ensure!(
     //     *r#struct.dtype() == data_type!(TRIACYLGLYCEROL),
     //     SchemaMismatch: "invalid triacylglycerol data type: expected `TRIACYLGLYCEROL`, got = `{}`",
