@@ -1,6 +1,9 @@
 use crate::display::{Delta, FattyAcid};
 use polars::prelude::*;
-use std::fmt::{Display, Formatter, Result, Write, from_fn};
+use std::{
+    fmt::{Display, Formatter, Result, Write, from_fn},
+    ops::Index,
+};
 
 /// Triacylglycerol
 #[derive(Clone, Copy, Debug, Default)]
@@ -47,6 +50,14 @@ impl<T> Triacylglycerol<T> {
 impl<T: Display> Display for Triacylglycerol<T> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         write!(f, "{}, {}, {}", self.0[0], self.0[1], self.0[2])
+    }
+}
+
+impl<T> Index<usize> for Triacylglycerol<T> {
+    type Output = <[T] as Index<usize>>::Output;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        &self.0[index]
     }
 }
 
