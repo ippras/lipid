@@ -62,7 +62,7 @@ impl<T> Index<usize> for Triacylglycerol<T> {
 }
 
 /// Mono
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Mono<T>(pub T);
 
 // impl NonStereospecific<&Triacylglycerol> {
@@ -96,7 +96,7 @@ impl<T: Display> Display for Mono<T> {
 }
 
 /// Positional
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Positional<T>(pub T);
 
 impl<T: Display> Display for Positional<T> {
@@ -109,7 +109,7 @@ impl<T: Display> Display for Positional<T> {
 }
 
 /// Stereo
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default)]
 pub struct Stereo<T>(pub T);
 
 impl<T: Display> Display for Stereo<T> {
