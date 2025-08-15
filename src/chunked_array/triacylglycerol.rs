@@ -105,24 +105,41 @@ impl<'a> TryFrom<&'a StructChunked> for &'a TriacylglycerolChunked {
     }
 }
 
-impl<T> Triacylglycerol<T> {
-    pub fn iter(&self) -> impl Iterator<Item = Triacylglycerol<<&T as IntoIterator>::Item>>
+impl<'a, T> Triacylglycerol<T> {
+    pub fn iter(
+        &'a self,
+    ) -> impl Iterator<
+        Item = (
+            <&'a T as IntoIterator>::Item,
+            <&'a T as IntoIterator>::Item,
+            <&'a T as IntoIterator>::Item,
+        ),
+    >
     where
-        for<'a> &'a T: IntoIterator,
+        &'a T: IntoIterator,
     {
-        (&self.0[0])
+        self.0[0]
             .into_iter()
             .zip(self.0[1].into_iter())
             .zip(self.0[2].into_iter())
             .map(
                 |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
-                    Triacylglycerol([
+                    (
                         stereospecific_number1,
                         stereospecific_number2,
                         stereospecific_number3,
-                    ])
+                    )
                 },
             )
+        // .map(
+        //     |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
+        //         Triacylglycerol([
+        //             stereospecific_number1,
+        //             stereospecific_number2,
+        //             stereospecific_number3,
+        //         ])
+        //     },
+        // )
     }
 }
 
