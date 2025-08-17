@@ -156,14 +156,6 @@ impl FattyAcidExpr {
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
         let c18 = expr.clone().filter(self.clone().equal(C18.clone())).sum();
         let mufa = self.clone().monounsaturated(expr.clone());
-        let ufa_3 = expr
-            .clone()
-            .filter(self.clone().is_unsaturated(NonZeroI8::new(-3)))
-            .sum();
-        let ufa_6 = expr
-            .clone()
-            .filter(self.clone().is_unsaturated(NonZeroI8::new(-6)))
-            .sum();
         let pufa_3 = expr
             .clone()
             .filter(
@@ -180,7 +172,10 @@ impl FattyAcidExpr {
             )
             .sum();
         ((c14 + c16 + c18)
-            / (lit(0.5) * mufa + lit(0.5) * pufa_6 + lit(3) * pufa_3 + ufa_3 / ufa_6))
+            / (lit(0.5) * mufa
+                + lit(0.5) * pufa_6.clone()
+                + lit(3) * pufa_3.clone()
+                + pufa_3 / pufa_6))
             .alias("IndexOfThrombogenicity")
     }
 
@@ -200,6 +195,28 @@ impl FattyAcidExpr {
         let sfa = self.clone().saturated(expr.clone());
         let pufa = self.polyunsaturated(expr);
         (pufa / sfa).alias("PolyunsaturatedToSaturated")
+    }
+
+    /// Polyunsaturated (n-6) to polyunsaturated (n-3)
+    ///
+    /// `PUFA(n-6) / PUFA(n-3)`
+    pub fn polyunsaturated_6_to_polyunsaturated_3(self, expr: Expr) -> Expr {
+        let pufa_3 = expr
+            .clone()
+            .filter(
+                self.clone()
+                    .is_polyunsaturated()
+                    .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
+            )
+            .sum();
+        let pufa_6 = expr
+            .filter(
+                self.clone()
+                    .is_polyunsaturated()
+                    .and(self.is_unsaturated(NonZeroI8::new(-6))),
+            )
+            .sum();
+        (pufa_6 / pufa_3).alias("Polyunsaturated-6ToPolyunsaturated-3")
     }
 
     /// Unsaturation index (UI).
