@@ -88,9 +88,9 @@ pub mod prelude {
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
             fatty_acid::{CARBON, FATTY_ACID, INDEX, INDICES, PARITY, TRIPLE},
             triacylglycerol::{
-                LABEL, STEREOSPECIFIC_NUMBER1, STEREOSPECIFIC_NUMBER2, STEREOSPECIFIC_NUMBER3,
-                STEREOSPECIFIC_NUMBER13, STEREOSPECIFIC_NUMBER123, STEREOSPECIFIC_NUMBER1223,
-                TRIACYLGLYCEROL, permutation::Permutation as _,
+                LABEL, STEREOSPECIFIC_NUMBER1, STEREOSPECIFIC_NUMBER13,
+                STEREOSPECIFIC_NUMBER2, STEREOSPECIFIC_NUMBER3, STEREOSPECIFIC_NUMBER12_23,
+                STEREOSPECIFIC_NUMBER123, TRIACYLGLYCEROL, permutation::Permutation as _,
             },
         },
         field,
