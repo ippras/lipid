@@ -12,24 +12,24 @@ macro_rules! data_type {
     (TRIACYLGLYCEROL) => {
         DataType::Struct(vec![
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS1),
                 data_type!(FATTY_ACID),
             ),
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS2),
                 data_type!(FATTY_ACID),
             ),
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS3),
                 data_type!(FATTY_ACID),
             ),
         ])
     };
     ([$data_type:expr]) => {
         DataType::Struct(vec![
-            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1), $data_type),
-            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2), $data_type),
-            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3), $data_type),
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS1), $data_type),
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS2), $data_type),
+            Field::new(PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS3), $data_type),
         ])
     };
 }

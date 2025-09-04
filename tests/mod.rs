@@ -506,15 +506,15 @@ fn triacylglycerol(
         vec![sn1.clone(), sn2.clone(), sn3.clone()],
         vec![
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS1),
                 data_type!(FATTY_ACID),
             ),
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS2),
                 data_type!(FATTY_ACID),
             ),
             Field::new(
-                PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3),
+                PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS3),
                 data_type!(FATTY_ACID),
             ),
         ],

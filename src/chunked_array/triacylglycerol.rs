@@ -64,17 +64,17 @@ impl TriacylglycerolChunked {
 impl TriacylglycerolChunked {
     #[inline]
     pub fn stereospecific_number1(&self) -> PolarsResult<Series> {
-        self.0.field_by_name(STEREOSPECIFIC_NUMBER1)
+        self.0.field_by_name(STEREOSPECIFIC_NUMBERS1)
     }
 
     #[inline]
     pub fn stereospecific_number2(&self) -> PolarsResult<Series> {
-        self.0.field_by_name(STEREOSPECIFIC_NUMBER2)
+        self.0.field_by_name(STEREOSPECIFIC_NUMBERS2)
     }
 
     #[inline]
     pub fn stereospecific_number3(&self) -> PolarsResult<Series> {
-        self.0.field_by_name(STEREOSPECIFIC_NUMBER3)
+        self.0.field_by_name(STEREOSPECIFIC_NUMBERS3)
     }
 }
 
@@ -192,15 +192,15 @@ impl<'a, T> Triacylglycerol<T> {
 fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
     let data_type = DataType::Struct(vec![
         Field::new(
-            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER1),
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS1),
             DataType::Null,
         ),
         Field::new(
-            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER2),
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS2),
             DataType::Null,
         ),
         Field::new(
-            PlSmallStr::from_static(STEREOSPECIFIC_NUMBER3),
+            PlSmallStr::from_static(STEREOSPECIFIC_NUMBERS3),
             DataType::Null,
         ),
     ]);

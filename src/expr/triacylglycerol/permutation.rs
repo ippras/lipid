@@ -36,9 +36,9 @@ impl Permutation for TriacylglycerolExpr {
             ternary_expr(predicate, sn2.clone(), sn3.clone()),
         );
         as_struct(vec![
-            sn1.alias(STEREOSPECIFIC_NUMBER1),
-            sn2.alias(STEREOSPECIFIC_NUMBER2),
-            sn3.alias(STEREOSPECIFIC_NUMBER3),
+            sn1.alias(STEREOSPECIFIC_NUMBERS1),
+            sn2.alias(STEREOSPECIFIC_NUMBERS2),
+            sn3.alias(STEREOSPECIFIC_NUMBERS3),
         ])
     }
 
@@ -53,9 +53,9 @@ impl Permutation for TriacylglycerolExpr {
             ternary_expr(predicate, sn3, sn1),
         );
         as_struct(vec![
-            sn1.alias(STEREOSPECIFIC_NUMBER1),
-            sn2.alias(STEREOSPECIFIC_NUMBER2),
-            sn3.alias(STEREOSPECIFIC_NUMBER3),
+            sn1.alias(STEREOSPECIFIC_NUMBERS1),
+            sn2.alias(STEREOSPECIFIC_NUMBERS2),
+            sn3.alias(STEREOSPECIFIC_NUMBERS3),
         ])
     }
 }
