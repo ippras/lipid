@@ -82,20 +82,20 @@ impl TriacylglycerolExpr {
 
     pub fn test_map_apply<F>(self, f: &'static F) -> Expr
     where
-        F: Fn(Column) -> PolarsResult<Option<Column>> + Send + Sync,
+        F: Fn(Column) -> PolarsResult<Column> + Send + Sync,
     {
         as_struct(vec![
             self.clone()
                 .stereospecific_number1()
-                .map(f, GetOutput::same_type())
+                .map(f, |_, field| Ok(field.clone()))
                 .alias(STEREOSPECIFIC_NUMBERS1),
             self.clone()
                 .stereospecific_number2()
-                .map(f, GetOutput::same_type())
+                .map(f, |_, field| Ok(field.clone()))
                 .alias(STEREOSPECIFIC_NUMBERS2),
             self.clone()
                 .stereospecific_number3()
-                .map(f, GetOutput::same_type())
+                .map(f, |_, field| Ok(field.clone()))
                 .alias(STEREOSPECIFIC_NUMBERS3),
         ])
     }

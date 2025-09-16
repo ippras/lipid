@@ -34,8 +34,8 @@ impl FattyAcidExpr {
         // let unsaturated = indices.list().len();
         // format_str("{}:{}-{}", [carbon, unsaturated, indices])
         self.0.map(
-            |column| Ok(Some(column.try_fatty_acid()?.delta()?.into_column())),
-            GetOutput::from_type(DataType::String),
+            |column| Ok(column.try_fatty_acid()?.delta()?.into_column()),
+            |_, field| Ok(Field::new(field.name().clone(), DataType::String)),
         )
     }
 }
@@ -212,7 +212,7 @@ impl EquivalentChainLength for FattyAcidExpr {
 
         let maybe_logarithmic = |mut expr: Expr| {
             if logarithmic {
-                expr = expr.log(BASE)
+                expr = expr.log(lit(BASE))
             }
             expr
         };
