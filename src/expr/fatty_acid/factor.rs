@@ -19,7 +19,7 @@ impl FattyAcidExpr {
     /// in the same fat, it is less convenient for discussing the behaviour of acids
     /// in several different fats.
     pub fn enrichment_factor(mag2: Expr, tag: Expr) -> Expr {
-        mag2 / tag
+        mag2 / (lit(3) * tag)
     }
 
     /// Selectivity factor (SF).
@@ -42,6 +42,7 @@ impl FattyAcidExpr {
     pub fn selectivity_factor(self, mag2: Expr, tag: Expr) -> Expr {
         let unsaturated_mag2 = mag2.clone().filter(self.clone().is_unsaturated(None)).sum();
         let unsaturated_tag = tag.clone().filter(self.is_unsaturated(None)).sum();
-        (mag2 / tag) / (unsaturated_mag2 / unsaturated_tag)
+        // (mag2 / tag) / (unsaturated_mag2 / unsaturated_tag)
+        (mag2 * unsaturated_tag) / (tag * unsaturated_mag2)
     }
 }
