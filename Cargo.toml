@@ -5,9 +5,7 @@ authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
 [dependencies]
-atom = { git = "https://github.com/ippras/atom" }
-fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
-polars = { version = "0.51.0", default-features = false, features = [
+polars = { git = "https://github.com/pola-rs/polars", rev = "5594b81b1177ad20ebecff8ad4c807b1816647ff", default-features = false, features = [
     "abs",
     "cum_agg",
     "dtype-i128",
@@ -26,8 +24,11 @@ polars = { version = "0.51.0", default-features = false, features = [
     # "list_sets",
     # "dtype-categorical",
 ] }
-polars_ext = { git = "https://github.com/kgv/polars_ext" }
-serde = { version = "1.0.225", features = ["derive", "std"], optional = true }
+serde = { version = "1.0.228", features = ["derive", "std"], optional = true }
+
+atom = { git = "https://github.com/ippras/atom" }
+fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
+polars_ext = { git = "https://github.com/kgv/polars_ext", branch = "new-polars" }
 
 [dev-dependencies]
 criterion = { version = "0.7.0", features = ["html_reports"] }
