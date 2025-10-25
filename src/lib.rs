@@ -100,6 +100,7 @@ pub mod prelude {
             Mass,
         },
     };
+    pub use fatty_acid_macro::fatty_acid;
 }
 
 // pub mod bound;
