@@ -1,6 +1,6 @@
 [package]
 name = "lipid"
-version = "0.5.1"
+version = "0.6.0"
 authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
