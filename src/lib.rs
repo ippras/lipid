@@ -1,7 +1,6 @@
 #![feature(custom_inner_attributes)]
 #![feature(debug_closure_helpers)]
 #![feature(impl_trait_in_assoc_type)]
-#![feature(exact_size_is_empty)]
 // #![feature(mixed_integer_ops_unsigned_sub)]
 
 use crate::prelude::*;
@@ -97,7 +96,7 @@ pub mod prelude {
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#trait::{
             Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
-            Mass,
+            RelativeAtomicMass,
         },
     };
     pub use fatty_acid_macro::fatty_acid;

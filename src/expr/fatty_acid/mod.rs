@@ -240,10 +240,10 @@ impl EquivalentChainLength for FattyAcidExpr {
 }
 
 mod equal;
-mod factor;
+mod factors;
 mod indices;
 mod kind;
 #[cfg(feature = "mass")]
-mod mass;
+mod relative_atomic_mass;
 #[cfg(feature = "select")]
 mod select;

@@ -8,7 +8,7 @@ macro_rules! check {
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
-                .mass(None)
+                .relative_atomic_mass(None)
                 .round(DECIMALS, RoundMode::HalfToEven)])
             .collect()?;
         let mass = data_frame["Mass"].f64()?.get(0).unwrap();

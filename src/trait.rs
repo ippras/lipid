@@ -69,14 +69,14 @@ pub trait MaskExt: IdentifierMask {
     fn is_omega_unsaturated(self, index: NonZeroU8) -> Self::Output;
 }
 
-pub trait Mass {
+pub trait RelativeAtomicMass {
     type Output;
 
     /// Returns the number of carbon atoms in the principle chain.
-    fn mass(self, adduct: Option<Self::Output>) -> Self::Output;
+    fn relative_atomic_mass(self, adduct: Option<Self::Output>) -> Self::Output;
 }
 
-pub trait Kind: Mass {
+pub trait Kind: RelativeAtomicMass {
     fn rco(&self) -> Rco<&Self> {
         Rco(self)
     }
