@@ -33,7 +33,7 @@ impl FattyAcidExpr {
     /// in the same fat, it is less convenient for discussing the behaviour of acids
     /// in several different fats.
     pub fn enrichment_factor(mag2: Expr, tag: Expr) -> Expr {
-        mag2 / (lit(3) * tag)
+        mag2 / tag
     }
 
     /// Selectivity factor (SF).
