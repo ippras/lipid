@@ -124,6 +124,92 @@ impl From<TriacylglycerolExpr> for Expr {
     }
 }
 
+#[cfg(feature = "atomic")]
+impl Atomic for TriacylglycerolExpr {
+    type Output = Expr;
+
+    #[inline]
+    fn carbon(self) -> Expr {
+        // C3H8O3
+        const GLYCEROL: u8 = 3;
+
+        self.0
+            .clone()
+            .struct_()
+            .field_by_name(STEREOSPECIFIC_NUMBERS1)
+            .fatty_acid()
+            .carbon()
+            + self
+                .0
+                .clone()
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS2)
+                .fatty_acid()
+                .carbon()
+            + self
+                .0
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS3)
+                .fatty_acid()
+                .carbon()
+            + lit(GLYCEROL)
+    }
+
+    #[inline]
+    fn hydrogen(self) -> Expr {
+        // C3H8O3
+        const GLYCEROL: u8 = 8;
+
+        self.0
+            .clone()
+            .struct_()
+            .field_by_name(STEREOSPECIFIC_NUMBERS1)
+            .fatty_acid()
+            .hydrogen()
+            + self
+                .0
+                .clone()
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS2)
+                .fatty_acid()
+                .hydrogen()
+            + self
+                .0
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS3)
+                .fatty_acid()
+                .hydrogen()
+            + lit(GLYCEROL - 3)
+    }
+
+    #[inline]
+    fn oxygen(self) -> Expr {
+        // C3H8O3
+        const GLYCEROL: u8 = 3;
+
+        self.0
+            .clone()
+            .struct_()
+            .field_by_name(STEREOSPECIFIC_NUMBERS1)
+            .fatty_acid()
+            .oxygen()
+            + self
+                .0
+                .clone()
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS2)
+                .fatty_acid()
+                .oxygen()
+            + self
+                .0
+                .struct_()
+                .field_by_name(STEREOSPECIFIC_NUMBERS3)
+                .fatty_acid()
+                .oxygen()
+            + lit(GLYCEROL - 3)
+    }
+}
+
 impl EquivalentCarbonNumber for TriacylglycerolExpr {
     type Output = Expr;
 
