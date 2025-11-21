@@ -62,20 +62,12 @@ impl TriacylglycerolExpr {
             + self.stereospecific_number3().fatty_acid().unsaturation()
     }
 
-    pub fn map(self, f: impl Fn(Expr) -> Expr, positional: bool) -> Expr {
-        if positional {
-            as_struct(vec![
-                f(self.clone().stereospecific_number1()).alias(STEREOSPECIFIC_NUMBERS1),
-                self.clone().stereospecific_number2(),
-                f(self.stereospecific_number3()).alias(STEREOSPECIFIC_NUMBERS3),
-            ])
-        } else {
-            as_struct(vec![
-                f(self.clone().stereospecific_number1()).alias(STEREOSPECIFIC_NUMBERS1),
-                f(self.clone().stereospecific_number2()).alias(STEREOSPECIFIC_NUMBERS2),
-                f(self.stereospecific_number3()).alias(STEREOSPECIFIC_NUMBERS3),
-            ])
-        }
+    pub fn map(self, f: impl Fn(Expr) -> Expr) -> Expr {
+        as_struct(vec![
+            f(self.clone().stereospecific_number1()).alias(STEREOSPECIFIC_NUMBERS1),
+            f(self.clone().stereospecific_number2()).alias(STEREOSPECIFIC_NUMBERS2),
+            f(self.stereospecific_number3()).alias(STEREOSPECIFIC_NUMBERS3),
+        ])
         .alias(TRIACYLGLYCEROL)
     }
 
