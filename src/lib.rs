@@ -80,9 +80,7 @@ pub mod prelude {
         chunked_array::{FattyAcidChunked, IndicesChunked, TriacylglycerolChunked},
         r#const::*,
         data_type,
-        display::{
-            Elision, FattyAcid, Mono, Options, Positional, Stereo, Triacylglycerol, Unsaturated,
-        },
+        display::{Elision, FattyAcid, Mono, Positional, Stereo, Triacylglycerol, Unsaturated},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
             fatty_acid::{CARBON, FATTY_ACID, INDEX, INDICES, PARITY, TRIPLE},
