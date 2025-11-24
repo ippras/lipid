@@ -88,6 +88,13 @@ impl FattyAcidExpr {
 ///
 /// Nutritional indices.
 impl FattyAcidExpr {
+    /// Degree of unsaturation (DU).
+    ///
+    /// `1 * (% monounsaturated) + 2 * (% polyunsaturated)`
+    pub fn degree_of_unsaturation(self, expr: Expr) -> Expr {
+        self.clone().monounsaturated(expr.clone()) + lit(2) * self.polyunsaturated(expr)
+    }
+
     /// Sum of eicosapentaenoic acid and docosahexaenoic acid (EPA + DHA).
     ///
     /// `C22:6(n-3) + C20:5(n-3)`
@@ -186,6 +193,18 @@ impl FattyAcidExpr {
         let la = expr.clone().filter(self.clone().linoleic()).sum();
         let ala = expr.clone().filter(self.alpha_linolenic()).sum();
         (la / ala).alias("LinoleicToAlphaLinolenic")
+    }
+
+    /// Long chain saturated factor (LCSF).
+    ///
+    /// * [Rós (2013)](https://doi.org/10.3390/md11072365)
+    /// * [Ramos (2009)](https://doi.org/10.1016/j.biortech.2008.06.039)
+    pub fn long_chain_saturated_factor(self, expr: Expr) -> Expr {
+        lit(0.1) * expr.clone().filter(self.clone().equal(C16.clone())).sum()
+            + lit(0.5) * expr.clone().filter(self.clone().equal(C18.clone())).sum()
+            + lit(1) * expr.clone().filter(self.clone().equal(C20.clone())).sum()
+            + lit(1.5) * expr.clone().filter(self.clone().equal(C22.clone())).sum()
+            + lit(2) * expr.clone().filter(self.clone().equal(C24.clone())).sum()
     }
 
     /// Polyunsaturated fatty acids to saturated fatty acids ratio (PUFA / SFA).
