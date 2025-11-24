@@ -6,12 +6,8 @@ use polars::prelude::*;
 const I: f64 = I::OneHundredTwentySeven.relative_atomic_mass().value;
 
 impl FattyAcidExpr {
-    pub fn iodine_value(self, mut expr: Expr, sum: bool) -> Expr {
-        expr = expr * self.clone().unsaturation() * lit(I * 2.0) / self.relative_atomic_mass(None);
-        if sum {
-            expr = expr.sum()
-        }
-        expr
+    pub fn iodine_value(self, expr: Expr) -> Expr {
+        expr * self.clone().unsaturation() * lit(I * 2.0) / self.relative_atomic_mass(None)
     }
 }
 
@@ -91,7 +87,7 @@ mod test {
             col(FATTY_ACID).fatty_acid().relative_atomic_mass(None),
             col(FATTY_ACID)
                 .fatty_acid()
-                .iodine_value(lit(1), false)
+                .iodine_value(lit(1))
                 .alias("IV"),
         ]);
         println!("lazy_frame: {}", lazy_frame.collect()?);
