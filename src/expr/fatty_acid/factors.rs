@@ -8,8 +8,8 @@ const I: f64 = I::OneHundredTwentySeven.relative_atomic_mass().value;
 impl FattyAcidExpr {
     /// * [Rós (2013)](https://doi.org/10.3390/md11072365)
     /// * [Ramos (2009)](https://doi.org/10.1016/j.biortech.2008.06.039)
-    pub fn iodine_value(self, expr: Expr) -> Expr {
-        expr * self.clone().unsaturation() * lit(I * 2.0) / self.relative_atomic_mass(None)
+    pub fn iodine_value(self) -> Expr {
+        self.clone().unsaturation() * lit(I * 2.0) / self.relative_atomic_mass(None)
     }
 }
 
@@ -87,10 +87,7 @@ mod test {
         let mut lazy_frame = data_frame.lazy();
         lazy_frame = lazy_frame.select([
             col(FATTY_ACID).fatty_acid().relative_atomic_mass(None),
-            col(FATTY_ACID)
-                .fatty_acid()
-                .iodine_value(lit(1))
-                .alias("IV"),
+            col(FATTY_ACID).fatty_acid().iodine_value().alias("IV"),
         ]);
         println!("lazy_frame: {}", lazy_frame.collect()?);
         Ok(())
