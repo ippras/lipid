@@ -4,7 +4,7 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acid($identifier.clone())?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().is_cis()])
+            .select([col(FATTY_ACID).fatty_acid().is_cis().alias("IsCis")])
             .collect()?;
         let is_cis = data_frame["IsCis"].bool()?.get(0).unwrap();
         assert!(is_cis == $expected);

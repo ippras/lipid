@@ -6,7 +6,8 @@ macro_rules! check {
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
-                .equivalent_chain_length(col("Index").cast(DataType::Float64), false)])
+                .equivalent_chain_length(col("Index").cast(DataType::Float64), false)
+                .alias("EquivalentChainLength")])
             .collect()?;
         let ecl = data_frame["EquivalentChainLength"]
             .f64()?

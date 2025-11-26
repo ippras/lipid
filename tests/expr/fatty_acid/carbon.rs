@@ -4,7 +4,7 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acid($identifier.clone())?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().carbon()])
+            .select([col(FATTY_ACID).fatty_acid().carbon().alias("Carbon")])
             .collect()?;
         let carbon = data_frame["Carbon"].u8()?.get(0).unwrap();
         assert_eq!(carbon, $expected);

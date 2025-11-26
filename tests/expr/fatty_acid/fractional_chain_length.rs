@@ -6,7 +6,8 @@ macro_rules! check {
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
-                .fractional_chain_length(col("Index").cast(DataType::Float64), false)])
+                .fractional_chain_length(col("Index").cast(DataType::Float64), false)
+                .alias("FractionalChainLength")])
             .collect()?;
         let fcl = data_frame["FractionalChainLength"]
             .f64()?

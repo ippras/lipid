@@ -44,7 +44,7 @@ impl FattyAcidExpr {
     /// Is saturated
     #[inline]
     pub fn is_saturated(self) -> Expr {
-        self.indices().list().len().eq(0).alias("IsSaturated")
+        self.indices().list().len().eq(0)
     }
 
     /// Is unsaturated
@@ -56,48 +56,39 @@ impl FattyAcidExpr {
                 omega @ ..0 => {
                     let last = indices.last().struct_().field_by_name(INDEX);
                     last.eq_missing(self.carbon() - lit(omega.unsigned_abs()))
-                        .alias(format!("IsUnsaturated{omega}"))
                 }
                 delta @ 0.. => {
                     let first = indices.first().struct_().field_by_name(INDEX);
-                    first
-                        .eq_missing(delta)
-                        .alias(format!("IsUnsaturated{delta}"))
+                    first.eq_missing(delta)
                 }
             },
-            None => indices.len().neq(0).alias("IsUnsaturated"),
+            None => indices.len().neq(0),
         }
     }
 
     /// Is monounsaturated
     #[inline]
     pub fn is_monounsaturated(self) -> Expr {
-        self.indices().list().len().eq(1).alias("IsMonounsaturated")
+        self.indices().list().len().eq(1)
     }
 
     /// Is polyunsaturated
     #[inline]
     pub fn is_polyunsaturated(self) -> Expr {
-        self.indices().list().len().gt(1).alias("IsPolyunsaturated")
+        self.indices().list().len().gt(1)
     }
 
     /// Is cis
     #[inline]
     pub fn is_cis(self) -> Expr {
-        self.clone()
-            .indices()
-            .list()
-            .len()
-            .gt(0)
-            .and(
-                self.indices()
-                    .list()
-                    .eval(col("").struct_().field_by_name(PARITY))
-                    .list()
-                    .any()
-                    .not(),
-            )
-            .alias("IsCis")
+        self.clone().indices().list().len().gt(0).and(
+            self.indices()
+                .list()
+                .eval(col("").struct_().field_by_name(PARITY))
+                .list()
+                .any()
+                .not(),
+        )
     }
 
     /// Is trans
@@ -108,7 +99,6 @@ impl FattyAcidExpr {
             .eval(col("").struct_().field_by_name(PARITY))
             .list()
             .any()
-            .alias("IsTrans")
     }
 }
 
@@ -144,7 +134,6 @@ impl FattyAcidExpr {
             .list()
             .sum()
             .cast(DataType::UInt8)
-            .alias("Unsaturation")
     }
 }
 
@@ -171,12 +160,12 @@ impl Atomic for FattyAcidExpr {
 
     #[inline]
     fn hydrogen(self) -> Expr {
-        (self.clone().carbon() * lit(2) - self.unsaturation() * lit(2)).alias("Hydrogen")
+        self.clone().carbon() * lit(2) - self.unsaturation() * lit(2)
     }
 
     #[inline]
     fn oxygen(self) -> Expr {
-        lit(2).alias("Oxygen")
+        lit(2)
     }
 }
 
@@ -186,7 +175,7 @@ impl EquivalentCarbonNumber for FattyAcidExpr {
 
     #[inline]
     fn equivalent_carbon_number(self) -> Expr {
-        (self.clone().carbon() - self.unsaturation() * lit(2)).alias("EquivalentCarbonNumber")
+        self.clone().carbon() - self.unsaturation() * lit(2)
     }
 }
 
@@ -196,14 +185,12 @@ impl EquivalentChainLength for FattyAcidExpr {
 
     #[inline]
     fn equivalent_chain_length(self, retention_time: Expr, logarithmic: bool) -> Expr {
-        (self
-            .clone()
+        self.clone()
             .nullify(self.clone().is_saturated())
             .fatty_acid()
             .carbon()
             .fill_null_with_strategy(FillNullStrategy::Forward(None))
-            + self.fractional_chain_length(retention_time, logarithmic))
-        .alias("EquivalentChainLength")
+            + self.fractional_chain_length(retention_time, logarithmic)
     }
 
     #[inline]
@@ -235,7 +222,6 @@ impl EquivalentChainLength for FattyAcidExpr {
                 / (saturated_time().fill_null_with_strategy(FillNullStrategy::Backward(None))
                     - saturated_time().fill_null_with_strategy(FillNullStrategy::Forward(None))),
         )
-        .alias("FractionalChainLength")
     }
 }
 

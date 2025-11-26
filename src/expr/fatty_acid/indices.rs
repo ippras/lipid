@@ -4,63 +4,51 @@ use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
     pub fn is_monoenoic(self) -> Expr {
-        self.indices().list().len().eq(1).alias("IsMonoenoic")
+        self.indices().list().len().eq(1)
     }
 
     pub fn is_dienoic(self) -> Expr {
-        self.indices().list().len().eq(2).alias("IsDienoic")
+        self.indices().list().len().eq(2)
     }
 
     pub fn is_trienoic(self) -> Expr {
-        self.indices().list().len().eq(3).alias("IsTrienoic")
+        self.indices().list().len().eq(3)
     }
 
     pub fn is_tetraenoic(self) -> Expr {
-        self.indices().list().len().eq(4).alias("IsTetraenoic")
+        self.indices().list().len().eq(4)
     }
 
     pub fn is_pentaenoic(self) -> Expr {
-        self.indices().list().len().eq(5).alias("IsPentaenoic")
+        self.indices().list().len().eq(5)
     }
 
     pub fn is_hexaenoic(self) -> Expr {
-        self.indices().list().len().eq(6).alias("IsHexaenoic")
+        self.indices().list().len().eq(6)
     }
 
     pub fn monoenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_monoenoic())
-            .sum()
-            .alias("Monoenoics")
+        expr.filter(self.clone().is_monoenoic()).sum()
     }
 
     pub fn dienoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_dienoic())
-            .sum()
-            .alias("Dienoics")
+        expr.filter(self.clone().is_dienoic()).sum()
     }
 
     pub fn trienoic(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_trienoic())
-            .sum()
-            .alias("Trienoics")
+        expr.filter(self.clone().is_trienoic()).sum()
     }
 
     pub fn tetraenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_tetraenoic())
-            .sum()
-            .alias("Tetraenoics")
+        expr.filter(self.clone().is_tetraenoic()).sum()
     }
 
     pub fn pentaenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_pentaenoic())
-            .sum()
-            .alias("Pentaenoics")
+        expr.filter(self.clone().is_pentaenoic()).sum()
     }
 
     pub fn hexaenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_hexaenoic())
-            .sum()
-            .alias("Hexaenoics")
+        expr.filter(self.clone().is_hexaenoic()).sum()
     }
 }
 
@@ -75,32 +63,28 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids having only one unsaturated bond.
     pub fn monounsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_monounsaturated())
-            .sum()
-            .alias("Monounsaturated")
+        expr.filter(self.clone().is_monounsaturated()).sum()
     }
 
     /// Polyunsaturated fatty acids (PUFA).
     ///
     /// All unsaturated fatty acids having more than one unsaturated bond.
     pub fn polyunsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_polyunsaturated())
-            .sum()
-            .alias("Polyunsaturated")
+        expr.filter(self.clone().is_polyunsaturated()).sum()
     }
 
     /// Saturated fatty acids (SFA).
     ///
     /// All saturated fatty acids
     pub fn saturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_saturated()).sum().alias("Saturated")
+        expr.filter(self.is_saturated()).sum()
     }
 
     /// Trans fatty acids (TFA).
     ///
     /// All trans fatty acids.
     pub fn trans(self, expr: Expr) -> Expr {
-        expr.filter(self.is_trans()).sum().alias("Trans")
+        expr.filter(self.is_trans()).sum()
     }
 
     /// Unsaturated fatty acids (UFA).
@@ -126,7 +110,7 @@ impl FattyAcidExpr {
     pub fn eicosapentaenoic_and_docosahexaenoic(self, expr: Expr) -> Expr {
         let epa = expr.clone().filter(self.clone().eicosapentaenoic()).sum();
         let dha = expr.clone().filter(self.docosahexaenoic()).sum();
-        (epa + dha).alias("EicosapentaenoicAndDocosahexaenoic")
+        epa + dha
     }
 
     /// Fish lipid quality or flesh lipid quality (FLQ).
@@ -135,12 +119,12 @@ impl FattyAcidExpr {
     pub fn fish_lipid_quality(self, expr: Expr) -> Expr {
         let epa = expr.clone().filter(self.clone().eicosapentaenoic()).sum();
         let dha = expr.clone().filter(self.docosahexaenoic()).sum();
-        ((epa + dha) / expr.sum()).alias("FishLipidQuality")
+        (epa + dha) / expr.sum()
     }
 
     /// [`Self::fish_lipid_quality`]
     pub fn flesh_lipid_quality(self, expr: Expr) -> Expr {
-        self.fish_lipid_quality(expr).alias("FleshLipidQuality")
+        self.fish_lipid_quality(expr)
     }
 
     /// Health-promoting index (HPI).
@@ -151,7 +135,7 @@ impl FattyAcidExpr {
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
         let ufa = self.unsaturated(expr, None);
-        (ufa / (c12 + lit(4) * c14 + c16)).alias("HealthPromotingIndex")
+        ufa / (c12 + lit(4) * c14 + c16)
     }
 
     /// Hypocholesterolemic to hypercholesterolemic ratio (HH).
@@ -166,7 +150,7 @@ impl FattyAcidExpr {
             .filter(self.clone().equal(C18DC9.clone()))
             .sum();
         let pufa = self.polyunsaturated(expr);
-        ((c18dc9 + pufa) / (c12 + c14 + c16)).alias("HypocholesterolemicToHypercholesterolemic")
+        (c18dc9 + pufa) / (c12 + c14 + c16)
     }
 
     /// Index of atherogenicity (IA).
@@ -177,7 +161,7 @@ impl FattyAcidExpr {
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
         let ufa = self.unsaturated(expr, None);
-        ((c12 + lit(4) * c14 + c16) / ufa).alias("IndexOfAtherogenicity")
+        (c12 + lit(4) * c14 + c16) / ufa
     }
 
     /// Index of thrombogenicity (IT).
@@ -203,12 +187,11 @@ impl FattyAcidExpr {
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
-        ((c14 + c16 + c18)
+        (c14 + c16 + c18)
             / (lit(0.5) * mufa
                 + lit(0.5) * pufa_6.clone()
                 + lit(3) * pufa_3.clone()
-                + pufa_3 / pufa_6))
-            .alias("IndexOfThrombogenicity")
+                + pufa_3 / pufa_6)
     }
 
     /// Linoleic fatty acid to α-linolenic fatty acid ratio (LA / ALA).
@@ -217,7 +200,7 @@ impl FattyAcidExpr {
     pub fn linoleic_to_alpha_linolenic(self, expr: Expr) -> Expr {
         let la = expr.clone().filter(self.clone().linoleic()).sum();
         let ala = expr.clone().filter(self.alpha_linolenic()).sum();
-        (la / ala).alias("LinoleicToAlphaLinolenic")
+        la / ala
     }
 
     /// Long chain saturated factor (LCSF).
@@ -238,7 +221,7 @@ impl FattyAcidExpr {
     pub fn polyunsaturated_to_saturated(self, expr: Expr) -> Expr {
         let sfa = self.clone().saturated(expr.clone());
         let pufa = self.polyunsaturated(expr);
-        (pufa / sfa).alias("PolyunsaturatedToSaturated")
+        pufa / sfa
     }
 
     /// Polyunsaturated (n-6) to polyunsaturated (n-3)
@@ -260,15 +243,13 @@ impl FattyAcidExpr {
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
-        (pufa_6 / pufa_3).alias("Polyunsaturated-6ToPolyunsaturated-3")
+        pufa_6 / pufa_3
     }
 
     /// Unsaturation index (UI).
     ///
     /// `1 * (% monoenoics) + 2 * (% dienoics) + 3 * (% trienoics) + 4 * (% tetraenoics) + 5 * (% pentaenoics) + 6 * (% hexaenoics) ...`
     pub fn unsaturation_index(self, expr: Expr) -> Expr {
-        (self.unsaturation() * expr)
-            .sum()
-            .alias("UnsaturationIndex")
+        (self.unsaturation() * expr).sum()
     }
 }

@@ -36,24 +36,22 @@ pub trait BiodieselProperties {
 
 impl BiodieselProperties for FattyAcidExpr {
     fn cetane_number(self, expr: Expr) -> Expr {
-        (lit(-0.1209) * self.degree_of_unsaturation(expr) + lit(0.650958)).alias("CetaneNumber")
+        self.degree_of_unsaturation(expr) * lit(-0.1209) + lit(0.650958)
     }
 
     fn cold_filter_plugging_point(self, expr: Expr) -> Expr {
-        (lit(3.1417) * self.long_chain_saturated_factor(expr) - lit(0.16477))
-            .alias("ColdFilterPluggingPoint")
+        self.long_chain_saturated_factor(expr) * lit(3.1417) - lit(0.16477)
     }
 
     fn degree_of_unsaturation(self, expr: Expr) -> Expr {
-        (self.clone().monounsaturated(expr.clone())
-            + lit(2) * self.clone().dienoics(expr.clone())
-            + lit(3) * self.clone().trienoic(expr.clone())
-            + lit(4) * self.tetraenoics(expr))
-        .alias("DegreeOfUnsaturation")
+        self.clone().monounsaturated(expr.clone())
+            + self.clone().dienoics(expr.clone()) * lit(2)
+            + self.clone().trienoic(expr.clone()) * lit(3)
+            + self.tetraenoics(expr) * lit(4)
     }
 
     fn iodine_value(self, expr: Expr) -> Expr {
-        (lit(0.6683) * self.degree_of_unsaturation(expr) + lit(0.250364)).alias("IodineValue")
+        self.degree_of_unsaturation(expr) * lit(0.6683) + lit(0.250364)
     }
 
     fn long_chain_saturated_factor(self, expr: Expr) -> Expr {
@@ -62,12 +60,10 @@ impl BiodieselProperties for FattyAcidExpr {
         let c20 = expr.clone().filter(self.clone().equal(C20.clone())).sum();
         let c22 = expr.clone().filter(self.clone().equal(C22.clone())).sum();
         let c24 = expr.filter(self.equal(C24.clone())).sum();
-        (lit(0.1) * c16 + lit(0.5) * c18 + lit(1) * c20 + lit(1.5) * c22 + lit(2) * c24)
-            .alias("LongChainSaturatedFactor")
+        c16 * lit(0.1) + c18 * lit(0.5) + c20 * lit(1) + c22 * lit(1.5) + c24 * lit(2)
     }
 
     fn oxidation_stability(self, expr: Expr) -> Expr {
-        (lit(-0.0384) * self.degree_of_unsaturation(expr) + lit(0.07770))
-            .alias("OxidationStability")
+        self.degree_of_unsaturation(expr) * lit(-0.0384) + lit(0.07770)
     }
 }

@@ -5,7 +5,10 @@ use std::num::NonZeroI8;
 fn monounsaturated() -> PolarsResult<()> {
     let data_frame = fatty_acids_with_float()?
         .lazy()
-        .select([col(FATTY_ACID).fatty_acid().monounsaturated(col("Float"))])
+        .select([col(FATTY_ACID)
+            .fatty_acid()
+            .monounsaturated(col("Float"))
+            .alias("Monounsaturated")])
         .collect()?;
     let monounsaturated = data_frame["Monounsaturated"].f64()?.get(0).unwrap();
     // 326
@@ -20,7 +23,10 @@ fn monounsaturated() -> PolarsResult<()> {
 fn polyunsaturated() -> PolarsResult<()> {
     let data_frame = fatty_acids_with_float()?
         .lazy()
-        .select([col(FATTY_ACID).fatty_acid().polyunsaturated(col("Float"))])
+        .select([col(FATTY_ACID)
+            .fatty_acid()
+            .polyunsaturated(col("Float"))
+            .alias("Polyunsaturated")])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
     // 888
@@ -106,7 +112,10 @@ fn polyunsaturated_6() -> PolarsResult<()> {
 fn trans() -> PolarsResult<()> {
     let data_frame = fatty_acids_with_float()?
         .lazy()
-        .select([col(FATTY_ACID).fatty_acid().trans(col("Float"))])
+        .select([col(FATTY_ACID)
+            .fatty_acid()
+            .trans(col("Float"))
+            .alias("Trans")])
         .collect()?;
     let trans = data_frame["Trans"].f64()?.get(0).unwrap();
     assert_eq!(trans, 14.0 + 18.0 + 21.0 + 23.0 + 24.0 + 25.0);
@@ -117,7 +126,10 @@ fn trans() -> PolarsResult<()> {
 fn unsaturated() -> PolarsResult<()> {
     let data_frame = fatty_acids_with_float()?
         .lazy()
-        .select([col(FATTY_ACID).fatty_acid().unsaturated(col("Float"), None)])
+        .select([col(FATTY_ACID)
+            .fatty_acid()
+            .unsaturated(col("Float"), None)
+            .alias("Unsaturated")])
         .collect()?;
     let unsaturated = data_frame["Unsaturated"].f64()?.get(0).unwrap();
     // 1214
@@ -167,7 +179,8 @@ fn unsaturated_3() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturated(col("Float"), NonZeroI8::new(-3))])
+            .unsaturated(col("Float"), NonZeroI8::new(-3))
+            .alias("Unsaturated-3")])
         .collect()?;
     let unsaturated_3 = data_frame["Unsaturated-3"].f64()?.get(0).unwrap();
     // 297
@@ -184,7 +197,8 @@ fn unsaturated_6() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturated(col("Float"), NonZeroI8::new(-6))])
+            .unsaturated(col("Float"), NonZeroI8::new(-6))
+            .alias("Unsaturated-6")])
         .collect()?;
     let unsaturated_6 = data_frame["Unsaturated-6"].f64()?.get(0).unwrap();
     // 487
@@ -201,7 +215,8 @@ fn eicosapentaenoic_and_docosahexaenoic() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .eicosapentaenoic_and_docosahexaenoic(col("Float"))])
+            .eicosapentaenoic_and_docosahexaenoic(col("Float"))
+            .alias("EicosapentaenoicAndDocosahexaenoic")])
         .collect()?;
     let eicosapentaenoic_and_docosahexaenoic = data_frame["EicosapentaenoicAndDocosahexaenoic"]
         .f64()?
@@ -217,7 +232,8 @@ fn fish_lipid_quality() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .fish_lipid_quality(col("Float"))])
+            .fish_lipid_quality(col("Float"))
+            .alias("FishLipidQuality")])
         .collect()?;
     let fish_lipid_quality = data_frame["FishLipidQuality"].f64()?.get(0).unwrap();
     assert_epsilon!(fish_lipid_quality, (37.0 + 45.0) / 2278.0);
@@ -230,7 +246,8 @@ fn health_promoting_index() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .health_promoting_index(col("Float"))])
+            .health_promoting_index(col("Float"))
+            .alias("HealthPromotingIndex")])
         .collect()?;
     let health_promoting_index = data_frame["HealthPromotingIndex"].f64()?.get(0).unwrap();
     assert_epsilon!(health_promoting_index, 1214.0 / (8.0 + 4.0 * 10.0 + 12.0));
@@ -243,7 +260,8 @@ fn hypocholesterolemic_to_hypercholesterolemic() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .hypocholesterolemic_to_hypercholesterolemic(col("Float"))])
+            .hypocholesterolemic_to_hypercholesterolemic(col("Float"))
+            .alias("HypocholesterolemicToHypercholesterolemic")])
         .collect()?;
     let hypocholesterolemic_to_hypercholesterolemic =
         data_frame["HypocholesterolemicToHypercholesterolemic"]
@@ -263,7 +281,8 @@ fn index_of_atherogenicity() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .index_of_atherogenicity(col("Float"))])
+            .index_of_atherogenicity(col("Float"))
+            .alias("IndexOfAtherogenicity")])
         .collect()?;
     let index_of_atherogenicity = data_frame["IndexOfAtherogenicity"].f64()?.get(0).unwrap();
     assert_epsilon!(index_of_atherogenicity, (8.0 + 4.0 * 10.0 + 12.0) / 1214.0);
@@ -276,7 +295,8 @@ fn index_of_thrombogenicity() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .index_of_thrombogenicity(col("Float"))])
+            .index_of_thrombogenicity(col("Float"))
+            .alias("IndexOfThrombogenicity")])
         .collect()?;
     let index_of_thrombogenicity = data_frame["IndexOfThrombogenicity"].f64()?.get(0).unwrap();
     assert_epsilon!(
@@ -292,7 +312,8 @@ fn linoleic_to_alpha_linolenic() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .linoleic_to_alpha_linolenic(col("Float"))])
+            .linoleic_to_alpha_linolenic(col("Float"))
+            .alias("LinoleicToAlphaLinolenic")])
         .collect()?;
     let linoleic_to_alpha_linolenic = data_frame["LinoleicToAlphaLinolenic"]
         .f64()?
@@ -308,7 +329,8 @@ fn unsaturation_index() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturation_index(col("Float"))])
+            .unsaturation_index(col("Float"))
+            .alias("UnsaturationIndex")])
         .collect()?;
     let unsaturation_index = data_frame["UnsaturationIndex"].f64()?.get(0).unwrap();
     assert_eq!(

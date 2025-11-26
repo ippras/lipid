@@ -4,7 +4,7 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acid($identifier.clone())?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().is_trans()])
+            .select([col(FATTY_ACID).fatty_acid().is_trans().alias("IsTrans")])
             .collect()?;
         let is_trans = data_frame["IsTrans"].bool()?.get(0).unwrap();
         assert!(is_trans == $expected);

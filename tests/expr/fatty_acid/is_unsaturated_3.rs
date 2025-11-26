@@ -6,7 +6,8 @@ macro_rules! check {
             .lazy()
             .select([col(FATTY_ACID)
                 .fatty_acid()
-                .is_unsaturated(NonZero::new(-3))])
+                .is_unsaturated(NonZero::new(-3))
+                .alias("IsUnsaturated-3")])
             .collect()?;
         let is_unsaturated_3 = data_frame["IsUnsaturated-3"].bool()?.get(0).unwrap();
         assert!(is_unsaturated_3 == $expected);

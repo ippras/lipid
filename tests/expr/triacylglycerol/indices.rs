@@ -9,7 +9,8 @@ fn monounsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .monounsaturated(col("Float"))])
+            .monounsaturated(col("Float"))
+            .alias("Monounsaturated")])
         .collect()?;
     let monounsaturated = data_frame["Monounsaturated"].f64()?.get(0).unwrap();
     // 1229
@@ -55,7 +56,8 @@ fn polyunsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .polyunsaturated(col("Float"))])
+            .polyunsaturated(col("Float"))
+            .alias("Polyunsaturated")])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
     // 1207
@@ -91,7 +93,8 @@ fn trans() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .trans(col("Float"))])
+            .trans(col("Float"))
+            .alias("Trans")])
         .collect()?;
     let trans = data_frame["Trans"].f64()?.get(0).unwrap();
     assert_eq!(trans, 0.0);
@@ -106,7 +109,8 @@ fn unsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .unsaturated(col("Float"), None)])
+            .unsaturated(col("Float"), None)
+            .alias("Unsaturated")])
         .collect()?;
     let unsaturated = data_frame["Unsaturated"].f64()?.get(0).unwrap();
     // 2436
@@ -205,7 +209,8 @@ fn eicosapentaenoic_and_docosahexaenoic() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .eicosapentaenoic_and_docosahexaenoic(col("Float"))])
+            .eicosapentaenoic_and_docosahexaenoic(col("Float"))
+            .alias("EicosapentaenoicAndDocosahexaenoic")])
         .collect()?;
     let eicosapentaenoic_and_docosahexaenoic = data_frame["EicosapentaenoicAndDocosahexaenoic"]
         .f64()?
@@ -223,7 +228,8 @@ fn fish_lipid_quality() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .fish_lipid_quality(col("Float"))])
+            .fish_lipid_quality(col("Float"))
+            .alias("FishLipidQuality")])
         .collect()?;
     let fish_lipid_quality = data_frame["FishLipidQuality"].f64()?.get(0).unwrap();
     assert_epsilon!(fish_lipid_quality, (0.0 + 0.0) / 3403.0);
@@ -238,7 +244,8 @@ fn health_promoting_index() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .health_promoting_index(col("Float"))])
+            .health_promoting_index(col("Float"))
+            .alias("HealthPromotingIndex")])
         .collect()?;
     let health_promoting_index = data_frame["HealthPromotingIndex"].f64()?.get(0).unwrap();
     assert_epsilon!(
