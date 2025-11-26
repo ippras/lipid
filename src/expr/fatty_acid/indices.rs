@@ -203,18 +203,6 @@ impl FattyAcidExpr {
         la / ala
     }
 
-    /// Long chain saturated factor (LCSF).
-    ///
-    /// * [Rós (2013)](https://doi.org/10.3390/md11072365)
-    /// * [Ramos (2009)](https://doi.org/10.1016/j.biortech.2008.06.039)
-    pub fn long_chain_saturated_factor(self, expr: Expr) -> Expr {
-        lit(0.1) * expr.clone().filter(self.clone().equal(C16.clone())).sum()
-            + lit(0.5) * expr.clone().filter(self.clone().equal(C18.clone())).sum()
-            + lit(1) * expr.clone().filter(self.clone().equal(C20.clone())).sum()
-            + lit(1.5) * expr.clone().filter(self.clone().equal(C22.clone())).sum()
-            + lit(2) * expr.clone().filter(self.clone().equal(C24.clone())).sum()
-    }
-
     /// Polyunsaturated fatty acids to saturated fatty acids ratio (PUFA / SFA).
     ///
     /// All unsaturated fatty acids having only one unsaturated bond.
