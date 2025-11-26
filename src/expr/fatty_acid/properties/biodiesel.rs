@@ -1,37 +1,73 @@
 use crate::prelude::*;
 use polars::prelude::*;
-use std::num::NonZeroI8;
 
-/// Complex fatty acid indices.
-///
-/// Nutritional indices.
-impl FattyAcidExpr {
+/// Fatty acids biodiesel properties.
+pub trait BiodieselProperties {
+    /// Cetane number (CN)
+    ///
+    /// `CN = -0.1209 * DU + 65.0958` ([Wang *et al.*, 2012])
+    fn cetane_number(self, expr: Expr) -> Expr;
+
+    /// Cold filter plugging point (CFPP)
+    ///
+    /// `CFPP = 3.1417 * LCSF - 16.477` ([Ramos *et al.*, 2009])
+    fn cold_filter_plugging_point(self, expr: Expr) -> Expr;
+
     /// Degree of unsaturation (DU)
     ///
     /// `DU = w_{monounsaturated} + 2 * w_{polyunsaturated(2)} + 3 * w_{polyunsaturated(3)} + 4 * w_{polyunsaturated(4)}` ([Wang *et al.*, 2012])
-    pub fn degree_of_unsaturation(self, expr: Expr) -> Expr {
-        self.clone().monounsaturated(expr.clone())
-            + lit(2)
-                * expr
-                    .clone()
-                    .clone()
-                    .filter(self.clone().indices().list().len().eq(2))
-                    .sum()
-            + lit(3)
-                * expr
-                    .clone()
-                    .filter(self.clone().indices().list().len().eq(3))
-                    .sum()
-            + lit(4) * expr.filter(self.clone().indices().list().len().eq(4)).sum()
+    fn degree_of_unsaturation(self, expr: Expr) -> Expr;
 
-        // + lit(3) * self.polyunsaturated(expr)
-        // * self.clone().polyunsaturated(expr.clone())
+    /// Iodine value (IV)
+    ///
+    /// `IV = 0.6683 * DU + 25.0364` ([Wang *et al.*, 2012])
+    fn iodine_value(self, expr: Expr) -> Expr;
+
+    /// Long Chain Saturated Factor (LCSF)
+    ///
+    /// `LCSF = 0.1 * w_{C16:0} + 0.5 * w_{C18:0} + 1 * w_{C20:0} + 1.5 * w_{C22:0} + 2 * w_{C24:0}` ([Ramos *et al.*, 2009])
+    fn long_chain_saturated_factor(self, expr: Expr) -> Expr;
+
+    ///  Oxidation stability (OS)
+    ///   
+    /// `OS = -0.0384 * DU + 7.770` ([Wang *et al.*, 2012])
+    fn oxidation_stability(self, expr: Expr) -> Expr;
+}
+
+impl BiodieselProperties for FattyAcidExpr {
+    fn cetane_number(self, expr: Expr) -> Expr {
+        (lit(-0.1209) * self.degree_of_unsaturation(expr) + lit(0.650958)).alias("CetaneNumber")
     }
 
-    /// Cetane number (CN)
-    ///
-    /// $CN = -0.1209 * DU + 65.0958$ ([Wang *et al.*, 2012])
-    pub fn cetane_number(self, expr: Expr) -> Expr {
-        (lit(-0.1209) * self.degree_of_unsaturation(expr) + lit(0.650958)).alias("CetaneNumber")
+    fn cold_filter_plugging_point(self, expr: Expr) -> Expr {
+        (lit(3.1417) * self.long_chain_saturated_factor(expr) - lit(0.16477))
+            .alias("ColdFilterPluggingPoint")
+    }
+
+    fn degree_of_unsaturation(self, expr: Expr) -> Expr {
+        (self.clone().monounsaturated(expr.clone())
+            + lit(2) * self.clone().dienoics(expr.clone())
+            + lit(3) * self.clone().trienoic(expr.clone())
+            + lit(4) * self.tetraenoics(expr))
+        .alias("DegreeOfUnsaturation")
+    }
+
+    fn iodine_value(self, expr: Expr) -> Expr {
+        (lit(0.6683) * self.degree_of_unsaturation(expr) + lit(0.250364)).alias("IodineValue")
+    }
+
+    fn long_chain_saturated_factor(self, expr: Expr) -> Expr {
+        let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
+        let c18 = expr.clone().filter(self.clone().equal(C18.clone())).sum();
+        let c20 = expr.clone().filter(self.clone().equal(C20.clone())).sum();
+        let c22 = expr.clone().filter(self.clone().equal(C22.clone())).sum();
+        let c24 = expr.filter(self.equal(C24.clone())).sum();
+        (lit(0.1) * c16 + lit(0.5) * c18 + lit(1) * c20 + lit(1.5) * c22 + lit(2) * c24)
+            .alias("LongChainSaturatedFactor")
+    }
+
+    fn oxidation_stability(self, expr: Expr) -> Expr {
+        (lit(-0.0384) * self.degree_of_unsaturation(expr) + lit(0.07770))
+            .alias("OxidationStability")
     }
 }

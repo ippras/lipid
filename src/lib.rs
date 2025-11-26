@@ -72,6 +72,8 @@ impl SeriesExt for Series {
 }
 
 pub mod prelude {
+    #[cfg(feature = "biodiesel")]
+    pub use crate::expr::fatty_acid::properties::biodiesel::BiodieselProperties;
     pub use crate::{
         // bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
         ColumnExt,

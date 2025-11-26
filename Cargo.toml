@@ -39,9 +39,19 @@ name = "compare"
 # name = "expr"
 
 [features]
-default = ["atomic", "ecl", "ecn", "indices", "map", "mass", "select"]
+default = [
+    "atomic",
+    "biodiesel",
+    "ecl",
+    "ecn",
+    "indices",
+    "map",
+    "mass",
+    "select",
+]
 
 atomic = []
+biodiesel = []
 ecl = []
 ecn = []
 indices = []

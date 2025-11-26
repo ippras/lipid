@@ -3,32 +3,64 @@ use polars::prelude::*;
 use std::num::NonZeroI8;
 
 impl FattyAcidExpr {
-    pub fn is_enoics(self, n: u8) -> Expr {
-        self.indices().list().len().eq(n)
+    pub fn is_monoenoic(self) -> Expr {
+        self.indices().list().len().eq(1).alias("IsMonoenoic")
     }
 
-    pub fn is_monoenoics(self) -> Expr {
-        self.is_enoics(1).alias("IsMonoenoics")
+    pub fn is_dienoic(self) -> Expr {
+        self.indices().list().len().eq(2).alias("IsDienoic")
     }
 
-    pub fn is_dienoics(self) -> Expr {
-        self.is_enoics(2).alias("IsDienoics")
+    pub fn is_trienoic(self) -> Expr {
+        self.indices().list().len().eq(3).alias("IsTrienoic")
     }
 
-    pub fn is_trienoics(self) -> Expr {
-        self.is_enoics(3).alias("IsTrienoics")
+    pub fn is_tetraenoic(self) -> Expr {
+        self.indices().list().len().eq(4).alias("IsTetraenoic")
     }
 
-    pub fn is_tetraenoics(self) -> Expr {
-        self.is_enoics(4).alias("IsTetraenoics")
+    pub fn is_pentaenoic(self) -> Expr {
+        self.indices().list().len().eq(5).alias("IsPentaenoic")
     }
 
-    pub fn is_pentaenoics(self) -> Expr {
-        self.is_enoics(5).alias("IsPentaenoics")
+    pub fn is_hexaenoic(self) -> Expr {
+        self.indices().list().len().eq(6).alias("IsHexaenoic")
     }
 
-    pub fn is_hexaenoics(self) -> Expr {
-        self.is_enoics(6).alias("IsHexaenoics")
+    pub fn monoenoics(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_monoenoic())
+            .sum()
+            .alias("Monoenoics")
+    }
+
+    pub fn dienoics(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_dienoic())
+            .sum()
+            .alias("Dienoics")
+    }
+
+    pub fn trienoic(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_trienoic())
+            .sum()
+            .alias("Trienoics")
+    }
+
+    pub fn tetraenoics(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_tetraenoic())
+            .sum()
+            .alias("Tetraenoics")
+    }
+
+    pub fn pentaenoics(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_pentaenoic())
+            .sum()
+            .alias("Pentaenoics")
+    }
+
+    pub fn hexaenoics(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_hexaenoic())
+            .sum()
+            .alias("Hexaenoics")
     }
 }
 
@@ -51,8 +83,8 @@ impl FattyAcidExpr {
     /// Polyunsaturated fatty acids (PUFA).
     ///
     /// All unsaturated fatty acids having more than one unsaturated bond.
-    pub fn polyunsaturated(self, expr: Expr, count: Option<IdxSize>) -> Expr {
-        expr.filter(self.clone().is_polyunsaturated(count))
+    pub fn polyunsaturated(self, expr: Expr) -> Expr {
+        expr.filter(self.clone().is_polyunsaturated())
             .sum()
             .alias("Polyunsaturated")
     }
@@ -133,7 +165,7 @@ impl FattyAcidExpr {
             .clone()
             .filter(self.clone().equal(C18DC9.clone()))
             .sum();
-        let pufa = self.polyunsaturated(expr, None);
+        let pufa = self.polyunsaturated(expr);
         ((c18dc9 + pufa) / (c12 + c14 + c16)).alias("HypocholesterolemicToHypercholesterolemic")
     }
 
@@ -160,14 +192,14 @@ impl FattyAcidExpr {
             .clone()
             .filter(
                 self.clone()
-                    .is_polyunsaturated(None)
+                    .is_polyunsaturated()
                     .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         let pufa_6 = expr
             .filter(
                 self.clone()
-                    .is_polyunsaturated(None)
+                    .is_polyunsaturated()
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
@@ -205,7 +237,7 @@ impl FattyAcidExpr {
     /// All unsaturated fatty acids having only one unsaturated bond.
     pub fn polyunsaturated_to_saturated(self, expr: Expr) -> Expr {
         let sfa = self.clone().saturated(expr.clone());
-        let pufa = self.polyunsaturated(expr, None);
+        let pufa = self.polyunsaturated(expr);
         (pufa / sfa).alias("PolyunsaturatedToSaturated")
     }
 
@@ -217,14 +249,14 @@ impl FattyAcidExpr {
             .clone()
             .filter(
                 self.clone()
-                    .is_polyunsaturated(None)
+                    .is_polyunsaturated()
                     .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         let pufa_6 = expr
             .filter(
                 self.clone()
-                    .is_polyunsaturated(None)
+                    .is_polyunsaturated()
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
