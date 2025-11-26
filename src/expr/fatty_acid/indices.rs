@@ -51,8 +51,8 @@ impl FattyAcidExpr {
     /// Polyunsaturated fatty acids (PUFA).
     ///
     /// All unsaturated fatty acids having more than one unsaturated bond.
-    pub fn polyunsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_polyunsaturated())
+    pub fn polyunsaturated(self, expr: Expr, count: Option<IdxSize>) -> Expr {
+        expr.filter(self.clone().is_polyunsaturated(count))
             .sum()
             .alias("Polyunsaturated")
     }
@@ -88,13 +88,6 @@ impl FattyAcidExpr {
 ///
 /// Nutritional indices.
 impl FattyAcidExpr {
-    /// Degree of unsaturation (DU).
-    ///
-    /// `1 * (% monounsaturated) + 2 * (% polyunsaturated)`
-    pub fn degree_of_unsaturation(self, expr: Expr) -> Expr {
-        self.clone().monounsaturated(expr.clone()) + lit(2) * self.polyunsaturated(expr)
-    }
-
     /// Sum of eicosapentaenoic acid and docosahexaenoic acid (EPA + DHA).
     ///
     /// `C22:6(n-3) + C20:5(n-3)`
@@ -140,7 +133,7 @@ impl FattyAcidExpr {
             .clone()
             .filter(self.clone().equal(C18DC9.clone()))
             .sum();
-        let pufa = self.polyunsaturated(expr);
+        let pufa = self.polyunsaturated(expr, None);
         ((c18dc9 + pufa) / (c12 + c14 + c16)).alias("HypocholesterolemicToHypercholesterolemic")
     }
 
@@ -167,14 +160,14 @@ impl FattyAcidExpr {
             .clone()
             .filter(
                 self.clone()
-                    .is_polyunsaturated()
+                    .is_polyunsaturated(None)
                     .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         let pufa_6 = expr
             .filter(
                 self.clone()
-                    .is_polyunsaturated()
+                    .is_polyunsaturated(None)
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();
@@ -212,7 +205,7 @@ impl FattyAcidExpr {
     /// All unsaturated fatty acids having only one unsaturated bond.
     pub fn polyunsaturated_to_saturated(self, expr: Expr) -> Expr {
         let sfa = self.clone().saturated(expr.clone());
-        let pufa = self.polyunsaturated(expr);
+        let pufa = self.polyunsaturated(expr, None);
         (pufa / sfa).alias("PolyunsaturatedToSaturated")
     }
 
@@ -224,14 +217,14 @@ impl FattyAcidExpr {
             .clone()
             .filter(
                 self.clone()
-                    .is_polyunsaturated()
+                    .is_polyunsaturated(None)
                     .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         let pufa_6 = expr
             .filter(
                 self.clone()
-                    .is_polyunsaturated()
+                    .is_polyunsaturated(None)
                     .and(self.is_unsaturated(NonZeroI8::new(-6))),
             )
             .sum();

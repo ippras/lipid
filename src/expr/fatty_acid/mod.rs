@@ -77,8 +77,13 @@ impl FattyAcidExpr {
 
     /// Is polyunsaturated
     #[inline]
-    pub fn is_polyunsaturated(self) -> Expr {
-        self.indices().list().len().gt(1).alias("IsPolyunsaturated")
+    pub fn is_polyunsaturated(self, count: Option<IdxSize>) -> Expr {
+        let expr = self.indices().list().len();
+        match count {
+            Some(count) => expr.eq(count),
+            None => expr.gt(1),
+        }
+        .alias("IsPolyunsaturated")
     }
 
     /// Is cis
@@ -243,6 +248,7 @@ mod equal;
 mod factors;
 mod indices;
 mod kind;
+mod properties;
 #[cfg(feature = "mass")]
 mod relative_atomic_mass;
 #[cfg(feature = "select")]

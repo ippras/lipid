@@ -20,7 +20,9 @@ fn monounsaturated() -> PolarsResult<()> {
 fn polyunsaturated() -> PolarsResult<()> {
     let data_frame = fatty_acids_with_float()?
         .lazy()
-        .select([col(FATTY_ACID).fatty_acid().polyunsaturated(col("Float"))])
+        .select([col(FATTY_ACID)
+            .fatty_acid()
+            .polyunsaturated(col("Float"), None)])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
     // 888
@@ -60,7 +62,7 @@ fn polyunsaturated_3() -> PolarsResult<()> {
         .lazy()
         .select([col("Float")
             .filter(
-                col(FATTY_ACID).fatty_acid().is_polyunsaturated().and(
+                col(FATTY_ACID).fatty_acid().is_polyunsaturated(None).and(
                     col(FATTY_ACID)
                         .fatty_acid()
                         .is_unsaturated(NonZeroI8::new(-3)),
@@ -84,7 +86,7 @@ fn polyunsaturated_6() -> PolarsResult<()> {
         .lazy()
         .select([col("Float")
             .filter(
-                col(FATTY_ACID).fatty_acid().is_polyunsaturated().and(
+                col(FATTY_ACID).fatty_acid().is_polyunsaturated(None).and(
                     col(FATTY_ACID)
                         .fatty_acid()
                         .is_unsaturated(NonZeroI8::new(-6)),

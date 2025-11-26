@@ -4,7 +4,7 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acid($identifier.clone())?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().is_polyunsaturated()])
+            .select([col(FATTY_ACID).fatty_acid().is_polyunsaturated(None)])
             .collect()?;
         let is_polyunsaturated = data_frame["IsPolyunsaturated"].bool()?.get(0).unwrap();
         assert!(is_polyunsaturated == $expected);

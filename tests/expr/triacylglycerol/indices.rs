@@ -55,7 +55,7 @@ fn polyunsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .polyunsaturated(col("Float"))])
+            .polyunsaturated(col("Float"), None)])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
     // 1207
