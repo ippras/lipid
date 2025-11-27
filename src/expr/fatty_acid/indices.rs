@@ -238,6 +238,6 @@ impl FattyAcidExpr {
     ///
     /// `1 * (% monoenoics) + 2 * (% dienoics) + 3 * (% trienoics) + 4 * (% tetraenoics) + 5 * (% pentaenoics) + 6 * (% hexaenoics) ...`
     pub fn unsaturation_index(self, expr: Expr) -> Expr {
-        (self.unsaturation() * expr).sum()
+        (expr * self.unsaturation()).sum()
     }
 }
