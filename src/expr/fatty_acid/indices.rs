@@ -91,12 +91,12 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids
     pub fn unsaturated(self, expr: Expr, offset: Option<NonZeroI8>) -> Expr {
-        let name = match offset {
-            Some(offset) if offset.is_negative() => format!("Unsaturated{offset}").into(),
-            Some(offset) if offset.is_positive() => format!("Unsaturated{offset}").into(),
-            _ => PlSmallStr::from_static("Unsaturated"),
-        };
-        expr.filter(self.is_unsaturated(offset)).sum().alias(name)
+        // let name = match offset {
+        //     Some(offset) if offset.is_negative() => format!("Unsaturated{offset}").into(),
+        //     Some(offset) if offset.is_positive() => format!("Unsaturated{offset}").into(),
+        //     _ => PlSmallStr::from_static("Unsaturated"),
+        // };
+        expr.filter(self.is_unsaturated(offset)).sum()
     }
 }
 
