@@ -9,6 +9,7 @@ mod hydrogen;
 #[cfg(feature = "indices")]
 mod indices;
 mod is_cis;
+mod is_conjugated;
 mod is_monounsaturated;
 mod is_polyunsaturated;
 mod is_saturated;

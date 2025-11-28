@@ -57,20 +57,88 @@ impl FattyAcidExpr {
 /// Fatty acid indices
 /// ∑SFA, ∑MUFA, ∑PUFA, ∑n-6 PUFA, ∑n-3 PUFA, and n-6 PUFA/n-3 PUFA. The present review may help researchers to evaluate the
 
+impl FattyAcidExpr {
+    /// Is conjugated
+    ///
+    /// `strict`
+    /// * `true` - only double bounds,
+    /// * `false` - double and triple bounds.
+    #[inline]
+    pub fn is_conjugated(self, strict: bool) -> Expr {
+        let index = if strict {
+            ternary_expr(
+                element().struct_().field_by_name(TRIPLE),
+                lit(NULL),
+                element().struct_().field_by_name(INDEX),
+            )
+        } else {
+            element().struct_().field_by_name(INDEX)
+        };
+        let indices = self.indices().list().eval(index);
+        (indices.clone() - indices.list().shift(lit(1)))
+            .list()
+            .contains(lit(2), false)
+    }
+
+    /// Is saturated
+    #[inline]
+    pub fn is_saturated(self) -> Expr {
+        self.indices().list().len().eq(0)
+    }
+
+    /// Is unsaturated
+    #[inline]
+    pub fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Expr {
+        let indices = self.clone().indices().list();
+        match offset {
+            Some(offset) => match offset.get() {
+                omega @ ..0 => {
+                    let last = indices.last().struct_().field_by_name(INDEX);
+                    last.eq_missing(self.carbon() - lit(omega.unsigned_abs()))
+                }
+                delta @ 0.. => {
+                    let first = indices.first().struct_().field_by_name(INDEX);
+                    first.eq_missing(delta)
+                }
+            },
+            None => indices.len().neq(0),
+        }
+    }
+
+    /// Is monounsaturated
+    #[inline]
+    pub fn is_monounsaturated(self) -> Expr {
+        self.indices().list().len().eq(1)
+    }
+
+    /// Is polyunsaturated
+    #[inline]
+    pub fn is_polyunsaturated(self) -> Expr {
+        self.indices().list().len().gt(1)
+    }
+}
+
 /// Simple fatty acid indices.
 impl FattyAcidExpr {
+    /// Conjugated fatty acids (CFA).
+    ///
+    /// Conjugated fatty acids have two or more conjugated double bonds.
+    pub fn conjugated(self, expr: Expr) -> Expr {
+        expr.filter(self.is_conjugated(true)).sum()
+    }
+
     /// Monounsaturated fatty acids (MUFA).
     ///
     /// All unsaturated fatty acids having only one unsaturated bond.
     pub fn monounsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_monounsaturated()).sum()
+        expr.filter(self.is_monounsaturated()).sum()
     }
 
     /// Polyunsaturated fatty acids (PUFA).
     ///
     /// All unsaturated fatty acids having more than one unsaturated bond.
     pub fn polyunsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_polyunsaturated()).sum()
+        expr.filter(self.is_polyunsaturated()).sum()
     }
 
     /// Saturated fatty acids (SFA).
@@ -91,11 +159,6 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids
     pub fn unsaturated(self, expr: Expr, offset: Option<NonZeroI8>) -> Expr {
-        // let name = match offset {
-        //     Some(offset) if offset.is_negative() => format!("Unsaturated{offset}").into(),
-        //     Some(offset) if offset.is_positive() => format!("Unsaturated{offset}").into(),
-        //     _ => PlSmallStr::from_static("Unsaturated"),
-        // };
         expr.filter(self.is_unsaturated(offset)).sum()
     }
 }

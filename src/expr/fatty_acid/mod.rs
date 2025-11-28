@@ -41,50 +41,13 @@ impl FattyAcidExpr {
 }
 
 impl FattyAcidExpr {
-    /// Is saturated
-    #[inline]
-    pub fn is_saturated(self) -> Expr {
-        self.indices().list().len().eq(0)
-    }
-
-    /// Is unsaturated
-    #[inline]
-    pub fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Expr {
-        let indices = self.clone().indices().list();
-        match offset {
-            Some(offset) => match offset.get() {
-                omega @ ..0 => {
-                    let last = indices.last().struct_().field_by_name(INDEX);
-                    last.eq_missing(self.carbon() - lit(omega.unsigned_abs()))
-                }
-                delta @ 0.. => {
-                    let first = indices.first().struct_().field_by_name(INDEX);
-                    first.eq_missing(delta)
-                }
-            },
-            None => indices.len().neq(0),
-        }
-    }
-
-    /// Is monounsaturated
-    #[inline]
-    pub fn is_monounsaturated(self) -> Expr {
-        self.indices().list().len().eq(1)
-    }
-
-    /// Is polyunsaturated
-    #[inline]
-    pub fn is_polyunsaturated(self) -> Expr {
-        self.indices().list().len().gt(1)
-    }
-
     /// Is cis
     #[inline]
     pub fn is_cis(self) -> Expr {
         self.clone().indices().list().len().gt(0).and(
             self.indices()
                 .list()
-                .eval(col("").struct_().field_by_name(PARITY))
+                .eval(element().struct_().field_by_name(PARITY))
                 .list()
                 .any()
                 .not(),
@@ -96,7 +59,7 @@ impl FattyAcidExpr {
     pub fn is_trans(self) -> Expr {
         self.indices()
             .list()
-            .eval(col("").struct_().field_by_name(PARITY))
+            .eval(element().struct_().field_by_name(PARITY))
             .list()
             .any()
     }
@@ -114,7 +77,7 @@ impl FattyAcidExpr {
     pub fn double_bounds_unsaturation(self) -> Expr {
         self.indices()
             .list()
-            .eval(col("").struct_().field_by_name(TRIPLE).not())
+            .eval(element().struct_().field_by_name(TRIPLE).not())
             .list()
             .sum()
     }
@@ -125,7 +88,7 @@ impl FattyAcidExpr {
         self.indices()
             .list()
             .eval(
-                col("")
+                element()
                     .struct_()
                     .field_by_name(TRIPLE)
                     .cast(DataType::UInt8)
