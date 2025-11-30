@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use polars::prelude::*;
+use polars::{chunked_array::builder::AnonymousOwnedListBuilder, prelude::*};
 use polars_ext::prelude::ExprExt;
 use std::num::NonZeroI8;
 
@@ -109,6 +109,39 @@ impl From<FattyAcidExpr> for Expr {
 impl From<AnyValue<'static>> for FattyAcidExpr {
     fn from(value: AnyValue<'static>) -> Self {
         Self(lit(Scalar::new(data_type!(FATTY_ACID), value)))
+    }
+}
+
+impl TryFrom<&FattyAcid> for FattyAcidExpr {
+    type Error = PolarsError;
+
+    fn try_from(value: &FattyAcid) -> Result<Self, Self::Error> {
+        let length = value.unsaturated.len();
+        let mut index = PrimitiveChunkedBuilder::<UInt8Type>::new(INDEX.into(), length);
+        let mut triple = BooleanChunkedBuilder::new(TRIPLE.into(), length);
+        let mut parity = BooleanChunkedBuilder::new(PARITY.into(), length);
+        for unsaturated in &value.unsaturated {
+            index.append_option(unsaturated.index);
+            triple.append_option(unsaturated.triple);
+            parity.append_option(unsaturated.parity);
+        }
+        let indices = StructChunked::from_series(
+            PlSmallStr::EMPTY,
+            length,
+            [
+                index.finish().into_series(),
+                triple.finish().into_series(),
+                parity.finish().into_series(),
+            ]
+            .iter(),
+        )?;
+        Ok(Self::from(AnyValue::StructOwned(Box::new((
+            vec![
+                AnyValue::UInt8(value.carbon),
+                AnyValue::List(indices.into_series()),
+            ],
+            vec![field!(CARBON), field!(INDICES)],
+        )))))
     }
 }
 
