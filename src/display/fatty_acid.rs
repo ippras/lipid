@@ -1,7 +1,8 @@
 use std::fmt::{Display, Formatter, Result, Write as _};
 
 /// Fatty acid
-#[derive(Clone, Debug, Default)]
+#[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct FattyAcid {
     pub carbon: u8,
     pub unsaturated: Vec<Unsaturated>,
@@ -25,7 +26,8 @@ impl FattyAcid {
 }
 
 /// Unsaturated bound
-#[derive(Clone, Copy, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Unsaturated {
     pub index: Option<u8>,
     pub triple: Option<bool>,
