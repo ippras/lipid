@@ -31,6 +31,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "alloca"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e5a7d05ea6aea7e9e64d25b9156ba2fee3fdd659e34e41063cd2fc7cd020d7f4"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "allocator-api2"
 version = "0.2.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -72,6 +81,7 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "70f13d10a41ac8d2ec79ee34178d61e6f47a29c2edfe7ef1721c7383b0359e65"
 dependencies = [
+ "half",
  "num-traits",
 ]
 
@@ -463,10 +473,11 @@ dependencies = [
 
 [[package]]
 name = "criterion"
-version = "0.7.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e1c047a62b0cc3e145fa84415a3191f628e980b194c2755aa12300a4e6cbd928"
+checksum = "4d883447757bb0ee46f233e9dc22eb84d93a9508c9b868687b274fc431d886bf"
 dependencies = [
+ "alloca",
  "anes",
  "cast",
  "ciborium",
@@ -475,6 +486,7 @@ dependencies = [
  "itertools 0.13.0",
  "num-traits",
  "oorandom",
+ "page_size",
  "plotters",
  "rayon",
  "regex",
@@ -486,9 +498,9 @@ dependencies = [
 
 [[package]]
 name = "criterion-plot"
-version = "0.6.0"
+version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9b1bcc0dc7dfae599d84ad0b1a55f80cde8af3725da8313b528da95ef783e338"
+checksum = "ed943f81ea2faa8dcecbbfa50164acf95d555afec96a27871663b300e387b2e4"
 dependencies = [
  "cast",
  "itertools 0.13.0",
@@ -889,8 +901,11 @@ version = "2.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ea2d84b969582b4b1864a92dc5d27cd2b77b622a8d79306834f1be5ba20d84b"
 dependencies = [
+ "bytemuck",
  "cfg-if",
  "crunchy",
+ "num-traits",
+ "serde",
  "zerocopy",
 ]
 
@@ -1368,6 +1383,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "num-derive"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed3955f1a9c7c0c15e092f9c887db08b1fc683305fdf6eb6684f22555355e202"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "num-traits"
 version = "0.2.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1438,6 +1464,16 @@ name = "openssl-probe"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d05e27ee213611ffe7d6348b942e8f942b37114c00cc03cec254295a4a17852e"
+
+[[package]]
+name = "page_size"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "30d5b2194ed13191c1999ae0704b7839fb18384fa22e49b57eeaa97d79ce40da"
+dependencies = [
+ "libc",
+ "winapi",
+]
 
 [[package]]
 name = "parking"
@@ -1557,7 +1593,7 @@ dependencies = [
 [[package]]
 name = "polars"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "getrandom 0.2.16",
  "getrandom 0.3.4",
@@ -1577,7 +1613,7 @@ dependencies = [
 [[package]]
 name = "polars-arrow"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "atoi_simd",
  "bitflags",
@@ -1589,6 +1625,7 @@ dependencies = [
  "ethnum",
  "getrandom 0.2.16",
  "getrandom 0.3.4",
+ "half",
  "hashbrown 0.16.0",
  "itoa",
  "lz4",
@@ -1618,7 +1655,7 @@ dependencies = [
 [[package]]
 name = "polars-compute"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "atoi_simd",
  "bytemuck",
@@ -1642,7 +1679,7 @@ dependencies = [
 [[package]]
 name = "polars-core"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
  "boxcar",
@@ -1677,7 +1714,7 @@ dependencies = [
 [[package]]
 name = "polars-dtype"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "boxcar",
  "hashbrown 0.16.0",
@@ -1691,7 +1728,7 @@ dependencies = [
 [[package]]
 name = "polars-error"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "object_store",
  "parking_lot",
@@ -1704,7 +1741,7 @@ dependencies = [
 [[package]]
 name = "polars-expr"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
  "hashbrown 0.16.0",
@@ -1728,7 +1765,7 @@ dependencies = [
 [[package]]
 name = "polars-io"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "async-trait",
  "atoi_simd",
@@ -1766,7 +1803,7 @@ dependencies = [
 [[package]]
 name = "polars-lazy"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
  "chrono",
@@ -1790,7 +1827,7 @@ dependencies = [
 [[package]]
 name = "polars-mem-engine"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "memmap2",
  "polars-arrow",
@@ -1809,7 +1846,7 @@ dependencies = [
 [[package]]
 name = "polars-ops"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "argminmax",
  "base64",
@@ -1842,7 +1879,7 @@ dependencies = [
 [[package]]
 name = "polars-parquet"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "async-stream",
  "base64",
@@ -1856,6 +1893,7 @@ dependencies = [
  "polars-error",
  "polars-parquet-format",
  "polars-utils",
+ "regex",
  "serde",
  "simdutf8",
  "streaming-decompression",
@@ -1874,9 +1912,10 @@ dependencies = [
 [[package]]
 name = "polars-plan"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
+ "blake3",
  "bytemuck",
  "bytes",
  "chrono",
@@ -1907,7 +1946,7 @@ dependencies = [
 [[package]]
 name = "polars-row"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
  "bytemuck",
@@ -1921,7 +1960,7 @@ dependencies = [
 [[package]]
 name = "polars-schema"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "indexmap",
  "polars-error",
@@ -1933,7 +1972,7 @@ dependencies = [
 [[package]]
 name = "polars-sql"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "bitflags",
  "hex",
@@ -1953,7 +1992,7 @@ dependencies = [
 [[package]]
 name = "polars-stream"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "async-channel",
  "async-trait",
@@ -1966,6 +2005,7 @@ dependencies = [
  "crossbeam-utils",
  "futures",
  "memmap2",
+ "num-traits",
  "parking_lot",
  "percent-encoding",
  "pin-project-lite",
@@ -1992,7 +2032,7 @@ dependencies = [
 [[package]]
 name = "polars-time"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
  "atoi_simd",
  "bytemuck",
@@ -2015,8 +2055,9 @@ dependencies = [
 [[package]]
 name = "polars-utils"
 version = "0.52.0"
-source = "git+https://github.com/pola-rs/polars?rev=fea5335#fea5335e5befc493af208a34c6b4162a1cbd2798"
+source = "git+https://github.com/pola-rs/polars?rev=05f6f2d#05f6f2db49c6721f8208b3bbcca5ec54568e34c4"
 dependencies = [
+ "argminmax",
  "bincode",
  "bytemuck",
  "bytes",
@@ -2024,10 +2065,12 @@ dependencies = [
  "either",
  "flate2",
  "foldhash 0.2.0",
+ "half",
  "hashbrown 0.16.0",
  "indexmap",
  "libc",
  "memmap2",
+ "num-derive",
  "num-traits",
  "polars-error",
  "rand",
@@ -2047,7 +2090,7 @@ dependencies = [
 [[package]]
 name = "polars_ext"
 version = "0.6.0"
-source = "git+https://github.com/kgv/polars_ext?branch=fea5335#7f31b5cd1c18a1302a8b369abe5bc4e58787ffe4"
+source = "git+https://github.com/kgv/polars_ext?branch=05f6f2d#86d2f4a2a5356c04500007b89ed8fb7c1bd2c5c0"
 dependencies = [
  "ahash",
  "polars",
@@ -2653,19 +2696,20 @@ dependencies = [
 
 [[package]]
 name = "sqlparser"
-version = "0.53.0"
+version = "0.60.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "05a528114c392209b3264855ad491fcce534b94a38771b0a0b97a79379275ce8"
+checksum = "505aa16b045c4c1375bf5f125cce3813d0176325bfe9ffc4a903f423de7774ff"
 dependencies = [
  "log",
+ "recursive",
  "sqlparser_derive",
 ]
 
 [[package]]
 name = "sqlparser_derive"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "da5fc6819faabb412da764b99d3b713bb55083c11e7e0c00144d386cd6a1939c"
+checksum = "028e551d5e270b31b9f3ea271778d9d827148d4287a5d96167b6bb9787f5cc38"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3184,6 +3228,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
 name = "winapi-util"
 version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3191,6 +3251,12 @@ checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
  "windows-sys 0.61.2",
 ]
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 
 [[package]]
 name = "windows-core"
