@@ -47,11 +47,12 @@ impl FattyAcidExpr {
         self.clone().indices().list().len().gt(0).and(
             self.indices()
                 .list()
-                .eval(element().struct_().field_by_name(PARITY))
-                .list()
-                .any()
-                .not(),
+                .agg(element().struct_().field_by_name(PARITY).any(false).not()),
         )
+        // .eval(element().struct_().field_by_name(PARITY))
+        // .list()
+        // .any()
+        // .not(),
     }
 
     /// Is trans
@@ -59,10 +60,11 @@ impl FattyAcidExpr {
     pub fn is_trans(self) -> Expr {
         self.indices()
             .list()
-            .eval(element().struct_().field_by_name(PARITY))
-            .list()
-            .any()
+            .agg(element().struct_().field_by_name(PARITY).any(false))
     }
+    // .eval(element().struct_().field_by_name(PARITY))
+    // .list()
+    // .any()
 }
 
 impl FattyAcidExpr {
@@ -117,9 +119,10 @@ impl TryFrom<&FattyAcid> for FattyAcidExpr {
 
     fn try_from(value: &FattyAcid) -> Result<Self, Self::Error> {
         let length = value.unsaturated.len();
-        let mut index = PrimitiveChunkedBuilder::<UInt8Type>::new(INDEX.into(), length);
-        let mut triple = BooleanChunkedBuilder::new(TRIPLE.into(), length);
-        let mut parity = BooleanChunkedBuilder::new(PARITY.into(), length);
+        let mut index =
+            PrimitiveChunkedBuilder::<UInt8Type>::new(PlSmallStr::from_static(INDEX), length);
+        let mut triple = BooleanChunkedBuilder::new(PlSmallStr::from_static(TRIPLE), length);
+        let mut parity = BooleanChunkedBuilder::new(PlSmallStr::from_static(PARITY), length);
         for unsaturated in &value.unsaturated {
             index.append_option(unsaturated.index);
             triple.append_option(unsaturated.triple);

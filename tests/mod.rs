@@ -370,7 +370,7 @@ fn fatty_acids_with_row_index() -> PolarsResult<DataFrame> {
 
 fn fatty_acids_with_float() -> PolarsResult<DataFrame> {
     Ok(fatty_acids()?
-        .with_column(Series::new(
+        .with_column(Column::new(
             "Float".into(),
             &[
                 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0,
@@ -483,7 +483,7 @@ fn triacylglycerols() -> PolarsResult<DataFrame> {
 
 fn triacylglycerols_with_float() -> PolarsResult<DataFrame> {
     Ok(triacylglycerols()?
-        .with_column(Series::new(
+        .with_column(Column::new(
             "Float".into(),
             &[
                 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0,

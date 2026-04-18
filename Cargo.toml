@@ -1,11 +1,11 @@
 [package]
 name = "lipid"
-version = "0.6.0"
+version = "0.7.1"
 authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
 edition = "2024"
 
 [dependencies]
-polars = { git = "https://github.com/pola-rs/polars", rev = "099564e", default-features = false, features = [
+polars = { git = "https://github.com/pola-rs/polars", rev = "bf6a425", default-features = false, features = [
     "abs",
     "cum_agg",
     "dtype-i128",
@@ -15,7 +15,6 @@ polars = { git = "https://github.com/pola-rs/polars", rev = "099564e", default-f
     "fmt_no_tty",
     "is_in",
     "lazy",
-    "list_any_all",
     "list_arithmetic",
     "list_eval",
     "log",
@@ -28,7 +27,7 @@ serde = { version = "1.0.228", features = ["derive", "std"], optional = true }
 
 atom = { git = "https://github.com/ippras/atom" }
 fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
-polars_ext = { git = "https://github.com/kgv/polars_ext", branch = "099564e" }
+polars_ext = { git = "https://github.com/kgv/polars_ext", branch = "bf6a425" }
 
 [dev-dependencies]
 criterion = { version = "0.8.1", features = ["html_reports"] }
