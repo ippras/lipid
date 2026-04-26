@@ -3,6 +3,8 @@ use polars::prelude::*;
 
 /// Triacylglycerol
 pub const TRIACYLGLYCEROL: &str = "Triacylglycerol";
+/// Stereospecific numbers
+pub const STEREOSPECIFIC_NUMBERS: &str = "StereospecificNumbers";
 /// Stereospecific numbers 1
 pub const STEREOSPECIFIC_NUMBERS1: &str = "StereospecificNumbers1";
 /// Stereospecific numbers 2
