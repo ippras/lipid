@@ -10,16 +10,6 @@ pub struct FattyAcid<T, U> {
 }
 
 impl FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>> {
-    pub fn new(
-        carbon: u8,
-        unsaturated: Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>,
-    ) -> Self {
-        Self {
-            carbon,
-            unsaturated,
-        }
-    }
-
     pub fn delta(&self) -> Delta<&Self> {
         Delta(self)
     }

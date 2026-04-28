@@ -6,13 +6,3 @@ pub struct Unsaturated<T, U, V> {
     pub triple: U,
     pub parity: V,
 }
-
-impl Unsaturated<Option<u8>, Option<bool>, Option<bool>> {
-    pub fn new(index: Option<u8>, triple: Option<bool>, parity: Option<bool>) -> Self {
-        Self {
-            index,
-            triple,
-            parity,
-        }
-    }
-}

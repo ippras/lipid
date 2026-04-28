@@ -46,7 +46,10 @@ impl FattyAcidChunked {
             .fields()?
             .iter()
             .collect();
-        Ok(Some(FattyAcid::new(carbon, unsaturated)))
+        Ok(Some(FattyAcid {
+            carbon,
+            unsaturated,
+        }))
     }
 
     #[inline]
@@ -304,7 +307,10 @@ impl FattyAcid<UInt8Chunked, ListChunked> {
                     .fields()?
                     .iter()
                     .collect();
-                Ok(Some(FattyAcid::new(carbon, unsaturated)))
+                Ok(Some(FattyAcid {
+                    carbon,
+                    unsaturated,
+                }))
             })
     }
 }
