@@ -16,7 +16,14 @@ impl TriacylglycerolChunked {
     }
 
     #[inline]
-    pub fn get(&self, idx: usize) -> PolarsResult<Triacylglycerol<Option<FattyAcid>>> {
+    pub fn get(
+        &self,
+        idx: usize,
+    ) -> PolarsResult<
+        Triacylglycerol<
+            Option<FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>,
+        >,
+    > {
         let stereospecific_number1 = self.stereospecific_number1()?.try_fatty_acid()?.get(idx)?;
         let stereospecific_number2 = self.stereospecific_number2()?.try_fatty_acid()?.get(idx)?;
         let stereospecific_number3 = self.stereospecific_number3()?.try_fatty_acid()?.get(idx)?;
@@ -110,19 +117,6 @@ impl<'a, T> Triacylglycerol<T> {
     where
         &'a T: IntoIterator,
     {
-        self.into_iter()
-    }
-}
-
-impl<'a, T: 'a> IntoIterator for &'a Triacylglycerol<T>
-where
-    &'a T: IntoIterator,
-{
-    type Item = Triacylglycerol<<&'a T as IntoIterator>::Item>;
-
-    type IntoIter = impl Iterator<Item = Self::Item>;
-
-    fn into_iter(self) -> Self::IntoIter {
         self.0[0]
             .into_iter()
             .zip(self.0[1].into_iter())
@@ -139,32 +133,45 @@ where
     }
 }
 
-impl<T: IntoIterator> IntoIterator for Triacylglycerol<T> {
-    type Item = Triacylglycerol<T::Item>;
+impl<'a, T: 'a> IntoIterator for &'a Triacylglycerol<T>
+where
+    &'a T: IntoIterator,
+{
+    type Item = Triacylglycerol<<&'a T as IntoIterator>::Item>;
 
-    type IntoIter = impl Iterator<Item = Triacylglycerol<T::Item>>;
+    type IntoIter = impl Iterator<Item = Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
-        let [
-            stereospecific_number1,
-            stereospecific_number2,
-            stereospecific_number3,
-        ] = self.0;
-        stereospecific_number1
-            .into_iter()
-            .zip(stereospecific_number2.into_iter())
-            .zip(stereospecific_number3.into_iter())
-            .map(
-                |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
-                    Triacylglycerol([
-                        stereospecific_number1,
-                        stereospecific_number2,
-                        stereospecific_number3,
-                    ])
-                },
-            )
+        self.iter()
     }
 }
+
+// impl<T: IntoIterator> IntoIterator for Triacylglycerol<T> {
+//     type Item = Triacylglycerol<T::Item>;
+
+//     type IntoIter = impl Iterator<Item = Triacylglycerol<T::Item>>;
+
+//     fn into_iter(self) -> Self::IntoIter {
+//         let [
+//             stereospecific_number1,
+//             stereospecific_number2,
+//             stereospecific_number3,
+//         ] = self.0;
+//         stereospecific_number1
+//             .into_iter()
+//             .zip(stereospecific_number2.into_iter())
+//             .zip(stereospecific_number3.into_iter())
+//             .map(
+//                 |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
+//                     Triacylglycerol([
+//                         stereospecific_number1,
+//                         stereospecific_number2,
+//                         stereospecific_number3,
+//                     ])
+//                 },
+//             )
+//     }
+// }
 
 fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
     let data_type = DataType::Struct(vec![

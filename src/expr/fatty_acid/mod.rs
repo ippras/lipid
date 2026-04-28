@@ -114,10 +114,14 @@ impl From<AnyValue<'static>> for FattyAcidExpr {
     }
 }
 
-impl TryFrom<&FattyAcid> for FattyAcidExpr {
+impl TryFrom<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>
+    for FattyAcidExpr
+{
     type Error = PolarsError;
 
-    fn try_from(value: &FattyAcid) -> Result<Self, Self::Error> {
+    fn try_from(
+        value: &FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>,
+    ) -> Result<Self, Self::Error> {
         let length = value.unsaturated.len();
         let mut index =
             PrimitiveChunkedBuilder::<UInt8Type>::new(PlSmallStr::from_static(INDEX), length);

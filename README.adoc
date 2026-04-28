@@ -1,5 +1,9 @@
 = Lipid library
 
+TODO:
+
+* INDICES -> UNSATURATED
+
 == Index
 
 `None`:: любое количество связей с неизвестными индексами

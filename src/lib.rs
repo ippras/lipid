@@ -73,14 +73,13 @@ pub mod prelude {
     #[cfg(feature = "biodiesel")]
     pub use crate::expr::fatty_acid::properties::biodiesel::BiodieselProperties;
     pub use crate::{
-        // bound::{Bound, Explicit, Isomerism, Saturated, Type, Unsaturated, Unsaturation},
-        ColumnExt,
-        DataFrameExt,
-        SeriesExt,
-        chunked_array::{FattyAcidChunked, IndicesChunked, TriacylglycerolChunked},
+        ColumnExt, DataFrameExt, SeriesExt,
+        chunked_array::{
+            fatty_acid::FattyAcidChunked, triacylglycerol::TriacylglycerolChunked,
+            unsaturated::UnsaturatedChunked,
+        },
         r#const::*,
         data_type,
-        display::{Elision, FattyAcid, Mono, Positional, Stereo, Triacylglycerol, Unsaturated},
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
             fatty_acid::{CARBON, FATTY_ACID, INDEX, INDICES, PARITY, TRIPLE},
@@ -92,6 +91,11 @@ pub mod prelude {
         },
         field,
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
+        r#struct::{
+            fatty_acid::FattyAcid,
+            triacylglycerol::{Mono, Positional, Stereo, Triacylglycerol},
+            unsaturated::Unsaturated,
+        },
         r#trait::{
             Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
             RelativeAtomicMass,
@@ -102,8 +106,8 @@ pub mod prelude {
 
 pub mod chunked_array;
 pub mod r#const;
-pub mod display;
 pub mod expr;
 pub mod kind;
 pub mod r#macro;
+pub mod r#struct;
 pub mod r#trait;
