@@ -20,8 +20,11 @@ polars = { git = "https://github.com/pola-rs/polars", rev = "bf6a425", default-f
     "log",
     "round_series",
     "serde-lazy",
+    #
+    # "concat_str",
+    # "strings",
+    #
     # "list_sets",
-    # "dtype-categorical",
 ] }
 serde = { version = "1.0.228", features = ["derive", "std"], optional = true }
 
