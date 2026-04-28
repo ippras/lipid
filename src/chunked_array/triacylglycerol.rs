@@ -106,88 +106,65 @@ impl<'a> TryFrom<&'a StructChunked> for &'a TriacylglycerolChunked {
 }
 
 impl<'a, T> Triacylglycerol<T> {
-    pub fn iter(
-        &'a self,
-    ) -> impl Iterator<
-        Item = (
-            <&'a T as IntoIterator>::Item,
-            <&'a T as IntoIterator>::Item,
-            <&'a T as IntoIterator>::Item,
-        ),
-    >
+    pub fn iter(&'a self) -> impl Iterator<Item = Triacylglycerol<<&'a T as IntoIterator>::Item>>
     where
         &'a T: IntoIterator,
     {
+        self.into_iter()
+    }
+}
+
+impl<'a, T: 'a> IntoIterator for &'a Triacylglycerol<T>
+where
+    &'a T: IntoIterator,
+{
+    type Item = Triacylglycerol<<&'a T as IntoIterator>::Item>;
+
+    type IntoIter = impl Iterator<Item = Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
         self.0[0]
             .into_iter()
             .zip(self.0[1].into_iter())
             .zip(self.0[2].into_iter())
             .map(
                 |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
-                    (
+                    Triacylglycerol([
                         stereospecific_number1,
                         stereospecific_number2,
                         stereospecific_number3,
-                    )
+                    ])
                 },
             )
-        // .map(
-        //     |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
-        //         Triacylglycerol([
-        //             stereospecific_number1,
-        //             stereospecific_number2,
-        //             stereospecific_number3,
-        //         ])
-        //     },
-        // )
     }
 }
 
-// impl<'a, T: 'a> IntoIterator for &'a Triacylglycerol<T>
-// where
-//     &'a T: IntoIterator,
-// {
-//     type Item = Triacylglycerol<<&'a T as IntoIterator>::Item>;
+impl<T: IntoIterator> IntoIterator for Triacylglycerol<T> {
+    type Item = Triacylglycerol<T::Item>;
 
-//     type IntoIter = impl Iterator<Item = Self::Item>;
+    type IntoIter = impl Iterator<Item = Triacylglycerol<T::Item>>;
 
-//     fn into_iter(self) -> Self::IntoIter {
-//         self.iter()
-//     }
-// }
-
-// impl<T: IntoIterator> Triacylglycerol<T> {
-//     pub fn iter(self) -> impl Iterator<Item = Triacylglycerol<T::Item>> {
-//         let [
-//             stereospecific_number1,
-//             stereospecific_number2,
-//             stereospecific_number3,
-//         ] = self.0;
-//         stereospecific_number1
-//             .into_iter()
-//             .zip(stereospecific_number2.into_iter())
-//             .zip(stereospecific_number3.into_iter())
-//             .map(
-//                 |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
-//                     Triacylglycerol([
-//                         stereospecific_number1,
-//                         stereospecific_number2,
-//                         stereospecific_number3,
-//                     ])
-//                 },
-//             )
-//     }
-// }
-
-// impl<T: IntoIterator> IntoIterator for Triacylglycerol<T> {
-//     type Item = Triacylglycerol<T::Item>;
-
-//     type IntoIter = impl Iterator<Item = Triacylglycerol<T::Item>>;
-
-//     fn into_iter(self) -> Self::IntoIter {
-//         self.iter()
-//     }
-// }
+    fn into_iter(self) -> Self::IntoIter {
+        let [
+            stereospecific_number1,
+            stereospecific_number2,
+            stereospecific_number3,
+        ] = self.0;
+        stereospecific_number1
+            .into_iter()
+            .zip(stereospecific_number2.into_iter())
+            .zip(stereospecific_number3.into_iter())
+            .map(
+                |((stereospecific_number1, stereospecific_number2), stereospecific_number3)| {
+                    Triacylglycerol([
+                        stereospecific_number1,
+                        stereospecific_number2,
+                        stereospecific_number3,
+                    ])
+                },
+            )
+    }
+}
 
 fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
     let data_type = DataType::Struct(vec![
