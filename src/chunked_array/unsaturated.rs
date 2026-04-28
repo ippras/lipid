@@ -15,6 +15,10 @@ impl UnsaturatedChunked {
         self.0.len()
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+
     pub fn index(&self) -> PolarsResult<UInt8Chunked> {
         Ok(self.0.field_by_name(INDEX)?.u8()?.clone())
     }
@@ -45,8 +49,8 @@ impl Unsaturated<UInt8Chunked, BooleanChunked, BooleanChunked> {
     ) -> impl Iterator<Item = Unsaturated<Option<u8>, Option<bool>, Option<bool>>> {
         self.index
             .into_iter()
-            .zip(self.triple.into_iter())
-            .zip(self.parity.into_iter())
+            .zip(&self.triple)
+            .zip(&self.parity)
             .map(|((index, triple), parity)| Unsaturated {
                 index,
                 triple,

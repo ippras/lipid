@@ -1,7 +1,6 @@
 use crate::prelude::*;
-use polars::{chunked_array::builder::AnonymousOwnedListBuilder, prelude::*};
+use polars::prelude::*;
 use polars_ext::prelude::ExprExt;
-use std::num::NonZeroI8;
 
 /// Fatty acid indices column name
 pub const INDICES: &str = "Indices";

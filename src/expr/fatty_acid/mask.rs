@@ -90,29 +90,3 @@ impl FattyAcidMaskByParity for FattyAcidExpr {
             .agg(element().struct_().field_by_name(PARITY).any(false))
     }
 }
-
-// impl FattyAcidMaskByName for FattyAcidExpr {
-//     fn is_alpha_linolenic(self) -> Expr {
-//         self.equal(C18C9C12C15.clone())
-//     }
-
-//     fn is_butyric(self) -> Expr {
-//         self.equal(C18C9C12.clone())
-//     }
-
-//     fn is_docosahexaenoic(self) -> Expr {
-//         self.equal(C22C4C7C10C13C16C19.clone())
-//     }
-
-//     fn is_eicosapentaenoic(self) -> Expr {
-//         self.equal(C20C5C8C11C14C17.clone())
-//     }
-
-//     fn is_linoleic(self) -> Expr {
-//         self.equal(C18C9C12.clone())
-//     }
-
-//     fn is_oleic(self) -> Expr {
-//         self.equal(C18C9.clone())
-//     }
-// }

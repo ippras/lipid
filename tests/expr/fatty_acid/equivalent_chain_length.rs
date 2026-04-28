@@ -289,10 +289,7 @@ fn c22dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 
 #[test]
 fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(
-        C22C4C7C10C13C16C19,
-        22.0 + (45.0 - 39.0) / (46.0 - 39.0)
-    );
+    check!(C22C4C7C10C13C16C19, 22.0 + (45.0 - 39.0) / (46.0 - 39.0));
     Ok(())
 }
 
@@ -340,10 +337,7 @@ fn c24dc6dc9dc12dc15dc18() -> PolarsResult<()> {
 
 #[test]
 fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check!(
-        C24C6C9C12C15C18C21,
-        24.0 + (53.0 - 47.0) / (54.0 - 47.0)
-    );
+    check!(C24C6C9C12C15C18C21, 24.0 + (53.0 - 47.0) / (54.0 - 47.0));
     Ok(())
 }
 

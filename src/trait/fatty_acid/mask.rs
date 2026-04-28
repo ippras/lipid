@@ -2,6 +2,7 @@ use super::FattyAcidTrait;
 use std::num::NonZeroI8;
 
 /// Fatty acid mask by double bounds
+#[allow(clippy::wrong_self_convention)]
 pub trait FattyAcidMaskByDoubleBounds: FattyAcidTrait {
     /// Is dienoic
     fn is_dienoic(self) -> Self::Expr;
@@ -23,6 +24,7 @@ pub trait FattyAcidMaskByDoubleBounds: FattyAcidTrait {
 }
 
 /// Fatty acid mask by parity
+#[allow(clippy::wrong_self_convention)]
 pub trait FattyAcidMaskByParity: FattyAcidTrait {
     /// Is cis
     fn is_cis(self) -> Self::Expr;
@@ -32,6 +34,7 @@ pub trait FattyAcidMaskByParity: FattyAcidTrait {
 }
 
 /// Fatty acid mask by saturation
+#[allow(clippy::wrong_self_convention)]
 pub trait FattyAcidMaskByBounds: FattyAcidTrait {
     /// Is conjugated
     ///

@@ -97,8 +97,7 @@ pub mod prelude {
             triacylglycerol::{Mono, Positional, Stereo, Stereospecificity, Triacylglycerol},
         },
         r#trait::{
-            Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
-            RelativeAtomicMass,
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, RelativeAtomicMass,
             fatty_acid::{
                 FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity,
                 FattyAcidSumByBounds, FattyAcidSumByDoubleBounds, FattyAcidTrait,

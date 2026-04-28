@@ -4,7 +4,10 @@ macro_rules! check {
     ($identifier:ident, $expected:expr) => {{
         let data_frame = fatty_acid($identifier.clone())?
             .lazy()
-            .select([col(FATTY_ACID).fatty_acid().is_saturated().alias("IsSaturated")])
+            .select([col(FATTY_ACID)
+                .fatty_acid()
+                .is_saturated()
+                .alias("IsSaturated")])
             .collect()?;
         let is_saturated = data_frame["IsSaturated"].bool()?.get(0).unwrap();
         assert_eq!(is_saturated, $expected);
