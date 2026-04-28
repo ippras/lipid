@@ -15,6 +15,18 @@ impl TriacylglycerolExpr {
         )
     }
 
+    pub fn mono(self) -> Expr {
+        self.display(Stereospecificity::Mono)
+    }
+
+    pub fn positional(self) -> Expr {
+        self.display(Stereospecificity::Positional)
+    }
+
+    pub fn stereo(self) -> Expr {
+        self.display(Stereospecificity::Stereo)
+    }
+
     // pub fn new_display(
     //     self,
     //     stereospecificity: Stereospecificity,
