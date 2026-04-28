@@ -22,28 +22,31 @@ use polars::prelude::*;
 // }
 
 impl TriacylglycerolChunked {
-    pub fn display(&self, stereospecificity: Stereospecificity) -> PolarsResult<StringChunked> {
+    pub fn display(
+        &self,
+        stereospecificity: Option<Stereospecificity>,
+    ) -> PolarsResult<StringChunked> {
         Ok(self
             .fields()?
             .try_map(|field| Ok(field.str()?.clone()))?
             .into_iter()
             .map(|triacylglycerol| match stereospecificity {
-                Stereospecificity::Mono => Mono(triacylglycerol).to_string(),
-                Stereospecificity::Positional => Positional(triacylglycerol).to_string(),
-                Stereospecificity::Stereo => Stereo(triacylglycerol).to_string(),
+                None => Mono(triacylglycerol).to_string(),
+                Some(Stereospecificity::Positional) => Positional(triacylglycerol).to_string(),
+                Some(Stereospecificity::Stereo) => Stereo(triacylglycerol).to_string(),
             })
             .collect())
     }
 
     pub fn mono(&self) -> PolarsResult<StringChunked> {
-        self.display(Stereospecificity::Mono)
+        self.display(None)
     }
 
     pub fn positional(&self) -> PolarsResult<StringChunked> {
-        self.display(Stereospecificity::Positional)
+        self.display(Some(Stereospecificity::Positional))
     }
 
     pub fn stereo(&self) -> PolarsResult<StringChunked> {
-        self.display(Stereospecificity::Stereo)
+        self.display(Some(Stereospecificity::Stereo))
     }
 }

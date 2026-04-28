@@ -91,13 +91,21 @@ impl<T: Display> Display for Stereo<Triacylglycerol<Option<T>>> {
     }
 }
 
+// /// Stereospecificity
+// #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+// #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+// pub enum Stereospecificity {
+//     Mono,
+//     Positional,
+//     Stereo,
+// }
+
 /// Stereospecificity
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Stereospecificity {
-    Mono,
-    Positional,
     Stereo,
+    Positional,
 }
 
 fn option<T: Display>(option: &Option<T>) -> impl Display {

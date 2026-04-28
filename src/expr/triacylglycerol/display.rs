@@ -3,7 +3,7 @@ use polars::prelude::*;
 
 impl TriacylglycerolExpr {
     #[inline]
-    pub fn display(self, stereospecificity: Stereospecificity) -> Expr {
+    pub fn display(self, stereospecificity: Option<Stereospecificity>) -> Expr {
         self.0.map(
             move |column| {
                 Ok(column
