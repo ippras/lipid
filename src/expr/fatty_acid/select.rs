@@ -22,29 +22,3 @@ impl FattyAcidExpr {
         self.0.nullify(mask)
     }
 }
-
-impl FattyAcidFilter for FattyAcidExpr {
-    fn dienoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_dienoic()).sum()
-    }
-
-    fn hexaenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_hexaenoic()).sum()
-    }
-
-    fn monoenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_monoenoic()).sum()
-    }
-
-    fn pentaenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_pentaenoic()).sum()
-    }
-
-    fn tetraenoics(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_tetraenoic()).sum()
-    }
-
-    fn trienoic(self, expr: Expr) -> Expr {
-        expr.filter(self.clone().is_trienoic()).sum()
-    }
-}

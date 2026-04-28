@@ -222,71 +222,71 @@ macro_rules! index {
     };
 }
 
-// const BU: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Bu", &C4));
-// const V: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("V", &C5));
-// const CO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Co", &C6));
-// const EN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("En", &C7));
-// const CY: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Cy", &C8));
-// const CA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ca", &C10));
-// const LA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("La", &C12));
-// const M: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("M", &C14));
-// const P: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("P", &C16));
-// const PO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Po", &C16C9));
-// const PE: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Pe", &C16T9));
-// const S: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("S", &C18));
-// const O: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("O", &C18C9));
-// const EL: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("El", &C18T9));
-// const L: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("L", &C18C9C12));
-// const LN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ln", &C18C6C9C12));
-// const GLN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Gln", &C18C6C9C12));
-// const EO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Eo", &C18C9T11T13));
-// const JA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ja", &C18T9T11T13));
-// const CT: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ct", &C18T9T11C13));
-// const ST: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("St", &C18C6C9C12C15));
-// const A: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("A", &C20));
-// const G: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("G", &C20C9));
-// const GO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Go", &C20C11));
-// const AO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ao", &C20C5C8C11C14));
-// const EP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ep", &C20C5C8C11C14C17));
-// const B: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("B", &C22));
-// const E: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("E", &C22C13));
-// const DP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dp", &C22C7C10C13C16C19));
-// const DH: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dh", &C22C4C7C10C13C16C19));
-// const LG: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Lg", &C24));
-// const N: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("N", &C24C15));
+// const BU: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Bu", &C4));
+// const V: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("V", &C5));
+// const CO: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Co", &C6));
+// const EN: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("En", &C7));
+// const CY: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Cy", &C8));
+// const CA: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ca", &C10));
+// const LA: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("La", &C12));
+// const M: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("M", &C14));
+// const P: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("P", &C16));
+// const PO: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Po", &C16C9));
+// const PE: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Pe", &C16T9));
+// const S: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("S", &C18));
+// const O: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("O", &C18C9));
+// const EL: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("El", &C18T9));
+// const L: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("L", &C18C9C12));
+// const LN: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ln", &C18C6C9C12));
+// const GLN: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Gln", &C18C6C9C12));
+// const EO: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Eo", &C18C9T11T13));
+// const JA: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ja", &C18T9T11T13));
+// const CT: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ct", &C18T9T11C13));
+// const ST: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("St", &C18C6C9C12C15));
+// const A: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("A", &C20));
+// const G: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("G", &C20C9));
+// const GO: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Go", &C20C11));
+// const AO: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ao", &C20C5C8C11C14));
+// const EP: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Ep", &C20C5C8C11C14C17));
+// const B: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("B", &C22));
+// const E: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("E", &C22C13));
+// const DP: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Dp", &C22C7C10C13C16C19));
+// const DH: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Dh", &C22C4C7C10C13C16C19));
+// const LG: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("Lg", &C24));
+// const N: LazyLock<(&str, &AnyValue)> = LazyLock::new(|| ("N", &C24C15));
 
-const BU: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C4);
-const V: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C5);
-const CO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C6);
-const EN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C7);
-const CY: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C8);
-const CA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C10);
-const LA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C12);
-const M: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C14);
-const P: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16);
-const PO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16C9);
-const PE: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16T9);
-const S: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18);
-const O: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9);
-const EL: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9);
-const L: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9C12);
-const LN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12);
-const GLN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12);
-const EO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9T11T13);
-const JA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9T11T13);
-const CT: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9T11C13);
-const ST: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12C15);
-const A: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20);
-const G: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C9);
-const GO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C11);
-const AO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C5C8C11C14);
-const EP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C5C8C11C14C17);
-const B: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22);
-const E: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C13);
-const DP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C7C10C13C16C19);
-const DH: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C4C7C10C13C16C19);
-const LG: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C24);
-const N: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C24C15);
+const BU: LazyLock<AnyValue> = LazyLock::new(|| C4.clone());
+const V: LazyLock<AnyValue> = LazyLock::new(|| C5.clone());
+const CO: LazyLock<AnyValue> = LazyLock::new(|| C6.clone());
+const EN: LazyLock<AnyValue> = LazyLock::new(|| C7.clone());
+const CY: LazyLock<AnyValue> = LazyLock::new(|| C8.clone());
+const CA: LazyLock<AnyValue> = LazyLock::new(|| C10.clone());
+const LA: LazyLock<AnyValue> = LazyLock::new(|| C12.clone());
+const M: LazyLock<AnyValue> = LazyLock::new(|| C14.clone());
+const P: LazyLock<AnyValue> = LazyLock::new(|| C16.clone());
+const PO: LazyLock<AnyValue> = LazyLock::new(|| C16C9.clone());
+const PE: LazyLock<AnyValue> = LazyLock::new(|| C16T9.clone());
+const S: LazyLock<AnyValue> = LazyLock::new(|| C18.clone());
+const O: LazyLock<AnyValue> = LazyLock::new(|| C18C9.clone());
+const EL: LazyLock<AnyValue> = LazyLock::new(|| C18T9.clone());
+const L: LazyLock<AnyValue> = LazyLock::new(|| C18C9C12.clone());
+const LN: LazyLock<AnyValue> = LazyLock::new(|| C18C6C9C12.clone());
+const GLN: LazyLock<AnyValue> = LazyLock::new(|| C18C6C9C12.clone());
+const EO: LazyLock<AnyValue> = LazyLock::new(|| C18C9T11T13.clone());
+const JA: LazyLock<AnyValue> = LazyLock::new(|| C18T9T11T13.clone());
+const CT: LazyLock<AnyValue> = LazyLock::new(|| C18T9T11C13.clone());
+const ST: LazyLock<AnyValue> = LazyLock::new(|| C18C6C9C12C15.clone());
+const A: LazyLock<AnyValue> = LazyLock::new(|| C20.clone());
+const G: LazyLock<AnyValue> = LazyLock::new(|| C20C9.clone());
+const GO: LazyLock<AnyValue> = LazyLock::new(|| C20C11.clone());
+const AO: LazyLock<AnyValue> = LazyLock::new(|| C20C5C8C11C14.clone());
+const EP: LazyLock<AnyValue> = LazyLock::new(|| C20C5C8C11C14C17.clone());
+const B: LazyLock<AnyValue> = LazyLock::new(|| C22.clone());
+const E: LazyLock<AnyValue> = LazyLock::new(|| C22C13.clone());
+const DP: LazyLock<AnyValue> = LazyLock::new(|| C22C7C10C13C16C19.clone());
+const DH: LazyLock<AnyValue> = LazyLock::new(|| C22C4C7C10C13C16C19.clone());
+const LG: LazyLock<AnyValue> = LazyLock::new(|| C24.clone());
+const N: LazyLock<AnyValue> = LazyLock::new(|| C24C15.clone());
 
 /// [byrdwell.com](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
 fn fatty_acids() -> PolarsResult<DataFrame> {
@@ -612,10 +612,10 @@ fn triacylglycerol(
 // }
 
 // fn tag_with_label(
-//     sn1: &(&'static str, &AnyValue<'static>),
-//     sn2: &(&'static str, &AnyValue<'static>),
-//     sn3: &(&'static str, &AnyValue<'static>),
-// ) -> AnyValue<'static> {
+//     sn1: &(&'static str, &AnyValue),
+//     sn2: &(&'static str, &AnyValue),
+//     sn3: &(&'static str, &AnyValue),
+// ) -> AnyValue {
 //     AnyValue::StructOwned(Box::new((
 //         vec![
 //             AnyValue::StructOwned(Box::new((

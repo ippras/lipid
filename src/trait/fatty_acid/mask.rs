@@ -1,78 +1,54 @@
 use super::FattyAcidTrait;
 use std::num::NonZeroI8;
 
-/// Fatty acid mask
-pub trait FattyAcidMask: FattyAcidTrait {
-    /// Is conjugated
-    ///
-    /// `strict`
-    /// * `true` - only double bounds,
-    /// * `false` - double and triple bounds.
-    fn is_conjugated(self, strict: bool) -> Self::Output;
-}
-
 /// Fatty acid mask by double bounds
 pub trait FattyAcidMaskByDoubleBounds: FattyAcidTrait {
     /// Is dienoic
-    fn is_dienoic(self) -> Self::Output;
+    fn is_dienoic(self) -> Self::Expr;
 
     /// Is hexaenoic
-    fn is_hexaenoic(self) -> Self::Output;
+    fn is_hexaenoic(self) -> Self::Expr;
 
     /// Is monoenoic
-    fn is_monoenoic(self) -> Self::Output;
+    fn is_monoenoic(self) -> Self::Expr;
 
     /// Is pentaenoic
-    fn is_pentaenoic(self) -> Self::Output;
+    fn is_pentaenoic(self) -> Self::Expr;
 
     /// Is tetraenoic
-    fn is_tetraenoic(self) -> Self::Output;
+    fn is_tetraenoic(self) -> Self::Expr;
 
     /// Is trienoic
-    fn is_trienoic(self) -> Self::Output;
-}
-
-/// Fatty acid mask by name
-pub trait FattyAcidMaskByName: FattyAcidTrait {
-    /// α-Linolenic acid
-    fn is_alpha_linolenic(self) -> Self::Output;
-
-    /// Butyric acid
-    fn is_butyric(self) -> Self::Output;
-
-    /// Docosahexaenoic acid (DHA)
-    fn is_docosahexaenoic(self) -> Self::Output;
-
-    /// Eicosapentaenoic acid (EPA)
-    fn is_eicosapentaenoic(self) -> Self::Output;
-
-    /// Linoleic acid
-    fn is_linoleic(self) -> Self::Output;
-
-    /// Oleic acid
-    fn is_oleic(self) -> Self::Output;
+    fn is_trienoic(self) -> Self::Expr;
 }
 
 /// Fatty acid mask by parity
 pub trait FattyAcidMaskByParity: FattyAcidTrait {
     /// Is cis
-    fn is_cis(self) -> Self::Output;
+    fn is_cis(self) -> Self::Expr;
 
     /// Is trans
-    fn is_trans(self) -> Self::Output;
+    fn is_trans(self) -> Self::Expr;
 }
 
 /// Fatty acid mask by saturation
-pub trait FattyAcidMaskBySaturation: FattyAcidTrait {
+pub trait FattyAcidMaskByBounds: FattyAcidTrait {
+    /// Is conjugated
+    ///
+    /// `strict`
+    /// * `true` - only double bounds,
+    /// * `false` - double and triple bounds.
+    fn is_conjugated(self, strict: bool) -> Self::Expr;
+
     /// Is monounsaturated
-    fn is_monounsaturated(self) -> Self::Output;
+    fn is_monounsaturated(self) -> Self::Expr;
 
     /// Is polyunsaturated
-    fn is_polyunsaturated(self) -> Self::Output;
+    fn is_polyunsaturated(self) -> Self::Expr;
 
     /// Is saturated
-    fn is_saturated(self) -> Self::Output;
+    fn is_saturated(self) -> Self::Expr;
 
     /// Is unsaturated
-    fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Self::Output;
+    fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Self::Expr;
 }

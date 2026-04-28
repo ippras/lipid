@@ -7,51 +7,6 @@ use std::num::NonZeroI8;
 /// Fatty acid indices
 /// ∑SFA, ∑MUFA, ∑PUFA, ∑n-6 PUFA, ∑n-3 PUFA, and n-6 PUFA/n-3 PUFA. The present review may help researchers to evaluate the
 
-/// Simple fatty acid indices.
-impl FattyAcidExpr {
-    /// Conjugated fatty acids (CFA).
-    ///
-    /// Conjugated fatty acids have two or more conjugated double bonds.
-    pub fn conjugated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_conjugated(true)).sum()
-    }
-
-    /// Monounsaturated fatty acids (MUFA).
-    ///
-    /// All unsaturated fatty acids having only one unsaturated bond.
-    pub fn monounsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_monounsaturated()).sum()
-    }
-
-    /// Polyunsaturated fatty acids (PUFA).
-    ///
-    /// All unsaturated fatty acids having more than one unsaturated bond.
-    pub fn polyunsaturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_polyunsaturated()).sum()
-    }
-
-    /// Saturated fatty acids (SFA).
-    ///
-    /// All saturated fatty acids
-    pub fn saturated(self, expr: Expr) -> Expr {
-        expr.filter(self.is_saturated()).sum()
-    }
-
-    /// Trans fatty acids (TFA).
-    ///
-    /// All trans fatty acids.
-    pub fn trans(self, expr: Expr) -> Expr {
-        expr.filter(self.is_trans()).sum()
-    }
-
-    /// Unsaturated fatty acids (UFA).
-    ///
-    /// All unsaturated fatty acids
-    pub fn unsaturated(self, expr: Expr, offset: Option<NonZeroI8>) -> Expr {
-        expr.filter(self.is_unsaturated(offset)).sum()
-    }
-}
-
 /// Complex fatty acid indices.
 ///
 /// Nutritional indices.
@@ -62,9 +17,12 @@ impl FattyAcidExpr {
     pub fn eicosapentaenoic_and_docosahexaenoic(self, expr: Expr) -> Expr {
         let epa = expr
             .clone()
-            .filter(self.clone().is_eicosapentaenoic())
+            .filter(self.clone().equal(C20C5C8C11C14C17.clone()))
             .sum();
-        let dha = expr.clone().filter(self.is_docosahexaenoic()).sum();
+        let dha = expr
+            .clone()
+            .filter(self.equal(C22C4C7C10C13C16C19.clone()))
+            .sum();
         epa + dha
     }
 
@@ -74,9 +32,12 @@ impl FattyAcidExpr {
     pub fn fish_lipid_quality(self, expr: Expr) -> Expr {
         let epa = expr
             .clone()
-            .filter(self.clone().is_eicosapentaenoic())
+            .filter(self.clone().equal(C20C5C8C11C14C17.clone()))
             .sum();
-        let dha = expr.clone().filter(self.is_docosahexaenoic()).sum();
+        let dha = expr
+            .clone()
+            .filter(self.equal(C22C4C7C10C13C16C19.clone()))
+            .sum();
         (epa + dha) / expr.sum()
     }
 
@@ -92,7 +53,7 @@ impl FattyAcidExpr {
         let c12 = expr.clone().filter(self.clone().equal(C12.clone())).sum();
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
-        let ufa = self.unsaturated(expr, None);
+        let ufa = self.sum_unsaturated(expr, None);
         ufa / (c12 + lit(4) * c14 + c16)
     }
 
@@ -104,7 +65,7 @@ impl FattyAcidExpr {
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
         let c18c9 = expr.clone().filter(self.clone().equal(C18C9.clone())).sum();
-        let pufa = self.polyunsaturated(expr);
+        let pufa = self.sum_polyunsaturated(expr);
         (c18c9 + pufa) / (c12 + c14 + c16)
     }
 
@@ -115,7 +76,7 @@ impl FattyAcidExpr {
         let c12 = expr.clone().filter(self.clone().equal(C12.clone())).sum();
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
-        let ufa = self.unsaturated(expr, None);
+        let ufa = self.sum_unsaturated(expr, None);
         (c12 + lit(4) * c14 + c16) / ufa
     }
 
@@ -126,7 +87,7 @@ impl FattyAcidExpr {
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
         let c18 = expr.clone().filter(self.clone().equal(C18.clone())).sum();
-        let mufa = self.clone().monounsaturated(expr.clone());
+        let mufa = self.clone().sum_monounsaturated(expr.clone());
         let pufa_3 = expr
             .clone()
             .filter(
@@ -153,8 +114,11 @@ impl FattyAcidExpr {
     ///
     /// `C18:2(n-6) / C18:3(n-3)`
     pub fn linoleic_to_alpha_linolenic(self, expr: Expr) -> Expr {
-        let la = expr.clone().filter(self.clone().is_linoleic()).sum();
-        let ala = expr.clone().filter(self.is_alpha_linolenic()).sum();
+        let la = expr
+            .clone()
+            .filter(self.clone().equal(C18C9C12.clone()))
+            .sum();
+        let ala = expr.clone().filter(self.equal(C18C9C12C15.clone())).sum();
         la / ala
     }
 
@@ -162,8 +126,8 @@ impl FattyAcidExpr {
     ///
     /// All unsaturated fatty acids having only one unsaturated bond.
     pub fn polyunsaturated_to_saturated(self, expr: Expr) -> Expr {
-        let sfa = self.clone().saturated(expr.clone());
-        let pufa = self.polyunsaturated(expr);
+        let sfa = self.clone().sum_saturated(expr.clone());
+        let pufa = self.sum_polyunsaturated(expr);
         pufa / sfa
     }
 

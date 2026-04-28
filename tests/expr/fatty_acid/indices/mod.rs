@@ -7,7 +7,7 @@ fn monounsaturated() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .monounsaturated(col("Float"))
+            .sum_monounsaturated(col("Float"))
             .alias("Monounsaturated")])
         .collect()?;
     let monounsaturated = data_frame["Monounsaturated"].f64()?.get(0).unwrap();
@@ -25,7 +25,7 @@ fn polyunsaturated() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .polyunsaturated(col("Float"))
+            .sum_polyunsaturated(col("Float"))
             .alias("Polyunsaturated")])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
@@ -114,7 +114,7 @@ fn trans() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .trans(col("Float"))
+            .sum_trans(col("Float"))
             .alias("Trans")])
         .collect()?;
     let trans = data_frame["Trans"].f64()?.get(0).unwrap();
@@ -128,7 +128,7 @@ fn unsaturated() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturated(col("Float"), None)
+            .sum_unsaturated(col("Float"), None)
             .alias("Unsaturated")])
         .collect()?;
     let unsaturated = data_frame["Unsaturated"].f64()?.get(0).unwrap();
@@ -179,7 +179,7 @@ fn unsaturated_3() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturated(col("Float"), NonZeroI8::new(-3))
+            .sum_unsaturated(col("Float"), NonZeroI8::new(-3))
             .alias("Unsaturated-3")])
         .collect()?;
     let unsaturated_3 = data_frame["Unsaturated-3"].f64()?.get(0).unwrap();
@@ -197,7 +197,7 @@ fn unsaturated_6() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .unsaturated(col("Float"), NonZeroI8::new(-6))
+            .sum_unsaturated(col("Float"), NonZeroI8::new(-6))
             .alias("Unsaturated-6")])
         .collect()?;
     let unsaturated_6 = data_frame["Unsaturated-6"].f64()?.get(0).unwrap();

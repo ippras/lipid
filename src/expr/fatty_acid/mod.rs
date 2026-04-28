@@ -190,7 +190,7 @@ impl EquivalentChainLength for FattyAcidExpr {
 }
 
 impl FattyAcidTrait for FattyAcidExpr {
-    type Output = Expr;
+    type Expr = Expr;
 }
 
 mod display;
@@ -204,3 +204,4 @@ pub(crate) mod properties;
 mod relative_atomic_mass;
 #[cfg(feature = "select")]
 mod select;
+mod sum;

@@ -1,15 +1,12 @@
 pub use self::{
-    filter::FattyAcidFilter,
-    mask::{
-        FattyAcidMask, FattyAcidMaskByDoubleBounds, FattyAcidMaskByName, FattyAcidMaskByParity,
-        FattyAcidMaskBySaturation,
-    },
+    mask::{FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity},
+    sum::{FattyAcidSumByBounds, FattyAcidSumByDoubleBounds},
 };
 
 /// Fatty acid trait
 pub trait FattyAcidTrait: Sized {
-    type Output;
+    type Expr;
 }
 
-mod filter;
 mod mask;
+mod sum;

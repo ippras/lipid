@@ -9,7 +9,7 @@ fn monounsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .monounsaturated(col("Float"))
+            .sum_monounsaturated(col("Float"))
             .alias("Monounsaturated")])
         .collect()?;
     let monounsaturated = data_frame["Monounsaturated"].f64()?.get(0).unwrap();
@@ -56,7 +56,7 @@ fn polyunsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .polyunsaturated(col("Float"))
+            .sum_polyunsaturated(col("Float"))
             .alias("Polyunsaturated")])
         .collect()?;
     let polyunsaturated = data_frame["Polyunsaturated"].f64()?.get(0).unwrap();
@@ -93,7 +93,7 @@ fn trans() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .trans(col("Float"))
+            .sum_trans(col("Float"))
             .alias("Trans")])
         .collect()?;
     let trans = data_frame["Trans"].f64()?.get(0).unwrap();
@@ -109,7 +109,7 @@ fn unsaturated() -> PolarsResult<()> {
             .triacylglycerol()
             .stereospecific_number2()
             .fatty_acid()
-            .unsaturated(col("Float"), None)
+            .sum_unsaturated(col("Float"), None)
             .alias("Unsaturated")])
         .collect()?;
     let unsaturated = data_frame["Unsaturated"].f64()?.get(0).unwrap();

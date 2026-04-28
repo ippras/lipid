@@ -100,8 +100,8 @@ pub mod prelude {
             Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
             RelativeAtomicMass,
             fatty_acid::{
-                FattyAcidFilter, FattyAcidMask, FattyAcidMaskByDoubleBounds, FattyAcidMaskByName,
-                FattyAcidMaskByParity, FattyAcidMaskBySaturation, FattyAcidTrait,
+                FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity,
+                FattyAcidSumByBounds, FattyAcidSumByDoubleBounds, FattyAcidTrait,
             },
         },
     };

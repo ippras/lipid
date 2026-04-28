@@ -44,10 +44,10 @@ impl BiodieselProperties for FattyAcidExpr {
     }
 
     fn degree_of_unsaturation(self, expr: Expr) -> Expr {
-        self.clone().monounsaturated(expr.clone())
-            + self.clone().dienoics(expr.clone()) * lit(2)
-            + self.clone().trienoic(expr.clone()) * lit(3)
-            + self.tetraenoics(expr) * lit(4)
+        self.clone().sum_monounsaturated(expr.clone())
+            + self.clone().sum_dienoics(expr.clone()) * lit(2)
+            + self.clone().sum_trienoic(expr.clone()) * lit(3)
+            + self.sum_tetraenoics(expr) * lit(4)
     }
 
     fn iodine_value(self, expr: Expr) -> Expr {
