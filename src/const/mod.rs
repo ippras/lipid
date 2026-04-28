@@ -1,5 +1,7 @@
 pub use self::{explicit::*, implicit::*};
 
+pub(crate) const EM_DASH: &str = "—";
+
 pub mod explicit;
 pub mod implicit;
 

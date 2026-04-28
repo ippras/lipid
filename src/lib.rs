@@ -1,3 +1,4 @@
+#![feature(array_try_map)]
 #![feature(custom_inner_attributes)]
 #![feature(impl_trait_in_assoc_type)]
 
@@ -92,13 +93,12 @@ pub mod prelude {
         field,
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#struct::{
-            fatty_acid::FattyAcid,
-            triacylglycerol::{Mono, Positional, Stereo, Triacylglycerol},
-            unsaturated::Unsaturated,
+            fatty_acid::{FattyAcid, Unsaturated},
+            triacylglycerol::{Mono, Positional, Stereo, Stereospecificity, Triacylglycerol},
         },
         r#trait::{
-            Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
-            RelativeAtomicMass,
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, FattyAcidFilter, FattyAcidMask,
+            IdentifierMask, Kind, MaskExt, RelativeAtomicMass,
         },
     };
     pub use fatty_acid_macro::fatty_acid;

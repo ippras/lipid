@@ -31,11 +31,7 @@ impl FattyAcidChunked {
     }
 
     #[inline]
-    pub fn get(
-        &self,
-        idx: usize,
-    ) -> PolarsResult<Option<FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>>
-    {
+    pub fn get(&self, idx: usize) -> PolarsResult<Option<FattyAcid>> {
         let Some(carbon) = self.0.field_by_name(CARBON)?.u8()?.get(idx) else {
             return Ok(None);
         };
@@ -63,46 +59,6 @@ impl FattyAcidChunked {
             carbon: self.carbon()?,
             unsaturated: self.unsaturated()?,
         })
-    }
-}
-
-impl FattyAcidChunked {
-    // pub fn formula(&self) -> PolarsResult<Utf8Chunked> {
-    //     let carbon = self.carbon()?;
-    //     let hydrogen = self.hydrogen()?;
-    //     let oxygen = self.oxygen()?;
-    //     let mut builder = Utf8ChunkedBuilder::new("Formula", self.0.len(), self.0.len() * 10);
-    //     for ((c, h), o) in carbon.iter().zip(hydrogen.iter()).zip(oxygen.iter()) {
-    //         match (c, h, o) {
-    //             (Some(c), Some(h), Some(o)) => builder.append_value(format!("C{}H{}O{}", c, h, o)),
-    //             _ => builder.append_null(),
-    //         }
-    //     }
-    //     Ok(builder.finish())
-    // }
-
-    pub fn id(&self) -> PolarsResult<StringChunked> {
-        self.fields()?
-            .iter()
-            .map(|fatty_acid| {
-                let Some(fatty_acid) = fatty_acid? else {
-                    return Ok(None);
-                };
-                Ok(Some(fatty_acid.id().to_string()))
-            })
-            .collect()
-    }
-
-    pub fn delta(&self) -> PolarsResult<StringChunked> {
-        self.fields()?
-            .iter()
-            .map(|fatty_acid| {
-                let Some(fatty_acid) = fatty_acid? else {
-                    return Ok(None);
-                };
-                Ok(Some(fatty_acid.delta().to_string()))
-            })
-            .collect()
     }
 }
 
@@ -286,13 +242,7 @@ impl<'a> TryFrom<&'a StructChunked> for &'a FattyAcidChunked {
 }
 
 impl FattyAcid<UInt8Chunked, ListChunked> {
-    pub fn iter(
-        &self,
-    ) -> impl Iterator<
-        Item = PolarsResult<
-            Option<FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>,
-        >,
-    > {
+    pub fn iter(&self) -> impl Iterator<Item = PolarsResult<Option<FattyAcid>>> {
         self.carbon
             .iter()
             .zip(self.unsaturated.amortized_iter())
@@ -316,15 +266,9 @@ impl FattyAcid<UInt8Chunked, ListChunked> {
 }
 
 impl IntoIterator for &FattyAcid<UInt8Chunked, ListChunked> {
-    type Item = PolarsResult<
-        Option<FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>,
-    >;
+    type Item = PolarsResult<Option<FattyAcid>>;
 
-    type IntoIter = impl Iterator<
-        Item = PolarsResult<
-            Option<FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>,
-        >,
-    >;
+    type IntoIter = impl Iterator<Item = PolarsResult<Option<FattyAcid>>>;
 
     fn into_iter(self) -> Self::IntoIter {
         self.iter()
@@ -339,3 +283,5 @@ fn check_data_type(r#struct: &StructChunked) -> PolarsResult<()> {
     );
     Ok(())
 }
+
+mod display;

@@ -111,3 +111,61 @@ pub trait Kind: RelativeAtomicMass {
 //         Rcooch3(self)
 //     }
 // }
+
+/// Fatty acid mask
+pub trait FattyAcidMask: Sized {
+    type Output;
+
+    /// Is cis
+    fn is_cis(self) -> Self::Output;
+
+    /// Is trans
+    fn is_trans(self) -> Self::Output;
+
+    /// Is conjugated
+    ///
+    /// `strict`
+    /// * `true` - only double bounds,
+    /// * `false` - double and triple bounds.
+    fn is_conjugated(self, strict: bool) -> Self::Output;
+
+    /// Is dienoic
+    fn is_dienoic(self) -> Self::Output;
+
+    /// Is hexaenoic
+    fn is_hexaenoic(self) -> Self::Output;
+
+    /// Is monoenoic
+    fn is_monoenoic(self) -> Self::Output;
+
+    /// Is pentaenoic
+    fn is_pentaenoic(self) -> Self::Output;
+
+    /// Is tetraenoic
+    fn is_tetraenoic(self) -> Self::Output;
+
+    /// Is trienoic
+    fn is_trienoic(self) -> Self::Output;
+
+    /// Is monounsaturated
+    fn is_monounsaturated(self) -> Self::Output;
+
+    /// Is polyunsaturated
+    fn is_polyunsaturated(self) -> Self::Output;
+
+    /// Is saturated
+    fn is_saturated(self) -> Self::Output;
+
+    /// Is unsaturated
+    fn is_unsaturated(self, offset: Option<NonZeroI8>) -> Self::Output;
+}
+
+/// Fatty acid filter
+pub trait FattyAcidFilter: FattyAcidMask {
+    fn dienoics(self, expr: Self::Output) -> Self::Output;
+    fn hexaenoics(self, expr: Self::Output) -> Self::Output;
+    fn monoenoics(self, expr: Self::Output) -> Self::Output;
+    fn pentaenoics(self, expr: Self::Output) -> Self::Output;
+    fn tetraenoics(self, expr: Self::Output) -> Self::Output;
+    fn trienoic(self, expr: Self::Output) -> Self::Output;
+}

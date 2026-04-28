@@ -21,50 +21,11 @@ pub const TRIPLE: &str = "Triple";
 pub struct FattyAcidExpr(pub Expr);
 
 impl FattyAcidExpr {
-    /// Indices
+    /// Unsaturated
     #[inline]
     pub fn indices(self) -> Expr {
         self.0.struct_().field_by_name(INDICES)
     }
-
-    #[inline]
-    pub fn format(self) -> Expr {
-        // let indices = self.indices();
-        // let carbon = self.carbon();
-        // let unsaturated = indices.list().len();
-        // format_str("{}:{}-{}", [carbon, unsaturated, indices])
-        self.0.map(
-            |column| Ok(column.try_fatty_acid()?.delta()?.into_column()),
-            |_, field| Ok(Field::new(field.name().clone(), DataType::String)),
-        )
-    }
-}
-
-impl FattyAcidExpr {
-    /// Is cis
-    #[inline]
-    pub fn is_cis(self) -> Expr {
-        self.clone().indices().list().len().gt(0).and(
-            self.indices()
-                .list()
-                .agg(element().struct_().field_by_name(PARITY).any(false).not()),
-        )
-        // .eval(element().struct_().field_by_name(PARITY))
-        // .list()
-        // .any()
-        // .not(),
-    }
-
-    /// Is trans
-    #[inline]
-    pub fn is_trans(self) -> Expr {
-        self.indices()
-            .list()
-            .agg(element().struct_().field_by_name(PARITY).any(false))
-    }
-    // .eval(element().struct_().field_by_name(PARITY))
-    // .list()
-    // .any()
 }
 
 impl FattyAcidExpr {
@@ -228,6 +189,7 @@ impl EquivalentChainLength for FattyAcidExpr {
     }
 }
 
+mod display;
 mod equal;
 mod factors;
 mod indices;

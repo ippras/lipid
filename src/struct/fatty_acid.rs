@@ -1,15 +1,14 @@
-use crate::r#struct::unsaturated::Unsaturated;
 use std::fmt::{Display, Formatter, Result, Write as _};
 
 /// Fatty acid
 #[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct FattyAcid<T, U> {
+pub struct FattyAcid<T = u8, U = Vec<Unsaturated>> {
     pub carbon: T,
     pub unsaturated: U,
 }
 
-impl FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>> {
+impl FattyAcid {
     pub fn delta(&self) -> Delta<&Self> {
         Delta(self)
     }
@@ -19,11 +18,20 @@ impl FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>> {
     }
 }
 
+/// Unsaturated bound
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+pub struct Unsaturated<T = Option<u8>, U = Option<bool>, V = Option<bool>> {
+    pub index: T,
+    pub triple: U,
+    pub parity: V,
+}
+
 /// Delta
 #[derive(Clone, Debug, Default)]
 pub struct Delta<T>(pub(super) T);
 
-impl Display for Delta<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>> {
+impl Display for Delta<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         Display::fmt(&self.0.carbon, f)?;
         f.write_char(':')?;
@@ -41,7 +49,7 @@ impl Display for Delta<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, 
     }
 }
 
-impl Display for Delta<&Unsaturated<Option<u8>, Option<bool>, Option<bool>>> {
+impl Display for Delta<&Unsaturated> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.index {
             None => f.write_char('0')?,
@@ -64,7 +72,7 @@ impl Display for Delta<&Unsaturated<Option<u8>, Option<bool>, Option<bool>>> {
 #[derive(Clone, Debug, Default)]
 pub struct Id<T>(T);
 
-impl Display for Id<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>> {
+impl Display for Id<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         f.write_char('c')?;
         Display::fmt(&self.0.carbon, f)?;
@@ -75,7 +83,7 @@ impl Display for Id<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Opt
     }
 }
 
-impl Display for Id<&Unsaturated<Option<u8>, Option<bool>, Option<bool>>> {
+impl Display for Id<&Unsaturated> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.triple {
             None => f.write_char('u')?, // Unsaturated

@@ -228,5 +228,6 @@ impl EquivalentCarbonNumber for TriacylglycerolExpr {
 
 pub mod permutation;
 
+mod display;
 mod factors;
 mod relative_atomic_mass;
