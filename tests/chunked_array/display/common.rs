@@ -90,13 +90,13 @@ fn c16() -> PolarsResult<()> {
 
 #[test]
 fn c16dc9() -> PolarsResult<()> {
-    check!(C16DC9);
+    check!(C16C9);
     Ok(())
 }
 
 #[test]
 fn c16dt9() -> PolarsResult<()> {
-    check!(C16DT9);
+    check!(C16T9);
     Ok(())
 }
 
@@ -114,61 +114,61 @@ fn c18() -> PolarsResult<()> {
 
 #[test]
 fn c18dc9() -> PolarsResult<()> {
-    check!(C18DC9);
+    check!(C18C9);
     Ok(())
 }
 
 #[test]
 fn c18dt9() -> PolarsResult<()> {
-    check!(C18DT9);
+    check!(C18T9);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12() -> PolarsResult<()> {
-    check!(C18DC9DC12);
+    check!(C18C9C12);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12);
+    check!(C18C6C9C12);
     Ok(())
 }
 
 #[test]
 fn c18dc8dt10dc12() -> PolarsResult<()> {
-    check!(C18DC8DT10DC12);
+    check!(C18C8T10C12);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC9DC12DC15);
+    check!(C18C9C12C15);
     Ok(())
 }
 
 #[test]
 fn c18dc9dt11dt13() -> PolarsResult<()> {
-    check!(C18DC9DT11DT13);
+    check!(C18C9T11T13);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dc13() -> PolarsResult<()> {
-    check!(C18DT9DT11DC13);
+    check!(C18T9T11C13);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dt13() -> PolarsResult<()> {
-    check!(C18DT9DT11DT13);
+    check!(C18T9T11T13);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12DC15);
+    check!(C18C6C9C12C15);
     Ok(())
 }
 
@@ -186,55 +186,55 @@ fn c20() -> PolarsResult<()> {
 
 #[test]
 fn c20dc9() -> PolarsResult<()> {
-    check!(C20DC9);
+    check!(C20C9);
     Ok(())
 }
 
 #[test]
 fn c20dc11() -> PolarsResult<()> {
-    check!(C20DC11);
+    check!(C20C11);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14() -> PolarsResult<()> {
-    check!(C20DC11DC14);
+    check!(C20C11C14);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11);
+    check!(C20C5C8C11);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14);
+    check!(C20C8C11C14);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC11DC14DC17);
+    check!(C20C11C14C17);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14);
+    check!(C20C5C8C11C14);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14DC17);
+    check!(C20C8C11C14C17);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14DC17);
+    check!(C20C5C8C11C14C17);
     Ok(())
 }
 
@@ -252,37 +252,37 @@ fn c22() -> PolarsResult<()> {
 
 #[test]
 fn c22dc13() -> PolarsResult<()> {
-    check!(C22DC13);
+    check!(C22C13);
     Ok(())
 }
 
 #[test]
 fn c22dc13dc16() -> PolarsResult<()> {
-    check!(C22DC13DC16);
+    check!(C22C13C16);
     Ok(())
 }
 
 #[test]
 fn c22dc5dc13dc16() -> PolarsResult<()> {
-    check!(C22DC5DC13DC16);
+    check!(C22C5C13C16);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16);
+    check!(C22C7C10C13C16);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16DC19);
+    check!(C22C7C10C13C16C19);
     Ok(())
 }
 
 #[test]
 fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC4DC7DC10DC13DC16DC19);
+    check!(C22C4C7C10C13C16C19);
     Ok(())
 }
 
@@ -300,37 +300,37 @@ fn c24() -> PolarsResult<()> {
 
 #[test]
 fn c24dc15() -> PolarsResult<()> {
-    check!(C24DC15);
+    check!(C24C15);
     Ok(())
 }
 
 #[test]
 fn c24dc15dc18() -> PolarsResult<()> {
-    check!(C24DC15DC18);
+    check!(C24C15C18);
     Ok(())
 }
 
 #[test]
 fn c24dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC12DC15DC18);
+    check!(C24C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC9DC12DC15DC18);
+    check!(C24C9C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18);
+    check!(C24C6C9C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18DC21);
+    check!(C24C6C9C12C15C18C21);
     Ok(())
 }
 
@@ -348,7 +348,7 @@ fn c26() -> PolarsResult<()> {
 
 #[test]
 fn c26dc17() -> PolarsResult<()> {
-    check!(C26DC17);
+    check!(C26C17);
     Ok(())
 }
 
@@ -378,7 +378,7 @@ fn c30() -> PolarsResult<()> {
 
 #[test]
 fn c30dc21() -> PolarsResult<()> {
-    check!(C30DC21);
+    check!(C30C21);
     Ok(())
 }
 
@@ -433,55 +433,55 @@ mod expected {
     pub(super) const C14: [&str; 2] = ["14:0", "14:0"];
     pub(super) const C15: [&str; 2] = ["15:0", "15:0"];
     pub(super) const C16: [&str; 2] = ["16:0", "16:0"];
-    pub(super) const C16DC9: [&str; 2] = ["16:1", "16:1Δ9"];
-    pub(super) const C16DT9: [&str; 2] = ["16:1", "16:1Δ9t"];
+    pub(super) const C16C9: [&str; 2] = ["16:1", "16:1Δ9"];
+    pub(super) const C16T9: [&str; 2] = ["16:1", "16:1Δ9t"];
     pub(super) const C17: [&str; 2] = ["17:0", "17:0"];
     pub(super) const C18: [&str; 2] = ["18:0", "18:0"];
-    pub(super) const C18DC9: [&str; 2] = ["18:1", "18:1Δ9"];
-    pub(super) const C18DT9: [&str; 2] = ["18:1", "18:1Δ9t"];
-    pub(super) const C18DC9DC12: [&str; 2] = ["18:2", "18:2Δ9,12"];
-    pub(super) const C18DC6DC9DC12: [&str; 2] = ["18:3", "18:3Δ6,9,12"];
-    pub(super) const C18DC8DT10DC12: [&str; 2] = ["18:3", "18:3Δ8,10t,12"];
-    pub(super) const C18DC9DC12DC15: [&str; 2] = ["18:3", "18:3Δ9,12,15"];
-    pub(super) const C18DC9DT11DT13: [&str; 2] = ["18:3", "18:3Δ9,11t,13t"];
-    pub(super) const C18DT9DT11DC13: [&str; 2] = ["18:3", "18:3Δ9t,11t,13"];
-    pub(super) const C18DT9DT11DT13: [&str; 2] = ["18:3", "18:3Δ9t,11t,13t"];
-    pub(super) const C18DC6DC9DC12DC15: [&str; 2] = ["18:4", "18:4Δ6,9,12,15"];
+    pub(super) const C18C9: [&str; 2] = ["18:1", "18:1Δ9"];
+    pub(super) const C18T9: [&str; 2] = ["18:1", "18:1Δ9t"];
+    pub(super) const C18C9C12: [&str; 2] = ["18:2", "18:2Δ9,12"];
+    pub(super) const C18C6C9C12: [&str; 2] = ["18:3", "18:3Δ6,9,12"];
+    pub(super) const C18C8T10C12: [&str; 2] = ["18:3", "18:3Δ8,10t,12"];
+    pub(super) const C18C9C12C15: [&str; 2] = ["18:3", "18:3Δ9,12,15"];
+    pub(super) const C18C9T11T13: [&str; 2] = ["18:3", "18:3Δ9,11t,13t"];
+    pub(super) const C18T9T11C13: [&str; 2] = ["18:3", "18:3Δ9t,11t,13"];
+    pub(super) const C18T9T11T13: [&str; 2] = ["18:3", "18:3Δ9t,11t,13t"];
+    pub(super) const C18C6C9C12C15: [&str; 2] = ["18:4", "18:4Δ6,9,12,15"];
     pub(super) const C19: [&str; 2] = ["19:0", "19:0"];
     pub(super) const C20: [&str; 2] = ["20:0", "20:0"];
-    pub(super) const C20DC9: [&str; 2] = ["20:1", "20:1Δ9"];
-    pub(super) const C20DC11: [&str; 2] = ["20:1", "20:1Δ11"];
-    pub(super) const C20DC11DC14: [&str; 2] = ["20:2", "20:2Δ11,14"];
-    pub(super) const C20DC5DC8DC11: [&str; 2] = ["20:3", "20:3Δ5,8,11"];
-    pub(super) const C20DC8DC11DC14: [&str; 2] = ["20:3", "20:3Δ8,11,14"];
-    pub(super) const C20DC11DC14DC17: [&str; 2] = ["20:3", "20:3Δ11,14,17"];
-    pub(super) const C20DC5DC8DC11DC14: [&str; 2] = ["20:4", "20:4Δ5,8,11,14"];
-    pub(super) const C20DC8DC11DC14DC17: [&str; 2] = ["20:4", "20:4Δ8,11,14,17"];
-    pub(super) const C20DC5DC8DC11DC14DC17: [&str; 2] = ["20:5", "20:5Δ5,8,11,14,17"];
+    pub(super) const C20C9: [&str; 2] = ["20:1", "20:1Δ9"];
+    pub(super) const C20C11: [&str; 2] = ["20:1", "20:1Δ11"];
+    pub(super) const C20C11C14: [&str; 2] = ["20:2", "20:2Δ11,14"];
+    pub(super) const C20C5C8C11: [&str; 2] = ["20:3", "20:3Δ5,8,11"];
+    pub(super) const C20C8C11C14: [&str; 2] = ["20:3", "20:3Δ8,11,14"];
+    pub(super) const C20C11C14C17: [&str; 2] = ["20:3", "20:3Δ11,14,17"];
+    pub(super) const C20C5C8C11C14: [&str; 2] = ["20:4", "20:4Δ5,8,11,14"];
+    pub(super) const C20C8C11C14C17: [&str; 2] = ["20:4", "20:4Δ8,11,14,17"];
+    pub(super) const C20C5C8C11C14C17: [&str; 2] = ["20:5", "20:5Δ5,8,11,14,17"];
     pub(super) const C21: [&str; 2] = ["21:0", "21:0"];
     pub(super) const C22: [&str; 2] = ["22:0", "22:0"];
-    pub(super) const C22DC13: [&str; 2] = ["22:1", "22:1Δ13"];
-    pub(super) const C22DC13DC16: [&str; 2] = ["22:2", "22:2Δ13,16"];
-    pub(super) const C22DC5DC13DC16: [&str; 2] = ["22:3", "22:3Δ5,13,16"];
-    pub(super) const C22DC7DC10DC13DC16: [&str; 2] = ["22:4", "22:4Δ7,10,13,16"];
-    pub(super) const C22DC7DC10DC13DC16DC19: [&str; 2] = ["22:5", "22:5Δ7,10,13,16,19"];
-    pub(super) const C22DC4DC7DC10DC13DC16DC19: [&str; 2] = ["22:6", "22:6Δ4,7,10,13,16,19"];
+    pub(super) const C22C13: [&str; 2] = ["22:1", "22:1Δ13"];
+    pub(super) const C22C13C16: [&str; 2] = ["22:2", "22:2Δ13,16"];
+    pub(super) const C22C5C13C16: [&str; 2] = ["22:3", "22:3Δ5,13,16"];
+    pub(super) const C22C7C10C13C16: [&str; 2] = ["22:4", "22:4Δ7,10,13,16"];
+    pub(super) const C22C7C10C13C16C19: [&str; 2] = ["22:5", "22:5Δ7,10,13,16,19"];
+    pub(super) const C22C4C7C10C13C16C19: [&str; 2] = ["22:6", "22:6Δ4,7,10,13,16,19"];
     pub(super) const C23: [&str; 2] = ["23:0", "23:0"];
     pub(super) const C24: [&str; 2] = ["24:0", "24:0"];
-    pub(super) const C24DC15: [&str; 2] = ["24:1", "24:1Δ15"];
-    pub(super) const C24DC15DC18: [&str; 2] = ["24:2", "24:2Δ15,18"];
-    pub(super) const C24DC12DC15DC18: [&str; 2] = ["24:3", "24:3Δ12,15,18"];
-    pub(super) const C24DC9DC12DC15DC18: [&str; 2] = ["24:4", "24:4Δ9,12,15,18"];
-    pub(super) const C24DC6DC9DC12DC15DC18: [&str; 2] = ["24:5", "24:5Δ6,9,12,15,18"];
-    pub(super) const C24DC6DC9DC12DC15DC18DC21: [&str; 2] = ["24:6", "24:6Δ6,9,12,15,18,21"];
+    pub(super) const C24C15: [&str; 2] = ["24:1", "24:1Δ15"];
+    pub(super) const C24C15C18: [&str; 2] = ["24:2", "24:2Δ15,18"];
+    pub(super) const C24C12C15C18: [&str; 2] = ["24:3", "24:3Δ12,15,18"];
+    pub(super) const C24C9C12C15C18: [&str; 2] = ["24:4", "24:4Δ9,12,15,18"];
+    pub(super) const C24C6C9C12C15C18: [&str; 2] = ["24:5", "24:5Δ6,9,12,15,18"];
+    pub(super) const C24C6C9C12C15C18C21: [&str; 2] = ["24:6", "24:6Δ6,9,12,15,18,21"];
     pub(super) const C25: [&str; 2] = ["25:0", "25:0"];
     pub(super) const C26: [&str; 2] = ["26:0", "26:0"];
-    pub(super) const C26DC17: [&str; 2] = ["26:1", "26:1Δ17"];
+    pub(super) const C26C17: [&str; 2] = ["26:1", "26:1Δ17"];
     pub(super) const C27: [&str; 2] = ["27:0", "27:0"];
     pub(super) const C28: [&str; 2] = ["28:0", "28:0"];
     pub(super) const C29: [&str; 2] = ["29:0", "29:0"];
     pub(super) const C30: [&str; 2] = ["30:0", "30:0"];
-    pub(super) const C30DC21: [&str; 2] = ["30:1", "30:1Δ21"];
+    pub(super) const C30C21: [&str; 2] = ["30:1", "30:1Δ21"];
     pub(super) const C31: [&str; 2] = ["31:0", "31:0"];
     pub(super) const C32: [&str; 2] = ["32:0", "32:0"];
     pub(super) const C33: [&str; 2] = ["33:0", "33:0"];

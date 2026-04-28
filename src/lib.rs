@@ -97,8 +97,12 @@ pub mod prelude {
             triacylglycerol::{Mono, Positional, Stereo, Stereospecificity, Triacylglycerol},
         },
         r#trait::{
-            Atomic, EquivalentCarbonNumber, EquivalentChainLength, FattyAcidFilter, FattyAcidMask,
-            IdentifierMask, Kind, MaskExt, RelativeAtomicMass,
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, IdentifierMask, Kind, MaskExt,
+            RelativeAtomicMass,
+            fatty_acid::{
+                FattyAcidFilter, FattyAcidMask, FattyAcidMaskByDoubleBounds, FattyAcidMaskByName,
+                FattyAcidMaskByParity, FattyAcidMaskBySaturation, FattyAcidTrait,
+            },
         },
     };
     pub use fatty_acid_macro::fatty_acid;

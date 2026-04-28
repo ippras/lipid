@@ -60,8 +60,11 @@ impl FattyAcidExpr {
     ///
     /// `C22:6(n-3) + C20:5(n-3)`
     pub fn eicosapentaenoic_and_docosahexaenoic(self, expr: Expr) -> Expr {
-        let epa = expr.clone().filter(self.clone().eicosapentaenoic()).sum();
-        let dha = expr.clone().filter(self.docosahexaenoic()).sum();
+        let epa = expr
+            .clone()
+            .filter(self.clone().is_eicosapentaenoic())
+            .sum();
+        let dha = expr.clone().filter(self.is_docosahexaenoic()).sum();
         epa + dha
     }
 
@@ -69,8 +72,11 @@ impl FattyAcidExpr {
     ///
     /// `(C22:6(n-3) + C20:5(n-3)) / ΣFA`
     pub fn fish_lipid_quality(self, expr: Expr) -> Expr {
-        let epa = expr.clone().filter(self.clone().eicosapentaenoic()).sum();
-        let dha = expr.clone().filter(self.docosahexaenoic()).sum();
+        let epa = expr
+            .clone()
+            .filter(self.clone().is_eicosapentaenoic())
+            .sum();
+        let dha = expr.clone().filter(self.is_docosahexaenoic()).sum();
         (epa + dha) / expr.sum()
     }
 
@@ -97,12 +103,9 @@ impl FattyAcidExpr {
         let c12 = expr.clone().filter(self.clone().equal(C12.clone())).sum();
         let c14 = expr.clone().filter(self.clone().equal(C14.clone())).sum();
         let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
-        let c18dc9 = expr
-            .clone()
-            .filter(self.clone().equal(C18DC9.clone()))
-            .sum();
+        let c18c9 = expr.clone().filter(self.clone().equal(C18C9.clone())).sum();
         let pufa = self.polyunsaturated(expr);
-        (c18dc9 + pufa) / (c12 + c14 + c16)
+        (c18c9 + pufa) / (c12 + c14 + c16)
     }
 
     /// Index of atherogenicity (IA).
@@ -150,8 +153,8 @@ impl FattyAcidExpr {
     ///
     /// `C18:2(n-6) / C18:3(n-3)`
     pub fn linoleic_to_alpha_linolenic(self, expr: Expr) -> Expr {
-        let la = expr.clone().filter(self.clone().linoleic()).sum();
-        let ala = expr.clone().filter(self.alpha_linolenic()).sum();
+        let la = expr.clone().filter(self.clone().is_linoleic()).sum();
+        let ala = expr.clone().filter(self.is_alpha_linolenic()).sum();
         la / ala
     }
 

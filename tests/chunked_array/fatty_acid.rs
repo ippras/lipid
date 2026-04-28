@@ -1,11 +1,11 @@
 use lipid::{
-    polars::bound::identifiers::{D, DC, DT, S, T, TC, TT, U, UC, UT},
+    polars::bound::identifiers::{D, C, T, S, T, TC, TT, U, UC, UT},
     prelude::*,
 };
 use polars::prelude::*;
 use std::sync::LazyLock;
 
-const ALL: [&str; 10] = [S, D, DC, DT, T, TC, TT, U, UC, UT];
+const ALL: [&str; 10] = [S, D, C, T, T, TC, TT, U, UC, UT];
 
 pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
     (|| {
@@ -13,7 +13,7 @@ pub static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
             "FattyAcid" => [
                 Some(Series::from_iter(C14U0).cast(&IDENTIFIER_DATA_TYPE)?),
                 Some(Series::from_iter(C18U0).cast(&IDENTIFIER_DATA_TYPE)?),
-                Some(Series::from_iter(C18U2DC9DC12).cast(&IDENTIFIER_DATA_TYPE)?),
+                Some(Series::from_iter(C18U2C9C12).cast(&IDENTIFIER_DATA_TYPE)?),
                 Some(Series::from_iter(ALL).cast(&IDENTIFIER_DATA_TYPE)?),
                 Some(Series::from_iter([Some(S), None]).cast(&IDENTIFIER_DATA_TYPE)?),
                 None,
@@ -117,7 +117,7 @@ fn filter_saturated() -> PolarsResult<()> {
     assert_eq!(
         unsaturated.into_iter().collect::<Vec<_>>(),
         [
-            Some(Series::from_iter(C18U2DC9DC12)),
+            Some(Series::from_iter(C18U2C9C12)),
             Some(Series::from_iter(ALL)),
         ]
     );
@@ -134,7 +134,7 @@ fn nullify_saturated() -> PolarsResult<()> {
         [
             None,
             None,
-            Some(Series::from_iter(C18U2DC9DC12)),
+            Some(Series::from_iter(C18U2C9C12)),
             Some(Series::from_iter(ALL)),
             None,
             None,

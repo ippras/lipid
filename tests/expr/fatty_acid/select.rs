@@ -28,55 +28,55 @@ fn saturated() -> PolarsResult<()> {
             Some(FattyAcidChunked::try_from(C14)?), // C14
             Some(FattyAcidChunked::try_from(C15)?), // C15
             Some(FattyAcidChunked::try_from(C16)?), // C16
-            None,                                   // C16DC9
-            None,                                   // C16DT9
+            None,                                   // C16C9
+            None,                                   // C16T9
             Some(FattyAcidChunked::try_from(C17)?), // C17
             Some(FattyAcidChunked::try_from(C18)?), // C18
-            None,                                   // C18DC9
-            None,                                   // C18DT9
-            None,                                   // C18DC9DC12
-            None,                                   // C18DC6DC9DC12
-            None,                                   // C18DC8DT10DC12
-            None,                                   // C18DC9DC12DC15
-            None,                                   // C18DC9DT11DT13
-            None,                                   // C18DT9DT11DC13
-            None,                                   // C18DT9DT11DT13
-            None,                                   // C18DC6DC9DC12DC15
+            None,                                   // C18C9
+            None,                                   // C18T9
+            None,                                   // C18C9C12
+            None,                                   // C18C6C9C12
+            None,                                   // C18C8T10C12
+            None,                                   // C18C9C12C15
+            None,                                   // C18C9T11T13
+            None,                                   // C18T9T11C13
+            None,                                   // C18T9T11T13
+            None,                                   // C18C6C9C12C15
             Some(FattyAcidChunked::try_from(C19)?), // C19
             Some(FattyAcidChunked::try_from(C20)?), // C20
-            None,                                   // C20DC9
-            None,                                   // C20DC11
-            None,                                   // C20DC11DC14
-            None,                                   // C20DC5DC8DC11
-            None,                                   // C20DC8DC11DC14
-            None,                                   // C20DC11DC14DC17
-            None,                                   // C20DC5DC8DC11DC14
-            None,                                   // C20DC8DC11DC14DC17
-            None,                                   // C20DC5DC8DC11DC14DC17
+            None,                                   // C20C9
+            None,                                   // C20C11
+            None,                                   // C20C11C14
+            None,                                   // C20C5C8C11
+            None,                                   // C20C8C11C14
+            None,                                   // C20C11C14C17
+            None,                                   // C20C5C8C11C14
+            None,                                   // C20C8C11C14C17
+            None,                                   // C20C5C8C11C14C17
             Some(FattyAcidChunked::try_from(C21)?), // C21
             Some(FattyAcidChunked::try_from(C22)?), // C22
-            None,                                   // C22DC13
-            None,                                   // C22DC13DC16
-            None,                                   // C22DC5DC13DC16
-            None,                                   // C22DC7DC10DC13DC16
-            None,                                   // C22DC7DC10DC13DC16DC19
-            None,                                   // C22DC4DC7DC10DC13DC16DC19
+            None,                                   // C22C13
+            None,                                   // C22C13C16
+            None,                                   // C22C5C13C16
+            None,                                   // C22C7C10C13C16
+            None,                                   // C22C7C10C13C16C19
+            None,                                   // C22C4C7C10C13C16C19
             Some(FattyAcidChunked::try_from(C23)?), // C23
             Some(FattyAcidChunked::try_from(C24)?), // C24
-            None,                                   // C24DC15
-            None,                                   // C24DC15DC18
-            None,                                   // C24DC12DC15DC18
-            None,                                   // C24DC9DC12DC15DC18
-            None,                                   // C24DC6DC9DC12DC15DC18
-            None,                                   // C24DC6DC9DC12DC15DC18DC21
+            None,                                   // C24C15
+            None,                                   // C24C15C18
+            None,                                   // C24C12C15C18
+            None,                                   // C24C9C12C15C18
+            None,                                   // C24C6C9C12C15C18
+            None,                                   // C24C6C9C12C15C18C21
             Some(FattyAcidChunked::try_from(C25)?), // C25
             Some(FattyAcidChunked::try_from(C26)?), // C26
-            None,                                   // C26DC17
+            None,                                   // C26C17
             Some(FattyAcidChunked::try_from(C27)?), // C27
             Some(FattyAcidChunked::try_from(C28)?), // C28
             Some(FattyAcidChunked::try_from(C29)?), // C29
             Some(FattyAcidChunked::try_from(C30)?), // C30
-            None,                                   // C30DC21
+            None,                                   // C30C21
             Some(FattyAcidChunked::try_from(C31)?), // C31
             Some(FattyAcidChunked::try_from(C32)?), // C32
             Some(FattyAcidChunked::try_from(C33)?), // C33
@@ -115,55 +115,55 @@ fn unsaturated() -> PolarsResult<()> {
             None,                                                         // C14
             None,                                                         // C15
             None,                                                         // C16
-            Some(FattyAcidChunked::try_from(C16DC9)?),                    // C16DC9
-            Some(FattyAcidChunked::try_from(C16DT9)?),                    // C16DT9
+            Some(FattyAcidChunked::try_from(C16C9)?),                    // C16C9
+            Some(FattyAcidChunked::try_from(C16T9)?),                    // C16T9
             None,                                                         // C17
             None,                                                         // C18
-            Some(FattyAcidChunked::try_from(C18DC9)?),                    // C18DC9
-            Some(FattyAcidChunked::try_from(C18DT9)?),                    // C18DT9
-            Some(FattyAcidChunked::try_from(C18DC9DC12)?),                // C18DC9DC12
-            Some(FattyAcidChunked::try_from(C18DC6DC9DC12)?),             // C18DC6DC9DC12
-            Some(FattyAcidChunked::try_from(C18DC8DT10DC12)?),            // C18DC8DT10DC12
-            Some(FattyAcidChunked::try_from(C18DC9DC12DC15)?),            // C18DC9DC12DC15
-            Some(FattyAcidChunked::try_from(C18DC9DT11DT13)?),            // C18DC9DT11DT13
-            Some(FattyAcidChunked::try_from(C18DT9DT11DC13)?),            // C18DT9DT11DC13
-            Some(FattyAcidChunked::try_from(C18DT9DT11DT13)?),            // C18DT9DT11DT13
-            Some(FattyAcidChunked::try_from(C18DC6DC9DC12DC15)?),         // C18DC6DC9DC12DC15
+            Some(FattyAcidChunked::try_from(C18C9)?),                    // C18C9
+            Some(FattyAcidChunked::try_from(C18T9)?),                    // C18T9
+            Some(FattyAcidChunked::try_from(C18C9C12)?),                // C18C9C12
+            Some(FattyAcidChunked::try_from(C18C6C9C12)?),             // C18C6C9C12
+            Some(FattyAcidChunked::try_from(C18C8T10C12)?),            // C18C8T10C12
+            Some(FattyAcidChunked::try_from(C18C9C12C15)?),            // C18C9C12C15
+            Some(FattyAcidChunked::try_from(C18C9T11T13)?),            // C18C9T11T13
+            Some(FattyAcidChunked::try_from(C18T9T11C13)?),            // C18T9T11C13
+            Some(FattyAcidChunked::try_from(C18T9T11T13)?),            // C18T9T11T13
+            Some(FattyAcidChunked::try_from(C18C6C9C12C15)?),         // C18C6C9C12C15
             None,                                                         // C19
             None,                                                         // C20
-            Some(FattyAcidChunked::try_from(C20DC9)?),                    // C20DC9
-            Some(FattyAcidChunked::try_from(C20DC11)?),                   // C20DC11
-            Some(FattyAcidChunked::try_from(C20DC11DC14)?),               // C20DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11)?),             // C20DC5DC8DC11
-            Some(FattyAcidChunked::try_from(C20DC8DC11DC14)?),            // C20DC8DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC11DC14DC17)?),           // C20DC11DC14DC17
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11DC14)?),         // C20DC5DC8DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC8DC11DC14DC17)?),        // C20DC8DC11DC14DC17
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11DC14DC17)?),     // C20DC5DC8DC11DC14DC17
+            Some(FattyAcidChunked::try_from(C20C9)?),                    // C20C9
+            Some(FattyAcidChunked::try_from(C20C11)?),                   // C20C11
+            Some(FattyAcidChunked::try_from(C20C11C14)?),               // C20C11C14
+            Some(FattyAcidChunked::try_from(C20C5C8C11)?),             // C20C5C8C11
+            Some(FattyAcidChunked::try_from(C20C8C11C14)?),            // C20C8C11C14
+            Some(FattyAcidChunked::try_from(C20C11C14C17)?),           // C20C11C14C17
+            Some(FattyAcidChunked::try_from(C20C5C8C11C14)?),         // C20C5C8C11C14
+            Some(FattyAcidChunked::try_from(C20C8C11C14C17)?),        // C20C8C11C14C17
+            Some(FattyAcidChunked::try_from(C20C5C8C11C14C17)?),     // C20C5C8C11C14C17
             None,                                                         // C21
             None,                                                         // C22
-            Some(FattyAcidChunked::try_from(C22DC13)?),                   // C22DC13
-            Some(FattyAcidChunked::try_from(C22DC13DC16)?),               // C22DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC5DC13DC16)?),            // C22DC5DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC7DC10DC13DC16)?),        // C22DC7DC10DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC7DC10DC13DC16DC19)?),    // C22DC7DC10DC13DC16DC19
-            Some(FattyAcidChunked::try_from(C22DC4DC7DC10DC13DC16DC19)?), // C22DC4DC7DC10DC13DC16DC19
+            Some(FattyAcidChunked::try_from(C22C13)?),                   // C22C13
+            Some(FattyAcidChunked::try_from(C22C13C16)?),               // C22C13C16
+            Some(FattyAcidChunked::try_from(C22C5C13C16)?),            // C22C5C13C16
+            Some(FattyAcidChunked::try_from(C22C7C10C13C16)?),        // C22C7C10C13C16
+            Some(FattyAcidChunked::try_from(C22C7C10C13C16C19)?),    // C22C7C10C13C16C19
+            Some(FattyAcidChunked::try_from(C22C4C7C10C13C16C19)?), // C22C4C7C10C13C16C19
             None,                                                         // C23
             None,                                                         // C24
-            Some(FattyAcidChunked::try_from(C24DC15)?),                   // C24DC15
-            Some(FattyAcidChunked::try_from(C24DC15DC18)?),               // C24DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC12DC15DC18)?),           // C24DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC9DC12DC15DC18)?),        // C24DC9DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC6DC9DC12DC15DC18)?),     // C24DC6DC9DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC6DC9DC12DC15DC18DC21)?), // C24DC6DC9DC12DC15DC18DC21
+            Some(FattyAcidChunked::try_from(C24C15)?),                   // C24C15
+            Some(FattyAcidChunked::try_from(C24C15C18)?),               // C24C15C18
+            Some(FattyAcidChunked::try_from(C24C12C15C18)?),           // C24C12C15C18
+            Some(FattyAcidChunked::try_from(C24C9C12C15C18)?),        // C24C9C12C15C18
+            Some(FattyAcidChunked::try_from(C24C6C9C12C15C18)?),     // C24C6C9C12C15C18
+            Some(FattyAcidChunked::try_from(C24C6C9C12C15C18C21)?), // C24C6C9C12C15C18C21
             None,                                                         // C25
             None,                                                         // C26
-            Some(FattyAcidChunked::try_from(C26DC17)?),                   // C26DC17
+            Some(FattyAcidChunked::try_from(C26C17)?),                   // C26C17
             None,                                                         // C27
             None,                                                         // C28
             None,                                                         // C29
             None,                                                         // C30
-            Some(FattyAcidChunked::try_from(C30DC21)?),                   // C30DC21
+            Some(FattyAcidChunked::try_from(C30C21)?),                   // C30C21
             None,                                                         // C31
             None,                                                         // C32
             None,                                                         // C33
@@ -202,55 +202,55 @@ fn monounsaturated() -> PolarsResult<()> {
             None,                                       // C14
             None,                                       // C15
             None,                                       // C16
-            Some(FattyAcidChunked::try_from(C16DC9)?),  // C16DC9
-            Some(FattyAcidChunked::try_from(C16DT9)?),  // C16DT9
+            Some(FattyAcidChunked::try_from(C16C9)?),  // C16C9
+            Some(FattyAcidChunked::try_from(C16T9)?),  // C16T9
             None,                                       // C17
             None,                                       // C18
-            Some(FattyAcidChunked::try_from(C18DC9)?),  // C18DC9
-            Some(FattyAcidChunked::try_from(C18DT9)?),  // C18DT9
-            None,                                       // C18DC9DC12
-            None,                                       // C18DC6DC9DC12
-            None,                                       // C18DC8DT10DC12
-            None,                                       // C18DC9DC12DC15
-            None,                                       // C18DC9DT11DT13
-            None,                                       // C18DT9DT11DC13
-            None,                                       // C18DT9DT11DT13
-            None,                                       // C18DC6DC9DC12DC15
+            Some(FattyAcidChunked::try_from(C18C9)?),  // C18C9
+            Some(FattyAcidChunked::try_from(C18T9)?),  // C18T9
+            None,                                       // C18C9C12
+            None,                                       // C18C6C9C12
+            None,                                       // C18C8T10C12
+            None,                                       // C18C9C12C15
+            None,                                       // C18C9T11T13
+            None,                                       // C18T9T11C13
+            None,                                       // C18T9T11T13
+            None,                                       // C18C6C9C12C15
             None,                                       // C19
             None,                                       // C20
-            Some(FattyAcidChunked::try_from(C20DC9)?),  // C20DC9
-            Some(FattyAcidChunked::try_from(C20DC11)?), // C20DC11
-            None,                                       // C20DC11DC14
-            None,                                       // C20DC5DC8DC11
-            None,                                       // C20DC8DC11DC14
-            None,                                       // C20DC11DC14DC17
-            None,                                       // C20DC5DC8DC11DC14
-            None,                                       // C20DC8DC11DC14DC17
-            None,                                       // C20DC5DC8DC11DC14DC17
+            Some(FattyAcidChunked::try_from(C20C9)?),  // C20C9
+            Some(FattyAcidChunked::try_from(C20C11)?), // C20C11
+            None,                                       // C20C11C14
+            None,                                       // C20C5C8C11
+            None,                                       // C20C8C11C14
+            None,                                       // C20C11C14C17
+            None,                                       // C20C5C8C11C14
+            None,                                       // C20C8C11C14C17
+            None,                                       // C20C5C8C11C14C17
             None,                                       // C21
             None,                                       // C22
-            Some(FattyAcidChunked::try_from(C22DC13)?), // C22DC13
-            None,                                       // C22DC13DC16
-            None,                                       // C22DC5DC13DC16
-            None,                                       // C22DC7DC10DC13DC16
-            None,                                       // C22DC7DC10DC13DC16DC19
-            None,                                       // C22DC4DC7DC10DC13DC16DC19
+            Some(FattyAcidChunked::try_from(C22C13)?), // C22C13
+            None,                                       // C22C13C16
+            None,                                       // C22C5C13C16
+            None,                                       // C22C7C10C13C16
+            None,                                       // C22C7C10C13C16C19
+            None,                                       // C22C4C7C10C13C16C19
             None,                                       // C23
             None,                                       // C24
-            Some(FattyAcidChunked::try_from(C24DC15)?), // C24DC15
-            None,                                       // C24DC15DC18
-            None,                                       // C24DC12DC15DC18
-            None,                                       // C24DC9DC12DC15DC18
-            None,                                       // C24DC6DC9DC12DC15DC18
-            None,                                       // C24DC6DC9DC12DC15DC18DC21
+            Some(FattyAcidChunked::try_from(C24C15)?), // C24C15
+            None,                                       // C24C15C18
+            None,                                       // C24C12C15C18
+            None,                                       // C24C9C12C15C18
+            None,                                       // C24C6C9C12C15C18
+            None,                                       // C24C6C9C12C15C18C21
             None,                                       // C25
             None,                                       // C26
-            Some(FattyAcidChunked::try_from(C26DC17)?), // C26DC17
+            Some(FattyAcidChunked::try_from(C26C17)?), // C26C17
             None,                                       // C27
             None,                                       // C28
             None,                                       // C29
             None,                                       // C30
-            Some(FattyAcidChunked::try_from(C30DC21)?), // C30DC21
+            Some(FattyAcidChunked::try_from(C30C21)?), // C30C21
             None,                                       // C31
             None,                                       // C32
             None,                                       // C33
@@ -289,55 +289,55 @@ fn polyunsaturated() -> PolarsResult<()> {
             None,                                                         // C14
             None,                                                         // C15
             None,                                                         // C16
-            None,                                                         // C16DC9
-            None,                                                         // C16DT9
+            None,                                                         // C16C9
+            None,                                                         // C16T9
             None,                                                         // C17
             None,                                                         // C18
-            None,                                                         // C18DC9
-            None,                                                         // C18DT9
-            Some(FattyAcidChunked::try_from(C18DC9DC12)?),                // C18DC9DC12
-            Some(FattyAcidChunked::try_from(C18DC6DC9DC12)?),             // C18DC6DC9DC12
-            Some(FattyAcidChunked::try_from(C18DC8DT10DC12)?),            // C18DC8DT10DC12
-            Some(FattyAcidChunked::try_from(C18DC9DC12DC15)?),            // C18DC9DC12DC15
-            Some(FattyAcidChunked::try_from(C18DC9DT11DT13)?),            // C18DC9DT11DT13
-            Some(FattyAcidChunked::try_from(C18DT9DT11DC13)?),            // C18DT9DT11DC13
-            Some(FattyAcidChunked::try_from(C18DT9DT11DT13)?),            // C18DT9DT11DT13
-            Some(FattyAcidChunked::try_from(C18DC6DC9DC12DC15)?),         // C18DC6DC9DC12DC15
+            None,                                                         // C18C9
+            None,                                                         // C18T9
+            Some(FattyAcidChunked::try_from(C18C9C12)?),                // C18C9C12
+            Some(FattyAcidChunked::try_from(C18C6C9C12)?),             // C18C6C9C12
+            Some(FattyAcidChunked::try_from(C18C8T10C12)?),            // C18C8T10C12
+            Some(FattyAcidChunked::try_from(C18C9C12C15)?),            // C18C9C12C15
+            Some(FattyAcidChunked::try_from(C18C9T11T13)?),            // C18C9T11T13
+            Some(FattyAcidChunked::try_from(C18T9T11C13)?),            // C18T9T11C13
+            Some(FattyAcidChunked::try_from(C18T9T11T13)?),            // C18T9T11T13
+            Some(FattyAcidChunked::try_from(C18C6C9C12C15)?),         // C18C6C9C12C15
             None,                                                         // C19
             None,                                                         // C20
-            None,                                                         // C20DC9
-            None,                                                         // C20DC11
-            Some(FattyAcidChunked::try_from(C20DC11DC14)?),               // C20DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11)?),             // C20DC5DC8DC11
-            Some(FattyAcidChunked::try_from(C20DC8DC11DC14)?),            // C20DC8DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC11DC14DC17)?),           // C20DC11DC14DC17
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11DC14)?),         // C20DC5DC8DC11DC14
-            Some(FattyAcidChunked::try_from(C20DC8DC11DC14DC17)?),        // C20DC8DC11DC14DC17
-            Some(FattyAcidChunked::try_from(C20DC5DC8DC11DC14DC17)?),     // C20DC5DC8DC11DC14DC17
+            None,                                                         // C20C9
+            None,                                                         // C20C11
+            Some(FattyAcidChunked::try_from(C20C11C14)?),               // C20C11C14
+            Some(FattyAcidChunked::try_from(C20C5C8C11)?),             // C20C5C8C11
+            Some(FattyAcidChunked::try_from(C20C8C11C14)?),            // C20C8C11C14
+            Some(FattyAcidChunked::try_from(C20C11C14C17)?),           // C20C11C14C17
+            Some(FattyAcidChunked::try_from(C20C5C8C11C14)?),         // C20C5C8C11C14
+            Some(FattyAcidChunked::try_from(C20C8C11C14C17)?),        // C20C8C11C14C17
+            Some(FattyAcidChunked::try_from(C20C5C8C11C14C17)?),     // C20C5C8C11C14C17
             None,                                                         // C21
             None,                                                         // C22
-            None,                                                         // C22DC13
-            Some(FattyAcidChunked::try_from(C22DC13DC16)?),               // C22DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC5DC13DC16)?),            // C22DC5DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC7DC10DC13DC16)?),        // C22DC7DC10DC13DC16
-            Some(FattyAcidChunked::try_from(C22DC7DC10DC13DC16DC19)?),    // C22DC7DC10DC13DC16DC19
-            Some(FattyAcidChunked::try_from(C22DC4DC7DC10DC13DC16DC19)?), // C22DC4DC7DC10DC13DC16DC19
+            None,                                                         // C22C13
+            Some(FattyAcidChunked::try_from(C22C13C16)?),               // C22C13C16
+            Some(FattyAcidChunked::try_from(C22C5C13C16)?),            // C22C5C13C16
+            Some(FattyAcidChunked::try_from(C22C7C10C13C16)?),        // C22C7C10C13C16
+            Some(FattyAcidChunked::try_from(C22C7C10C13C16C19)?),    // C22C7C10C13C16C19
+            Some(FattyAcidChunked::try_from(C22C4C7C10C13C16C19)?), // C22C4C7C10C13C16C19
             None,                                                         // C23
             None,                                                         // C24
-            None,                                                         // C24DC15
-            Some(FattyAcidChunked::try_from(C24DC15DC18)?),               // C24DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC12DC15DC18)?),           // C24DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC9DC12DC15DC18)?),        // C24DC9DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC6DC9DC12DC15DC18)?),     // C24DC6DC9DC12DC15DC18
-            Some(FattyAcidChunked::try_from(C24DC6DC9DC12DC15DC18DC21)?), // C24DC6DC9DC12DC15DC18DC21
+            None,                                                         // C24C15
+            Some(FattyAcidChunked::try_from(C24C15C18)?),               // C24C15C18
+            Some(FattyAcidChunked::try_from(C24C12C15C18)?),           // C24C12C15C18
+            Some(FattyAcidChunked::try_from(C24C9C12C15C18)?),        // C24C9C12C15C18
+            Some(FattyAcidChunked::try_from(C24C6C9C12C15C18)?),     // C24C6C9C12C15C18
+            Some(FattyAcidChunked::try_from(C24C6C9C12C15C18C21)?), // C24C6C9C12C15C18C21
             None,                                                         // C25
             None,                                                         // C26
-            None,                                                         // C26DC17
+            None,                                                         // C26C17
             None,                                                         // C27
             None,                                                         // C28
             None,                                                         // C29
             None,                                                         // C30
-            None,                                                         // C30DC21
+            None,                                                         // C30C21
             None,                                                         // C31
             None,                                                         // C32
             None,                                                         // C33

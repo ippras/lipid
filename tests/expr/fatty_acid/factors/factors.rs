@@ -8,10 +8,10 @@ static SOURCE: LazyLock<DataFrame> = LazyLock::new(|| {
         "FattyAcid" => [
             Series::from_iter(C16U0).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
             Series::from_iter(C18U0).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
-            Series::from_iter(C16U1DC9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U1DC9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U2DC9DC12).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
-            Series::from_iter(C18U3DC9DC12DC15).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C16U1C9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U1C9).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U2C9C12).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
+            Series::from_iter(C18U3C9C12C15).cast(&IDENTIFIER_DATA_TYPE).unwrap(),
         ],
         "E. bungeanus" => df! {
             "sn-1,2,3" => [28.1, 1.5, 10.2, 17.2, 41.7, 1.3],

@@ -29,55 +29,55 @@ fn c4u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -107,55 +107,55 @@ fn c5u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -185,55 +185,55 @@ fn c6u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -263,55 +263,55 @@ fn c7u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -341,55 +341,55 @@ fn c8u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -419,55 +419,55 @@ fn c9u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -497,55 +497,55 @@ fn c10u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -575,55 +575,55 @@ fn c11u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -653,55 +653,55 @@ fn c12u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -731,55 +731,55 @@ fn c13u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -809,55 +809,55 @@ fn c14u0() -> PolarsResult<()> {
             Some(true),  // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -887,55 +887,55 @@ fn c15u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(true),  // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -965,55 +965,55 @@ fn c16u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(true),  // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1028,7 +1028,7 @@ fn c16u0() -> PolarsResult<()> {
 #[test]
 fn c16u1dc9() -> PolarsResult<()> {
     check!(
-        C16DC9,
+        C16C9,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1043,55 +1043,55 @@ fn c16u1dc9() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(true),  // C16DC9
-            Some(false), // C16DT9
+            Some(true),  // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1106,7 +1106,7 @@ fn c16u1dc9() -> PolarsResult<()> {
 #[test]
 fn c16u1dt9() -> PolarsResult<()> {
     check!(
-        C16DT9,
+        C16T9,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1121,55 +1121,55 @@ fn c16u1dt9() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(true),  // C16DT9
+            Some(false), // C16C9
+            Some(true),  // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1199,55 +1199,55 @@ fn c17u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(true),  // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1277,55 +1277,55 @@ fn c18u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(true),  // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1340,7 +1340,7 @@ fn c18u0() -> PolarsResult<()> {
 #[test]
 fn c18u1dc9() -> PolarsResult<()> {
     check!(
-        C18DC9,
+        C18C9,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1355,55 +1355,55 @@ fn c18u1dc9() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(true),  // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(true),  // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1418,7 +1418,7 @@ fn c18u1dc9() -> PolarsResult<()> {
 #[test]
 fn c18u1dt9() -> PolarsResult<()> {
     check!(
-        C18DT9,
+        C18T9,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1433,55 +1433,55 @@ fn c18u1dt9() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(true),  // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(true),  // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1496,7 +1496,7 @@ fn c18u1dt9() -> PolarsResult<()> {
 #[test]
 fn c18u2dc9dc12() -> PolarsResult<()> {
     check!(
-        C18DC9DC12,
+        C18C9C12,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1511,55 +1511,55 @@ fn c18u2dc9dc12() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(true),  // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(true),  // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1574,7 +1574,7 @@ fn c18u2dc9dc12() -> PolarsResult<()> {
 #[test]
 fn c18u3dc6dc9dc12() -> PolarsResult<()> {
     check!(
-        C18DC6DC9DC12,
+        C18C6C9C12,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1589,55 +1589,55 @@ fn c18u3dc6dc9dc12() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(true),  // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(true),  // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1652,7 +1652,7 @@ fn c18u3dc6dc9dc12() -> PolarsResult<()> {
 #[test]
 fn c18u3dc8dt10dc12() -> PolarsResult<()> {
     check!(
-        C18DC8DT10DC12,
+        C18C8T10C12,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1667,55 +1667,55 @@ fn c18u3dc8dt10dc12() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(true),  // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(true),  // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1729,7 +1729,7 @@ fn c18u3dc8dt10dc12() -> PolarsResult<()> {
 #[test]
 fn c18u3dc9dc12dc15() -> PolarsResult<()> {
     check!(
-        C18DC9DC12DC15,
+        C18C9C12C15,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1744,55 +1744,55 @@ fn c18u3dc9dc12dc15() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(true),  // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(true),  // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1807,7 +1807,7 @@ fn c18u3dc9dc12dc15() -> PolarsResult<()> {
 #[test]
 fn c18u3dc9dt11dt13() -> PolarsResult<()> {
     check!(
-        C18DC9DT11DT13,
+        C18C9T11T13,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1822,55 +1822,55 @@ fn c18u3dc9dt11dt13() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(true),  // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(true),  // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1885,7 +1885,7 @@ fn c18u3dc9dt11dt13() -> PolarsResult<()> {
 #[test]
 fn c18u3dt9dt11dc13() -> PolarsResult<()> {
     check!(
-        C18DT9DT11DC13,
+        C18T9T11C13,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1900,55 +1900,55 @@ fn c18u3dt9dt11dc13() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(true),  // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(true),  // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -1963,7 +1963,7 @@ fn c18u3dt9dt11dc13() -> PolarsResult<()> {
 #[test]
 fn c18u3dt9dt11dt13() -> PolarsResult<()> {
     check!(
-        C18DT9DT11DT13,
+        C18T9T11T13,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1978,55 +1978,55 @@ fn c18u3dt9dt11dt13() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(true),  // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(true),  // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2041,7 +2041,7 @@ fn c18u3dt9dt11dt13() -> PolarsResult<()> {
 #[test]
 fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
     check!(
-        C18DC6DC9DC12DC15,
+        C18C6C9C12C15,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2056,55 +2056,55 @@ fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(true),  // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(true),  // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2134,55 +2134,55 @@ fn c19u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(true),  // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2212,55 +2212,55 @@ fn c20u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(true),  // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2275,7 +2275,7 @@ fn c20u0() -> PolarsResult<()> {
 #[test]
 fn c20u1dc9() -> PolarsResult<()> {
     check!(
-        C20DC9,
+        C20C9,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2290,55 +2290,55 @@ fn c20u1dc9() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(true),  // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(true),  // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2353,7 +2353,7 @@ fn c20u1dc9() -> PolarsResult<()> {
 #[test]
 fn c20u1dc11() -> PolarsResult<()> {
     check!(
-        C20DC11,
+        C20C11,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2368,55 +2368,55 @@ fn c20u1dc11() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(true),  // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(true),  // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2431,7 +2431,7 @@ fn c20u1dc11() -> PolarsResult<()> {
 #[test]
 fn c20u2dc11dc14() -> PolarsResult<()> {
     check!(
-        C20DC11DC14,
+        C20C11C14,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2446,55 +2446,55 @@ fn c20u2dc11dc14() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(true),  // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(true),  // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2509,7 +2509,7 @@ fn c20u2dc11dc14() -> PolarsResult<()> {
 #[test]
 fn c20u3dc5dc8dc11() -> PolarsResult<()> {
     check!(
-        C20DC5DC8DC11,
+        C20C5C8C11,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2524,55 +2524,55 @@ fn c20u3dc5dc8dc11() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(true),  // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(true),  // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2587,7 +2587,7 @@ fn c20u3dc5dc8dc11() -> PolarsResult<()> {
 #[test]
 fn c20u3dc8dc11dc14() -> PolarsResult<()> {
     check!(
-        C20DC8DC11DC14,
+        C20C8C11C14,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2602,55 +2602,55 @@ fn c20u3dc8dc11dc14() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(true),  // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(true),  // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2665,7 +2665,7 @@ fn c20u3dc8dc11dc14() -> PolarsResult<()> {
 #[test]
 fn c20u3dc11dc14dc17() -> PolarsResult<()> {
     check!(
-        C20DC11DC14DC17,
+        C20C11C14C17,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2680,55 +2680,55 @@ fn c20u3dc11dc14dc17() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(true),  // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(true),  // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2743,7 +2743,7 @@ fn c20u3dc11dc14dc17() -> PolarsResult<()> {
 #[test]
 fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
     check!(
-        C20DC5DC8DC11DC14,
+        C20C5C8C11C14,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2758,55 +2758,55 @@ fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(true),  // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(true),  // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2821,7 +2821,7 @@ fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
 #[test]
 fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
     check!(
-        C20DC8DC11DC14DC17,
+        C20C8C11C14C17,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2836,55 +2836,55 @@ fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(true),  // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(true),  // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2899,7 +2899,7 @@ fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
 #[test]
 fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
     check!(
-        C20DC5DC8DC11DC14DC17,
+        C20C5C8C11C14C17,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2914,55 +2914,55 @@ fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(true),  // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(true),  // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -2992,55 +2992,55 @@ fn c21u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(true),  // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3070,55 +3070,55 @@ fn c22u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(true),  // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3133,7 +3133,7 @@ fn c22u0() -> PolarsResult<()> {
 #[test]
 fn c22u1dc13() -> PolarsResult<()> {
     check!(
-        C22DC13,
+        C22C13,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3148,55 +3148,55 @@ fn c22u1dc13() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(true),  // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(true),  // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3211,7 +3211,7 @@ fn c22u1dc13() -> PolarsResult<()> {
 #[test]
 fn c22u2dc13dc16() -> PolarsResult<()> {
     check!(
-        C22DC13DC16,
+        C22C13C16,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3226,55 +3226,55 @@ fn c22u2dc13dc16() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(true),  // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(true),  // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3289,7 +3289,7 @@ fn c22u2dc13dc16() -> PolarsResult<()> {
 #[test]
 fn c22u3dc5dc13dc16() -> PolarsResult<()> {
     check!(
-        C22DC5DC13DC16,
+        C22C5C13C16,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3304,55 +3304,55 @@ fn c22u3dc5dc13dc16() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(true),  // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(true),  // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3367,7 +3367,7 @@ fn c22u3dc5dc13dc16() -> PolarsResult<()> {
 #[test]
 fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
     check!(
-        C22DC7DC10DC13DC16,
+        C22C7C10C13C16,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3382,55 +3382,55 @@ fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(true),  // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(true),  // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3445,7 +3445,7 @@ fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
 #[test]
 fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     check!(
-        C22DC7DC10DC13DC16DC19,
+        C22C7C10C13C16C19,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3460,55 +3460,55 @@ fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(true),  // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(true),  // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3523,7 +3523,7 @@ fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 #[test]
 fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
     check!(
-        C22DC4DC7DC10DC13DC16DC19,
+        C22C4C7C10C13C16C19,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3538,55 +3538,55 @@ fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(true),  // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(true),  // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3616,55 +3616,55 @@ fn c23u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(true),  // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3694,55 +3694,55 @@ fn c24u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(true),  // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3757,7 +3757,7 @@ fn c24u0() -> PolarsResult<()> {
 #[test]
 fn c24u1dc15() -> PolarsResult<()> {
     check!(
-        C24DC15,
+        C24C15,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3772,55 +3772,55 @@ fn c24u1dc15() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(true),  // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(true),  // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3835,7 +3835,7 @@ fn c24u1dc15() -> PolarsResult<()> {
 #[test]
 fn c24u2dc15dc18() -> PolarsResult<()> {
     check!(
-        C24DC15DC18,
+        C24C15C18,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3850,55 +3850,55 @@ fn c24u2dc15dc18() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(true),  // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(true),  // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3913,7 +3913,7 @@ fn c24u2dc15dc18() -> PolarsResult<()> {
 #[test]
 fn c24u3dc12dc15dc18() -> PolarsResult<()> {
     check!(
-        C24DC12DC15DC18,
+        C24C12C15C18,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3928,55 +3928,55 @@ fn c24u3dc12dc15dc18() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(true),  // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(true),  // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -3991,7 +3991,7 @@ fn c24u3dc12dc15dc18() -> PolarsResult<()> {
 #[test]
 fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
     check!(
-        C24DC9DC12DC15DC18,
+        C24C9C12C15C18,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4006,55 +4006,55 @@ fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(true),  // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(true),  // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4069,7 +4069,7 @@ fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
 #[test]
 fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
     check!(
-        C24DC6DC9DC12DC15DC18,
+        C24C6C9C12C15C18,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4084,55 +4084,55 @@ fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(true),  // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(true),  // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4147,7 +4147,7 @@ fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
 #[test]
 fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
     check!(
-        C24DC6DC9DC12DC15DC18DC21,
+        C24C6C9C12C15C18C21,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4162,55 +4162,55 @@ fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(true),  // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(true),  // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4240,55 +4240,55 @@ fn c25u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(true),  // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4318,55 +4318,55 @@ fn c26u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(true),  // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4381,7 +4381,7 @@ fn c26u0() -> PolarsResult<()> {
 #[test]
 fn c26u1dc17() -> PolarsResult<()> {
     check!(
-        C26DC17,
+        C26C17,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4396,55 +4396,55 @@ fn c26u1dc17() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(true),  // C26DC17
+            Some(true),  // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4474,55 +4474,55 @@ fn c27u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(true),  // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4552,55 +4552,55 @@ fn c28u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(true),  // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4630,55 +4630,55 @@ fn c29u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(true),  // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4708,55 +4708,55 @@ fn c30u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(true),  // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4771,7 +4771,7 @@ fn c30u0() -> PolarsResult<()> {
 #[test]
 fn c30u1dc21() -> PolarsResult<()> {
     check!(
-        C30DC21,
+        C30C21,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4786,55 +4786,55 @@ fn c30u1dc21() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(true),  // C30DC21
+            Some(true),  // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -4864,55 +4864,55 @@ fn c31u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(true),  // C31
             Some(false), // C32
             Some(false), // C33
@@ -4942,55 +4942,55 @@ fn c32u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(true),  // C32
             Some(false), // C33
@@ -5020,55 +5020,55 @@ fn c33u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(true),  // C33
@@ -5098,55 +5098,55 @@ fn c34u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -5176,55 +5176,55 @@ fn c35u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33
@@ -5254,55 +5254,55 @@ fn c36u0() -> PolarsResult<()> {
             Some(false), // C14
             Some(false), // C15
             Some(false), // C16
-            Some(false), // C16DC9
-            Some(false), // C16DT9
+            Some(false), // C16C9
+            Some(false), // C16T9
             Some(false), // C17
             Some(false), // C18
-            Some(false), // C18DC9
-            Some(false), // C18DT9
-            Some(false), // C18DC9DC12
-            Some(false), // C18DC6DC9DC12
-            Some(false), // C18DC8DT10DC12
-            Some(false), // C18DC9DC12DC15
-            Some(false), // C18DC9DT11DT13
-            Some(false), // C18DT9DT11DC13
-            Some(false), // C18DT9DT11DT13
-            Some(false), // C18DC6DC9DC12DC15
+            Some(false), // C18C9
+            Some(false), // C18T9
+            Some(false), // C18C9C12
+            Some(false), // C18C6C9C12
+            Some(false), // C18C8T10C12
+            Some(false), // C18C9C12C15
+            Some(false), // C18C9T11T13
+            Some(false), // C18T9T11C13
+            Some(false), // C18T9T11T13
+            Some(false), // C18C6C9C12C15
             Some(false), // C19
             Some(false), // C20
-            Some(false), // C20DC9
-            Some(false), // C20DC11
-            Some(false), // C20DC11DC14
-            Some(false), // C20DC5DC8DC11
-            Some(false), // C20DC8DC11DC14
-            Some(false), // C20DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14
-            Some(false), // C20DC8DC11DC14DC17
-            Some(false), // C20DC5DC8DC11DC14DC17
+            Some(false), // C20C9
+            Some(false), // C20C11
+            Some(false), // C20C11C14
+            Some(false), // C20C5C8C11
+            Some(false), // C20C8C11C14
+            Some(false), // C20C11C14C17
+            Some(false), // C20C5C8C11C14
+            Some(false), // C20C8C11C14C17
+            Some(false), // C20C5C8C11C14C17
             Some(false), // C21
             Some(false), // C22
-            Some(false), // C22DC13
-            Some(false), // C22DC13DC16
-            Some(false), // C22DC5DC13DC16
-            Some(false), // C22DC7DC10DC13DC16
-            Some(false), // C22DC7DC10DC13DC16DC19
-            Some(false), // C22DC4DC7DC10DC13DC16DC19
+            Some(false), // C22C13
+            Some(false), // C22C13C16
+            Some(false), // C22C5C13C16
+            Some(false), // C22C7C10C13C16
+            Some(false), // C22C7C10C13C16C19
+            Some(false), // C22C4C7C10C13C16C19
             Some(false), // C23
             Some(false), // C24
-            Some(false), // C24DC15
-            Some(false), // C24DC15DC18
-            Some(false), // C24DC12DC15DC18
-            Some(false), // C24DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18
-            Some(false), // C24DC6DC9DC12DC15DC18DC21
+            Some(false), // C24C15
+            Some(false), // C24C15C18
+            Some(false), // C24C12C15C18
+            Some(false), // C24C9C12C15C18
+            Some(false), // C24C6C9C12C15C18
+            Some(false), // C24C6C9C12C15C18C21
             Some(false), // C25
             Some(false), // C26
-            Some(false), // C26DC17
+            Some(false), // C26C17
             Some(false), // C27
             Some(false), // C28
             Some(false), // C29
             Some(false), // C30
-            Some(false), // C30DC21
+            Some(false), // C30C21
             Some(false), // C31
             Some(false), // C32
             Some(false), // C33

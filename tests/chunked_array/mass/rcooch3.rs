@@ -88,13 +88,13 @@ fn c16() -> PolarsResult<()> {
 
 #[test]
 fn c16u1dc9() -> PolarsResult<()> {
-    check!(C16DC9);
+    check!(C16C9);
     Ok(())
 }
 
 #[test]
 fn c16u1dt9() -> PolarsResult<()> {
-    check!(C16DT9);
+    check!(C16T9);
     Ok(())
 }
 
@@ -112,61 +112,61 @@ fn c18() -> PolarsResult<()> {
 
 #[test]
 fn c18u1dc9() -> PolarsResult<()> {
-    check!(C18DC9);
+    check!(C18C9);
     Ok(())
 }
 
 #[test]
 fn c18u1dt9() -> PolarsResult<()> {
-    check!(C18DT9);
+    check!(C18T9);
     Ok(())
 }
 
 #[test]
 fn c18u2dc9dc12() -> PolarsResult<()> {
-    check!(C18DC9DC12);
+    check!(C18C9C12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc6dc9dc12() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12);
+    check!(C18C6C9C12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc8dt10dc12() -> PolarsResult<()> {
-    check!(C18DC8DT10DC12);
+    check!(C18C8T10C12);
     Ok(())
 }
 
 #[test]
 fn c18u3dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC9DC12DC15);
+    check!(C18C9C12C15);
     Ok(())
 }
 
 #[test]
 fn c18u3dc9dt11dt13() -> PolarsResult<()> {
-    check!(C18DC9DT11DT13);
+    check!(C18C9T11T13);
     Ok(())
 }
 
 #[test]
 fn c18u3dt9dt11dc13() -> PolarsResult<()> {
-    check!(C18DT9DT11DC13);
+    check!(C18T9T11C13);
     Ok(())
 }
 
 #[test]
 fn c18u3dt9dt11dt13() -> PolarsResult<()> {
-    check!(C18DT9DT11DT13);
+    check!(C18T9T11T13);
     Ok(())
 }
 
 #[test]
 fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18DC6DC9DC12DC15);
+    check!(C18C6C9C12C15);
     Ok(())
 }
 
@@ -184,55 +184,55 @@ fn c20() -> PolarsResult<()> {
 
 #[test]
 fn c20u1dc9() -> PolarsResult<()> {
-    check!(C20DC9);
+    check!(C20C9);
     Ok(())
 }
 
 #[test]
 fn c20u1dc11() -> PolarsResult<()> {
-    check!(C20DC11);
+    check!(C20C11);
     Ok(())
 }
 
 #[test]
 fn c20u2dc11dc14() -> PolarsResult<()> {
-    check!(C20DC11DC14);
+    check!(C20C11C14);
     Ok(())
 }
 
 #[test]
 fn c20u3dc5dc8dc11() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11);
+    check!(C20C5C8C11);
     Ok(())
 }
 
 #[test]
 fn c20u3dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14);
+    check!(C20C8C11C14);
     Ok(())
 }
 
 #[test]
 fn c20u3dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC11DC14DC17);
+    check!(C20C11C14C17);
     Ok(())
 }
 
 #[test]
 fn c20u4dc5dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14);
+    check!(C20C5C8C11C14);
     Ok(())
 }
 
 #[test]
 fn c20u4dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC8DC11DC14DC17);
+    check!(C20C8C11C14C17);
     Ok(())
 }
 
 #[test]
 fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20DC5DC8DC11DC14DC17);
+    check!(C20C5C8C11C14C17);
     Ok(())
 }
 
@@ -250,37 +250,37 @@ fn c22() -> PolarsResult<()> {
 
 #[test]
 fn c22u1dc13() -> PolarsResult<()> {
-    check!(C22DC13);
+    check!(C22C13);
     Ok(())
 }
 
 #[test]
 fn c22u2dc13dc16() -> PolarsResult<()> {
-    check!(C22DC13DC16);
+    check!(C22C13C16);
     Ok(())
 }
 
 #[test]
 fn c22u3dc5dc13dc16() -> PolarsResult<()> {
-    check!(C22DC5DC13DC16);
+    check!(C22C5C13C16);
     Ok(())
 }
 
 #[test]
 fn c22u4dc7dc10dc13dc16() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16);
+    check!(C22C7C10C13C16);
     Ok(())
 }
 
 #[test]
 fn c22u5dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC7DC10DC13DC16DC19);
+    check!(C22C7C10C13C16C19);
     Ok(())
 }
 
 #[test]
 fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22DC4DC7DC10DC13DC16DC19);
+    check!(C22C4C7C10C13C16C19);
     Ok(())
 }
 
@@ -298,37 +298,37 @@ fn c24() -> PolarsResult<()> {
 
 #[test]
 fn c24u1dc15() -> PolarsResult<()> {
-    check!(C24DC15);
+    check!(C24C15);
     Ok(())
 }
 
 #[test]
 fn c24u2dc15dc18() -> PolarsResult<()> {
-    check!(C24DC15DC18);
+    check!(C24C15C18);
     Ok(())
 }
 
 #[test]
 fn c24u3dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC12DC15DC18);
+    check!(C24C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24u4dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC9DC12DC15DC18);
+    check!(C24C9C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24u5dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18);
+    check!(C24C6C9C12C15C18);
     Ok(())
 }
 
 #[test]
 fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check!(C24DC6DC9DC12DC15DC18DC21);
+    check!(C24C6C9C12C15C18C21);
     Ok(())
 }
 
@@ -346,7 +346,7 @@ fn c26() -> PolarsResult<()> {
 
 #[test]
 fn c26u1dc17() -> PolarsResult<()> {
-    check!(C26DC17);
+    check!(C26C17);
     Ok(())
 }
 
@@ -376,7 +376,7 @@ fn c30() -> PolarsResult<()> {
 
 #[test]
 fn c30u1dc21() -> PolarsResult<()> {
-    check!(C30DC21);
+    check!(C30C21);
     Ok(())
 }
 
@@ -430,55 +430,55 @@ mod expected {
     pub(super) const C14: f64 = 242.2246;
     pub(super) const C15: f64 = 256.2402;
     pub(super) const C16: f64 = 270.2559;
-    pub(super) const C16DC9: f64 = 268.2402;
-    pub(super) const C16DT9: f64 = 268.2402;
+    pub(super) const C16C9: f64 = 268.2402;
+    pub(super) const C16T9: f64 = 268.2402;
     pub(super) const C17: f64 = 284.2715;
     pub(super) const C18: f64 = 298.2872;
-    pub(super) const C18DC9: f64 = 296.2715;
-    pub(super) const C18DT9: f64 = 296.2715;
-    pub(super) const C18DC9DC12: f64 = 294.2559;
-    pub(super) const C18DC6DC9DC12: f64 = 292.2402;
-    pub(super) const C18DC8DT10DC12: f64 = 292.2402;
-    pub(super) const C18DC9DC12DC15: f64 = 292.2402;
-    pub(super) const C18DC9DT11DT13: f64 = 292.2402;
-    pub(super) const C18DT9DT11DC13: f64 = 292.2402;
-    pub(super) const C18DT9DT11DT13: f64 = 292.2402;
-    pub(super) const C18DC6DC9DC12DC15: f64 = 290.2246;
+    pub(super) const C18C9: f64 = 296.2715;
+    pub(super) const C18T9: f64 = 296.2715;
+    pub(super) const C18C9C12: f64 = 294.2559;
+    pub(super) const C18C6C9C12: f64 = 292.2402;
+    pub(super) const C18C8T10C12: f64 = 292.2402;
+    pub(super) const C18C9C12C15: f64 = 292.2402;
+    pub(super) const C18C9T11T13: f64 = 292.2402;
+    pub(super) const C18T9T11C13: f64 = 292.2402;
+    pub(super) const C18T9T11T13: f64 = 292.2402;
+    pub(super) const C18C6C9C12C15: f64 = 290.2246;
     pub(super) const C19: f64 = 312.3028;
     pub(super) const C20: f64 = 326.3185;
-    pub(super) const C20DC9: f64 = 324.3028;
-    pub(super) const C20DC11: f64 = 324.3028;
-    pub(super) const C20DC11DC14: f64 = 322.2872;
-    pub(super) const C20DC5DC8DC11: f64 = 320.2715;
-    pub(super) const C20DC8DC11DC14: f64 = 320.2715;
-    pub(super) const C20DC11DC14DC17: f64 = 320.2715;
-    pub(super) const C20DC5DC8DC11DC14: f64 = 318.2559;
-    pub(super) const C20DC8DC11DC14DC17: f64 = 318.2559;
-    pub(super) const C20DC5DC8DC11DC14DC17: f64 = 316.2402;
+    pub(super) const C20C9: f64 = 324.3028;
+    pub(super) const C20C11: f64 = 324.3028;
+    pub(super) const C20C11C14: f64 = 322.2872;
+    pub(super) const C20C5C8C11: f64 = 320.2715;
+    pub(super) const C20C8C11C14: f64 = 320.2715;
+    pub(super) const C20C11C14C17: f64 = 320.2715;
+    pub(super) const C20C5C8C11C14: f64 = 318.2559;
+    pub(super) const C20C8C11C14C17: f64 = 318.2559;
+    pub(super) const C20C5C8C11C14C17: f64 = 316.2402;
     pub(super) const C21: f64 = 340.3341;
     pub(super) const C22: f64 = 354.3498;
-    pub(super) const C22DC13: f64 = 352.3341;
-    pub(super) const C22DC13DC16: f64 = 350.3185;
-    pub(super) const C22DC5DC13DC16: f64 = 348.3028;
-    pub(super) const C22DC7DC10DC13DC16: f64 = 346.2872;
-    pub(super) const C22DC7DC10DC13DC16DC19: f64 = 344.2715;
-    pub(super) const C22DC4DC7DC10DC13DC16DC19: f64 = 342.2559;
+    pub(super) const C22C13: f64 = 352.3341;
+    pub(super) const C22C13C16: f64 = 350.3185;
+    pub(super) const C22C5C13C16: f64 = 348.3028;
+    pub(super) const C22C7C10C13C16: f64 = 346.2872;
+    pub(super) const C22C7C10C13C16C19: f64 = 344.2715;
+    pub(super) const C22C4C7C10C13C16C19: f64 = 342.2559;
     pub(super) const C23: f64 = 368.3654;
     pub(super) const C24: f64 = 382.3811;
-    pub(super) const C24DC15: f64 = 380.3654;
-    pub(super) const C24DC15DC18: f64 = 378.3498;
-    pub(super) const C24DC12DC15DC18: f64 = 376.3341;
-    pub(super) const C24DC9DC12DC15DC18: f64 = 374.3185;
-    pub(super) const C24DC6DC9DC12DC15DC18: f64 = 372.3028;
-    pub(super) const C24DC6DC9DC12DC15DC18DC21: f64 = 370.2872;
+    pub(super) const C24C15: f64 = 380.3654;
+    pub(super) const C24C15C18: f64 = 378.3498;
+    pub(super) const C24C12C15C18: f64 = 376.3341;
+    pub(super) const C24C9C12C15C18: f64 = 374.3185;
+    pub(super) const C24C6C9C12C15C18: f64 = 372.3028;
+    pub(super) const C24C6C9C12C15C18C21: f64 = 370.2872;
     pub(super) const C25: f64 = 396.3967;
     pub(super) const C26: f64 = 410.4124;
-    pub(super) const C26DC17: f64 = 408.3967;
+    pub(super) const C26C17: f64 = 408.3967;
     pub(super) const C27: f64 = 424.4280;
     pub(super) const C28: f64 = 438.4437;
     pub(super) const C29: f64 = 452.4593;
     pub(super) const C30: f64 = 466.4750;
-    pub(super) const C30DC21: f64 = 464.4593;
+    pub(super) const C30C21: f64 = 464.4593;
     pub(super) const C31: f64 = 480.4906;
     pub(super) const C32: f64 = 494.5063;
     pub(super) const C33: f64 = 508.5219;

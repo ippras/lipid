@@ -55,10 +55,10 @@ macro_rules! index {
     (C16) => {
         12
     };
-    (C16DC9) => {
+    (C16C9) => {
         13
     };
-    (C16DT9) => {
+    (C16T9) => {
         14
     };
     (C17) => {
@@ -67,34 +67,34 @@ macro_rules! index {
     (C18) => {
         16
     };
-    (C18DC9) => {
+    (C18C9) => {
         17
     };
-    (C18DT9) => {
+    (C18T9) => {
         18
     };
-    (C18DC9DC12) => {
+    (C18C9C12) => {
         19
     };
-    (C18DC6DC9DC12) => {
+    (C18C6C9C12) => {
         20
     };
-    (C18DC8DT10DC12) => {
+    (C18C8T10C12) => {
         21
     };
-    (C18DC9DC12DC15) => {
+    (C18C9C12C15) => {
         22
     };
-    (C18DC9DT11DT13) => {
+    (C18C9T11T13) => {
         23
     };
-    (C18DT9DT11DC13) => {
+    (C18T9T11C13) => {
         24
     };
-    (C18DT9DT11DT13) => {
+    (C18T9T11T13) => {
         25
     };
-    (C18DC6DC9DC12DC15) => {
+    (C18C6C9C12C15) => {
         26
     };
     (C19) => {
@@ -103,31 +103,31 @@ macro_rules! index {
     (C20) => {
         28
     };
-    (C20DC9) => {
+    (C20C9) => {
         29
     };
-    (C20DC11) => {
+    (C20C11) => {
         30
     };
-    (C20DC11DC14) => {
+    (C20C11C14) => {
         31
     };
-    (C20DC5DC8DC11) => {
+    (C20C5C8C11) => {
         32
     };
-    (C20DC8DC11DC14) => {
+    (C20C8C11C14) => {
         33
     };
-    (C20DC11DC14DC17) => {
+    (C20C11C14C17) => {
         34
     };
-    (C20DC5DC8DC11DC14) => {
+    (C20C5C8C11C14) => {
         35
     };
-    (C20DC8DC11DC14DC17) => {
+    (C20C8C11C14C17) => {
         36
     };
-    (C20DC5DC8DC11DC14DC17) => {
+    (C20C5C8C11C14C17) => {
         37
     };
     (C21) => {
@@ -136,22 +136,22 @@ macro_rules! index {
     (C22) => {
         39
     };
-    (C22DC13) => {
+    (C22C13) => {
         40
     };
-    (C22DC13DC16) => {
+    (C22C13C16) => {
         41
     };
-    (C22DC5DC13DC16) => {
+    (C22C5C13C16) => {
         42
     };
-    (C22DC7DC10DC13DC16) => {
+    (C22C7C10C13C16) => {
         43
     };
-    (C22DC7DC10DC13DC16DC19) => {
+    (C22C7C10C13C16C19) => {
         44
     };
-    (C22DC4DC7DC10DC13DC16DC19) => {
+    (C22C4C7C10C13C16C19) => {
         45
     };
     (C23) => {
@@ -160,22 +160,22 @@ macro_rules! index {
     (C24) => {
         47
     };
-    (C24DC15) => {
+    (C24C15) => {
         48
     };
-    (C24DC15DC18) => {
+    (C24C15C18) => {
         49
     };
-    (C24DC12DC15DC18) => {
+    (C24C12C15C18) => {
         50
     };
-    (C24DC9DC12DC15DC18) => {
+    (C24C9C12C15C18) => {
         51
     };
-    (C24DC6DC9DC12DC15DC18) => {
+    (C24C6C9C12C15C18) => {
         52
     };
-    (C24DC6DC9DC12DC15DC18DC21) => {
+    (C24C6C9C12C15C18C21) => {
         53
     };
     (C25) => {
@@ -184,7 +184,7 @@ macro_rules! index {
     (C26) => {
         55
     };
-    (C26DC17) => {
+    (C26C17) => {
         56
     };
     (C27) => {
@@ -199,7 +199,7 @@ macro_rules! index {
     (C30) => {
         60
     };
-    (C30DC21) => {
+    (C30C21) => {
         61
     };
     (C31) => {
@@ -231,29 +231,29 @@ macro_rules! index {
 // const LA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("La", &C12));
 // const M: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("M", &C14));
 // const P: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("P", &C16));
-// const PO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Po", &C16DC9));
-// const PE: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Pe", &C16DT9));
+// const PO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Po", &C16C9));
+// const PE: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Pe", &C16T9));
 // const S: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("S", &C18));
-// const O: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("O", &C18DC9));
-// const EL: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("El", &C18DT9));
-// const L: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("L", &C18DC9DC12));
-// const LN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ln", &C18DC6DC9DC12));
-// const GLN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Gln", &C18DC6DC9DC12));
-// const EO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Eo", &C18DC9DT11DT13));
-// const JA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ja", &C18DT9DT11DT13));
-// const CT: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ct", &C18DT9DT11DC13));
-// const ST: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("St", &C18DC6DC9DC12DC15));
+// const O: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("O", &C18C9));
+// const EL: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("El", &C18T9));
+// const L: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("L", &C18C9C12));
+// const LN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ln", &C18C6C9C12));
+// const GLN: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Gln", &C18C6C9C12));
+// const EO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Eo", &C18C9T11T13));
+// const JA: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ja", &C18T9T11T13));
+// const CT: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ct", &C18T9T11C13));
+// const ST: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("St", &C18C6C9C12C15));
 // const A: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("A", &C20));
-// const G: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("G", &C20DC9));
-// const GO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Go", &C20DC11));
-// const AO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ao", &C20DC5DC8DC11DC14));
-// const EP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ep", &C20DC5DC8DC11DC14DC17));
+// const G: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("G", &C20C9));
+// const GO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Go", &C20C11));
+// const AO: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ao", &C20C5C8C11C14));
+// const EP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Ep", &C20C5C8C11C14C17));
 // const B: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("B", &C22));
-// const E: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("E", &C22DC13));
-// const DP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dp", &C22DC7DC10DC13DC16DC19));
-// const DH: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dh", &C22DC4DC7DC10DC13DC16DC19));
+// const E: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("E", &C22C13));
+// const DP: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dp", &C22C7C10C13C16C19));
+// const DH: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Dh", &C22C4C7C10C13C16C19));
 // const LG: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("Lg", &C24));
-// const N: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("N", &C24DC15));
+// const N: LazyLock<(&str, &AnyValue<'static>)> = LazyLock::new(|| ("N", &C24C15));
 
 const BU: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C4);
 const V: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C5);
@@ -264,29 +264,29 @@ const CA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C10);
 const LA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C12);
 const M: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C14);
 const P: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16);
-const PO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16DC9);
-const PE: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16DT9);
+const PO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16C9);
+const PE: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C16T9);
 const S: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18);
-const O: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC9);
-const EL: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DT9);
-const L: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC9DC12);
-const LN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC6DC9DC12);
-const GLN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC6DC9DC12);
-const EO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC9DT11DT13);
-const JA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DT9DT11DT13);
-const CT: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DT9DT11DC13);
-const ST: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18DC6DC9DC12DC15);
+const O: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9);
+const EL: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9);
+const L: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9C12);
+const LN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12);
+const GLN: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12);
+const EO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C9T11T13);
+const JA: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9T11T13);
+const CT: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18T9T11C13);
+const ST: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C18C6C9C12C15);
 const A: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20);
-const G: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20DC9);
-const GO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20DC11);
-const AO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20DC5DC8DC11DC14);
-const EP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20DC5DC8DC11DC14DC17);
+const G: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C9);
+const GO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C11);
+const AO: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C5C8C11C14);
+const EP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C20C5C8C11C14C17);
 const B: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22);
-const E: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22DC13);
-const DP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22DC7DC10DC13DC16DC19);
-const DH: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22DC4DC7DC10DC13DC16DC19);
+const E: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C13);
+const DP: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C7C10C13C16C19);
+const DH: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C22C4C7C10C13C16C19);
 const LG: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C24);
-const N: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C24DC15);
+const N: LazyLock<&AnyValue<'static>> = LazyLock::new(|| &C24C15);
 
 /// [byrdwell.com](https://byrdwell.com/Triacylglycerols/FattyAcids.htm)
 fn fatty_acids() -> PolarsResult<DataFrame> {
