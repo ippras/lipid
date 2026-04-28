@@ -49,7 +49,7 @@ impl<T: Display> Display for Mono<Triacylglycerol<Option<T>>> {
                 "{{1:{sn1} & 2:{sn2} & 3:{sn3} | 1:{sn1} & 2:{sn3} & 3:{sn2} | 1:{sn2} & 2:{sn1} & 3:{sn3} | 1:{sn2} & 2:{sn3} & 3:{sn1} | 1:{sn3} & 2:{sn1} & 3:{sn2} | 1:{sn3} & 2:{sn2} & 3:{sn1}}}"
             )
         } else {
-            write!(f, "[{sn1};{sn2};{sn3}]")
+            write!(f, "[{sn1}/3;{sn2}/3;{sn3}/3]")
         }
     }
 }
@@ -86,7 +86,7 @@ impl<T: Display> Display for Stereo<Triacylglycerol<Option<T>>> {
         if f.alternate() {
             write!(f, "{{1:{sn1} & 2:{sn2} & 3:{sn3}}}")
         } else {
-            write!(f, "[{sn1}/3;{sn2}/3;{sn3}/3]")
+            write!(f, "[{sn1};{sn2};{sn3}]")
         }
     }
 }
