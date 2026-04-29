@@ -5,7 +5,7 @@ pub use self::{
 
 /// Fatty acid trait
 pub trait FattyAcidTrait: Sized {
-    type Expr;
+    type Output;
 }
 
 mod mask;

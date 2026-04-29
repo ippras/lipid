@@ -1,36 +1,18 @@
-use polars::prelude::*;
-use std::{
-    fmt::{Display, Formatter, Result, from_fn},
-    ops::Index,
-};
-
+use super::Triacylglycerol;
 use crate::r#const::EM_DASH;
+use std::fmt::{Display, Formatter, Result, from_fn};
 
-/// Triacylglycerol
-#[derive(Clone, Copy, Debug, Default)]
-pub struct Triacylglycerol<T>(pub [T; 3]);
-
-impl<T> Triacylglycerol<T> {
-    pub fn map<U>(self, f: impl Fn(T) -> U) -> Triacylglycerol<U> {
-        Triacylglycerol(self.0.map(f))
+impl<T: Display> Triacylglycerol<Option<T>> {
+    pub fn mono(&self) -> Mono<&Self> {
+        Mono(self)
     }
 
-    pub fn try_map<U>(self, f: impl Fn(T) -> PolarsResult<U>) -> PolarsResult<Triacylglycerol<U>> {
-        Ok(Triacylglycerol(self.0.try_map(f)?))
+    pub fn positional(&self) -> Positional<&Self> {
+        Positional(self)
     }
-}
 
-impl<T: Display> Display for Triacylglycerol<T> {
-    fn fmt(&self, f: &mut Formatter) -> Result {
-        write!(f, "{}; {}; {}", self.0[0], self.0[1], self.0[2])
-    }
-}
-
-impl<T> Index<usize> for Triacylglycerol<T> {
-    type Output = <[T] as Index<usize>>::Output;
-
-    fn index(&self, index: usize) -> &Self::Output {
-        &self.0[index]
+    pub fn stereo(&self) -> Stereo<&Self> {
+        Stereo(self)
     }
 }
 
@@ -38,7 +20,7 @@ impl<T> Index<usize> for Triacylglycerol<T> {
 #[derive(Clone, Copy, Debug, Default)]
 pub struct Mono<T>(pub T);
 
-impl<T: Display> Display for Mono<Triacylglycerol<Option<T>>> {
+impl<T: Display> Display for Mono<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let sn1 = option(&self.0[0]);
         let sn2 = option(&self.0[1]);
@@ -58,7 +40,7 @@ impl<T: Display> Display for Mono<Triacylglycerol<Option<T>>> {
 #[derive(Clone, Copy, Debug, Default)]
 pub struct Positional<T>(pub T);
 
-impl<T: Display> Display for Positional<Triacylglycerol<Option<T>>> {
+impl<T: Display> Display for Positional<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let sn1 = option(&self.0[0]);
         let sn2 = option(&self.0[1]);
@@ -78,7 +60,7 @@ impl<T: Display> Display for Positional<Triacylglycerol<Option<T>>> {
 #[derive(Clone, Copy, Debug, Default)]
 pub struct Stereo<T>(pub T);
 
-impl<T: Display> Display for Stereo<Triacylglycerol<Option<T>>> {
+impl<T: Display> Display for Stereo<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         let sn1 = option(&self.0[0]);
         let sn2 = option(&self.0[1]);
@@ -89,23 +71,6 @@ impl<T: Display> Display for Stereo<Triacylglycerol<Option<T>>> {
             write!(f, "[{sn1};{sn2};{sn3}]")
         }
     }
-}
-
-// /// Stereospecificity
-// #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-// #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-// pub enum Stereospecificity {
-//     Mono,
-//     Positional,
-//     Stereo,
-// }
-
-/// Stereospecificity
-#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub enum Stereospecificity {
-    Stereo,
-    Positional,
 }
 
 fn option<T: Display>(option: &Option<T>) -> impl Display {

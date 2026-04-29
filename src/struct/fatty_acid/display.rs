@@ -1,12 +1,5 @@
+use super::{FattyAcid, Unsaturated};
 use std::fmt::{Display, Formatter, Result, Write as _};
-
-/// Fatty acid
-#[derive(Clone, Debug, Default, Eq, Hash, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct FattyAcid<T = u8, U = Vec<Unsaturated>> {
-    pub carbon: T,
-    pub unsaturated: U,
-}
 
 impl FattyAcid {
     pub fn delta(&self) -> Delta<&Self> {
@@ -16,15 +9,6 @@ impl FattyAcid {
     pub fn id(&self) -> Id<&Self> {
         Id(self)
     }
-}
-
-/// Unsaturated bound
-#[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct Unsaturated<T = Option<u8>, U = Option<bool>, V = Option<bool>> {
-    pub index: T,
-    pub triple: U,
-    pub parity: V,
 }
 
 /// Delta

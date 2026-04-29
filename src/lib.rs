@@ -94,7 +94,7 @@ pub mod prelude {
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#struct::{
             fatty_acid::{FattyAcid, Unsaturated},
-            triacylglycerol::{Mono, Positional, Stereo, Stereospecificity, Triacylglycerol},
+            triacylglycerol::{Stereospecificity, Triacylglycerol},
         },
         r#trait::{
             Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, RelativeAtomicMass,

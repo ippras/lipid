@@ -3,23 +3,23 @@ use polars::prelude::*;
 use std::num::NonZeroI8;
 
 impl FattyAcidSumByBounds for FattyAcidExpr {
-    fn sum_conjugated(self, expr: Self::Expr) -> Self::Expr {
+    fn sum_conjugated(self, expr: Self::Output) -> Self::Output {
         expr.filter(self.is_conjugated(true)).sum()
     }
 
-    fn sum_monounsaturated(self, expr: Self::Expr) -> Self::Expr {
+    fn sum_monounsaturated(self, expr: Self::Output) -> Self::Output {
         expr.filter(self.is_monounsaturated()).sum()
     }
 
-    fn sum_polyunsaturated(self, expr: Self::Expr) -> Self::Expr {
+    fn sum_polyunsaturated(self, expr: Self::Output) -> Self::Output {
         expr.filter(self.is_polyunsaturated()).sum()
     }
 
-    fn sum_saturated(self, expr: Self::Expr) -> Self::Expr {
+    fn sum_saturated(self, expr: Self::Output) -> Self::Output {
         expr.filter(self.is_saturated()).sum()
     }
 
-    fn sum_trans(self, expr: Self::Expr) -> Self::Expr {
+    fn sum_trans(self, expr: Self::Output) -> Self::Output {
         expr.filter(self.is_trans()).sum()
     }
 

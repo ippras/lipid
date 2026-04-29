@@ -19,7 +19,7 @@ impl FattyAcidMaskByBounds for FattyAcidExpr {
             .contains(lit(2), false)
     }
 
-    fn is_monounsaturated(self) -> Self::Expr {
+    fn is_monounsaturated(self) -> Self::Output {
         self.is_monoenoic()
     }
 

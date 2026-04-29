@@ -39,19 +39,6 @@ impl TriacylglycerolChunked {
         ]))
     }
 
-    // #[inline]
-    // pub fn map<T>(&self, f: impl Fn(Series) -> T) -> PolarsResult<Triacylglycerol<T>> {
-    //     Ok(self.fields()?.map(f))
-    // }
-
-    // #[inline]
-    // pub fn try_map<T>(
-    //     &self,
-    //     f: impl Fn(Series) -> PolarsResult<T>,
-    // ) -> PolarsResult<Triacylglycerol<T>> {
-    //     self.fields()?.try_map(f)
-    // }
-
     #[inline]
     pub fn fields(&self) -> PolarsResult<Triacylglycerol<Series>> {
         Ok(Triacylglycerol([

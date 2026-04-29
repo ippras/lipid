@@ -189,7 +189,7 @@ impl EquivalentChainLength for FattyAcidExpr {
 }
 
 impl FattyAcidTrait for FattyAcidExpr {
-    type Expr = Expr;
+    type Output = Expr;
 }
 
 mod display;

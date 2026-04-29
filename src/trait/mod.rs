@@ -36,30 +36,6 @@ pub trait EquivalentChainLength {
     ) -> Self::Output;
 }
 
-// /// Mask
-// #[warn(clippy::wrong_self_convention)]
-// pub trait IdentifierMask {
-//     type Output;
-
-//     /// Checks if the fatty acid contains only saturated bonds.
-//     fn is_saturated(self) -> Self::Output;
-
-//     /// Checks if the fatty acid contains any unsaturated bonds.
-//     fn is_unsaturated(self) -> Self::Output;
-
-//     /// Checks if the fatty acid contains exactly one unsaturated bond.
-//     fn is_monounsaturated(self) -> Self::Output;
-
-//     /// Checks if the fatty acid contains more than one unsaturated bond.
-//     fn is_polyunsaturated(self) -> Self::Output;
-
-//     /// Checks if the fatty acid contains unsaturated cis-only bonds.
-//     fn is_cis(self) -> Self::Output;
-
-//     /// Checks if the fatty acid contains any trans bonds.
-//     fn is_trans(self) -> Self::Output;
-// }
-
 // /// Extension methods for [`Mask`].
 // pub trait MaskExt: IdentifierMask {
 //     fn try_unsaturated(self, index: Option<NonZeroI8>) -> Self::Output;
