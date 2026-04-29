@@ -1,8 +1,16 @@
-use super::Triacylglycerol;
+use super::{Stereospecificity, Triacylglycerol};
 use crate::r#const::EM_DASH;
 use std::fmt::{Display, Formatter, Result, from_fn};
 
 impl<T: Display> Triacylglycerol<Option<T>> {
+    pub fn display(&self, stereospecificity: Option<Stereospecificity>) -> String {
+        match stereospecificity {
+            None => self.mono().to_string(),
+            Some(Stereospecificity::Positional) => self.positional().to_string(),
+            Some(Stereospecificity::Stereo) => self.stereo().to_string(),
+        }
+    }
+
     pub fn mono(&self) -> Mono<&Self> {
         Mono(self)
     }
