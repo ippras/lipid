@@ -1,6 +1,6 @@
 use super::{Stereospecificity, Triacylglycerol};
-use crate::r#const::EM_DASH;
-use std::fmt::{Display, Formatter, Result, from_fn};
+use polars_ext::display::option;
+use std::fmt::{Display, Formatter, Result};
 
 impl<T: Display> Triacylglycerol<Option<T>> {
     pub fn display(&self, stereospecificity: Option<Stereospecificity>) -> String {
@@ -79,11 +79,4 @@ impl<T: Display> Display for Stereo<&Triacylglycerol<Option<T>>> {
             write!(f, "[{sn1};{sn2};{sn3}]")
         }
     }
-}
-
-fn option<T: Display>(option: &Option<T>) -> impl Display {
-    from_fn(move |f| match option {
-        None => f.write_str(EM_DASH),
-        Some(t) => Display::fmt(t, f),
-    })
 }

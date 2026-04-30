@@ -7,8 +7,6 @@ pub use self::{
     },
 };
 
-pub const EM_DASH: &str = "—";
-
 pub mod fatty_acid;
 pub mod triacylglycerol;
 
