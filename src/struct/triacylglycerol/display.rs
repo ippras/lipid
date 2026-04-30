@@ -1,5 +1,5 @@
 use super::{Stereospecificity, Triacylglycerol};
-use polars_ext::display::option;
+use polars_ext::prelude::*;
 use std::fmt::{Display, Formatter, Result};
 
 impl<T: Display> Triacylglycerol<Option<T>> {
@@ -30,9 +30,9 @@ pub struct Mono<T>(pub T);
 
 impl<T: Display> Display for Mono<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(self.0[0].as_ref());
-        let sn2 = option(self.0[1].as_ref());
-        let sn3 = option(self.0[2].as_ref());
+        let sn1 = self.0[0].as_ref().display();
+        let sn2 = self.0[1].as_ref().display();
+        let sn3 = self.0[2].as_ref().display();
         if f.alternate() {
             write!(
                 f,
@@ -50,9 +50,9 @@ pub struct Positional<T>(pub T);
 
 impl<T: Display> Display for Positional<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(self.0[0].as_ref());
-        let sn2 = option(self.0[1].as_ref());
-        let sn3 = option(self.0[2].as_ref());
+        let sn1 = self.0[0].as_ref().display();
+        let sn2 = self.0[1].as_ref().display();
+        let sn3 = self.0[2].as_ref().display();
         if f.alternate() {
             write!(
                 f,
@@ -70,9 +70,9 @@ pub struct Stereo<T>(pub T);
 
 impl<T: Display> Display for Stereo<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(self.0[0].as_ref());
-        let sn2 = option(self.0[1].as_ref());
-        let sn3 = option(self.0[2].as_ref());
+        let sn1 = self.0[0].as_ref().display();
+        let sn2 = self.0[1].as_ref().display();
+        let sn3 = self.0[2].as_ref().display();
         if f.alternate() {
             write!(f, "{{1:{sn1} & 2:{sn2} & 3:{sn3}}}")
         } else {

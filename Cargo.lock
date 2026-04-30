@@ -2225,7 +2225,7 @@ dependencies = [
 [[package]]
 name = "polars_ext"
 version = "0.6.2"
-source = "git+https://github.com/kgv/polars_ext?branch=bf6a425#cdf78792cde5b2f29daa3d03f6330f6cfc67cd9f"
+source = "git+https://github.com/kgv/polars_ext?branch=bf6a425#442ee4356a989690eafb90ec02335d82314ea013"
 dependencies = [
  "ahash",
  "polars",
