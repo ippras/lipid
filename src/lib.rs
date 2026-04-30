@@ -83,12 +83,7 @@ pub mod prelude {
         data_type,
         expr::{
             ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            fatty_acid::{CARBON, FATTY_ACID, INDEX, INDICES, PARITY, TRIPLE},
-            triacylglycerol::{
-                LABEL, STEREOSPECIFIC_NUMBERS, STEREOSPECIFIC_NUMBERS1, STEREOSPECIFIC_NUMBERS2,
-                STEREOSPECIFIC_NUMBERS3, STEREOSPECIFIC_NUMBERS12_23, STEREOSPECIFIC_NUMBERS13,
-                STEREOSPECIFIC_NUMBERS123, TRIACYLGLYCEROL, permutation::Permutation as _,
-            },
+            triacylglycerol::permutation::Permutation as _,
         },
         field,
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
