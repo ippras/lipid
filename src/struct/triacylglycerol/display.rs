@@ -30,9 +30,9 @@ pub struct Mono<T>(pub T);
 
 impl<T: Display> Display for Mono<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(&self.0[0]);
-        let sn2 = option(&self.0[1]);
-        let sn3 = option(&self.0[2]);
+        let sn1 = option(self.0[0].as_ref());
+        let sn2 = option(self.0[1].as_ref());
+        let sn3 = option(self.0[2].as_ref());
         if f.alternate() {
             write!(
                 f,
@@ -50,9 +50,9 @@ pub struct Positional<T>(pub T);
 
 impl<T: Display> Display for Positional<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(&self.0[0]);
-        let sn2 = option(&self.0[1]);
-        let sn3 = option(&self.0[2]);
+        let sn1 = option(self.0[0].as_ref());
+        let sn2 = option(self.0[1].as_ref());
+        let sn3 = option(self.0[2].as_ref());
         if f.alternate() {
             write!(
                 f,
@@ -70,9 +70,9 @@ pub struct Stereo<T>(pub T);
 
 impl<T: Display> Display for Stereo<&Triacylglycerol<Option<T>>> {
     fn fmt(&self, f: &mut Formatter) -> Result {
-        let sn1 = option(&self.0[0]);
-        let sn2 = option(&self.0[1]);
-        let sn3 = option(&self.0[2]);
+        let sn1 = option(self.0[0].as_ref());
+        let sn2 = option(self.0[1].as_ref());
+        let sn3 = option(self.0[2].as_ref());
         if f.alternate() {
             write!(f, "{{1:{sn1} & 2:{sn2} & 3:{sn3}}}")
         } else {
