@@ -20,49 +20,26 @@ impl TriacylglycerolExpr {
         stereospecificity: Option<Stereospecificity>,
         alternate: bool,
     ) -> PolarsResult<Expr> {
-        let sn1 = self.stereospecific_number1();
-        let sn2 = self.stereospecific_number1();
+        let sn1 = self.clone().stereospecific_number1();
+        let sn2 = self.clone().stereospecific_number1();
         let sn3 = self.stereospecific_number3();
         match stereospecificity {
             None if alternate => format_str(
                 "{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}",
                 &[
-                    sn1.clone(),
-                    sn2.clone(),
-                    sn3.clone(),
-                    sn1.clone(),
-                    sn3.clone(),
-                    sn2.clone(),
-                    sn2.clone(),
-                    sn1.clone(),
-                    sn3.clone(),
-                    sn2.clone(),
-                    sn3.clone(),
-                    sn1.clone(),
-                    sn3.clone(),
-                    sn1.clone(),
-                    sn2.clone(),
-                    sn3.clone(),
-                    sn2.clone(),
-                    sn1.clone(),
+                    sn1, sn2, sn3, sn1, sn3, sn2, sn2, sn1, sn3, sn2, sn3, sn1, sn3, sn1, sn2, sn3,
+                    sn2, sn1,
                 ],
             ),
+            None => format_str("[{}/3;{}/3;{}/3]", &[sn1, sn2, sn3]),
             Some(Stereospecificity::Positional) if alternate => format_str(
                 "{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}",
-                &[
-                    sn1.clone(),
-                    sn2.clone(),
-                    sn3.clone(),
-                    sn3.clone(),
-                    sn2.clone(),
-                    sn1.clone(),
-                ],
+                &[sn1, sn2, sn3, sn3, sn2, sn1],
             ),
+            Some(Stereospecificity::Positional) => format_str("[{}/2;{};{}/2]", &[sn1, sn2, sn3]),
             Some(Stereospecificity::Stereo) if alternate => {
                 format_str("{{1:{} & 2:{} & 3:{}}}", &[sn1, sn2, sn3])
             }
-            None => format_str("[{}/3;{}/3;{}/3]", &[sn1, sn2, sn3]),
-            Some(Stereospecificity::Positional) => format_str("[{}/2;{};{}/2]", &[sn1, sn2, sn3]),
             Some(Stereospecificity::Stereo) => format_str("[{};{};{}]", &[sn1, sn2, sn3]),
         }
     }
