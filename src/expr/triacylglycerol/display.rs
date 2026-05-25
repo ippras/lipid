@@ -15,18 +15,13 @@ impl TriacylglycerolExpr {
         )
     }
 
-    pub fn display_expr(
-        self,
-        stereospecificity: Option<Stereospecificity>,
-        alternate: bool,
-    ) -> PolarsResult<Expr> {
+    pub fn display_long(self, stereospecificity: Option<Stereospecificity>) -> PolarsResult<Expr> {
         let sn1 = self.clone().stereospecific_number1();
-        let sn2 = self.clone().stereospecific_number1();
+        let sn2 = self.clone().stereospecific_number2();
         let sn3 = self.stereospecific_number3();
         match stereospecificity {
-            None if alternate => format_str(
-                "{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}",
-                &[
+            None => {
+                let args = [
                     sn1.clone(),
                     sn2.clone(),
                     sn3.clone(),
@@ -45,18 +40,33 @@ impl TriacylglycerolExpr {
                     sn3,
                     sn2,
                     sn1,
-                ],
-            ),
-            None => format_str("[{}/3;{}/3;{}/3]", &[sn1, sn2, sn3]),
-            Some(Stereospecificity::Positional) if alternate => format_str(
-                "{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}",
-                &[sn1.clone(), sn2.clone(), sn3.clone(), sn3, sn2, sn1],
-            ),
-            Some(Stereospecificity::Positional) => format_str("[{}/2;{};{}/2]", &[sn1, sn2, sn3]),
-            Some(Stereospecificity::Stereo) if alternate => {
-                format_str("{{1:{} & 2:{} & 3:{}}}", &[sn1, sn2, sn3])
+                ];
+                format_str(
+                    "{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}",
+                    &args,
+                )
             }
-            Some(Stereospecificity::Stereo) => format_str("[{};{};{}]", &[sn1, sn2, sn3]),
+            Some(Stereospecificity::Positional) => {
+                let args = [sn1.clone(), sn2.clone(), sn3.clone(), sn3, sn2, sn1];
+                format_str("{{1:{} & 2:{} & 3:{} | 1:{} & 2:{} & 3:{}}}", &args)
+            }
+            Some(Stereospecificity::Stereo) => {
+                let args = [sn1, sn2, sn3];
+                format_str("{{1:{} & 2:{} & 3:{}}}", &args)
+            }
+        }
+    }
+
+    pub fn display_short(self, stereospecificity: Option<Stereospecificity>) -> PolarsResult<Expr> {
+        let args = [
+            self.clone().stereospecific_number1(),
+            self.clone().stereospecific_number2(),
+            self.stereospecific_number3(),
+        ];
+        match stereospecificity {
+            None => format_str("[{}/3;{}/3;{}/3]", &args),
+            Some(Stereospecificity::Positional) => format_str("[{}/2;{};{}/2]", &args),
+            Some(Stereospecificity::Stereo) => format_str("[{};{};{}]", &args),
         }
     }
 
