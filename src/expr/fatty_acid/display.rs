@@ -9,7 +9,7 @@ impl FattyAcidExpr {
         // let unsaturated = indices.list().len();
         // format_str("{}:{}-{}", [carbon, unsaturated, indices])
         self.0.map(
-            |column| {
+            move |column| {
                 let fatty_acid = column.try_fatty_acid()?;
                 Ok(match kind {
                     Kind::Delta => fatty_acid.delta(),
