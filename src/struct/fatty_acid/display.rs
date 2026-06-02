@@ -85,3 +85,10 @@ impl Display for Id<&Unsaturated> {
         Ok(())
     }
 }
+
+#[derive(Clone, Copy, Debug, Default)]
+pub enum Kind {
+    Delta,
+    #[default]
+    Id,
+}
