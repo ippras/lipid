@@ -2,7 +2,7 @@
 
 #![feature(custom_inner_attributes)]
 
-use fatty_acid_macro::fatty_acid;
+use fatty_acid_proc_macro::fatty_acid;
 use lipid::prelude::*;
 use polars::prelude::*;
 use std::{num::NonZero, sync::LazyLock};

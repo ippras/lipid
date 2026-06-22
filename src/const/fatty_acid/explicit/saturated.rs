@@ -1,5 +1,5 @@
 use crate::prelude::*;
-use fatty_acid_macro::fatty_acid;
+use fatty_acid_proc_macro::fatty_acid;
 use polars::prelude::*;
 use std::sync::LazyLock;
 

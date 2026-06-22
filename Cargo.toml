@@ -1,11 +1,16 @@
+[workspace.package]
+version = "0.7.1"
+edition = "2024"
+authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
+
 [package]
 name = "lipid"
-version = "0.7.1"
-authors = ["Giorgi Vladimirovich Kazakov", "Roman Alexandrovich Sidorov"]
-edition = "2024"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
 
 [dependencies]
-polars = { version = "0.52.0", default-features = false, features = [
+polars = { version = "=0.52.0", default-features = false, features = [
     "abs",
     "cum_agg",
     "dtype-i128",
@@ -28,8 +33,9 @@ polars = { version = "0.52.0", default-features = false, features = [
 ] }
 serde = { version = "1.0.228", features = ["derive", "std"], optional = true }
 
+# fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
 atom = { git = "https://github.com/ippras/atom" }
-fatty_acid_macro = { git = "https://github.com/ippras/fatty_acid_macro" }
+fatty_acid_proc_macro = { path = "proc_macro", version = "=0.7.1", optional = true }
 polars_ext = { git = "https://github.com/kgv/polars_ext", branch = "0.52" }
 
 [dev-dependencies]
@@ -44,6 +50,7 @@ name = "compare"
 default = [
     "atomic",
     "biodiesel",
+    "derive",
     "ecl",
     "ecn",
     "indices",
@@ -52,6 +59,7 @@ default = [
     "select",
 ]
 
+derive = ["dep:fatty_acid_proc_macro"]
 atomic = []
 biodiesel = []
 ecl = []

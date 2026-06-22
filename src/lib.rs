@@ -99,7 +99,7 @@ pub mod prelude {
             },
         },
     };
-    pub use fatty_acid_macro::fatty_acid;
+    pub use fatty_acid_proc_macro::fatty_acid;
 }
 
 pub mod chunked_array;
