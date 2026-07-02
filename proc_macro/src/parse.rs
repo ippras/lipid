@@ -6,10 +6,7 @@ use crate::error::{
 use proc_macro2::TokenStream;
 use quote::{ToTokens, quote, quote_spanned};
 use syn::{
-    LitInt, Token, braced,
-    parse::{Parse, ParseStream, Result},
-    punctuated::Punctuated,
-    spanned::Spanned,
+    LitInt, Token, braced, parenthesized, parse::{Parse, ParseStream, Result}, punctuated::Punctuated, spanned::Spanned,
 };
 
 mod keywords {
@@ -39,17 +36,18 @@ pub(super) struct Range {
 
 impl Parse for Range {
     fn parse(input: ParseStream) -> Result<Self> {
-        let start: LitInt = input.parse()?;
-        let _dot = input.parse::<Token![.]>()?;
-        let _dot = input.parse::<Token![.]>()?;
-        let _eq = input.parse::<Token![=]>()?;
-        let end: LitInt = input.parse()?;
+        let content;
+        let _paren = parenthesized!(content in input);
+
+        let start: LitInt = content.parse()?;
+        let _minus = content.parse::<Token![-]>()?;
+        let end: LitInt = content.parse()?;
 
         let start = start.base10_parse::<u8>()?;
         let end = end.base10_parse::<u8>()?;
 
         if start > end {
-            return error!(StartGreaterThanStop: start);
+            return error!(StartGreaterThanStop: content);
         }
 
         Ok(Self { start, end })
@@ -266,14 +264,14 @@ mod tests {
 
     #[test]
     fn test_parse_range_valid() {
-        let range: Range = parse_str("16..=18").expect("Failed to parse valid range");
+        let range: Range = parse_str("(16-18)").expect("Failed to parse valid range");
         assert_eq!(range.start, 16);
         assert_eq!(range.end, 18);
     }
 
     #[test]
     fn test_parse_range_invalid_start_greater_than_stop() {
-        let result: Result<Range> = parse_str("20..=18");
+        let result: Result<Range> = parse_str("(20-18)");
         assert!(result.is_err());
         assert!(
             matches!(result, Err(error) if error.to_string() == Error::StartGreaterThanStop.message())
@@ -300,8 +298,8 @@ mod tests {
 
     #[test]
     fn test_parse_unsaturated_valid() {
-        let u: Unsaturated = parse_str("U 2..=3{ 9 => C, 12 => C }").unwrap();
-        assert_eq!(u.range.start, 2);
+        let u: Unsaturated = parse_str("U{ 1, 3 }{ 9 => C, 12 => C }").unwrap();
+        assert_eq!(u.range.start, 1);
         assert_eq!(u.range.end, 3);
         assert_eq!(u.indices.0.len(), 2);
     }
