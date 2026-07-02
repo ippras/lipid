@@ -15,10 +15,14 @@ pub const INDEX: &str = "Index";
 pub const INDICES: &str = "Indices";
 /// Fatty acid bound parity column name
 pub const PARITY: &str = "Parity";
+/// Range
+pub const RANGE: &str = "Range";
 /// Start
 pub const START: &str = "Start";
 /// Fatty acid bound triple column name
 pub const TRIPLE: &str = "Triple";
+/// Unsaturated
+pub const UNSATURATED: &str = "Unsaturated";
 
 /// Triacylglycerol
 pub const TRIACYLGLYCEROL: &str = "Triacylglycerol";

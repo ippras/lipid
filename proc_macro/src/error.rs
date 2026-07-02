@@ -6,7 +6,7 @@ macro_rules! error {
 
 pub(crate) use error;
 
-#[derive(Debug, Clone)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub(crate) enum Error {
     StartGreaterThanStop,
     UnexpectedEntryKey,
@@ -17,15 +17,15 @@ pub(crate) enum Error {
 impl Error {
     pub(crate) fn message(&self) -> &'static str {
         match self {
-            Self::StartGreaterThanStop => "FattyAcid: `start` cannot be greater than `stop`",
+            Self::StartGreaterThanStop => "FattyAcid: `start` cannot be greater than `end`",
             Self::UnexpectedEntryKey => {
                 "FattyAcid: unexpected entry key, expected one of: C, T, O, A, U"
             }
             Self::OmegaOutOfBounds => {
-                "FattyAcid: omega offset is out of bounds (absolute value is greater than C stop)"
+                "FattyAcid: offset is out of bounds (absolute value is greater than carbons end)"
             }
             Self::IndicesLengthGreaterThanRange => {
-                "FattyAcid: the number of indices provided exceeds the maximum allowed unsaturations (`end` value in U range)"
+                "FattyAcid: the number of indices provided exceeds the minimum allowed unsaturations (`start` value in unsaturated range)"
             }
         }
     }

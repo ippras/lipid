@@ -22,7 +22,7 @@ mod keywords {
 }
 
 proc_easy::easy_argument_group! {
-    enum UnsaturatedBound {
+    pub(super) enum UnsaturatedBound {
         Acetylenic(A),
         Cis(C),
         Olefinic(O),
@@ -39,18 +39,17 @@ pub(super) struct Range {
 
 impl Parse for Range {
     fn parse(input: ParseStream) -> Result<Self> {
-        let content;
-        let _brace = braced!(content in input);
-
-        let start: LitInt = content.parse()?;
-        let _comma = content.parse::<Token![,]>()?;
-        let end: LitInt = content.parse()?;
+        let start: LitInt = input.parse()?;
+        let _dot = input.parse::<Token![.]>()?;
+        let _dot = input.parse::<Token![.]>()?;
+        let _eq = input.parse::<Token![=]>()?;
+        let end: LitInt = input.parse()?;
 
         let start = start.base10_parse::<u8>()?;
         let end = end.base10_parse::<u8>()?;
 
         if start > end {
-            return error!(StartGreaterThanStop: content);
+            return error!(StartGreaterThanStop: start);
         }
 
         Ok(Self { start, end })
@@ -63,7 +62,7 @@ impl ToTokens for Range {
         quote! {
             ::polars::datatypes::AnyValue::StructOwned(Box::new((
                 vec![::polars::datatypes::AnyValue::UInt8(#start), ::polars::datatypes::AnyValue::UInt8(#end)],
-                vec![::lipid::field!(START), ::lipid::field!(STOP)],
+                vec![::lipid::field!(START), ::lipid::field!(END)],
             )))
         }
         .to_tokens(tokens)
@@ -84,18 +83,18 @@ impl Parse for Carbons {
     }
 }
 
-// impl ToTokens for Carbons {
-//     fn to_tokens(&self, tokens: &mut TokenStream) {
-//         let Self { ident, range } = self;
-//         quote_spanned! {
-//             ident.span() => ::polars::datatypes::AnyValue::StructOwned(Box::new((
-//                 vec![#range],
-//                 vec![::lipid::field!(C)],
-//             )))
-//         }
-//         .to_tokens(tokens)
-//     }
-// }
+impl ToTokens for Carbons {
+    fn to_tokens(&self, tokens: &mut TokenStream) {
+        let Self { ident, range } = self;
+        quote_spanned! {
+            ident.span() => ::polars::datatypes::AnyValue::StructOwned(Box::new((
+                vec![#range],
+                vec![::lipid::field!(CARBON)],
+            )))
+        }
+        .to_tokens(tokens)
+    }
+}
 
 /// Unsaturated
 pub(super) struct Unsaturated {
@@ -109,7 +108,7 @@ impl Parse for Unsaturated {
         let ident = input.parse()?;
         let range: Range = input.parse()?;
         let indices: Indices = input.parse()?;
-        if indices.0.len() > range.end as _ {
+        if indices.0.len() > range.start as _ {
             return error!(IndicesLengthGreaterThanRange: range);
         }
         Ok(Self {
@@ -130,7 +129,7 @@ impl ToTokens for Unsaturated {
         quote_spanned! {
             ident.span() => ::polars::datatypes::AnyValue::StructOwned(Box::new((
                 vec![#range, #indices],
-                vec![::lipid::field!(LENGTH), ::lipid::field!(INDICES)],
+                vec![::lipid::field!(RANGE), ::lipid::field!(INDICES)],
             )))
         }
         .to_tokens(tokens)
@@ -151,7 +150,6 @@ impl Parse for Indices {
 impl ToTokens for Indices {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let length = self.0.len();
-        // let c_stop = self.c_stop;
 
         let mut index_tokens = vec![];
         let mut triple_tokens = vec![];
@@ -160,13 +158,13 @@ impl ToTokens for Indices {
         for index in &self.0 {
             let offset = index.offset;
 
-            if delta != 0 {
+            if offset != 0 {
                 index_tokens.push(quote!(Some(#offset)));
             } else {
                 index_tokens.push(quote!(None::<u8>));
             }
 
-            match &index.kind {
+            match &index.unsaturated_bound {
                 UnsaturatedBound::Acetylenic(_) => {
                     triple_tokens.push(quote!(Some(true)));
                     parity_tokens.push(quote!(None::<bool>));
@@ -189,27 +187,26 @@ impl ToTokens for Indices {
                 }
             }
         }
-
         quote! {
             ::polars::datatypes::AnyValue::List({
                 let index = {
                     let mut builder = ::polars::chunked_array::builder::PrimitiveChunkedBuilder::<::polars::datatypes::UInt8Type>::new(::lipid::field!(INDEX).into(), #length);
-                    for val in [#(#index_tokens),*] {
-                        builder.append_option(val);
+                    for optional_value in [#(#index_tokens),*] {
+                        builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
                 let triple = {
                     let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::field!(TRIPLE).into(), #length);
-                    for val in [#(#triple_tokens),*] {
-                        builder.append_option(val);
+                    for optional_value in [#(#triple_tokens),*] {
+                        builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
                 let parity = {
                     let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::field!(PARITY).into(), #length);
-                    for val in [#(#parity_tokens),*] {
-                        builder.append_option(val);
+                    for optional_value in [#(#parity_tokens),*] {
+                        builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
@@ -231,15 +228,16 @@ impl ToTokens for Indices {
 
 pub(super) struct Index {
     pub(super) offset: i8,
-    pub(super) kind: UnsaturatedBound,
+    pub(super) unsaturated_bound: UnsaturatedBound,
 }
 
 impl Parse for Index {
     fn parse(input: ParseStream) -> Result<Self> {
         let offset: LitInt = input.parse()?;
+        let _: syn::Token![=>] = input.parse()?;
         Ok(Index {
             offset: offset.base10_parse::<i8>()?,
-            kind: input.parse()?,
+            unsaturated_bound: input.parse()?,
         })
     }
 }
@@ -256,5 +254,84 @@ impl Parse for Input {
             c: input.parse()?,
             u: input.parse()?,
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::error::Error;
+
+    use super::*;
+    use syn::parse_str;
+
+    #[test]
+    fn test_parse_range_valid() {
+        let range: Range = parse_str("16..=18").expect("Failed to parse valid range");
+        assert_eq!(range.start, 16);
+        assert_eq!(range.end, 18);
+    }
+
+    #[test]
+    fn test_parse_range_invalid_start_greater_than_stop() {
+        let result: Result<Range> = parse_str("20..=18");
+        assert!(result.is_err());
+        assert!(
+            matches!(result, Err(error) if error.to_string() == Error::StartGreaterThanStop.message())
+        );
+    }
+
+    #[test]
+    fn test_parse_index_cis() {
+        let index: Index = parse_str("9 => C").unwrap();
+        assert_eq!(index.offset, 9);
+        assert!(matches!(index.unsaturated_bound, UnsaturatedBound::Cis(_)));
+    }
+
+    #[test]
+    fn test_parse_index_omega() {
+        // Проверка отрицательного смещения (i8)
+        let index: Index = parse_str("-3 => U").unwrap();
+        assert_eq!(index.offset, -3);
+        assert!(matches!(
+            index.unsaturated_bound,
+            UnsaturatedBound::Unsaturated(_)
+        ));
+    }
+
+    #[test]
+    fn test_parse_unsaturated_valid() {
+        let u: Unsaturated = parse_str("U 2..=3{ 9 => C, 12 => C }").unwrap();
+        assert_eq!(u.range.start, 2);
+        assert_eq!(u.range.end, 3);
+        assert_eq!(u.indices.0.len(), 2);
+    }
+
+    #[test]
+    fn test_parse_unsaturated_invalid_length() {
+        // Максимальное количество связей (end) = 1, но передано 2 индекса
+        let result: Result<Unsaturated> = parse_str("U{ 1, 1 }{ 9 => C, 12 => C }");
+        assert!(
+            matches!(result, Err(error) if error.to_string() == Error::IndicesLengthGreaterThanRange.message())
+        );
+    }
+
+    #[test]
+    fn test_parse_full_input() {
+        let input: Input = parse_str("C16..18U3..3{ 9 => C, 12 => C, 15 => T }")
+            .expect("Failed to parse full input");
+
+        assert_eq!(input.c.range.start, 16);
+        assert_eq!(input.c.range.end, 18);
+
+        assert_eq!(input.u.range.start, 3);
+        assert_eq!(input.u.range.end, 3);
+        assert_eq!(input.u.indices.0.len(), 3);
+
+        let first_index = input.u.indices.0.first().unwrap();
+        assert_eq!(first_index.offset, 9);
+        assert!(matches!(
+            first_index.unsaturated_bound,
+            UnsaturatedBound::Cis(_)
+        ));
     }
 }
