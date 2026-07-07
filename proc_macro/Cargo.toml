@@ -1,0 +1,23 @@
+[package]
+name = "fatty_acid_proc_macro"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-easy = "0.4"
+proc-macro2 = "1.0"
+quote = "1.0.45"
+syn = { version = "2.0.118", features = ["full"] }
+thiserror = "2.0.18"
+
+[dev-dependencies]
+polars = { version = "=0.52.0", default-features = false, features = [
+    "dtype-i8",
+    "dtype-struct",
+    "dtype-u8",
+    "fmt",
+] }
+trybuild = "1.0.110"
