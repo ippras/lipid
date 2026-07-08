@@ -7,7 +7,7 @@ macro_rules! data_type {
         DataType::List(Box::new(data_type!(INDEX)))
     };
     (FATTY_ACID) => {
-        DataType::Struct(vec![field!(CARBON), field!(INDICES)])
+        DataType::Struct(vec![field!(CARBON), field!(UNSATURATED), field!(INDICES)])
     };
     (TRIACYLGLYCEROL) => {
         DataType::Struct(vec![
@@ -39,26 +39,29 @@ macro_rules! field {
     (CARBON) => {
         Field::new(PlSmallStr::from_static(CARBON), DataType::UInt8)
     };
-    (FATTY_ACID) => {
-        Field::new(PlSmallStr::from_static(FATTY_ACID), data_type!(FATTY_ACID))
+    (UNSATURATED) => {
+        Field::new(PlSmallStr::from_static(UNSATURATED), DataType::UInt8)
     };
     (INDEX) => {
         Field::new(PlSmallStr::from_static(INDEX), DataType::UInt8)
     };
-    (INDICES) => {
-        Field::new(PlSmallStr::from_static(INDICES), data_type!(INDICES))
+    (TRIPLE) => {
+        Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
     };
     (PARITY) => {
         Field::new(PlSmallStr::from_static(PARITY), DataType::Boolean)
+    };
+    (INDICES) => {
+        Field::new(PlSmallStr::from_static(INDICES), data_type!(INDICES))
+    };
+    (FATTY_ACID) => {
+        Field::new(PlSmallStr::from_static(FATTY_ACID), data_type!(FATTY_ACID))
     };
     (TRIACYLGLYCEROL) => {
         Field::new(
             PlSmallStr::from_static(TRIACYLGLYCEROL),
             data_type!(TRIACYLGLYCEROL),
         )
-    };
-    (TRIPLE) => {
-        Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)
     };
     ($name:ident[$data_type:expr]) => {
         Field::new(PlSmallStr::from_static($name), data_type!([$data_type]))
