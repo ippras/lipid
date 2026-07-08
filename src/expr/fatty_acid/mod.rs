@@ -61,23 +61,23 @@ impl From<AnyValue<'static>> for FattyAcidExpr {
     }
 }
 
-impl TryFrom<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>>
+impl TryFrom<&FattyAcid<u8, u8, Vec<Indices<Option<i8>, Option<bool>, Option<bool>>>>>
     for FattyAcidExpr
 {
     type Error = PolarsError;
 
     fn try_from(
-        value: &FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<bool>>>>,
+        value: &FattyAcid<u8, u8, Vec<Indices<Option<i8>, Option<bool>, Option<bool>>>>,
     ) -> Result<Self, Self::Error> {
-        let length = value.unsaturated.len();
+        let length = value.indices.len();
         let mut index =
-            PrimitiveChunkedBuilder::<UInt8Type>::new(PlSmallStr::from_static(INDEX), length);
+            PrimitiveChunkedBuilder::<Int8Type>::new(PlSmallStr::from_static(INDEX), length);
         let mut triple = BooleanChunkedBuilder::new(PlSmallStr::from_static(TRIPLE), length);
         let mut parity = BooleanChunkedBuilder::new(PlSmallStr::from_static(PARITY), length);
-        for unsaturated in &value.unsaturated {
-            index.append_option(unsaturated.index);
-            triple.append_option(unsaturated.triple);
-            parity.append_option(unsaturated.parity);
+        for indices in &value.indices {
+            index.append_option(indices.index);
+            triple.append_option(indices.triple);
+            parity.append_option(indices.parity);
         }
         let indices = StructChunked::from_series(
             PlSmallStr::EMPTY,
@@ -92,9 +92,10 @@ impl TryFrom<&FattyAcid<u8, Vec<Unsaturated<Option<u8>, Option<bool>, Option<boo
         Ok(Self::from(AnyValue::StructOwned(Box::new((
             vec![
                 AnyValue::UInt8(value.carbon),
+                AnyValue::UInt8(value.unsaturated),
                 AnyValue::List(indices.into_series()),
             ],
-            vec![field!(CARBON), field!(INDICES)],
+            vec![field!(CARBON), field!(UNSATURATED), field!(INDICES)],
         )))))
     }
 }

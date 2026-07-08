@@ -125,7 +125,7 @@ impl ToTokens for Indices {
             if offset != 0 {
                 index_tokens.push(quote!(Some(#offset)));
             } else {
-                index_tokens.push(quote!(None::<u8>));
+                index_tokens.push(quote!(None::<i8>));
             }
 
             match &index.unsaturated_bound {
@@ -154,27 +154,27 @@ impl ToTokens for Indices {
         quote! {
             ::polars::datatypes::AnyValue::List({
                 let index = {
-                    let mut builder = ::polars::chunked_array::builder::PrimitiveChunkedBuilder::<::polars::datatypes::UInt8Type>::new(::lipid::field!(INDEX).into(), #length);
+                    let mut builder = ::polars::chunked_array::builder::PrimitiveChunkedBuilder::<::polars::datatypes::Int8Type>::new(::lipid::r#const::INDEX.into(), #length);
                     for optional_value in [#(#index_tokens),*] {
                         builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
                 let triple = {
-                    let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::field!(TRIPLE).into(), #length);
+                    let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::r#const::TRIPLE.into(), #length);
                     for optional_value in [#(#triple_tokens),*] {
                         builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
                 let parity = {
-                    let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::field!(PARITY).into(), #length);
+                    let mut builder = ::polars::chunked_array::builder::BooleanChunkedBuilder::new(::lipid::r#const::PARITY.into(), #length);
                     for optional_value in [#(#parity_tokens),*] {
                         builder.append_option(optional_value);
                     }
                     builder.finish()
                 };
-                let item = ::polars::datatypes::StructChunked::from_series(
+                let item = ::polars::chunked_array::StructChunked::from_series(
                     ::polars::datatypes::PlSmallStr::EMPTY,
                     #length,
                     [

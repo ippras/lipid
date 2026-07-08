@@ -26,7 +26,12 @@ impl FattyAcidChunked {
     }
 
     #[inline]
-    pub fn unsaturated(&self) -> PolarsResult<ListChunked> {
+    pub fn unsaturated(&self) -> PolarsResult<UInt8Chunked> {
+        Ok(self.0.field_by_name(UNSATURATED)?.u8()?.clone())
+    }
+
+    #[inline]
+    pub fn indices(&self) -> PolarsResult<ListChunked> {
         Ok(self.0.field_by_name(INDICES)?.list()?.clone())
     }
 
@@ -35,16 +40,20 @@ impl FattyAcidChunked {
         let Some(carbon) = self.0.field_by_name(CARBON)?.u8()?.get(idx) else {
             return Ok(None);
         };
-        let Some(unsaturated) = self.0.field_by_name(INDICES)?.list()?.get_as_series(idx) else {
+        let Some(unsaturated) = self.0.field_by_name(UNSATURATED)?.u8()?.get(idx) else {
             return Ok(None);
         };
-        let unsaturated = UnsaturatedChunked::new(unsaturated.struct_()?)
+        let Some(indices) = self.0.field_by_name(INDICES)?.list()?.get_as_series(idx) else {
+            return Ok(None);
+        };
+        let indices = IndicesChunked::new(indices.struct_()?)
             .fields()?
             .iter()
             .collect();
         Ok(Some(FattyAcid {
             carbon,
             unsaturated,
+            indices,
         }))
     }
 
@@ -54,27 +63,28 @@ impl FattyAcidChunked {
     }
 
     #[inline]
-    pub fn fields(&self) -> PolarsResult<FattyAcid<UInt8Chunked, ListChunked>> {
+    pub fn fields(&self) -> PolarsResult<FattyAcid<UInt8Chunked, UInt8Chunked, ListChunked>> {
         Ok(FattyAcid {
             carbon: self.carbon()?,
             unsaturated: self.unsaturated()?,
+            indices: self.indices()?,
         })
     }
 }
 
 impl FattyAcidChunked {
     pub fn is_cis(&self) -> PolarsResult<BooleanChunked> {
-        self.unsaturated()?
+        self.indices()?
             .amortized_iter()
-            .map(|unsaturated| {
-                let Some(unsaturated) = unsaturated else {
+            .map(|indices| {
+                let Some(indices) = indices else {
                     return Ok(None);
                 };
-                if unsaturated.as_ref().is_empty() {
+                if indices.as_ref().is_empty() {
                     return Ok(Some(false));
                 }
-                let unsaturated = UnsaturatedChunked::new(unsaturated.as_ref().struct_()?);
-                let parity = unsaturated.parity()?;
+                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
+                let parity = indices.parity()?;
                 let is_cis = !parity.any();
                 Ok(Some(is_cis))
             })
@@ -82,69 +92,80 @@ impl FattyAcidChunked {
     }
 
     pub fn is_monounsaturated(&self) -> PolarsResult<BooleanChunked> {
-        Ok(self.unsaturated()?.lst_lengths().equal(1))
+        Ok(self.unsaturated()?.equal(1))
     }
 
     pub fn is_polyunsaturated(&self) -> PolarsResult<BooleanChunked> {
-        Ok(self.unsaturated()?.lst_lengths().gt(1))
+        Ok(self.unsaturated()?.gt(1))
     }
 
     pub fn is_saturated(&self) -> PolarsResult<BooleanChunked> {
-        Ok(self.unsaturated()?.lst_lengths().equal(0))
+        Ok(self.unsaturated()?.equal(0))
     }
 
     pub fn is_trans(&self) -> PolarsResult<BooleanChunked> {
-        self.unsaturated()?
+        self.indices()?
             .amortized_iter()
-            .map(|unsaturated| {
-                let Some(unsaturated) = unsaturated else {
+            .map(|indices| {
+                let Some(indices) = indices else {
                     return Ok(None);
                 };
-                if unsaturated.as_ref().is_empty() {
+                if indices.as_ref().is_empty() {
                     return Ok(Some(false));
                 }
-                let unsaturated = UnsaturatedChunked::new(unsaturated.as_ref().struct_()?);
-                let parity = unsaturated.parity()?;
+                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
+                let parity = indices.parity()?;
                 let is_trans = parity.any();
                 Ok(Some(is_trans))
             })
             .collect()
     }
 
+    // 1 2 3 4 5 6 7 8 9 -9 -8 -7 -6 -5 -4 -3 -2 -1
+    // - first: всегда указывает на самую первую связь от карбоксильного конца (минимальная Δ).
+    // - last: всегда указывает на самую последнюю связь, то есть ближайшую к метильному концу (минимальная ω).
     pub fn is_unsaturated(&self, offset: Option<NonZeroI8>) -> PolarsResult<BooleanChunked> {
         self.carbon()?
             .iter()
-            .zip(self.unsaturated()?.amortized_iter())
-            .map(|(carbon, unsaturated)| {
+            .zip(self.indices()?.amortized_iter())
+            .map(|(carbon, indices)| {
                 let Some(carbon) = carbon else {
                     return Ok(None);
                 };
-                let Some(unsaturated) = unsaturated else {
+                let Some(indices) = indices else {
                     return Ok(None);
                 };
-                let unsaturated = UnsaturatedChunked::new(unsaturated.as_ref().struct_()?);
-                let index = unsaturated.index()?;
+                let indices = IndicesChunked::new(indices.as_ref().struct_()?);
+                let index = indices.index()?;
                 let is_unsaturated = match offset {
                     Some(offset) => {
                         let offset = offset.get();
                         match offset {
                             omega @ ..0 => {
-                                if index.is_empty() {
-                                    return Ok(Some(false));
-                                }
                                 let Some(last) = index.last() else {
                                     return Ok(Some(false));
                                 };
-                                last == carbon - omega.unsigned_abs()
+                                if last < 0 {
+                                    last == omega
+                                } else {
+                                    // получаем delta
+                                    last == carbon as i8 + omega
+                                }
                             }
-                            delta @ 0.. => {
+                            0 => unreachable!("offset NonZeroI8 cannot be 0"),
+                            delta @ 1.. => {
                                 if index.is_empty() {
                                     return Ok(Some(false));
                                 }
                                 let Some(first) = index.first() else {
                                     return Ok(Some(false));
                                 };
-                                first == delta as u8
+                                if first < 0 {
+                                    // получаем delta
+                                    carbon as i8 + first == delta
+                                } else {
+                                    first == delta
+                                }
                             }
                         }
                     }
@@ -156,13 +177,13 @@ impl FattyAcidChunked {
     }
 
     pub fn unsaturation(&self) -> PolarsResult<UInt8Chunked> {
-        self.unsaturated()?
+        self.indices()?
             .amortized_iter()
             .map(|unsaturated| {
                 let Some(unsaturated) = unsaturated else {
                     return Ok(None);
                 };
-                let unsaturated = UnsaturatedChunked::new(unsaturated.as_ref().struct_()?);
+                let unsaturated = IndicesChunked::new(unsaturated.as_ref().struct_()?);
                 let triple = unsaturated.triple()?;
                 let mut unsaturation = 2 * triple.sum().unwrap_or_default();
                 unsaturation += (!triple).sum().unwrap_or_default();
@@ -241,31 +262,38 @@ impl<'a> TryFrom<&'a StructChunked> for &'a FattyAcidChunked {
     }
 }
 
-impl FattyAcid<UInt8Chunked, ListChunked> {
+impl FattyAcid<UInt8Chunked, UInt8Chunked, ListChunked> {
     pub fn iter(&self) -> impl Iterator<Item = PolarsResult<Option<FattyAcid>>> {
         self.carbon
             .iter()
-            .zip(self.unsaturated.amortized_iter())
-            .map(|(carbon, unsaturated)| -> PolarsResult<Option<_>> {
-                let Some(carbon) = carbon else {
-                    return Ok(None);
-                };
-                let Some(unsaturated) = unsaturated else {
-                    return Ok(None);
-                };
-                let unsaturated = UnsaturatedChunked::new(unsaturated.as_ref().struct_()?)
-                    .fields()?
-                    .iter()
-                    .collect();
-                Ok(Some(FattyAcid {
-                    carbon,
-                    unsaturated,
-                }))
-            })
+            .zip(self.unsaturated.iter())
+            .zip(self.indices.amortized_iter())
+            .map(
+                |((carbon, unsaturated), indices)| -> PolarsResult<Option<_>> {
+                    let Some(carbon) = carbon else {
+                        return Ok(None);
+                    };
+                    let Some(unsaturated) = unsaturated else {
+                        return Ok(None);
+                    };
+                    let Some(indices) = indices else {
+                        return Ok(None);
+                    };
+                    let indices = IndicesChunked::new(indices.as_ref().struct_()?)
+                        .fields()?
+                        .iter()
+                        .collect();
+                    Ok(Some(FattyAcid {
+                        carbon,
+                        unsaturated,
+                        indices,
+                    }))
+                },
+            )
     }
 }
 
-impl IntoIterator for &FattyAcid<UInt8Chunked, ListChunked> {
+impl IntoIterator for &FattyAcid<UInt8Chunked, UInt8Chunked, ListChunked> {
     type Item = PolarsResult<Option<FattyAcid>>;
 
     type IntoIter = impl Iterator<Item = PolarsResult<Option<FattyAcid>>>;

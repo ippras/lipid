@@ -43,7 +43,7 @@ macro_rules! field {
         Field::new(PlSmallStr::from_static(UNSATURATED), DataType::UInt8)
     };
     (INDEX) => {
-        Field::new(PlSmallStr::from_static(INDEX), DataType::UInt8)
+        Field::new(PlSmallStr::from_static(INDEX), DataType::Int8)
     };
     (TRIPLE) => {
         Field::new(PlSmallStr::from_static(TRIPLE), DataType::Boolean)

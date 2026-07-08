@@ -2,6 +2,53 @@
 #![feature(custom_inner_attributes)]
 #![feature(impl_trait_in_assoc_type)]
 
+pub mod chunked_array;
+pub mod r#const;
+pub mod expr;
+pub mod kind;
+pub mod r#macro;
+pub mod r#struct;
+pub mod r#trait;
+
+pub mod prelude {
+    #[cfg(feature = "biodiesel")]
+    pub use crate::expr::fatty_acid::properties::biodiesel::BiodieselProperties;
+    pub use crate::{
+        ColumnExt, DataFrameExt, SeriesExt,
+        chunked_array::{
+            fatty_acid::FattyAcidChunked, indices::IndicesChunked,
+            triacylglycerol::TriacylglycerolChunked,
+        },
+        r#const::*,
+        data_type,
+        expr::{
+            ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
+            triacylglycerol::permutation::Permutation as _,
+        },
+        field,
+        kind::{Rco, Rcoo, Rcooch3, Rcooh},
+        r#struct::{
+            fatty_acid::{FattyAcid, Indices},
+            triacylglycerol::{Stereospecificity, Triacylglycerol},
+        },
+        r#trait::{
+            Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, RelativeAtomicMass,
+            fatty_acid::{
+                FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity,
+                FattyAcidSumByBounds, FattyAcidSumByDoubleBounds, FattyAcidTrait,
+            },
+        },
+    };
+    #[cfg(feature = "derive")]
+    pub use fatty_acid_proc_macro::fatty_acid;
+}
+
+#[cfg(feature = "derive")]
+extern crate self as lipid;
+
+#[cfg(feature = "derive")]
+pub use fatty_acid_proc_macro::fatty_acid;
+
 use crate::prelude::*;
 use polars::prelude::*;
 
@@ -69,43 +116,3 @@ impl SeriesExt for Series {
         self.try_into()
     }
 }
-
-pub mod prelude {
-    #[cfg(feature = "biodiesel")]
-    pub use crate::expr::fatty_acid::properties::biodiesel::BiodieselProperties;
-    pub use crate::{
-        ColumnExt, DataFrameExt, SeriesExt,
-        chunked_array::{
-            fatty_acid::FattyAcidChunked, triacylglycerol::TriacylglycerolChunked,
-            unsaturated::UnsaturatedChunked,
-        },
-        r#const::*,
-        data_type,
-        expr::{
-            ExprExt as _, FattyAcidExpr, TriacylglycerolExpr,
-            triacylglycerol::permutation::Permutation as _,
-        },
-        field,
-        kind::{Rco, Rcoo, Rcooch3, Rcooh},
-        r#struct::{
-            fatty_acid::{FattyAcid, Unsaturated},
-            triacylglycerol::{Stereospecificity, Triacylglycerol},
-        },
-        r#trait::{
-            Atomic, EquivalentCarbonNumber, EquivalentChainLength, Kind, RelativeAtomicMass,
-            fatty_acid::{
-                FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity,
-                FattyAcidSumByBounds, FattyAcidSumByDoubleBounds, FattyAcidTrait,
-            },
-        },
-    };
-    pub use fatty_acid_macro::fatty_acid;
-}
-
-pub mod chunked_array;
-pub mod r#const;
-pub mod expr;
-pub mod kind;
-pub mod r#macro;
-pub mod r#struct;
-pub mod r#trait;

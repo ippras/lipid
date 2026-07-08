@@ -1,4 +1,4 @@
-use super::{FattyAcid, Unsaturated};
+use super::{FattyAcid, Indices};
 use std::fmt::{Display, Formatter, Result, Write as _};
 
 impl FattyAcid {
@@ -19,8 +19,8 @@ impl Display for Delta<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         Display::fmt(&self.0.carbon, f)?;
         f.write_char(':')?;
-        Display::fmt(&self.0.unsaturated.len(), f)?;
-        let mut iter = self.0.unsaturated.iter();
+        Display::fmt(&self.0.indices.len(), f)?;
+        let mut iter = self.0.indices.iter();
         if let Some(unsaturated) = iter.next() {
             f.write_char('Δ')?;
             Display::fmt(&Delta(unsaturated), f)?;
@@ -33,7 +33,7 @@ impl Display for Delta<&FattyAcid> {
     }
 }
 
-impl Display for Delta<&Unsaturated> {
+impl Display for Delta<&Indices> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.index {
             None => f.write_char('0')?,
@@ -60,14 +60,14 @@ impl Display for Id<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         f.write_char('c')?;
         Display::fmt(&self.0.carbon, f)?;
-        for unsaturated in &self.0.unsaturated {
+        for unsaturated in &self.0.indices {
             Display::fmt(&Id(unsaturated), f)?;
         }
         Ok(())
     }
 }
 
-impl Display for Id<&Unsaturated> {
+impl Display for Id<&Indices> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.triple {
             None => f.write_char('u')?, // Unsaturated
