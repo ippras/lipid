@@ -17,79 +17,79 @@ macro_rules! check {
 
 #[test]
 fn c4() -> PolarsResult<()> {
-    check!(C4, 102.0681);
+    check!(C4U0, 102.0681);
     Ok(())
 }
 
 #[test]
 fn c5() -> PolarsResult<()> {
-    check!(C5, 116.0837);
+    check!(C5U0, 116.0837);
     Ok(())
 }
 
 #[test]
 fn c6() -> PolarsResult<()> {
-    check!(C6, 130.0994);
+    check!(C6U0, 130.0994);
     Ok(())
 }
 
 #[test]
 fn c7() -> PolarsResult<()> {
-    check!(C7, 144.1150);
+    check!(C7U0, 144.1150);
     Ok(())
 }
 
 #[test]
 fn c8() -> PolarsResult<()> {
-    check!(C8, 158.1307);
+    check!(C8U0, 158.1307);
     Ok(())
 }
 
 #[test]
 fn c9() -> PolarsResult<()> {
-    check!(C9, 172.1463);
+    check!(C9U0, 172.1463);
     Ok(())
 }
 
 #[test]
 fn c10() -> PolarsResult<()> {
-    check!(C10, 186.1620);
+    check!(C10U0, 186.1620);
     Ok(())
 }
 
 #[test]
 fn c11() -> PolarsResult<()> {
-    check!(C11, 200.1776);
+    check!(C11U0, 200.1776);
     Ok(())
 }
 
 #[test]
 fn c12() -> PolarsResult<()> {
-    check!(C12, 214.1933);
+    check!(C12U0, 214.1933);
     Ok(())
 }
 
 #[test]
 fn c13() -> PolarsResult<()> {
-    check!(C13, 228.2089);
+    check!(C13U0, 228.2089);
     Ok(())
 }
 
 #[test]
 fn c14() -> PolarsResult<()> {
-    check!(C14, 242.2246);
+    check!(C14U0, 242.2246);
     Ok(())
 }
 
 #[test]
 fn c15() -> PolarsResult<()> {
-    check!(C15, 256.2402);
+    check!(C15U0, 256.2402);
     Ok(())
 }
 
 #[test]
 fn c16() -> PolarsResult<()> {
-    check!(C16, 270.2559);
+    check!(C16U0, 270.2559);
     Ok(())
 }
 
@@ -107,13 +107,13 @@ fn c16dt9() -> PolarsResult<()> {
 
 #[test]
 fn c17() -> PolarsResult<()> {
-    check!(C17, 284.2715);
+    check!(C17U0, 284.2715);
     Ok(())
 }
 
 #[test]
 fn c18() -> PolarsResult<()> {
-    check!(C18, 298.2872);
+    check!(C18U0, 298.2872);
     Ok(())
 }
 
@@ -179,13 +179,13 @@ fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
 
 #[test]
 fn c19() -> PolarsResult<()> {
-    check!(C19, 312.3028);
+    check!(C19U0, 312.3028);
     Ok(())
 }
 
 #[test]
 fn c20() -> PolarsResult<()> {
-    check!(C20, 326.3185);
+    check!(C20U0, 326.3185);
     Ok(())
 }
 
@@ -245,13 +245,13 @@ fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
 
 #[test]
 fn c21() -> PolarsResult<()> {
-    check!(C21, 340.3341);
+    check!(C21U0, 340.3341);
     Ok(())
 }
 
 #[test]
 fn c22() -> PolarsResult<()> {
-    check!(C22, 354.3498);
+    check!(C22U0, 354.3498);
     Ok(())
 }
 
@@ -293,13 +293,13 @@ fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 
 #[test]
 fn c23() -> PolarsResult<()> {
-    check!(C23, 368.3654);
+    check!(C23U0, 368.3654);
     Ok(())
 }
 
 #[test]
 fn c24() -> PolarsResult<()> {
-    check!(C24, 382.3811);
+    check!(C24U0, 382.3811);
     Ok(())
 }
 
@@ -341,13 +341,13 @@ fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
 
 #[test]
 fn c25() -> PolarsResult<()> {
-    check!(C25, 396.3967);
+    check!(C25U0, 396.3967);
     Ok(())
 }
 
 #[test]
 fn c26() -> PolarsResult<()> {
-    check!(C26, 410.4124);
+    check!(C26U0, 410.4124);
     Ok(())
 }
 
@@ -359,25 +359,25 @@ fn c26dc17() -> PolarsResult<()> {
 
 #[test]
 fn c27() -> PolarsResult<()> {
-    check!(C27, 424.4280);
+    check!(C27U0, 424.4280);
     Ok(())
 }
 
 #[test]
 fn c28() -> PolarsResult<()> {
-    check!(C28, 438.4437);
+    check!(C28U0, 438.4437);
     Ok(())
 }
 
 #[test]
 fn c29() -> PolarsResult<()> {
-    check!(C29, 452.4593);
+    check!(C29U0, 452.4593);
     Ok(())
 }
 
 #[test]
 fn c30() -> PolarsResult<()> {
-    check!(C30, 466.4750);
+    check!(C30U0, 466.4750);
     Ok(())
 }
 
@@ -389,36 +389,36 @@ fn c30dc21() -> PolarsResult<()> {
 
 #[test]
 fn c31() -> PolarsResult<()> {
-    check!(C31, 480.4906);
+    check!(C31U0, 480.4906);
     Ok(())
 }
 
 #[test]
 fn c32() -> PolarsResult<()> {
-    check!(C32, 494.5063);
+    check!(C32U0, 494.5063);
     Ok(())
 }
 
 #[test]
 fn c33() -> PolarsResult<()> {
-    check!(C33, 508.5219);
+    check!(C33U0, 508.5219);
     Ok(())
 }
 
 #[test]
 fn c34() -> PolarsResult<()> {
-    check!(C34, 522.5376);
+    check!(C34U0, 522.5376);
     Ok(())
 }
 
 #[test]
 fn c35() -> PolarsResult<()> {
-    check!(C35, 536.5532);
+    check!(C35U0, 536.5532);
     Ok(())
 }
 
 #[test]
 fn c36() -> PolarsResult<()> {
-    check!(C36, 550.5689);
+    check!(C36U0, 550.5689);
     Ok(())
 }

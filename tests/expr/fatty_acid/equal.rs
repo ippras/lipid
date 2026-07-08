@@ -14,7 +14,7 @@ macro_rules! check {
 #[test]
 fn c4u0() -> PolarsResult<()> {
     check!(
-        C4,
+        C4U0,
         [
             Some(true),  // C4
             Some(false), // C5
@@ -92,7 +92,7 @@ fn c4u0() -> PolarsResult<()> {
 #[test]
 fn c5u0() -> PolarsResult<()> {
     check!(
-        C5,
+        C5U0,
         [
             Some(false), // C4
             Some(true),  // C5
@@ -170,7 +170,7 @@ fn c5u0() -> PolarsResult<()> {
 #[test]
 fn c6u0() -> PolarsResult<()> {
     check!(
-        C6,
+        C6U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -248,7 +248,7 @@ fn c6u0() -> PolarsResult<()> {
 #[test]
 fn c7u0() -> PolarsResult<()> {
     check!(
-        C7,
+        C7U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -326,7 +326,7 @@ fn c7u0() -> PolarsResult<()> {
 #[test]
 fn c8u0() -> PolarsResult<()> {
     check!(
-        C8,
+        C8U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -404,7 +404,7 @@ fn c8u0() -> PolarsResult<()> {
 #[test]
 fn c9u0() -> PolarsResult<()> {
     check!(
-        C9,
+        C9U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -482,7 +482,7 @@ fn c9u0() -> PolarsResult<()> {
 #[test]
 fn c10u0() -> PolarsResult<()> {
     check!(
-        C10,
+        C10U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -560,7 +560,7 @@ fn c10u0() -> PolarsResult<()> {
 #[test]
 fn c11u0() -> PolarsResult<()> {
     check!(
-        C11,
+        C11U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -638,7 +638,7 @@ fn c11u0() -> PolarsResult<()> {
 #[test]
 fn c12u0() -> PolarsResult<()> {
     check!(
-        C12,
+        C12U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -716,7 +716,7 @@ fn c12u0() -> PolarsResult<()> {
 #[test]
 fn c13u0() -> PolarsResult<()> {
     check!(
-        C13,
+        C13U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -794,7 +794,7 @@ fn c13u0() -> PolarsResult<()> {
 #[test]
 fn c14u0() -> PolarsResult<()> {
     check!(
-        C14,
+        C14U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -872,7 +872,7 @@ fn c14u0() -> PolarsResult<()> {
 #[test]
 fn c15u0() -> PolarsResult<()> {
     check!(
-        C15,
+        C15U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -950,7 +950,7 @@ fn c15u0() -> PolarsResult<()> {
 #[test]
 fn c16u0() -> PolarsResult<()> {
     check!(
-        C16,
+        C16U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1184,7 +1184,7 @@ fn c16u1dt9() -> PolarsResult<()> {
 #[test]
 fn c17u0() -> PolarsResult<()> {
     check!(
-        C17,
+        C17U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -1262,7 +1262,7 @@ fn c17u0() -> PolarsResult<()> {
 #[test]
 fn c18u0() -> PolarsResult<()> {
     check!(
-        C18,
+        C18U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2119,7 +2119,7 @@ fn c18u4dc6dc9dc12dc15() -> PolarsResult<()> {
 #[test]
 fn c19u0() -> PolarsResult<()> {
     check!(
-        C19,
+        C19U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2197,7 +2197,7 @@ fn c19u0() -> PolarsResult<()> {
 #[test]
 fn c20u0() -> PolarsResult<()> {
     check!(
-        C20,
+        C20U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -2977,7 +2977,7 @@ fn c20u5dc5dc8dc11dc14dc17() -> PolarsResult<()> {
 #[test]
 fn c21u0() -> PolarsResult<()> {
     check!(
-        C21,
+        C21U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3055,7 +3055,7 @@ fn c21u0() -> PolarsResult<()> {
 #[test]
 fn c22u0() -> PolarsResult<()> {
     check!(
-        C22,
+        C22U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3601,7 +3601,7 @@ fn c22u6dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 #[test]
 fn c23u0() -> PolarsResult<()> {
     check!(
-        C23,
+        C23U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -3679,7 +3679,7 @@ fn c23u0() -> PolarsResult<()> {
 #[test]
 fn c24u0() -> PolarsResult<()> {
     check!(
-        C24,
+        C24U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4225,7 +4225,7 @@ fn c24u6dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
 #[test]
 fn c25u0() -> PolarsResult<()> {
     check!(
-        C25,
+        C25U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4303,7 +4303,7 @@ fn c25u0() -> PolarsResult<()> {
 #[test]
 fn c26u0() -> PolarsResult<()> {
     check!(
-        C26,
+        C26U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4459,7 +4459,7 @@ fn c26u1dc17() -> PolarsResult<()> {
 #[test]
 fn c27u0() -> PolarsResult<()> {
     check!(
-        C27,
+        C27U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4537,7 +4537,7 @@ fn c27u0() -> PolarsResult<()> {
 #[test]
 fn c28u0() -> PolarsResult<()> {
     check!(
-        C28,
+        C28U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4615,7 +4615,7 @@ fn c28u0() -> PolarsResult<()> {
 #[test]
 fn c29u0() -> PolarsResult<()> {
     check!(
-        C29,
+        C29U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4693,7 +4693,7 @@ fn c29u0() -> PolarsResult<()> {
 #[test]
 fn c30u0() -> PolarsResult<()> {
     check!(
-        C30,
+        C30U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4849,7 +4849,7 @@ fn c30u1dc21() -> PolarsResult<()> {
 #[test]
 fn c31u0() -> PolarsResult<()> {
     check!(
-        C31,
+        C31U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -4927,7 +4927,7 @@ fn c31u0() -> PolarsResult<()> {
 #[test]
 fn c32u0() -> PolarsResult<()> {
     check!(
-        C32,
+        C32U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -5005,7 +5005,7 @@ fn c32u0() -> PolarsResult<()> {
 #[test]
 fn c33u0() -> PolarsResult<()> {
     check!(
-        C33,
+        C33U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -5083,7 +5083,7 @@ fn c33u0() -> PolarsResult<()> {
 #[test]
 fn c34u0() -> PolarsResult<()> {
     check!(
-        C34,
+        C34U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -5161,7 +5161,7 @@ fn c34u0() -> PolarsResult<()> {
 #[test]
 fn c35u0() -> PolarsResult<()> {
     check!(
-        C35,
+        C35U0,
         [
             Some(false), // C4
             Some(false), // C5
@@ -5239,7 +5239,7 @@ fn c35u0() -> PolarsResult<()> {
 #[test]
 fn c36u0() -> PolarsResult<()> {
     check!(
-        C36,
+        C36U0,
         [
             Some(false), // C4
             Some(false), // C5

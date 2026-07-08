@@ -12,79 +12,79 @@ macro_rules! check {
 
 #[test]
 fn c4() -> PolarsResult<()> {
-    check!(C4, false);
+    check!(C4U0, false);
     Ok(())
 }
 
 #[test]
 fn c5() -> PolarsResult<()> {
-    check!(C5, false);
+    check!(C5U0, false);
     Ok(())
 }
 
 #[test]
 fn c6() -> PolarsResult<()> {
-    check!(C6, false);
+    check!(C6U0, false);
     Ok(())
 }
 
 #[test]
 fn c7() -> PolarsResult<()> {
-    check!(C7, false);
+    check!(C7U0, false);
     Ok(())
 }
 
 #[test]
 fn c8() -> PolarsResult<()> {
-    check!(C8, false);
+    check!(C8U0, false);
     Ok(())
 }
 
 #[test]
 fn c9() -> PolarsResult<()> {
-    check!(C9, false);
+    check!(C9U0, false);
     Ok(())
 }
 
 #[test]
 fn c10() -> PolarsResult<()> {
-    check!(C10, false);
+    check!(C10U0, false);
     Ok(())
 }
 
 #[test]
 fn c11() -> PolarsResult<()> {
-    check!(C11, false);
+    check!(C11U0, false);
     Ok(())
 }
 
 #[test]
 fn c12() -> PolarsResult<()> {
-    check!(C12, false);
+    check!(C12U0, false);
     Ok(())
 }
 
 #[test]
 fn c13() -> PolarsResult<()> {
-    check!(C13, false);
+    check!(C13U0, false);
     Ok(())
 }
 
 #[test]
 fn c14() -> PolarsResult<()> {
-    check!(C14, false);
+    check!(C14U0, false);
     Ok(())
 }
 
 #[test]
 fn c15() -> PolarsResult<()> {
-    check!(C15, false);
+    check!(C15U0, false);
     Ok(())
 }
 
 #[test]
 fn c16() -> PolarsResult<()> {
-    check!(C16, false);
+    check!(C16U0, false);
     Ok(())
 }
 
@@ -102,13 +102,13 @@ fn c16dt9() -> PolarsResult<()> {
 
 #[test]
 fn c17() -> PolarsResult<()> {
-    check!(C17, false);
+    check!(C17U0, false);
     Ok(())
 }
 
 #[test]
 fn c18() -> PolarsResult<()> {
-    check!(C18, false);
+    check!(C18U0, false);
     Ok(())
 }
 
@@ -174,13 +174,13 @@ fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
 
 #[test]
 fn c19() -> PolarsResult<()> {
-    check!(C19, false);
+    check!(C19U0, false);
     Ok(())
 }
 
 #[test]
 fn c20() -> PolarsResult<()> {
-    check!(C20, false);
+    check!(C20U0, false);
     Ok(())
 }
 
@@ -240,13 +240,13 @@ fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
 
 #[test]
 fn c21() -> PolarsResult<()> {
-    check!(C21, false);
+    check!(C21U0, false);
     Ok(())
 }
 
 #[test]
 fn c22() -> PolarsResult<()> {
-    check!(C22, false);
+    check!(C22U0, false);
     Ok(())
 }
 
@@ -288,13 +288,13 @@ fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
 
 #[test]
 fn c23() -> PolarsResult<()> {
-    check!(C23, false);
+    check!(C23U0, false);
     Ok(())
 }
 
 #[test]
 fn c24() -> PolarsResult<()> {
-    check!(C24, false);
+    check!(C24U0, false);
     Ok(())
 }
 
@@ -336,13 +336,13 @@ fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
 
 #[test]
 fn c25() -> PolarsResult<()> {
-    check!(C25, false);
+    check!(C25U0, false);
     Ok(())
 }
 
 #[test]
 fn c26() -> PolarsResult<()> {
-    check!(C26, false);
+    check!(C26U0, false);
     Ok(())
 }
 
@@ -354,25 +354,25 @@ fn c26dc17() -> PolarsResult<()> {
 
 #[test]
 fn c27() -> PolarsResult<()> {
-    check!(C27, false);
+    check!(C27U0, false);
     Ok(())
 }
 
 #[test]
 fn c28() -> PolarsResult<()> {
-    check!(C28, false);
+    check!(C28U0, false);
     Ok(())
 }
 
 #[test]
 fn c29() -> PolarsResult<()> {
-    check!(C29, false);
+    check!(C29U0, false);
     Ok(())
 }
 
 #[test]
 fn c30() -> PolarsResult<()> {
-    check!(C30, false);
+    check!(C30U0, false);
     Ok(())
 }
 
@@ -384,36 +384,36 @@ fn c30dc21() -> PolarsResult<()> {
 
 #[test]
 fn c31() -> PolarsResult<()> {
-    check!(C31, false);
+    check!(C31U0, false);
     Ok(())
 }
 
 #[test]
 fn c32() -> PolarsResult<()> {
-    check!(C32, false);
+    check!(C32U0, false);
     Ok(())
 }
 
 #[test]
 fn c33() -> PolarsResult<()> {
-    check!(C33, false);
+    check!(C33U0, false);
     Ok(())
 }
 
 #[test]
 fn c34() -> PolarsResult<()> {
-    check!(C34, false);
+    check!(C34U0, false);
     Ok(())
 }
 
 #[test]
 fn c35() -> PolarsResult<()> {
-    check!(C35, false);
+    check!(C35U0, false);
     Ok(())
 }
 
 #[test]
 fn c36() -> PolarsResult<()> {
-    check!(C36, false);
+    check!(C36U0, false);
     Ok(())
 }

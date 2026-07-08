@@ -55,11 +55,11 @@ impl BiodieselProperties for FattyAcidExpr {
     }
 
     fn long_chain_saturated_factor(self, expr: Expr) -> Expr {
-        let c16 = expr.clone().filter(self.clone().equal(C16.clone())).sum();
-        let c18 = expr.clone().filter(self.clone().equal(C18.clone())).sum();
-        let c20 = expr.clone().filter(self.clone().equal(C20.clone())).sum();
-        let c22 = expr.clone().filter(self.clone().equal(C22.clone())).sum();
-        let c24 = expr.filter(self.equal(C24.clone())).sum();
+        let c16 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
+        let c18 = expr.clone().filter(self.clone().equal(C18U0.clone())).sum();
+        let c20 = expr.clone().filter(self.clone().equal(C20U0.clone())).sum();
+        let c22 = expr.clone().filter(self.clone().equal(C22U0.clone())).sum();
+        let c24 = expr.filter(self.equal(C24U0.clone())).sum();
         c16 * lit(0.1) + c18 * lit(0.5) + c20 * lit(1) + c22 * lit(1.5) + c24 * lit(2)
     }
 
