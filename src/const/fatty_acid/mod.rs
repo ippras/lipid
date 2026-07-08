@@ -10,6 +10,8 @@ pub const INDEX: &str = "Index";
 pub const PARITY: &str = "Parity";
 /// Fatty acid bound triple column name
 pub const TRIPLE: &str = "Triple";
+/// Fatty acid unsaturated column name
+pub const UNSATURATED: &str = "Unsaturated";
 
 pub mod explicit;
 pub mod implicit;

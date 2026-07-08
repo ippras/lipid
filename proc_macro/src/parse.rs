@@ -1,12 +1,14 @@
 use self::keywords::{A, C, O, T, U};
-use crate::error::{Error::IndicesLengthGreaterThanUnsaturatedCount, error};
+use crate::error::{
+    Error::{IndicesGreaterThanUnsaturated, UnsaturatedGreaterOrEqualThanCarbon},
+    SpannedError, error,
+};
 use proc_macro2::{Span, TokenStream, TokenTree};
 use quote::{ToTokens, quote, quote_spanned};
 use syn::{
-    LitInt, Token, braced, parenthesized,
+    Error, LitInt, Token, braced,
     parse::{Parse, ParseStream, Result},
     punctuated::Punctuated,
-    spanned::Spanned,
 };
 
 mod keywords {
@@ -28,13 +30,13 @@ proc_easy::easy_argument_group! {
     }
 }
 
-/// Carbons
-pub(super) struct Carbons {
-    pub(super) ident: C,
+/// Carbon
+pub(super) struct Carbon {
+    pub(super) span: Span,
     pub(super) value: u8,
 }
 
-impl Parse for Carbons {
+impl Parse for Carbon {
     fn parse(input: ParseStream) -> Result<Self> {
         // input.step(|cursor| {
         //     if let Some((tt, next)) = cursor.token_tree() {
@@ -46,20 +48,20 @@ impl Parse for Carbons {
         //     }
         //     Err(cursor.error("ожидался символ пунктуации"))
         // });
-        let ident = input.parse()?;
+        let ident = input.parse::<C>()?;
         let value = input.parse::<LitInt>()?;
         Ok(Self {
-            ident,
+            span: ident.span,
             value: value.base10_parse::<u8>()?,
         })
     }
 }
 
-impl ToTokens for Carbons {
+impl ToTokens for Carbon {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let Self { ident, value } = self;
+        let Self { span, value } = *self;
         quote_spanned! {
-            ident.span() => ::polars::datatypes::AnyValue::UInt8(#value)
+            span => ::polars::datatypes::AnyValue::UInt8(#value)
         }
         .to_tokens(tokens)
     }
@@ -67,16 +69,16 @@ impl ToTokens for Carbons {
 
 /// Unsaturated
 pub(super) struct Unsaturated {
-    pub(super) ident: U,
+    pub(super) span: Span,
     pub(super) value: u8,
 }
 
 impl Parse for Unsaturated {
     fn parse(input: ParseStream) -> Result<Self> {
-        let ident = input.parse()?;
+        let ident = input.parse::<U>()?;
         let value = input.parse::<LitInt>()?;
         Ok(Self {
-            ident,
+            span: ident.span,
             value: value.base10_parse::<u8>()?,
         })
     }
@@ -84,9 +86,9 @@ impl Parse for Unsaturated {
 
 impl ToTokens for Unsaturated {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let Self { ident, value } = self;
+        let Self { span, value } = *self;
         quote_spanned! {
-            ident.span() => ::polars::datatypes::AnyValue::UInt8(#value)
+            span => ::polars::datatypes::AnyValue::UInt8(#value)
         }
         .to_tokens(tokens)
     }
@@ -206,7 +208,7 @@ impl Parse for Index {
 
 /// Input
 pub(super) struct Input {
-    pub(super) carbons: Carbons,
+    pub(super) carbon: Carbon,
     pub(super) unsaturated: Unsaturated,
     pub(super) indices: Indices,
 }
@@ -214,10 +216,59 @@ pub(super) struct Input {
 impl Parse for Input {
     fn parse(input: ParseStream) -> Result<Self> {
         Ok(Self {
-            carbons: input.parse()?,
+            carbon: input.parse()?,
             unsaturated: input.parse()?,
             indices: input.parse()?,
         })
+    }
+}
+
+impl TryFrom<Input> for TokenStream {
+    type Error = Error;
+
+    fn try_from(value: Input) -> Result<Self> {
+        let Input {
+            carbon,
+            unsaturated,
+            indices,
+        } = value;
+
+        let carbon_value = carbon.value as usize;
+        let unsaturated_value = unsaturated.value as usize;
+        if carbon_value <= unsaturated_value {
+            return Err(SpannedError {
+                span: carbon.span,
+                error: UnsaturatedGreaterOrEqualThanCarbon {
+                    carbon_value,
+                    unsaturated_value,
+                },
+            })?;
+        }
+        let indices_length = indices.values.len();
+        if unsaturated_value < indices_length {
+            return Err(SpannedError {
+                span: indices.span,
+                error: IndicesGreaterThanUnsaturated {
+                    unsaturated_value,
+                    indices_length,
+                },
+            })?;
+        }
+
+        let tokens = quote! {{
+            (|| -> ::polars::error::PolarsResult<_> {
+                Ok(::polars::datatypes::AnyValue::StructOwned(Box::new((
+                    vec![#carbon, #unsaturated, #indices],
+                    vec![
+                        ::lipid::field!(CARBON),
+                        ::lipid::field!(UNSATURATED),
+                        ::lipid::field!(INDICES),
+                    ],
+                ))))
+            })()
+        }};
+
+        Ok(tokens)
     }
 }
 
@@ -229,7 +280,7 @@ mod tests {
 
     #[test]
     fn test_parse_carbons() {
-        let c: Carbons = parse_str("C 18").unwrap();
+        let c: Carbon = parse_str("C 18").unwrap();
         assert_eq!(c.value, 18);
     }
 
@@ -262,7 +313,7 @@ mod tests {
         let input: Input =
             parse_str("C 18 U 3 { 9: C, 12: C, 15: T }").expect("Failed to parse full input");
 
-        assert_eq!(input.carbons.value, 18);
+        assert_eq!(input.carbon.value, 18);
         assert_eq!(input.unsaturated.value, 3);
         assert_eq!(input.indices.values.len(), 3);
 
