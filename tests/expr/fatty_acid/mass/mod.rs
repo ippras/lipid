@@ -96,13 +96,13 @@ fn c16() -> PolarsResult<()> {
 
 #[test]
 fn c16dc9() -> PolarsResult<()> {
-    check!(C16C9, 254.2246);
+    check!(C16U1C9, 254.2246);
     Ok(())
 }
 
 #[test]
 fn c16dt9() -> PolarsResult<()> {
-    check!(C16T9, 254.2246);
+    check!(C16U1T9, 254.2246);
     Ok(())
 }
 
@@ -120,61 +120,61 @@ fn c18() -> PolarsResult<()> {
 
 #[test]
 fn c18dc9() -> PolarsResult<()> {
-    check!(C18C9, 282.2559);
+    check!(C18U1C9, 282.2559);
     Ok(())
 }
 
 #[test]
 fn c18dt9() -> PolarsResult<()> {
-    check!(C18T9, 282.2559);
+    check!(C18U1T9, 282.2559);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12() -> PolarsResult<()> {
-    check!(C18C9C12, 280.2402);
+    check!(C18U2C9C12, 280.2402);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12() -> PolarsResult<()> {
-    check!(C18C6C9C12, 278.2246);
+    check!(C18U3C6C9C12, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dc8dt10dc12() -> PolarsResult<()> {
-    check!(C18C8T10C12, 278.2246);
+    check!(C18U3C8T10C12, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18C9C12C15, 278.2246);
+    check!(C18U3C9C12C15, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dc9dt11dt13() -> PolarsResult<()> {
-    check!(C18C9T11T13, 278.2246);
+    check!(C18U3C9T11T13, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dc13() -> PolarsResult<()> {
-    check!(C18T9T11C13, 278.2246);
+    check!(C18U3T9T11C13, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dt9dt11dt13() -> PolarsResult<()> {
-    check!(C18T9T11T13, 278.2246);
+    check!(C18U3T9T11T13, 278.2246);
     Ok(())
 }
 
 #[test]
 fn c18dc6dc9dc12dc15() -> PolarsResult<()> {
-    check!(C18C6C9C12C15, 276.2089);
+    check!(C18U4C6C9C12C15, 276.2089);
     Ok(())
 }
 
@@ -192,55 +192,55 @@ fn c20() -> PolarsResult<()> {
 
 #[test]
 fn c20dc9() -> PolarsResult<()> {
-    check!(C20C9, 310.2872);
+    check!(C20U1C9, 310.2872);
     Ok(())
 }
 
 #[test]
 fn c20dc11() -> PolarsResult<()> {
-    check!(C20C11, 310.2872);
+    check!(C20U1C11, 310.2872);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14() -> PolarsResult<()> {
-    check!(C20C11C14, 308.2715);
+    check!(C20U2C11C14, 308.2715);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11() -> PolarsResult<()> {
-    check!(C20C5C8C11, 306.2559);
+    check!(C20U3C5C8C11, 306.2559);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20C8C11C14, 306.2559);
+    check!(C20U3C8C11C14, 306.2559);
     Ok(())
 }
 
 #[test]
 fn c20dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20C11C14C17, 306.2559);
+    check!(C20U3C11C14C17, 306.2559);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14() -> PolarsResult<()> {
-    check!(C20C5C8C11C14, 304.2402);
+    check!(C20U4C5C8C11C14, 304.2402);
     Ok(())
 }
 
 #[test]
 fn c20dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20C8C11C14C17, 304.2402);
+    check!(C20U4C8C11C14C17, 304.2402);
     Ok(())
 }
 
 #[test]
 fn c20dc5dc8dc11dc14dc17() -> PolarsResult<()> {
-    check!(C20C5C8C11C14C17, 302.2246);
+    check!(C20U5C5C8C11C14C17, 302.2246);
     Ok(())
 }
 
@@ -258,37 +258,37 @@ fn c22() -> PolarsResult<()> {
 
 #[test]
 fn c22dc13() -> PolarsResult<()> {
-    check!(C22C13, 338.3185);
+    check!(C22U1C13, 338.3185);
     Ok(())
 }
 
 #[test]
 fn c22dc13dc16() -> PolarsResult<()> {
-    check!(C22C13C16, 336.3028);
+    check!(C22U2C13C16, 336.3028);
     Ok(())
 }
 
 #[test]
 fn c22dc5dc13dc16() -> PolarsResult<()> {
-    check!(C22C5C13C16, 334.2872);
+    check!(C22U3C5C13C16, 334.2872);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16() -> PolarsResult<()> {
-    check!(C22C7C10C13C16, 332.2715);
+    check!(C22U4C7C10C13C16, 332.2715);
     Ok(())
 }
 
 #[test]
 fn c22dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22C7C10C13C16C19, 330.2559);
+    check!(C22U5C7C10C13C16C19, 330.2559);
     Ok(())
 }
 
 #[test]
 fn c22dc4dc7dc10dc13dc16dc19() -> PolarsResult<()> {
-    check!(C22C4C7C10C13C16C19, 328.2402);
+    check!(C22U6C4C7C10C13C16C19, 328.2402);
     Ok(())
 }
 
@@ -306,37 +306,37 @@ fn c24() -> PolarsResult<()> {
 
 #[test]
 fn c24dc15() -> PolarsResult<()> {
-    check!(C24C15, 366.3498);
+    check!(C24U1C15, 366.3498);
     Ok(())
 }
 
 #[test]
 fn c24dc15dc18() -> PolarsResult<()> {
-    check!(C24C15C18, 364.3341);
+    check!(C24U2C15C18, 364.3341);
     Ok(())
 }
 
 #[test]
 fn c24dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24C12C15C18, 362.3185);
+    check!(C24U3C12C15C18, 362.3185);
     Ok(())
 }
 
 #[test]
 fn c24dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24C9C12C15C18, 360.3028);
+    check!(C24U4C9C12C15C18, 360.3028);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18() -> PolarsResult<()> {
-    check!(C24C6C9C12C15C18, 358.2872);
+    check!(C24U5C6C9C12C15C18, 358.2872);
     Ok(())
 }
 
 #[test]
 fn c24dc6dc9dc12dc15dc18dc21() -> PolarsResult<()> {
-    check!(C24C6C9C12C15C18C21, 356.2715);
+    check!(C24U6C6C9C12C15C18C21, 356.2715);
     Ok(())
 }
 
@@ -354,7 +354,7 @@ fn c26() -> PolarsResult<()> {
 
 #[test]
 fn c26dc17() -> PolarsResult<()> {
-    check!(C26C17, 394.3811);
+    check!(C26U1C17, 394.3811);
     Ok(())
 }
 
@@ -384,7 +384,7 @@ fn c30() -> PolarsResult<()> {
 
 #[test]
 fn c30dc21() -> PolarsResult<()> {
-    check!(C30C21, 450.4437);
+    check!(C30U1C21, 450.4437);
     Ok(())
 }
 
