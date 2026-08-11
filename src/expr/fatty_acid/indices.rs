@@ -30,18 +30,18 @@ impl FattyAcidExpr {
     pub fn sum_antiatherogenic_fatty_acids(self, expr: Expr) -> Expr {
         let mufa = self.clone().sum_monounsaturated(expr.clone());
         let pufa_o6 = expr
-            .filter(
-                self.clone()
-                    .is_polyunsaturated()
-                    .and(self.is_unsaturated(NonZeroI8::new(-6))),
-            )
-            .sum();
-        let pufa_o3 = expr
             .clone()
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
+                    .and(self.clone().is_unsaturated(NonZeroI8::new(-6))),
+            )
+            .sum();
+        let pufa_o3 = expr
+            .filter(
+                self.clone()
+                    .is_polyunsaturated()
+                    .and(self.is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         mufa + pufa_o6 + pufa_o3
@@ -61,18 +61,18 @@ impl FattyAcidExpr {
     pub fn sum_antithrombogenic_fatty_acids(self, expr: Expr, weighted: bool) -> Expr {
         let mufa = self.clone().sum_monounsaturated(expr.clone());
         let pufa_o6 = expr
-            .filter(
-                self.clone()
-                    .is_polyunsaturated()
-                    .and(self.is_unsaturated(NonZeroI8::new(-6))),
-            )
-            .sum();
-        let pufa_o3 = expr
             .clone()
             .filter(
                 self.clone()
                     .is_polyunsaturated()
-                    .and(self.clone().is_unsaturated(NonZeroI8::new(-3))),
+                    .and(self.clone().is_unsaturated(NonZeroI8::new(-6))),
+            )
+            .sum();
+        let pufa_o3 = expr
+            .filter(
+                self.clone()
+                    .is_polyunsaturated()
+                    .and(self.is_unsaturated(NonZeroI8::new(-3))),
             )
             .sum();
         if weighted {
