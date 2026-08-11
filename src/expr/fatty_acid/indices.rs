@@ -11,7 +11,7 @@ impl FattyAcidExpr {
     /// Sum of eicosapentaenoic acid and docosahexaenoic acid (EPA + DHA).
     ///
     /// `C22:6(n-3) + C20:5(n-3)`
-    pub fn sum_of_eicosapentaenoic_and_docosahexaenoic(self, expr: Expr) -> Expr {
+    pub fn sum_eicosapentaenoic_and_docosahexaenoic(self, expr: Expr) -> Expr {
         let epa = expr
             .clone()
             .filter(self.clone().equal(C20U5C5C8C11C14C17.clone()))
@@ -27,7 +27,7 @@ impl FattyAcidExpr {
 /// Nutritional sum
 impl FattyAcidExpr {
     /// [Sum of antiatherogenic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/AntiAtherogenic.html)
-    pub fn sum_of_antiatherogenic_fatty_acids(self, expr: Expr) -> Expr {
+    pub fn sum_antiatherogenic_fatty_acids(self, expr: Expr) -> Expr {
         let mufa = self.clone().sum_monounsaturated(expr.clone());
         let pufa_o6 = expr
             .filter(
@@ -48,7 +48,7 @@ impl FattyAcidExpr {
     }
 
     /// [Sum of anticholesterolemic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/AntiCholesterolemic.html)
-    pub fn sum_of_anticholesterolemic_fatty_acids(self, expr: Expr) -> Expr {
+    pub fn sum_anticholesterolemic_fatty_acids(self, expr: Expr) -> Expr {
         let c18u1c9 = expr
             .clone()
             .filter(self.clone().equal(C18U1C9.clone()))
@@ -58,7 +58,7 @@ impl FattyAcidExpr {
     }
 
     /// [Sum of antithrombogenic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/AntiThrombogenic.html)
-    pub fn sum_of_antithrombogenic_fatty_acids(self, expr: Expr, weighted: bool) -> Expr {
+    pub fn sum_antithrombogenic_fatty_acids(self, expr: Expr, weighted: bool) -> Expr {
         let mufa = self.clone().sum_monounsaturated(expr.clone());
         let pufa_o6 = expr
             .filter(
@@ -86,7 +86,7 @@ impl FattyAcidExpr {
     }
 
     /// [Sum of proatherogenic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/ProAtherogenic.html)
-    pub fn sum_of_proatherogenic_fatty_acids(self, expr: Expr, weighted: bool) -> Expr {
+    pub fn sum_proatherogenic_fatty_acids(self, expr: Expr, weighted: bool) -> Expr {
         let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone())).sum();
         let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone())).sum();
         let c16u0 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
@@ -98,7 +98,7 @@ impl FattyAcidExpr {
     }
 
     /// [Sum of procholesterolemic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/ProCholesterolemic.html)
-    pub fn sum_of_procholesterolemic_fatty_acids(self, expr: Expr) -> Expr {
+    pub fn sum_procholesterolemic_fatty_acids(self, expr: Expr) -> Expr {
         let c12u0 = expr.clone().filter(self.clone().equal(C12U0.clone())).sum();
         let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone())).sum();
         let c16u0 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
@@ -106,7 +106,7 @@ impl FattyAcidExpr {
     }
 
     /// [Sum of prothrombogenic fatty acids](https://ippras.github.io/mathematical_expressions_of_fatty_acids.book/Sum/Nutritional/ProThrombogenic.html)
-    pub fn sum_of_prothrombogenic_fatty_acids(self, expr: Expr) -> Expr {
+    pub fn sum_prothrombogenic_fatty_acids(self, expr: Expr) -> Expr {
         let c14u0 = expr.clone().filter(self.clone().equal(C14U0.clone())).sum();
         let c16u0 = expr.clone().filter(self.clone().equal(C16U0.clone())).sum();
         let c18u0 = expr.clone().filter(self.clone().equal(C18U0.clone())).sum();
