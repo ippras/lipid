@@ -61,13 +61,13 @@ impl From<AnyValue<'static>> for FattyAcidExpr {
     }
 }
 
-impl TryFrom<&FattyAcid<u8, u8, Vec<Indices<Option<i8>, Option<bool>, Option<bool>>>>>
+impl TryFrom<&FattyAcid<u8, u8, Vec<Index<Option<i8>, Option<bool>, Option<bool>>>>>
     for FattyAcidExpr
 {
     type Error = PolarsError;
 
     fn try_from(
-        value: &FattyAcid<u8, u8, Vec<Indices<Option<i8>, Option<bool>, Option<bool>>>>,
+        value: &FattyAcid<u8, u8, Vec<Index<Option<i8>, Option<bool>, Option<bool>>>>,
     ) -> Result<Self, Self::Error> {
         let length = value.indices.len();
         let mut index =

@@ -1,4 +1,4 @@
-use super::{FattyAcid, Indices};
+use super::{FattyAcid, Index};
 use std::fmt::{Display, Formatter, Result, Write as _};
 
 impl FattyAcid {
@@ -33,7 +33,7 @@ impl Display for Delta<&FattyAcid> {
     }
 }
 
-impl Display for Delta<&Indices> {
+impl Display for Delta<&Index> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.index {
             None => f.write_char('0')?,
@@ -67,7 +67,7 @@ impl Display for Id<&FattyAcid> {
     }
 }
 
-impl Display for Id<&Indices> {
+impl Display for Id<&Index> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         match self.0.triple {
             None => f.write_char('u')?, // Unsaturated

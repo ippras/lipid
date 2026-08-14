@@ -46,12 +46,12 @@ pub trait FattyAcidMaskByDoubleBounds: FattyAcidTrait {
     fn is_trienoic(self) -> Self::Output;
 }
 
-/// Fatty acid mask by parity
-#[allow(clippy::wrong_self_convention)]
-pub trait FattyAcidMaskByParity: FattyAcidTrait {
-    /// Is cis
-    fn is_cis(self) -> Self::Output;
+// /// Fatty acid mask by parity
+// #[allow(clippy::wrong_self_convention)]
+// pub trait FattyAcidMaskByParity: FattyAcidTrait {
+//     /// Is cis
+//     fn is_cis(self) -> Self::Output;
 
-    /// Is trans
-    fn is_trans(self) -> Self::Output;
-}
+//     /// Is trans
+//     fn is_trans(self) -> Self::Output;
+// }

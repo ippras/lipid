@@ -1,3 +1,5 @@
+pub mod fatty_acid;
+
 use crate::prelude::*;
 
 pub trait Atomic {
@@ -87,5 +89,3 @@ pub trait Kind: RelativeAtomicMass {
 //         Rcooch3(self)
 //     }
 // }
-
-pub mod fatty_acid;

@@ -1,3 +1,6 @@
+pub mod mask;
+pub mod sum;
+
 pub use self::{
     mask::{FattyAcidMaskByBounds, FattyAcidMaskByDoubleBounds, FattyAcidMaskByParity},
     sum::{FattyAcidSumByBounds, FattyAcidSumByDoubleBounds},
@@ -7,6 +10,3 @@ pub use self::{
 pub trait FattyAcidTrait: Sized {
     type Output;
 }
-
-mod mask;
-mod sum;

@@ -32,8 +32,8 @@ impl IndicesChunked {
     }
 
     #[inline]
-    pub fn fields(&self) -> PolarsResult<Indices<Int8Chunked, BooleanChunked, BooleanChunked>> {
-        Ok(Indices {
+    pub fn fields(&self) -> PolarsResult<Index<Int8Chunked, BooleanChunked, BooleanChunked>> {
+        Ok(Index {
             index: self.index()?,
             triple: self.triple()?,
             parity: self.parity()?,
@@ -41,13 +41,13 @@ impl IndicesChunked {
     }
 }
 
-impl Indices<Int8Chunked, BooleanChunked, BooleanChunked> {
-    pub fn iter(&self) -> impl Iterator<Item = Indices<Option<i8>, Option<bool>, Option<bool>>> {
+impl Index<Int8Chunked, BooleanChunked, BooleanChunked> {
+    pub fn iter(&self) -> impl Iterator<Item = Index<Option<i8>, Option<bool>, Option<bool>>> {
         self.index
             .into_iter()
             .zip(&self.triple)
             .zip(&self.parity)
-            .map(|((index, triple), parity)| Indices {
+            .map(|((index, triple), parity)| Index {
                 index,
                 triple,
                 parity,

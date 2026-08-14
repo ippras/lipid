@@ -215,7 +215,7 @@ fn eicosapentaenoic_and_docosahexaenoic() -> PolarsResult<()> {
         .lazy()
         .select([col(FATTY_ACID)
             .fatty_acid()
-            .sum_eicosapentaenoic_and_docosahexaenoic(col("Float"))
+            .sum_of_eicosapentaenoic_and_docosahexaenoic(col("Float"))
             .alias("EicosapentaenoicAndDocosahexaenoic")])
         .collect()?;
     let eicosapentaenoic_and_docosahexaenoic = data_frame["EicosapentaenoicAndDocosahexaenoic"]

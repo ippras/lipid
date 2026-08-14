@@ -28,7 +28,7 @@ pub mod prelude {
         field,
         kind::{Rco, Rcoo, Rcooch3, Rcooh},
         r#struct::{
-            fatty_acid::{FattyAcid, Indices},
+            fatty_acid::{FattyAcid, Index},
             triacylglycerol::{Stereospecificity, Triacylglycerol},
         },
         r#trait::{
