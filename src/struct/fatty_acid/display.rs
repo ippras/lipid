@@ -19,7 +19,7 @@ impl FattyAcid {
 #[derive(Clone, Debug, Default)]
 pub struct Iupac<T>(pub(super) T);
 
-impl Display for Delta<&FattyAcid> {
+impl Display for Iupac<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // 1. Определяем корень
         let root = match self.0.carbon {
