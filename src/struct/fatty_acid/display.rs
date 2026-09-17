@@ -22,7 +22,7 @@ pub struct Iupac<T>(pub(super) T);
 impl Display for Delta<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // 1. Определяем корень
-        let root = match self.0.carbons {
+        let root = match self.0.carbon {
             1 => "meth",
             2 => "eth",
             3 => "prop",
@@ -66,20 +66,6 @@ impl Display for Delta<&FattyAcid> {
             _ => unimplemented!(),
         };
 
-        // Считаем количество двойных и тройных связей
-        let ene_count = self
-            .0
-            .unsaturated
-            .iter()
-            .filter(|unsaturated| unsaturated.triple.is_some_and(|triple| !triple))
-            .count();
-        let yne_count = self
-            .0
-            .unsaturated
-            .iter()
-            .filter(|unsaturated| unsaturated.triple.is_some_and(|triple| triple))
-            .count();
-
         // 2. Формируем префикс стереохимии (например: "(6Z,9Z,12Z)-")
         let mut stereo = self
             .0
@@ -95,12 +81,26 @@ impl Display for Delta<&FattyAcid> {
                 if !first {
                     write!(f, ",")?;
                 }
-                let p = if parity { 'E' } else { 'Z' };
-                write!(f, "{index}{p}")?;
+                let parity = if parity { 'E' } else { 'Z' };
+                write!(f, "{index}{parity}")?;
                 first = false;
             }
             write!(f, ")-")?;
         }
+
+        // Считаем количество двойных и тройных связей
+        let ene_count = self
+            .0
+            .unsaturated
+            .iter()
+            .filter(|unsaturated| unsaturated.triple.is_some_and(|triple| !triple))
+            .count();
+        let yne_count = self
+            .0
+            .unsaturated
+            .iter()
+            .filter(|unsaturated| unsaturated.triple.is_some_and(|triple| triple))
+            .count();
 
         // Если связей нет — это насыщенная кислота
         if ene_count == 0 && yne_count == 0 {
@@ -116,23 +116,23 @@ impl Display for Delta<&FattyAcid> {
         write!(f, "{root}{a}")?;
 
         // Вспомогательное замыкание для форматирования локантов (например: "-6,9,12-")
-        let write_locants = |f: &mut Formatter<'_>, is_triple: bool| -> fmt::Result {
+        let write_locants = |f: &mut Formatter<'_>, is_triple: bool| -> std::fmt::Result {
             let mut locants_iter = self
                 .0
                 .unsaturated
                 .iter()
-                .filter(|unsaturated| unsaturated.triple.unwrap_or(false) == is_triple)
+                .filter(|unsaturated| unsaturated.triple.is_some_and(|triple| triple) == is_triple)
                 .filter_map(|unsaturated| unsaturated.index)
                 .peekable();
 
             if locants_iter.peek().is_some() {
                 write!(f, "-")?;
                 let mut first = true;
-                for idx in locants_iter {
+                for index in locants_iter {
                     if !first {
                         write!(f, ",")?;
                     }
-                    write!(f, "{idx}")?;
+                    write!(f, "{index}")?;
                     first = false;
                 }
                 write!(f, "-")?;
