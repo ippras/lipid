@@ -20,6 +20,10 @@ impl FattyAcidChunked {
         Ok(Self(r#struct))
     }
 
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
+
     #[inline]
     pub fn carbon(&self) -> PolarsResult<UInt8Chunked> {
         Ok(self.0.field_by_name(CARBON)?.u8()?.clone())
