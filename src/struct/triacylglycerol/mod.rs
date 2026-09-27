@@ -2,7 +2,7 @@ use polars::prelude::*;
 use std::ops::Index;
 
 /// Triacylglycerol
-#[derive(Clone, Copy, Debug, Default)]
+#[derive(Clone, Copy, Debug, Default, PartialEq)]
 pub struct Triacylglycerol<T>(pub [T; 3]);
 
 impl<T> Triacylglycerol<T> {
