@@ -3,6 +3,8 @@ pub use self::fatty_acid::{explicit::*, implicit::*};
 pub mod fatty_acid;
 pub mod triacylglycerol;
 
+/// Area
+pub const AREA: &str = "Area";
 /// Fatty acid carbon column name
 pub const CARBON: &str = "Carbon";
 /// Fatty acid column name
@@ -39,3 +41,5 @@ pub const TOTAL_LIPIDS: &str = "TotalLipids";
 pub const TRIACYLGLYCEROL: &str = "Triacylglycerol";
 /// Fatty acid bound triple column name
 pub const TRIPLE: &str = "Triple";
+/// Value
+pub const VALUE: &str = "Value";
