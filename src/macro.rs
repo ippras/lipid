@@ -51,6 +51,9 @@ macro_rules! field {
     (PARITY) => {
         Field::new(PlSmallStr::from_static(PARITY), DataType::Boolean)
     };
+    (RETENTION_TIME) => {
+        Field::new(PlSmallStr::from_static(RETENTION_TIME), DataType::Float64)
+    };
     (TRIACYLGLYCEROL) => {
         Field::new(
             PlSmallStr::from_static(TRIACYLGLYCEROL),
