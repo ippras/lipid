@@ -23,6 +23,7 @@ impl Display for Iupac<&FattyAcid> {
     fn fmt(&self, f: &mut Formatter) -> Result {
         // 1. Определяем корень
         let root = match self.0.carbon {
+            0 => "",
             1 => "meth",
             2 => "eth",
             3 => "prop",
