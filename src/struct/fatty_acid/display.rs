@@ -13,6 +13,10 @@ impl FattyAcid {
     pub fn iupac(&self) -> Iupac<&Self> {
         Iupac(self)
     }
+
+    pub fn omega(&self) -> Omega<&Self> {
+        Omega(self)
+    }
 }
 
 /// Iupac
@@ -254,9 +258,44 @@ impl Display for Id<&Unsaturated> {
     }
 }
 
+/// Omega
+#[derive(Clone, Debug, Default)]
+pub struct Omega<T>(pub(super) T);
+
+impl Display for Omega<&FattyAcid> {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        Display::fmt(&self.0.carbon, f)?;
+        f.write_char(':')?;
+        Display::fmt(&self.0.unsaturated.len(), f)?;
+
+        // Насыщенная кислота: омега-позиции нет (18:0)
+        if self.0.unsaturated.is_empty() {
+            return Ok(());
+        }
+        f.write_char('ω')?;
+
+        // Позиция последней ненасыщенной связи от карбоксильного конца.
+        // Если индекс неизвестен хотя бы у одной связи, определить её нельзя.
+        let last = self
+            .0
+            .unsaturated
+            .iter()
+            .map(|unsaturated| unsaturated.index)
+            .collect::<Option<Vec<_>>>()
+            .and_then(|indices| indices.into_iter().max());
+
+        // ω-позиция = число атомов углерода − Δ-позиция последней связи
+        match last.and_then(|index| self.0.carbon.checked_sub(index)) {
+            Some(omega) => Display::fmt(&omega, f),
+            None => f.write_char('?'),
+        }
+    }
+}
+
 #[derive(Clone, Copy, Debug, Default)]
 pub enum Kind {
     Delta,
     #[default]
     Id,
+    Omega,
 }
