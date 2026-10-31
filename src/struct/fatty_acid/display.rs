@@ -293,6 +293,7 @@ impl Display for Omega<&FattyAcid> {
 }
 
 #[derive(Clone, Copy, Debug, Default)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub enum Kind {
     Delta,
     #[default]
