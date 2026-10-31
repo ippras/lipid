@@ -272,7 +272,7 @@ impl Display for Omega<&FattyAcid> {
         if self.0.unsaturated.is_empty() {
             return Ok(());
         }
-        f.write_char('ω')?;
+        f.write_str("ω-")?;
 
         // Позиция последней ненасыщенной связи от карбоксильного конца.
         // Если индекс неизвестен хотя бы у одной связи, определить её нельзя.
