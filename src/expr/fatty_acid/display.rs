@@ -14,6 +14,7 @@ impl FattyAcidExpr {
                 Ok(match kind {
                     Kind::Delta => fatty_acid.delta(),
                     Kind::Id => fatty_acid.id(),
+                    Kind::Omega => fatty_acid.omega(),
                 }?
                 .into_column())
             },

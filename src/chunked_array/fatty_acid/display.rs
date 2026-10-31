@@ -39,4 +39,16 @@ impl FattyAcidChunked {
             })
             .collect()
     }
+
+    pub fn omega(&self) -> PolarsResult<StringChunked> {
+        self.fields()?
+            .iter()
+            .map(|fatty_acid| {
+                let Some(fatty_acid) = fatty_acid? else {
+                    return Ok(None);
+                };
+                Ok(Some(fatty_acid.omega().to_string()))
+            })
+            .collect()
+    }
 }
