@@ -25,7 +25,7 @@ use std::{
 /// обмена вместо U+0394), `d`.
 const DELTA: char = 'Δ';
 /// Маркеры ω-нотации: `ω` (U+03C9), `Ω` (U+03A9), `Ω` (U+2126, знак «ом»), `w`, `n`.
-const OMEGA: char = ω;
+const OMEGA: char = 'ω';
 /// Тире между `n` и номером: `n-3`, `n−3`, `n–3`.
 const DASH: char = '-';
 /// Шаг между двойными связями в метиленпрерванной системе.
@@ -193,7 +193,7 @@ fn delta(cursor: &mut Cursor, carbon: u8) -> Result<Vec<Unsaturated>, ParseError
 
 /// ω-нотация: `3`, `-3`, `?`. Маркер (`ω`, `n`, ...) уже прочитан.
 fn omega(cursor: &mut Cursor, carbon: u8, count: usize) -> Result<Vec<Unsaturated>, ParseError> {
-    cursor.eat(&DASHES);
+    cursor.eat(&[DASH]);
     // `Omega` печатает `?`, когда положение определить нельзя
     if cursor.eat(&['?']) {
         return Ok(vec![Unsaturated::default(); count]);
