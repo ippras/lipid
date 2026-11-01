@@ -31,6 +31,14 @@ impl FattyAcidExpr {
     }
 
     #[inline]
+    pub fn omega(self) -> Expr {
+        self.0.map(
+            |column| Ok(column.try_fatty_acid()?.omega()?.into_column()),
+            |_, field| Ok(Field::new(field.name().clone(), DataType::String)),
+        )
+    }
+
+    #[inline]
     pub fn id(self) -> Expr {
         self.0.map(
             |column| Ok(column.try_fatty_acid()?.id()?.into_column()),
